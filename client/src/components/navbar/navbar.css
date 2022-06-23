@@ -1,0 +1,33 @@
+.navbar {
+  height: 10vh;
+  width: 100%;
+  background-color: aqua;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.small-logo {
+  width: 10vh;
+  height: 10vh;
+  background-color: black;
+} 
+
+
+.buttons-container {
+  width: 40vh;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;  
+}
+
+.logout {
+  width: 5vh;
+  height: 5vh;
+}
+
+.button2 {
+  width: 5vh;
+  height: 5vh;
+}
