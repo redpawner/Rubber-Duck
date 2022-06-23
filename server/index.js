@@ -2,7 +2,7 @@ const Koa = require('koa');
 const App = new Koa();
 const parser = require('koa-bodyparser');
 const cors = require('@koa/cors');
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 App.use(parser()).use(cors());
 
