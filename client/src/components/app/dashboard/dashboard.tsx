@@ -1,11 +1,17 @@
 import React from "react";
 import "./dashboard.css"
+import useStore from "../../../state-stores/state-stores";
+
+
 
 export default function Dashboard () {
+
+  const helpDash = useStore((state) => state.toggleShow)
+
   return (
     <div className="dashboard-container">
       <div className="create-help-butt-div">
-        <button className="create-help-butt"> <a href="https://www.youtube.com/watch?v=4vvBAONkYwI">CREATE HELP REQUEST</a></button>
+        <button className="create-help-butt" onClick={helpDash}> <a href="https://www.youtube.com/watch?v=4vvBAONkYwI">CREATE HELP REQUEST</a></button>
       </div>
         <ul className="help-list">
           <li>HELP ME</li>
