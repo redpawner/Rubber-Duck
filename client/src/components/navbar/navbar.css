@@ -13,6 +13,11 @@
   background-color: black;
 } 
 
+.logo-img {
+  background-image: url("https://i.etsystatic.com/27152142/r/il/3b2ff8/2976063442/il_1140xN.2976063442_bsoe.jpg");
+  width: 100%;
+  height: 100%;
+}
 
 .buttons-container {
   width: 40vh;
@@ -25,9 +30,11 @@
 .logout {
   width: 5vh;
   height: 5vh;
+  cursor: pointer;
 }
 
 .button2 {
   width: 5vh;
   height: 5vh;
+  cursor: pointer;
 }

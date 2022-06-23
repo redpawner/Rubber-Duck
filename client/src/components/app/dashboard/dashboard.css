@@ -1,0 +1,42 @@
+.dashboard-container {
+  border-radius: 25px;
+  margin-top: 50px;
+  height: 80vh;
+  width: 60%;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.create-help-butt-div {
+  margin-top: 100px;
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+}
+
+.create-help-butt {
+  border-radius: 25px;
+  height: 10vh;
+  width: 10vh;
+  cursor: pointer;
+}
+
+.create-help-butt:hover {
+  background-color: red;
+}
+
+.help-list {
+  height: 40vh;
+  width: 90%;
+  background-color: white;
+  overflow: scroll;
+
+}
+
+.help-list::-webkit-scrollbar {
+  display: none;
+}
