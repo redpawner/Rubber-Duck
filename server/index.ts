@@ -1,22 +1,24 @@
-require('dotenv').config();
+import Koa from 'koa';
+import parser from 'koa-bodyparser';
+import cors from '@koa/cors';
+import router from './router';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: './.env' });
 
 const conn = require('./models/db');
 
-const Koa = require('koa');
 const App = new Koa();
-const parser = require('koa-bodyparser');
-const cors = require('@koa/cors');
 const PORT = process.env.PORT || 3002;
-const router = require('./router');
 
 App.use(cors());
 App.use(parser());
 App.use(router.routes());
 
-App.use(async (ctx, next) => {
+App.use(async (ctx: any, next: any) => {
   await next();
   if (ctx.status === 404) {
-    ctx.body = _404;
+    ctx.body = '_404';
     ctx.status = 404;
   }
 });
