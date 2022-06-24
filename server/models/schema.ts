@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import conn from './db';
+
 const { Schema } = mongoose;
-const conn = require('./db');
 
 const User = new Schema({
   email: { type: String, required: true },

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const SERVER = process.env.SERVER;
 
 main().catch((err) => console.log(err));
@@ -16,4 +16,4 @@ conn.on('disconnected', function () {
 });
 conn.on('error', console.error.bind(console, 'connection error:'));
 
-module.exports = conn;
+export default conn;
