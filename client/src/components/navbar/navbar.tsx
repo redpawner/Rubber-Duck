@@ -7,13 +7,13 @@ export default function Navbar() {
       <div className="small-logo">
         <img
           className="logo-img"
-          src="https://i.etsystatic.com/27152142/r/il/3b2ff8/2976063442/il_1140xN.2976063442_bsoe.jpg"
+          src="https://pm1.narvii.com/6595/994c11d6b41d42e982fbf1789bfcf0a1e8001070_hq.jpg"
           alt="logo"
         ></img>
       </div>
       <div className="buttons-container">
-        <button className="logout">logout</button>
-        <button className="button2">Another button</button>
+        <button className="logout">Logout</button>
+        <button className="button2">Profile</button>
       </div>
     </div>
   );

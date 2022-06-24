@@ -8,14 +8,9 @@ export default function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="create-help-butt-div">
-        <button className="help-requests-butt" onClick={helpDash}>
-          Help Requests
-        </button>
+        <h1 className="dashboard-title">Dashboard</h1>
         <button className="create-help-butt" onClick={helpDash}>
-          {" "}
-          <a href="https://www.youtube.com/watch?v=4vvBAONkYwI">
-            CREATE HELP REQUEST
-          </a>
+          Create Help Request
         </button>
       </div>
       <ul className="help-list">
