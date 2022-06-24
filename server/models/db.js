@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const SERVER = process.env.SERVER;
 
-console.log('test');
-
 main().catch((err) => console.log(err));
 
 async function main() {

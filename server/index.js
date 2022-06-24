@@ -1,4 +1,7 @@
 require('dotenv').config();
+
+const conn = require('./models/db');
+
 const Koa = require('koa');
 const App = new Koa();
 const parser = require('koa-bodyparser');
