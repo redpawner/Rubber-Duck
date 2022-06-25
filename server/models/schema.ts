@@ -7,7 +7,7 @@ import conn from "./db";
 //   user_languages: [{ type: String, required: true }],
 // });
 
-// 1. Create an interface representing a document in MongoDB.
+// Create an interface representing a document in MongoDB.
 interface User {
   username: string;
   email: string;
@@ -26,7 +26,7 @@ interface HelpReqSchema {
   hr_languages: string[];
 }
 
-// 2. Create a Schema corresponding to the document interface.
+// Create a Schema corresponding to the document interface.
 const userSchema = new Schema<User>(
   {
     username: { type: String, required: true },
@@ -44,7 +44,7 @@ const userSchema = new Schema<User>(
     rating_total: { type: Number, default: 0 },
     rating_count: { type: Number, default: 0 },
     needHelp: { type: Boolean, default: false },
-    help_request: { type: HelpReqSchema, default: {} },
+    help_request: { type: Schema, default: {} },
   },
   { timestamps: true }
 );
