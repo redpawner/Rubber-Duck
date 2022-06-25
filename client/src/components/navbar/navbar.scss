@@ -9,7 +9,6 @@
 .small-logo {
   width: 10vh;
   height: 10vh;
-  background-color: black;
 }
 
 .logo-img {
@@ -26,13 +25,22 @@
 }
 
 .logout {
+  margin-top: 1vh;
   width: 5vh;
-  height: 5vh;
+  height: 7vh;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 .button2 {
-  width: 5vh;
-  height: 5vh;
+  margin-top: 1.5vh;
+  height: 6vh;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+#navbar-icon {
+  height: 100%;
 }

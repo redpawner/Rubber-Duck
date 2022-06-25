@@ -1,0 +1,126 @@
+@import "../../../../stylesheet.scss";
+
+.form-container {
+  height: 80vh;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+
+  .auth-logo {
+    width: 20%;
+    height: 20%;
+
+    .auth-logo-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .login-form {
+    width: 40%;
+    height: 40%;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px soild black;
+    box-shadow: $div-shadow;
+  }
+
+  .sign-buttons-cont {
+    width: 100%;
+    height: 7vh;
+    border-radius: 5%;
+
+    #sign-butt {
+      width: 50%;
+      height: 100%;
+
+      border: none;
+      // background-color: white;
+      font-family: $main-font;
+      font-size: $button-font-size;
+      font-weight: $button-weight;
+    }
+
+    .sign-up-butt:hover {
+      color: grey;
+    }
+  }
+  .sign-up-butt {
+    background-color: #d3d3d3;
+    border-radius: 0px 15px 0px 0px;
+    cursor: pointer;
+  }
+
+  .sign-in-butt {
+    background-color: white;
+    border-radius: 15px 10px 0px 0px;
+  }
+
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80%;
+
+    #login-textBox {
+      width: 90%;
+      border: none;
+      border-bottom: solid;
+      border-bottom-width: 1px;
+      outline: none;
+    }
+    ::placeholder {
+      color: $blue-shade;
+      font-family: $main-font;
+      font-size: 15px;
+    }
+
+    .login-btn {
+      width: 90%;
+      height: 5vh;
+      background-color: $blue-shade;
+      border-radius: 15px;
+      color: white;
+      border: none;
+      font-family: $main-font;
+      font-size: $button-font-size;
+      cursor: pointer;
+    }
+
+    .forgot-pass {
+      font-family: $main-font;
+      color: $blue-shade;
+      font-size: 15px;
+      cursor: pointer;
+    }
+  }
+
+  .divider-login {
+    font-family: $main-font;
+    color: white;
+    font-size: 12px;
+  }
+}
+
+.login-other-platforms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 30%;
+
+  #platform-butt {
+    // border-radius: 50%;
+    height: 5vh;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    #socialmedia-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
