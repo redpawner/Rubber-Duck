@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.scss";
 import git from "../../../../Images/git.png";
 import user from "../../../../Images/user.png";
 
 export default function Login() {
+  const [buttonTitle, setButtonTitle] = useState("LOG IN");
+
   return (
     <div className="form-container">
       <div className="auth-logo">
@@ -28,7 +30,7 @@ export default function Login() {
             id="login-textBox"
             // value={}
             // onChange={}
-            placeholder="Username"
+            placeholder="Email"
           />
           <input
             type="password"
@@ -41,7 +43,7 @@ export default function Login() {
             className="login-btn"
             // onClick={}
           >
-            LOG IN
+            {buttonTitle}
           </button>
           <div>
             <a className="forgot-pass">Forgot Password ?</a>

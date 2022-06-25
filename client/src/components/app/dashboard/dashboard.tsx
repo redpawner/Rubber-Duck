@@ -1,6 +1,6 @@
 import React from "react";
 import "./dashboard.scss";
-import useStore from "../../../state-stores/state-stores";
+import { useStore } from "../../../state-stores/state-stores";
 
 export default function Dashboard() {
   const helpDash = useStore((state) => state.toggleShow);

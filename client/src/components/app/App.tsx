@@ -1,7 +1,8 @@
 import React from "react";
-import useStore from "../../state-stores/state-stores";
+import { useStore } from "../../state-stores/state-stores";
 import "./App.scss";
 import Login from "./auth/login/login";
+import Register from "./auth/register/register";
 import CreateHelp from "./dashboard/create-help-request/create-help-request";
 import Dashboard from "./dashboard/dashboard";
 
@@ -10,7 +11,7 @@ function App() {
 
   return (
     <div className="container">
-      <Login />
+      <Register />
     </div>
   );
 }
