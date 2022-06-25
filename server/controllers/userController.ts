@@ -1,8 +1,5 @@
 //TEST ROUTE
 
-const userController = {
-  create = () => {},
-  update = () => {},
-};
+const userController = {};
 
 export default userController;

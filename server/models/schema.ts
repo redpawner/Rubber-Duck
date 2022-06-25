@@ -1,9 +1,10 @@
 import { Schema } from 'mongoose';
 import { User, HelpReqSchema } from '../interfaces/interfaces';
+import { composeMongoose } from 'graphql-compose-mongoose';
+import { schemaComposer } from 'graphql-compose';
 import conn from './db';
 
 const helpRequestSchema = new Schema<HelpReqSchema>({
-  _id: String,
   username: String,
   title: String,
   description: String,
@@ -11,7 +12,6 @@ const helpRequestSchema = new Schema<HelpReqSchema>({
   time_created: Date,
 });
 
-// Create a Schema corresponding to the document interface.
 const userSchema = new Schema<User>(
   {
     username: { type: String, required: true },
@@ -34,6 +34,40 @@ const userSchema = new Schema<User>(
   { timestamps: true }
 );
 
-const Users = conn.model('User', userSchema);
+const User: any = conn.model('User', userSchema);
 
-module.exports = Users;
+const UserTC = composeMongoose(User, {});
+
+schemaComposer.Query.addFields({
+  userById: UserTC.mongooseResolvers.findById(),
+  userByIds: UserTC.mongooseResolvers.findByIds(),
+  userOne: UserTC.mongooseResolvers.findOne(),
+  userMany: UserTC.mongooseResolvers.findMany(),
+  // userDataLoader: UserTC.mongooseResolvers.dataLoader(),
+  // userDataLoaderMany: UserTC.mongooseResolvers.dataLoaderMany(),
+  // userByIdLean: UserTC.mongooseResolvers.findById({ lean: true }),
+  // userByIdsLean: UserTC.mongooseResolvers.findByIds({ lean: true }),
+  // userOneLean: UserTC.mongooseResolvers.findOne({ lean: true }),
+  // userManyLean: UserTC.mongooseResolvers.findMany({ lean: true }),
+  // userDataLoaderLean: UserTC.mongooseResolvers.dataLoader({ lean: true }),
+  // userDataLoaderManyLean: UserTC.mongooseResolvers.dataLoaderMany({
+  //   lean: true,
+  // }),
+  userCount: UserTC.mongooseResolvers.count(),
+  // userConnection: UserTC.mongooseResolvers.connection(),
+  userPagination: UserTC.mongooseResolvers.pagination(),
+});
+
+schemaComposer.Mutation.addFields({
+  userCreateOne: UserTC.mongooseResolvers.createOne(),
+  // userCreateMany: UserTC.mongooseResolvers.createMany(),
+  userUpdateById: UserTC.mongooseResolvers.updateById(),
+  userUpdateOne: UserTC.mongooseResolvers.updateOne(),
+  userUpdateMany: UserTC.mongooseResolvers.updateMany(),
+  userRemoveById: UserTC.mongooseResolvers.removeById(),
+  userRemoveOne: UserTC.mongooseResolvers.removeOne(),
+  userRemoveMany: UserTC.mongooseResolvers.removeMany(),
+});
+
+const graphqlSchema = schemaComposer.buildSchema();
+export default graphqlSchema;

@@ -14,7 +14,12 @@
   "dependencies": {
     "@koa/cors": "^3.3.0",
     "@koa/router": "^10.1.1",
+    "apollo-server-core": "^3.9.0",
+    "apollo-server-koa": "^3.9.0",
     "dotenv": "^16.0.1",
+    "graphql": "^16.5.0",
+    "graphql-compose": "^9.0.8",
+    "graphql-compose-mongoose": "^9.7.1",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "mongodb": "^4.7.0",
