@@ -1,33 +1,6 @@
-import { Schema, model } from 'mongoose';
+import { Schema } from 'mongoose';
+import { User, HelpReqSchema } from '../interfaces/interfaces';
 import conn from './db';
-
-// const User = new Schema({
-//   email: { type: String, required: true },
-//   username: { type: String, required: true },
-//   user_languages: [{ type: String, required: true }],
-// });
-
-// Create an interface representing a document in MongoDB.
-interface User {
-  _id: string;
-  username: string;
-  email: string;
-  avatar?: string;
-  user_languages: string[];
-  rating_total: Number;
-  rating_count: Number;
-  needHelp: Boolean;
-  help_request: HelpReqSchema;
-}
-
-interface HelpReqSchema {
-  _id: string;
-  username: string;
-  title: string;
-  description: string;
-  hr_languages: string[];
-  time_created: Date;
-}
 
 const helpRequestSchema = new Schema<HelpReqSchema>({
   _id: String,
