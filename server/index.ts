@@ -2,21 +2,19 @@ import Koa from 'koa';
 import parser from 'koa-bodyparser';
 import cors from '@koa/cors';
 import router from './router';
-import dotenv from 'dotenv';
 import { ApolloServer } from 'apollo-server-koa';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import http from 'http';
+import graphqlSchema from './models/schema';
 
-dotenv.config({ path: './.env' });
-
-const conn = require('./dbmodels/db');
 const PORT = process.env.PORT || 3002;
 
-(async (typeDefs, resolvers) => {
+console.log(process.env.PORT);
+
+(async () => {
   const httpServer = http.createServer();
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema: graphqlSchema,
     csrfPrevention: true,
     cache: 'bounded',
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
@@ -42,13 +40,7 @@ const PORT = process.env.PORT || 3002;
     httpServer.listen({ port: PORT }, resolve)
   );
   console.log(
-    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
+    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}🚀`
   );
   return { server, app };
 })();
-
-// (async () => {
-//   App.listen(PORT, () =>
-//     console.log(`🚀 Server running at http://127.0.0.1:${PORT}/ 🚀`)
-//   );
-// })();

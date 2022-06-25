@@ -1,5 +1,10 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config({ path: './.env' });
+
 const SERVER = process.env.SERVER;
+
+console.log(SERVER);
 
 main().catch((err) => console.log(err));
 
