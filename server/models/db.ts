@@ -4,8 +4,6 @@ dotenv.config({ path: './.env' });
 
 const SERVER = process.env.SERVER;
 
-console.log(SERVER);
-
 main().catch((err) => console.log(err));
 
 async function main() {

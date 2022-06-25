@@ -1,7 +1,6 @@
 import Koa from 'koa';
 import parser from 'koa-bodyparser';
 import cors from '@koa/cors';
-import router from './router';
 import { ApolloServer } from 'apollo-server-koa';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import http from 'http';
@@ -25,7 +24,6 @@ console.log(process.env.PORT);
 
   app.use(cors());
   app.use(parser());
-  app.use(router.routes());
 
   app.use(async (ctx: any, next: any) => {
     await next();
@@ -40,7 +38,7 @@ console.log(process.env.PORT);
     httpServer.listen({ port: PORT }, resolve)
   );
   console.log(
-    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}🚀`
+    `🦆 Server ready at http://localhost:${PORT}${server.graphqlPath} 🦆`
   );
   return { server, app };
 })();
