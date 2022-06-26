@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import "../login/login.scss";
+import git from "../../../../Images/git.png";
 import { useStore } from "../../../../state-stores/state-stores";
 
-import "./login.scss";
-import git from "../../../../Images/git.png";
-import user from "../../../../Images/user.png";
-
-export default function Login() {
+export default function Reset() {
   const registerShow = useStore((state) => state.setReg);
-  const forgotShow = useStore((state) => state.setReset);
 
   return (
     <div className="form-container">
@@ -39,24 +36,12 @@ export default function Login() {
             // onChange={}
             placeholder="Email"
           />
-          <input
-            type="password"
-            id="login-textBox"
-            // value={}
-            // onChange={}
-            placeholder="Password"
-          />
           <button
             className="login-btn"
             // onClick={}
           >
-            Log In
+            Reset Your Password
           </button>
-          <div>
-            <a className="forgot-pass" onClick={forgotShow}>
-              Forgot Password ?
-            </a>
-          </div>
         </div>
       </div>
       <p className="divider-login">
