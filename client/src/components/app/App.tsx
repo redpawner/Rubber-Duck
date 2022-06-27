@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useStore } from '../../state-stores/state-stores';
 import './App.scss';
@@ -9,6 +10,7 @@ import Dashboard from './dashboard/dashboard';
 import { userStore } from '../../state-stores/state-stores';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase';
+
 
 function App() {
   const setUser = userStore((state) => state.setUser);
@@ -38,7 +40,11 @@ function App() {
     }
   }
 
-  return <div className="container"> {renderSwitch()}</div>;
+  return (
+    <div className="container">
+      {renderSwitch()}
+      {/* <Dashboard />{" "} */}
+    </div>
+  );
 }
-
 export default App;

@@ -22,9 +22,9 @@
   .login-form {
     width: 40%;
     height: 40%;
-    border-radius: 15px;
+    border-radius: $radius;
     background-color: white;
-    border: 2px soild black;
+    border: $border;
     box-shadow: $div-shadow;
   }
 
@@ -83,7 +83,7 @@
       width: 90%;
       height: 5vh;
       background-color: $blue-shade;
-      border-radius: 15px;
+      border-radius: $radius;
       color: white;
       border: none;
       font-family: $main-font;
@@ -113,7 +113,6 @@
   width: 30%;
 
   #platform-butt {
-    // border-radius: 50%;
     height: 5vh;
     background-color: transparent;
     border: none;
@@ -130,7 +129,7 @@
   width: 90%;
   height: 5vh;
   background-color: $blue-shade;
-  border-radius: 15px;
+  border-radius: $radius;
   color: white;
   border: none;
   font-family: $main-font;
