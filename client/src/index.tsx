@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.Fragment>
     <ApolloProvider client={client}>
-      <Navbar />
+      {/* <Navbar /> */}
       <App />
     </ApolloProvider>
   </React.Fragment>
