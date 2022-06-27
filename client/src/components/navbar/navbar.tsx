@@ -13,9 +13,13 @@ export default function Navbar() {
           alt="logo"
         ></img>
       </div>
-      <button className="button2">
-        <img id="navbar-icon" src={profile} alt="profile"></img>
-      </button>
+      <div className="button2">
+        <img className="navbar-icon" src={profile} alt="profile"></img>
+        <div className="dropdown-content">
+          <button className="dropdown-butt">Profile</button>
+          <button className="dropdown-butt">Logout</button>
+        </div>
+      </div>
     </div>
   );
 }
