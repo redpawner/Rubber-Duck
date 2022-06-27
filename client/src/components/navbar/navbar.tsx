@@ -13,14 +13,9 @@ export default function Navbar() {
           alt="logo"
         ></img>
       </div>
-      <div className="buttons-container">
-        <button className="logout">
-          <img id="navbar-icon" src={logout} alt="logout"></img>
-        </button>
-        <button className="button2">
-          <img id="navbar-icon" src={profile} alt="profile"></img>
-        </button>
-      </div>
+      <button className="button2">
+        <img id="navbar-icon" src={profile} alt="profile"></img>
+      </button>
     </div>
   );
 }

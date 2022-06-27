@@ -1,6 +1,8 @@
 import React from "react";
 import "../login/login.scss";
 import git from "../../../../Images/git.png";
+import google from "../../../../Images/google.png";
+import apple from "../../../../Images/apple.png";
 import { useStore } from "../../../../state-stores/state-stores";
 
 export default function Reset() {
@@ -37,7 +39,7 @@ export default function Reset() {
             placeholder="Email"
           />
           <button
-            className="login-btn"
+            className="reset-btn"
             // onClick={}
           >
             Reset Your Password
@@ -50,19 +52,11 @@ export default function Reset() {
       </p>
       <div className="login-other-platforms">
         <button id="platform-butt">
-          <img
-            id="socialmedia-img"
-            src="https://www.clipartmax.com/png/full/73-735576_facebook-icon-facebook-logo-png-transparent-background.png"
-            alt="facebook"
-          ></img>
+          <img id="socialmedia-img" src={google} alt="google"></img>
         </button>
         <button id="platform-butt">
           {" "}
-          <img
-            id="socialmedia-img"
-            src="https://www.clipartmax.com/png/full/60-607252_project-overview-twitter-black-and-white-logo.png"
-            alt="twitter"
-          ></img>
+          <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-butt">
           <img id="socialmedia-img" src={git} alt="github"></img>

@@ -11,16 +11,18 @@ function App() {
   const bears = useStore((state) => state.show);
   const reset = useStore((state) => state.counter);
 
-  switch (reset) {
-    case 0:
-      return <Register />;
-    case 1:
-      return <Login />;
-    case 2:
-      return <Reset />;
+  function renderSwitch() {
+    switch (reset) {
+      case 0:
+        return <Register />;
+      case 1:
+        return <Login />;
+      case 2:
+        return <Reset />;
+    }
   }
 
-  return <div className="container">{!bears ? <Login /> : <Register />}</div>;
+  return <div className="container"> {renderSwitch()}</div>;
 }
 
 // {!bears ? <Login /> : <Register />}
