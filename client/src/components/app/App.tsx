@@ -1,14 +1,13 @@
-import React from "react";
-import { useStore } from "../../state-stores/state-stores";
-import "./App.scss";
-import Login from "./auth/login/login";
-import Register from "./auth/register/register";
-import Reset from "./auth/reset/reset";
-import CreateHelp from "./dashboard/create-help-request/create-help-request";
-import Dashboard from "./dashboard/dashboard";
+import React from 'react';
+import { useStore } from '../../state-stores/state-stores';
+import './App.scss';
+import Login from './auth/login/login';
+import Register from './auth/register/register';
+import Reset from './auth/reset/reset';
+import CreateHelp from './dashboard/create-help-request/create-help-request';
+import Dashboard from './dashboard/dashboard';
 
 function App() {
-  const bears = useStore((state) => state.show);
   const reset = useStore((state) => state.counter);
 
   function renderSwitch() {
@@ -25,5 +24,4 @@ function App() {
   return <div className="container"> {renderSwitch()}</div>;
 }
 
-// {!bears ? <Login /> : <Register />}
 export default App;

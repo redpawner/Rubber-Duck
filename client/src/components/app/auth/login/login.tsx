@@ -1,14 +1,25 @@
-import React, { useState } from "react";
-import { useStore } from "../../../../state-stores/state-stores";
+import React, { useState } from 'react';
+import { useStore } from '../../../../state-stores/state-stores';
 
-import "./login.scss";
-import git from "../../../../Images/git.png";
-import google from "../../../../Images/google.png";
-import apple from "../../../../Images/apple.png";
+import './login.scss';
+import git from '../../../../Images/git.png';
+import google from '../../../../Images/google.png';
+import apple from '../../../../Images/apple.png';
+import { loginUser } from '../../../../api-services/api-auth';
 
 export default function Login() {
   const registerShow = useStore((state) => state.setReg);
   const forgotShow = useStore((state) => state.setReset);
+
+  //this event typescript type should be interfaced somewhere (any is bad)
+  //component id's need changing to classNames (and maybe named better) => check console logs to see what I mean
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    const email: string = event.target.email.value;
+    const password: string = event.target.password.value;
+    loginUser(email, password);
+  };
 
   return (
     <div className="form-container">
@@ -32,10 +43,11 @@ export default function Login() {
             SIGN UP
           </button>
         </div>
-        <div className="login-container">
+        <form className="login-container" onSubmit={handleSubmit}>
           <input
             type="text"
             id="login-textBox"
+            name="email"
             // value={}
             // onChange={}
             placeholder="Email"
@@ -43,6 +55,7 @@ export default function Login() {
           <input
             type="password"
             id="login-textBox"
+            name="password"
             // value={}
             // onChange={}
             placeholder="Password"
@@ -58,18 +71,18 @@ export default function Login() {
               Forgot Password ?
             </a>
           </div>
-        </div>
+        </form>
       </div>
       <p className="divider-login">
         ---------------------------------------- Or
-        ----------------------------------------{" "}
+        ----------------------------------------{' '}
       </p>
       <div className="login-other-platforms">
         <button id="platform-butt">
           <img id="socialmedia-img" src={google} alt="facebook"></img>
         </button>
         <button id="platform-butt">
-          {" "}
+          {' '}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-butt">
