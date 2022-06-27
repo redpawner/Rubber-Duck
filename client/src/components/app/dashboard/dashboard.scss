@@ -1,7 +1,7 @@
 @import "../../../stylesheet.scss";
 
 .dashboard-container {
-  border-radius: 2%;
+  border-radius: $radius;
   margin-top: 2%;
   height: 80vh;
   width: 60%;
@@ -9,19 +9,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: $border;
+  box-shadow: $div-shadow;
 }
 
 .create-help-butt-div {
-  width: 100%;
+  width: 86%;
   height: 20vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  // background-color: blue;
+  border-bottom: $divider-line;
 }
 
 .dashboard-title {
-  font-family: $font;
+  font-family: $main-font;
+  font-size: $title-font-size;
 }
 
 .create-help-butt {
@@ -29,7 +34,7 @@
   height: 5vh;
   width: 15vh;
   cursor: pointer;
-  font-family: $font;
+  font-family: $main-font;
 }
 
 // .create-help-butt p {
@@ -45,6 +50,7 @@
   width: 90%;
   // background-color: $total;
   overflow: scroll;
+  list-style-type: none;
 }
 
 .help-list::-webkit-scrollbar {

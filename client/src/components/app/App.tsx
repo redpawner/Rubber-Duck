@@ -22,8 +22,13 @@ function App() {
     }
   }
 
-  return <div className="container"> {renderSwitch()}</div>;
+  return (
+    <div className="container">
+      {renderSwitch()}
+      {/* <Dashboard />{" "} */}
+    </div>
+  );
 }
-
+// {renderSwitch()}
 // {!bears ? <Login /> : <Register />}
 export default App;
