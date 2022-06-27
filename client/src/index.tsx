@@ -1,33 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.scss";
-import App from "./components/app/App";
-import Navbar from "./components/navbar/navbar";
-import reportWebVitals from "./reportWebVitals";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
-} from "@apollo/client";
 
-const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql",
-  cache: new InMemoryCache(),
-});
-
-client
-  .query({
-    query: gql`
-      query UserMany {
-        userMany {
-          username
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.scss';
+import App from './components/app/App';
+import Navbar from './components/navbar/navbar';
+import reportWebVitals from './reportWebVitals';
+import { ApolloProvider } from '@apollo/client';
+import client from './graphql/apollo-client';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
