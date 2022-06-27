@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { useStore } from "../../../../state-stores/state-stores";
+
 import "./login.scss";
 import git from "../../../../Images/git.png";
-import user from "../../../../Images/user.png";
+import google from "../../../../Images/google.png";
+import apple from "../../../../Images/apple.png";
 
 export default function Login() {
+  const registerShow = useStore((state) => state.setReg);
+  const forgotShow = useStore((state) => state.setReset);
+
   return (
     <div className="form-container">
       <div className="auth-logo">
@@ -18,7 +24,11 @@ export default function Login() {
           <button id="sign-butt" className="sign-in-butt">
             SIGN IN
           </button>
-          <button id="sign-butt" className="sign-up-butt">
+          <button
+            id="sign-butt"
+            className="sign-up-butt"
+            onClick={registerShow}
+          >
             SIGN UP
           </button>
         </div>
@@ -28,7 +38,7 @@ export default function Login() {
             id="login-textBox"
             // value={}
             // onChange={}
-            placeholder="Username"
+            placeholder="Email"
           />
           <input
             type="password"
@@ -41,10 +51,12 @@ export default function Login() {
             className="login-btn"
             // onClick={}
           >
-            LOG IN
+            Log In
           </button>
           <div>
-            <a className="forgot-pass">Forgot Password ?</a>
+            <a className="forgot-pass" onClick={forgotShow}>
+              Forgot Password ?
+            </a>
           </div>
         </div>
       </div>
@@ -54,19 +66,11 @@ export default function Login() {
       </p>
       <div className="login-other-platforms">
         <button id="platform-butt">
-          <img
-            id="socialmedia-img"
-            src="https://www.clipartmax.com/png/full/73-735576_facebook-icon-facebook-logo-png-transparent-background.png"
-            alt="facebook"
-          ></img>
+          <img id="socialmedia-img" src={google} alt="facebook"></img>
         </button>
         <button id="platform-butt">
           {" "}
-          <img
-            id="socialmedia-img"
-            src="https://www.clipartmax.com/png/full/60-607252_project-overview-twitter-black-and-white-logo.png"
-            alt="twitter"
-          ></img>
+          <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-butt">
           <img id="socialmedia-img" src={git} alt="github"></img>

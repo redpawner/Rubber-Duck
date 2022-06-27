@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import { useStore } from "../../../../state-stores/state-stores";
-import Login from "../login/login";
+import React from "react";
+import "../login/login.scss";
 import git from "../../../../Images/git.png";
 import google from "../../../../Images/google.png";
 import apple from "../../../../Images/apple.png";
-import "../login/login.scss";
-import "./register.scss";
-export default function Register() {
-  const loginShow = useStore((state) => state.setLogin);
-  const forgotShow = useStore((state) => state.setReset);
+import { useStore } from "../../../../state-stores/state-stores";
+
+export default function Reset() {
+  const registerShow = useStore((state) => state.setReg);
 
   return (
     <div className="form-container">
@@ -21,10 +19,14 @@ export default function Register() {
       </div>
       <div className="login-form">
         <div className="sign-buttons-cont">
-          <button id="sign-butt" className="sign-in-butt2" onClick={loginShow}>
+          <button id="sign-butt" className="sign-in-butt">
             SIGN IN
           </button>
-          <button id="sign-butt" className="sign-up-butt2">
+          <button
+            id="sign-butt"
+            className="sign-up-butt"
+            onClick={registerShow}
+          >
             SIGN UP
           </button>
         </div>
@@ -36,24 +38,12 @@ export default function Register() {
             // onChange={}
             placeholder="Email"
           />
-          <input
-            type="password"
-            id="login-textBox"
-            // value={}
-            // onChange={}
-            placeholder="Password"
-          />
           <button
-            className="login-btn"
+            className="reset-btn"
             // onClick={}
           >
-            Create Account
+            Reset Your Password
           </button>
-          <div>
-            <a className="forgot-pass" onClick={forgotShow}>
-              Forgot Password ?
-            </a>
-          </div>
         </div>
       </div>
       <p className="divider-login">

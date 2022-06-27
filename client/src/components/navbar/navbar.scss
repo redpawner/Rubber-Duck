@@ -16,25 +16,9 @@
   height: 100%;
 }
 
-.buttons-container {
-  width: 40vh;
-  height: 10vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.logout {
-  margin-top: 1vh;
-  width: 5vh;
-  height: 7vh;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-}
-
 .button2 {
   margin-top: 1.5vh;
+  margin-right: 2vh;
   height: 6vh;
   cursor: pointer;
   background-color: transparent;
@@ -43,4 +27,5 @@
 
 #navbar-icon {
   height: 100%;
+  margin-right: 2vh;
 }
