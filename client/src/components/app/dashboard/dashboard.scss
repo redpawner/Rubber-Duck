@@ -4,7 +4,7 @@
   border-radius: $radius;
   margin-top: 2%;
   height: 80vh;
-  width: 60%;
+  width: 55%;
   background: $dashboard-color;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
 }
 
 .create-help-butt-div {
-  width: 86%;
+  width: 75%;
   height: 20vh;
   display: flex;
   flex-direction: row;
@@ -27,14 +27,20 @@
 .dashboard-title {
   font-family: $main-font;
   font-size: $title-font-size;
+  color: $grey-shade;
 }
 
 .create-help-butt {
-  border-radius: 15%;
+  border-radius: $radius;
   height: 5vh;
-  width: 15vh;
+  width: 13.55vw;
   cursor: pointer;
   font-family: $main-font;
+  background-color: #3022ab;
+  border: none;
+  color: white;
+  font-size: 0.8999999999999999vw;
+  font-weight: bold;
 }
 
 // .create-help-butt p {
@@ -42,17 +48,52 @@
 // }
 
 .create-help-butt:hover {
-  background-color: red;
+  color: $grey-shade;
 }
 
 .help-list {
-  height: 40vh;
-  width: 90%;
-  // background-color: $total;
+  height: 60vh;
+  width: 80%;
   overflow: scroll;
-  list-style-type: none;
+  column-count: 2;
+  list-style: none;
 }
 
 .help-list::-webkit-scrollbar {
   display: none;
+}
+
+.sort-button {
+  width: 8vw;
+  height: 3vh;
+  border-radius: $radius;
+  border: 0.1vw solid $blue-shade;
+  font-family: $main-font;
+  font-weight: bold;
+  color: $blue-shade;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.sort-butt-container {
+  margin-top: 2vh;
+  width: 75%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.arrow {
+  border: solid $blue-shade;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 2.5px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.fa fa-plus {
+  font-size: 0.8999999999999999vw;
 }

@@ -8,6 +8,7 @@
   border-radius: $radius;
   display: flex;
   flex-direction: column;
+  margin-bottom: 4vh;
 
   .help-title {
     margin-left: 2vh;
@@ -15,6 +16,7 @@
     font-size: 0.95vw;
     color: $blue-shade;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .help-details {
@@ -57,6 +59,10 @@
       background-color: #c164b1;
       font-size: 0.65vw;
       border: none;
+    }
+
+    .help-button:hover {
+      color: $grey-shade;
     }
   }
 }

@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
-import { useStore } from '../../state-stores/state-stores';
-import './App.scss';
-import Login from './auth/login/login';
-import Register from './auth/register/register';
-import Reset from './auth/reset/reset';
-import CreateHelp from './dashboard/create-help-request/create-help-request';
-import Dashboard from './dashboard/dashboard';
-import { userStore } from '../../state-stores/state-stores';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase';
+
+import { useEffect } from "react";
+import { useStore } from "../../state-stores/state-stores";
+import "./App.scss";
+import Login from "./auth/login/login";
+import Register from "./auth/register/register";
+import Reset from "./auth/reset/reset";
+import CreateHelp from "./dashboard/create-help-request/create-help-request";
+import Dashboard from "./dashboard/dashboard";
+import { userStore } from "../../state-stores/state-stores";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+
 
 function App() {
   const setUser = userStore((state) => state.setUser);
@@ -24,8 +26,10 @@ function App() {
           console.log(currentUser);
         });
       } else {
+
         setUser('', '');
         console.log('no user signed in');
+
       }
       return unsubscribe;
     });

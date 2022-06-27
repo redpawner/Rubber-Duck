@@ -1,10 +1,14 @@
 import mongoose from 'mongoose';
+
 import dotenv from 'dotenv';
+import { UserInputError } from 'apollo-server-core';
 dotenv.config({ path: './.env' });
 
 const SERVER = process.env.SERVER;
 
 main().catch((err) => console.log(err));
+
+
 
 async function main() {
   await mongoose.connect('mongodb://' + SERVER);
@@ -12,6 +16,7 @@ async function main() {
 
 let conn = mongoose.connection;
 conn.on('connected', function () {
+
   console.log('Database connected successfully.');
 });
 conn.on('disconnected', function () {
