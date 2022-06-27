@@ -8,7 +8,6 @@ import CreateHelp from "./dashboard/create-help-request/create-help-request";
 import Dashboard from "./dashboard/dashboard";
 
 function App() {
-  const bears = useStore((state) => state.show);
   const reset = useStore((state) => state.counter);
 
   function renderSwitch() {
@@ -29,6 +28,4 @@ function App() {
     </div>
   );
 }
-// {renderSwitch()}
-// {!bears ? <Login /> : <Register />}
 export default App;
