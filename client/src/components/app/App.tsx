@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
 import { useEffect } from "react";
 import { useStore } from "../../state-stores/state-stores";
 import "./App.scss";
@@ -13,10 +9,6 @@ import Dashboard from "./dashboard/dashboard";
 import { userStore } from "../../state-stores/state-stores";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
 
 function App() {
   const setUser = userStore((state) => state.setUser);
@@ -25,28 +17,22 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log('running');
+      console.log("running");
       if (user) {
         user.getIdToken().then((token) => {
           setUser(user.uid, token);
           console.log(currentUser);
         });
       } else {
-
-        setUser('', '');
-        console.log('no user signed in');
-
+        setUser("", "");
+        console.log("no user signed in");
       }
       return unsubscribe;
     });
   }, []);
 
-<<<<<<< HEAD
-  const reset = useStore((state) => state.counter);
   const help = useStore((state) => state.show);
 
-=======
->>>>>>> develop
   function renderSwitch() {
     switch (reset) {
       case 0:

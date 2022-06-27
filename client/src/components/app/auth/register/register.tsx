@@ -20,19 +20,19 @@ export default function Register() {
     const password: string = event.target.password.value;
     const username: string = event.target.username.value;
     const result = createUser(email, password);
-    const newUser = result.then((u) => {
-      if (typeof u !== "string") {
-        const blah = useMutation(CREATE_USER, {
-          variables: {
-            username: username,
-            email: email,
-            _id: u.uid,
-          },
-        });
-      } else {
-        console.log(u);
-      }
-    });
+    // const newUser = result.then((u) => {
+    //   if (typeof u !== "string") {
+    //     const blah = useMutation(CREATE_USER, {
+    //       variables: {
+    //         username: username,
+    //         email: email,
+    //         _id: u.uid,
+    //       },
+    //     });
+    //     } else {
+    //       console.log(u);
+    //     }
+    //   });
   };
 
   return (
