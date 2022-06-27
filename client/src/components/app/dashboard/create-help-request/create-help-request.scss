@@ -1,12 +1,28 @@
 @import "../../../../stylesheet.scss";
 
-.help-req-container {
-  border-radius: 2%;
-  margin-top: 2%;
-  height: 80vh;
-  width: 60%;
-  background: $dashboard-color;
+.create-req-butt-cont {
+  width: 75%;
+  height: 4vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+}
+
+.create-cancel-btn {
+  border-radius: $radius;
+  height: 5vh;
+  width: 13.55vw;
+  cursor: pointer;
+  font-family: $main-font;
+  border: none;
+  color: white;
+  font-size: 0.8999999999999999vw;
+  font-weight: bold;
+}
+
+#create {
+  background-color: #3022ab;
+}
+
+#cancel {
+  background-color: #c164b1;
 }
