@@ -4,14 +4,41 @@ import "./index.scss";
 import App from "./components/app/App";
 import Navbar from "./components/navbar/navbar";
 import reportWebVitals from "./reportWebVitals";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql,
+} from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "http://localhost:3001/graphql",
+  cache: new InMemoryCache(),
+});
+
+client
+  .query({
+    query: gql`
+      query UserMany {
+        userMany {
+          username
+        }
+      }
+    `,
+  })
+  .then((result) => console.log(result));
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.Fragment>
-    <Navbar />
-    <App />
+    <ApolloProvider client={client}>
+      <Navbar />
+      <App />
+    </ApolloProvider>
   </React.Fragment>
 );
 

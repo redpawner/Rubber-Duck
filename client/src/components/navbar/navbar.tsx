@@ -1,9 +1,14 @@
-import React from "react";
-import "./navbar.scss";
-import logout from "../../Images/logout.png";
-import profile from "../../Images/profile.png";
+import React from 'react';
+import './navbar.scss';
+import profile from '../../Images/profile.png';
+
+import { logoutUser } from '../../api-services/api-auth';
 
 export default function Navbar() {
+  const logout = () => {
+    logoutUser();
+  };
+
   return (
     <div className="navbar">
       <div className="small-logo">
@@ -16,9 +21,16 @@ export default function Navbar() {
       <div className="button2">
         <img className="navbar-icon" src={profile} alt="profile"></img>
         <div className="dropdown-content">
+<<<<<<< HEAD
           <button className="dropdown-butt">Profile</button>{" "}
           <div className="divider"></div>
           <button className="dropdown-butt">Logout</button>{" "}
+=======
+          <button className="dropdown-butt">Profile</button>
+          <button className="dropdown-butt" onClick={logout}>
+            Logout
+          </button>
+>>>>>>> develop
         </div>
       </div>
     </div>
