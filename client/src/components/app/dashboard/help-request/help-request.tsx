@@ -9,8 +9,8 @@ export default function Help() {
       <div className="bottom-details">
         <a id="tags">CSS</a>
         <div className="butts-cont">
-          <button id="help-button">Info</button>
-          <button id="help-button">Help</button>
+          <button className="help-button">Info</button>
+          <button className="help-button">Help</button>
         </div>
       </div>
     </div>

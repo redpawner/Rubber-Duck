@@ -1,3 +1,4 @@
+@import "../../../../stylesheet.scss";
 .sign-in-butt2 {
   background-color: #d3d3d3;
   border-radius: 15px 0px 0px 0px;
@@ -11,4 +12,42 @@
 
 .sign-in-butt2:hover {
   color: grey;
+}
+
+.register-form {
+  width: 40%;
+  height: 70%;
+  border-radius: $radius;
+  background-color: white;
+  border: $border;
+  box-shadow: $div-shadow;
+}
+
+.login-btn2 {
+  width: 90%;
+  height: 5vh;
+  background-color: $blue-shade;
+  border-radius: $radius;
+  color: white;
+  border: none;
+  font-family: $main-font;
+  font-size: $button-font-size;
+  cursor: pointer;
+  margin-bottom: -1vh;
+  // margin-top: 3vh;
+}
+
+.reg-textBox {
+  margin-top: -2vh;
+  width: 90%;
+  border: none;
+  border-bottom: $divider-line;
+  outline: none;
+}
+
+.reg-input {
+  text-align: left;
+  width: 90%;
+  font-family: $main-font;
+  color: $blue-shade;
 }

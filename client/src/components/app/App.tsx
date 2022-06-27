@@ -42,8 +42,8 @@ function App() {
 
   return (
     <div className="container">
-      {renderSwitch()}
-      {/* <Dashboard />{" "} */}
+      {/* {renderSwitch()} */}
+      <Dashboard />{" "}
     </div>
   );
 }

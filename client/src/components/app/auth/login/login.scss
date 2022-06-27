@@ -1,4 +1,4 @@
-@import '../../../../stylesheet.scss';
+@import "../../../../stylesheet.scss";
 
 .form-container {
   margin-top: 15vh;
@@ -66,12 +66,12 @@
     align-items: center;
     height: 80%;
 
-    #login-textBox {
+    .login-textBox {
       width: 90%;
       border: none;
-      border-bottom: solid;
-      border-bottom-width: 1px;
+      border-bottom: $divider-line;
       outline: none;
+      margin-bottom: -3vh;
     }
     ::placeholder {
       color: $blue-shade;
@@ -134,6 +134,6 @@
   border: none;
   font-family: $main-font;
   font-size: $button-font-size;
-  margin-bottom: 2.5vh;
+  margin-bottom: 5vh;
   cursor: pointer;
 }
