@@ -33,7 +33,7 @@ export default function Reset() {
         <div className="login-container">
           <input
             type="text"
-            id="login-textBox"
+            className="login-textBox"
             // value={}
             // onChange={}
             placeholder="Email"

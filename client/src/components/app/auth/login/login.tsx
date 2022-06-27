@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useStore } from '../../../../state-stores/state-stores';
+import React, { useState } from "react";
+import { useStore } from "../../../../state-stores/state-stores";
 
-import './login.scss';
-import git from '../../../../Images/git.png';
-import google from '../../../../Images/google.png';
-import apple from '../../../../Images/apple.png';
-import { loginUser } from '../../../../api-services/api-auth';
+import "./login.scss";
+import git from "../../../../Images/git.png";
+import google from "../../../../Images/google.png";
+import apple from "../../../../Images/apple.png";
+import { loginUser } from "../../../../api-services/api-auth";
 
 export default function Login() {
   const registerShow = useStore((state) => state.setReg);
@@ -46,19 +46,16 @@ export default function Login() {
         <form className="login-container" onSubmit={handleSubmit}>
           <input
             type="text"
-            id="login-textBox"
+            className="login-textBox"
             name="email"
-            // value={}
-            // onChange={}
             placeholder="Email"
           />
           <input
             type="password"
-            id="login-textBox"
+            className="login-textBox"
             name="password"
-            // value={}
-            // onChange={}
             placeholder="Password"
+            autoComplete="new-password"
           />
           <button
             className="login-btn"
@@ -75,14 +72,14 @@ export default function Login() {
       </div>
       <p className="divider-login">
         ---------------------------------------- Or
-        ----------------------------------------{' '}
+        ----------------------------------------{" "}
       </p>
       <div className="login-other-platforms">
         <button id="platform-butt">
           <img id="socialmedia-img" src={google} alt="facebook"></img>
         </button>
         <button id="platform-butt">
-          {' '}
+          {" "}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-butt">

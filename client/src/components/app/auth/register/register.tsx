@@ -1,10 +1,10 @@
-import { useStore } from '../../../../state-stores/state-stores';
-import git from '../../../../Images/git.png';
-import google from '../../../../Images/google.png';
-import apple from '../../../../Images/apple.png';
-import '../login/login.scss';
-import './register.scss';
-import { createUser } from '../../../../api-services/api-auth';
+import { useStore } from "../../../../state-stores/state-stores";
+import git from "../../../../Images/git.png";
+import google from "../../../../Images/google.png";
+import apple from "../../../../Images/apple.png";
+import "../login/login.scss";
+import "./register.scss";
+import { createUser } from "../../../../api-services/api-auth";
 
 export default function Register() {
   const loginShow = useStore((state) => state.setLogin);
@@ -28,7 +28,7 @@ export default function Register() {
           alt="duck"
         ></img>
       </div>
-      <div className="login-form">
+      <div className="register-form">
         <div className="sign-buttons-cont">
           <button id="sign-butt" className="sign-in-butt2" onClick={loginShow}>
             SIGN IN
@@ -38,51 +38,65 @@ export default function Register() {
           </button>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
+          <p className="reg-input">Email:</p>
           <input
             type="text"
-            id="login-textBox"
-            // value={}
-            // onChange={}
+            className="reg-textBox"
             name="email"
-            placeholder="Email"
+            autoComplete="off"
           />
+          <p className="reg-input">Password:</p>
           <input
             type="password"
-            id="login-textBox"
+            className="reg-textBox"
             name="password"
-            // value={}
-            // onChange={}
-            placeholder="Password"
+            autoComplete="new-password"
+          />
+          <p className="reg-input">Confirm Password:</p>
+          <input
+            type="password"
+            className="reg-textBox"
+            name="password"
+            autoComplete="off"
+          />
+          <p className="reg-input">Username:</p>
+          <input
+            type="text"
+            className="reg-textBox"
+            name="username"
+            autoComplete="off"
+          />
+          <p className="reg-input">Programming Languages:</p>
+          <input
+            type="text"
+            className="reg-textBox"
+            name="languages"
+            autoComplete="off"
           />
           <button
-            className="login-btn"
+            className="login-btn2"
             // onClick={}
           >
             Create Account
           </button>
-          <div>
-            <a className="forgot-pass" onClick={loginShow}>
-              Already registered?
-            </a>
-          </div>
         </form>
       </div>
-      <p className="divider-login">
+      {/* <p className="divider-login">
         ---------------------------------------- Or
-        ----------------------------------------{' '}
+        ----------------------------------------{" "}
       </p>
       <div className="login-other-platforms">
         <button id="platform-butt">
           <img id="socialmedia-img" src={google} alt="google"></img>
         </button>
         <button id="platform-butt">
-          {' '}
+          {" "}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-butt">
           <img id="socialmedia-img" src={git} alt="github"></img>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
