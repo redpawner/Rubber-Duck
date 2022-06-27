@@ -20,9 +20,10 @@ type UserSettingsStore = {
 };
 
 type User = {
-  user: any;
+  userUID: string;
+  userAT: string;
   username: string;
-  setUser: (userInfo: any) => void;
+  setUser: (userUID: string, userAT: string) => void;
 };
 
 const useStore = create<MyStore>()(
@@ -48,12 +49,12 @@ const useUserSettingsStore = create<UserSettingsStore>()(
 
 const userStore = create<User>()(
   devtools((set) => ({
-    user: null,
+    userUID: '',
+    userAT: '',
     username: '',
     //console log below just useful for development and seeing current user details
-    setUser: (userInfo: any) => {
-      set({ user: userInfo });
-      console.log(userInfo);
+    setUser: (userUID: string, userAT: string) => {
+      set({ userUID: userUID, userAT: userAT });
     },
   }))
 );

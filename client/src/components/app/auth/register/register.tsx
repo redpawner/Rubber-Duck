@@ -1,22 +1,37 @@
-import { useStore } from "../../../../state-stores/state-stores";
-import git from "../../../../Images/git.png";
-import google from "../../../../Images/google.png";
-import apple from "../../../../Images/apple.png";
-import "../login/login.scss";
-import "./register.scss";
-import { createUser } from "../../../../api-services/api-auth";
+import { useStore, userStore } from '../../../../state-stores/state-stores';
+import git from '../../../../Images/git.png';
+import google from '../../../../Images/google.png';
+import apple from '../../../../Images/apple.png';
+import '../login/login.scss';
+import './register.scss';
+import { createUser } from '../../../../api-services/api-auth';
+import { useMutation } from '@apollo/client';
+import CREATE_USER from '../../../../graphql/queries-mutations';
 
 export default function Register() {
   const loginShow = useStore((state) => state.setLogin);
 
   //this event typescript type should be interfaced somewhere (any is bad)
-  //component id's need changing to classNames (and maybe named better) => check console logs to see what I mean
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
-    createUser(email, password);
+    const username: string = event.target.username.value;
+    const result = createUser(email, password);
+    const newUser = result.then((u) => {
+      if (typeof u !== 'string') {
+        const blah = useMutation(CREATE_USER, {
+          variables: {
+            username: username,
+            email: email,
+            _id: u.uid,
+          },
+        });
+      } else {
+        console.log(u);
+      }
+    });
   };
 
   return (
@@ -56,7 +71,7 @@ export default function Register() {
           <input
             type="password"
             className="reg-textBox"
-            name="password"
+            name="password1"
             autoComplete="off"
           />
           <p className="reg-input">Username:</p>

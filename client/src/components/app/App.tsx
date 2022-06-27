@@ -12,20 +12,24 @@ import { auth } from '../../firebase';
 
 function App() {
   const setUser = userStore((state) => state.setUser);
-  const currentUser = userStore((state) => state.user);
+  const currentUser = userStore((state) => state);
+  const reset = useStore((state) => state.counter);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('running');
       if (user) {
-        setUser(user);
+        user.getIdToken().then((token) => {
+          setUser(user.uid, token);
+          console.log(currentUser);
+        });
       } else {
-        setUser(null);
+        setUser('', '');
         console.log('no user signed in');
       }
+      return unsubscribe;
     });
   }, []);
-
-  const reset = useStore((state) => state.counter);
 
   function renderSwitch() {
     switch (reset) {

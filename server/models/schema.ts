@@ -14,6 +14,7 @@ const helpRequestSchema = new Schema<HelpReqSchema>({
 
 const userSchema = new Schema<User>(
   {
+    _id: { type: String, required: true },
     username: { type: String, required: true },
     email: { type: String, required: true },
     avatar: String,
@@ -60,7 +61,7 @@ schemaComposer.Query.addFields({
 
 schemaComposer.Mutation.addFields({
   userCreateOne: UserTC.mongooseResolvers.createOne(),
-  // userCreateMany: UserTC.mongooseResolvers.createMany(),
+  userCreateMany: UserTC.mongooseResolvers.createMany(),
   userUpdateById: UserTC.mongooseResolvers.updateById(),
   userUpdateOne: UserTC.mongooseResolvers.updateOne(),
   userUpdateMany: UserTC.mongooseResolvers.updateMany(),
@@ -70,4 +71,5 @@ schemaComposer.Mutation.addFields({
 });
 
 const graphqlSchema = schemaComposer.buildSchema();
+
 export default graphqlSchema;
