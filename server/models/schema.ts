@@ -1,8 +1,9 @@
-import { Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { User, HelpReqSchema } from '../interfaces/interfaces';
 import { composeMongoose } from 'graphql-compose-mongoose';
 import { schemaComposer } from 'graphql-compose';
 import conn from './db';
+import seeds from '../seeds/seeds';
 
 const helpRequestSchema = new Schema<HelpReqSchema>({
   username: String,
@@ -14,6 +15,7 @@ const helpRequestSchema = new Schema<HelpReqSchema>({
 
 const userSchema = new Schema<User>(
   {
+    _id: { type: String, required: true },
     username: { type: String, required: true },
     email: { type: String, required: true },
     avatar: String,
@@ -35,6 +37,15 @@ const userSchema = new Schema<User>(
 );
 
 const User: any = conn.model('User', userSchema);
+
+// var count = 0;
+// if(count<1){
+// const seedDB = async()=>{
+//   await User.insertMany(seeds)
+// }
+// seedDB();
+// count++;
+// }
 
 const UserTC = composeMongoose(User, {});
 
@@ -60,7 +71,7 @@ schemaComposer.Query.addFields({
 
 schemaComposer.Mutation.addFields({
   userCreateOne: UserTC.mongooseResolvers.createOne(),
-  // userCreateMany: UserTC.mongooseResolvers.createMany(),
+  userCreateMany: UserTC.mongooseResolvers.createMany(),
   userUpdateById: UserTC.mongooseResolvers.updateById(),
   userUpdateOne: UserTC.mongooseResolvers.updateOne(),
   userUpdateMany: UserTC.mongooseResolvers.updateMany(),
@@ -70,4 +81,6 @@ schemaComposer.Mutation.addFields({
 });
 
 const graphqlSchema = schemaComposer.buildSchema();
-export default graphqlSchema;
+
+// export default graphqlSchema;
+export { graphqlSchema as default, User };

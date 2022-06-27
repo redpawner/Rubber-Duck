@@ -8,21 +8,23 @@ import {
 const createUser = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      const user = userCredential.user;
       // remove at production
       console.log('user registered');
+      const user = userCredential.user;
+      return user;
     })
     .catch((error) => {
-      console.log(error);
+      return 'Error creating user: ' + error;
     });
 };
 
 const loginUser = (email: string, password: string) => {
-  return signInWithEmailAndPassword(auth, email, password)
+  signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      const user = userCredential.user;
       // remove at production
       console.log('user logged in');
+      const user = userCredential.user;
+      return user;
     })
     .catch((error) => {
       console.log(error);

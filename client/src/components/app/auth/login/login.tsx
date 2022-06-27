@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStore } from "../../../../state-stores/state-stores";
+import { useStore, userStore } from "../../../../state-stores/state-stores";
 
 import "./login.scss";
 import git from "../../../../Images/git.png";
@@ -11,6 +11,7 @@ import { loginUser } from "../../../../api-services/api-auth";
 export default function Login() {
   const registerShow = useStore((state) => state.setReg);
   const forgotShow = useStore((state) => state.setReset);
+  const user = userStore((state) => state.userAT);
 
   //this event typescript type should be interfaced somewhere (any is bad)
   //component id's need changing to classNames (and maybe named better) => check console logs to see what I mean
@@ -20,6 +21,7 @@ export default function Login() {
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
     loginUser(email, password);
+    console.log("this is the user" + user);
   };
 
   return (
