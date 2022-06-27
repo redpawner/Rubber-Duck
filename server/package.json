@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm i && tsc && tsc -w",
-    "duck": "nodemon ./build/index.js"
+    "duck": "nodemon ./build/index.js",
+    "seed":"node ./build/seeds/populate.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "@koa/cors": "^3.3.0",
     "apollo-server-core": "^3.9.0",
     "apollo-server-koa": "^3.9.0",
+    "child_process": "^1.0.2",
     "dotenv": "^16.0.1",
     "graphql": "^16.5.0",
     "graphql-compose": "^9.0.8",
