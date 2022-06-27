@@ -21,10 +21,16 @@ export default function Navbar() {
       <div className="button2">
         <img className="navbar-icon" src={profile} alt="profile"></img>
         <div className="dropdown-content">
+<<<<<<< HEAD
+          <button className="dropdown-butt">Profile</button>{" "}
+          <div className="divider"></div>
+          <button className="dropdown-butt">Logout</button>{" "}
+=======
           <button className="dropdown-butt">Profile</button>
           <button className="dropdown-butt" onClick={logout}>
             Logout
           </button>
+>>>>>>> develop
         </div>
       </div>
     </div>

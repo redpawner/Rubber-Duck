@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './components/app/App';
-import Navbar from './components/navbar/navbar';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import App from "./components/app/App";
+import Navbar from "./components/navbar/navbar";
+import reportWebVitals from "./reportWebVitals";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   useQuery,
   gql,
-} from '@apollo/client';
+} from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
+  uri: "http://localhost:3001/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -30,7 +30,7 @@ client
   .then((result) => console.log(result));
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
