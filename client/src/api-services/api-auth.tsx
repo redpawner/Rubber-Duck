@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  User,
 } from 'firebase/auth';
 
 const createUser = (email: string, password: string) => {

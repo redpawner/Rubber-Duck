@@ -13,25 +13,24 @@ export default function Register() {
 
   //this event typescript type should be interfaced somewhere (any is bad)
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
     const username: string = event.target.username.value;
-    const result = createUser(email, password);
-    const newUser = result.then((u) => {
-      if (typeof u !== 'string') {
-        const blah = useMutation(CREATE_USER, {
-          variables: {
-            username: username,
-            email: email,
-            _id: u.uid,
-          },
-        });
-      } else {
-        console.log(u);
-      }
-    });
+
+    const result = await createUser(email, password);
+    if (typeof result === 'string') return null;
+    console.log(await result.getIdToken());
+    console.log(result.uid);
+
+    // useMutation(CREATE_USER, {
+    //   variables: {
+    //     username: username,
+    //     email: email,
+    //     // _id: result.uid,
+    //   },
+    // });
   };
 
   return (
