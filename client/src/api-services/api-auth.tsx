@@ -6,7 +6,7 @@ import {
   User,
 } from 'firebase/auth';
 
-const createUser = (email: string, password: string) => {
+const fbCreateUser = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // remove at production
@@ -15,7 +15,7 @@ const createUser = (email: string, password: string) => {
       return user;
     })
     .catch((error) => {
-      return 'Error creating user: ' + error;
+      return error;
     });
 };
 
@@ -43,4 +43,4 @@ const logoutUser = () => {
     });
 };
 
-export { createUser, loginUser, logoutUser };
+export { fbCreateUser, loginUser, logoutUser };
