@@ -1,30 +1,62 @@
-import { useStore, userStore } from "../../../../state-stores/state-stores";
-import git from "../../../../Images/git.png";
-import google from "../../../../Images/google.png";
-import apple from "../../../../Images/apple.png";
-import "../login/login.scss";
-import "./register.scss";
-import logo from "../../../../Images/logo.png";
-import { createUser } from "../../../../api-services/api-auth";
-import { useMutation } from "@apollo/client";
-import CREATE_USER from "../../../../graphql/queries-mutations";
+import { useStore, userStore } from '../../../../state-stores/state-stores';
+import git from '../../../../Images/git.png';
+import google from '../../../../Images/google.png';
+import apple from '../../../../Images/apple.png';
+import '../login/login.scss';
+import './register.scss';
+import logo from '../../../../Images/logo.png';
+import { fbCreateUser } from '../../../../api-services/api-auth';
+import { useMutation } from '@apollo/client';
+import CREATE_USER from '../../../../graphql/queries-mutations';
+import { useCallback } from 'react';
 
 export default function Register() {
   const loginShow = useStore((state) => state.setLogin);
+  const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
 
   //this event typescript type should be interfaced somewhere (any is bad)
 
-  const handleSubmit = async (event: any) => {
+  const useHandleSubmit = async (event: any) => {
     event.preventDefault();
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
     const username: string = event.target.username.value;
 
+    const result = await fbCreateUser(email, password);
+    // if (typeof result === 'string') return null;
+    console.log(result);
+    // const accessToken = await result.getIdToken();
+    const uid = result.uid;
 
-    const result = await createUser(email, password);
-    if (typeof result === 'string') return null;
-    console.log(await result.getIdToken());
-    console.log(result.uid);
+    const newUser = {
+      username: username,
+      email: email,
+      uid: uid,
+    };
+
+    createUser({
+      variables: {
+        record: {
+          username: newUser.username,
+          email: newUser.email,
+          uid: newUser.uid,
+        },
+      },
+    });
+    // console.log(createUser);
+    // console.log(currentUser);
+
+    // const currentUser = useCallback(() => {
+    //   useMutation(CREATE_USER, {
+    //     variables: {
+    //       username: newUser.username,
+    //       email: newUser.email,
+    //       _id: newUser.uid,
+    //     },
+    //   });
+    // }, []);
+
+    // currentUser();
 
     // useMutation(CREATE_USER, {
     //   variables: {
@@ -49,7 +81,7 @@ export default function Register() {
             SIGN UP
           </button>
         </div>
-        <form className="login-container" onSubmit={handleSubmit}>
+        <form className="login-container" onSubmit={useHandleSubmit}>
           <p className="reg-input">Email:</p>
           <input
             type="text"
