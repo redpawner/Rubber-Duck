@@ -43,28 +43,6 @@ export default function Register() {
         },
       },
     });
-    // console.log(createUser);
-    // console.log(currentUser);
-
-    // const currentUser = useCallback(() => {
-    //   useMutation(CREATE_USER, {
-    //     variables: {
-    //       username: newUser.username,
-    //       email: newUser.email,
-    //       _id: newUser.uid,
-    //     },
-    //   });
-    // }, []);
-
-    // currentUser();
-
-    // useMutation(CREATE_USER, {
-    //   variables: {
-    //     username: username,
-    //     email: email,
-    //     // _id: result.uid,
-    //   },
-    // });
   };
 
   return (
