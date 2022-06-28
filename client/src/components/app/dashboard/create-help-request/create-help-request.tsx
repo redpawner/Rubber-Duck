@@ -14,14 +14,9 @@ export default function CreateHelp() {
     </button> */}
       </div>
       <form className="help-container">
+        <p className="help-request-input">Title:</p>
         <input type="text" className="help-title" name="title" />
-        <input
-          type="password"
-          className="login-textBox"
-          name="password"
-          placeholder="Password"
-          autoComplete="new-password"
-        />
+        <input type="password" className="login-textBox" name="password" />
       </form>
       <div className="create-req-butt-cont">
         <button className="create-cancel-btn" id="create">

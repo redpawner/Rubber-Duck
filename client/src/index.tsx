@@ -1,12 +1,10 @@
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './components/app/App';
-import Navbar from './components/navbar/navbar';
-import reportWebVitals from './reportWebVitals';
-import { ApolloProvider } from '@apollo/client';
-import client from './graphql/apollo-client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import App from "./components/app/App";
+import reportWebVitals from "./reportWebVitals";
+import { ApolloProvider } from "@apollo/client";
+import client from "./graphql/apollo-client";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,7 +13,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.Fragment>
     <ApolloProvider client={client}>
-      {/* <Navbar /> */}
       <App />
     </ApolloProvider>
   </React.Fragment>
