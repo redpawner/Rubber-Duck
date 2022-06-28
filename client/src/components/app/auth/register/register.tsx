@@ -8,7 +8,6 @@ import logo from '../../../../Images/logo.png';
 import { fbCreateUser } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import CREATE_USER from '../../../../graphql/queries-mutations';
-import { useCallback } from 'react';
 
 export default function Register() {
   const loginShow = useStore((state) => state.setLogin);
@@ -21,17 +20,16 @@ export default function Register() {
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
     const username: string = event.target.username.value;
+    const languages: [string] = [event.target.languages.value];
 
     const result = await fbCreateUser(email, password);
-    // if (typeof result === 'string') return null;
-    console.log(result);
-    // const accessToken = await result.getIdToken();
     const uid = result.uid;
 
     const newUser = {
       username: username,
       email: email,
       uid: uid,
+      user_languages: languages,
     };
 
     createUser({
@@ -40,6 +38,7 @@ export default function Register() {
           username: newUser.username,
           email: newUser.email,
           uid: newUser.uid,
+          // user_languages: newUser.user_languages,
         },
       },
     });

@@ -26,17 +26,21 @@ console.log(process.env.PORT);
   app.use(parser());
 
   app.use(async (ctx: any, next: any) => {
+    console.log(ctx.request.headers);
     await next();
     if (ctx.status === 404) {
       ctx.body = '_404';
       ctx.status = 404;
     }
   });
+
   server.applyMiddleware({ app });
   httpServer.on('request', app.callback());
+
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: PORT }, resolve)
   );
+
   console.log(
     `🦆 Server ready at http://localhost:${PORT}${server.graphqlPath} 🦆`
   );

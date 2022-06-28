@@ -26,3 +26,37 @@
 #cancel {
   background-color: #c164b1;
 }
+
+.create-help-container {
+  height: 65%;
+  width: 75%;
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.help-request-input {
+  font-family: $main-font;
+  font-weight: bold;
+  color: $blue-shade;
+  margin-bottom: -0.1vh;
+}
+
+.help-title2 {
+  width: 20vw;
+  height: 3vh;
+  border: $divider-line;
+  font-family: $main-font;
+  color: $grey-shade;
+  font-weight: bold;
+}
+
+.help-description {
+  width: 20vw;
+  height: 20vh;
+  font-family: $main-font;
+  border: $divider-line;
+  color: $grey-shade;
+  font-weight: bold;
+  float: left;
+}

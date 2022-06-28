@@ -56,6 +56,7 @@ const CREATE_USER = gql`
   }
 `;
 
+
 // {
 //   "filter": {
 //     "uid": "uid"
@@ -103,5 +104,8 @@ mutation Mutation($record: UpdateOneUserInput!, $filter: FilterUpdateOneUserInpu
   }
 }
 `;
+
+//user_languages
+
 
 export default CREATE_USER;
