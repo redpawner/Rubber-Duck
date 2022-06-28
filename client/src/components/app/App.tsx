@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useStore } from "../../state-stores/state-stores";
 import "./App.scss";
+import Navbar from "../navbar/navbar";
 import Login from "./auth/login/login";
 import Register from "./auth/register/register";
 import Reset from "./auth/reset/reset";
@@ -14,6 +15,7 @@ function App() {
   const setUser = userStore((state) => state.setUser);
   const currentUser = userStore((state) => state);
   const reset = useStore((state) => state.counter);
+  const usAt = userStore((state) => state.userAT);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,12 +46,21 @@ function App() {
     }
   }
 
+  function authorize() {
+    switch (usAt.length > 0) {
+      case true:
+        return (
+          <>
+            <Navbar />
+            <div className="container">{helpReq}</div>
+          </>
+        );
+      case false:
+        return <div className="container">{renderSwitch()}</div>;
+    }
+  }
+
   const helpReq = !help ? <Dashboard /> : <CreateHelp />;
-  return (
-    <div className="container">
-      {renderSwitch()}
-      {/* {helpReq} */}
-    </div>
-  );
+  return <>{authorize()};</>;
 }
 export default App;
