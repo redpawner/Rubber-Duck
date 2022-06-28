@@ -37,14 +37,6 @@ const userSchema = new Schema<User>(
 
 const User: any = conn.model('User', userSchema);
 
-// var count = 0;
-// if(count<1){
-// const seedDB = async()=>{
-//   await User.insertMany(seeds)
-// }
-// seedDB();
-// count++;
-// }
 
 const UserTC = composeMongoose(User, {});
 
@@ -53,7 +45,7 @@ schemaComposer.Query.addFields({
   userByIds: UserTC.mongooseResolvers.findByIds(),
   userOne: UserTC.mongooseResolvers.findOne(),
   userMany: UserTC.mongooseResolvers.findMany(),
-  // userDataLoader: UserTC.mongooseResolvers.dataLoader(),
+  userDataLoader: UserTC.mongooseResolvers.dataLoader(),
   // userDataLoaderMany: UserTC.mongooseResolvers.dataLoaderMany(),
   // userByIdLean: UserTC.mongooseResolvers.findById({ lean: true }),
   // userByIdsLean: UserTC.mongooseResolvers.findByIds({ lean: true }),
