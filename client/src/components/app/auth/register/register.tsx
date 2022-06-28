@@ -12,7 +12,6 @@ import CREATE_USER from '../../../../graphql/queries-mutations';
 export default function Register() {
   const loginShow = useStore((state) => state.setLogin);
   const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
-
   //this event typescript type should be interfaced somewhere (any is bad)
 
   const useHandleSubmit = async (event: any) => {
@@ -20,25 +19,18 @@ export default function Register() {
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
     const username: string = event.target.username.value;
-    const languages: [string] = [event.target.languages.value];
+    // const languages: [string] = [event.target.languages.value];
 
     const result = await fbCreateUser(email, password);
-    const uid = result.uid;
-
-    const newUser = {
-      username: username,
-      email: email,
-      uid: uid,
-      user_languages: languages,
-    };
+    console.log(result.uid);
+    console.log(result.accessToken);
 
     createUser({
       variables: {
         record: {
-          username: newUser.username,
-          email: newUser.email,
-          uid: newUser.uid,
-          // user_languages: newUser.user_languages,
+          username: username,
+          email: email,
+          uid: result.uid,
         },
       },
     });

@@ -4,19 +4,9 @@ import './index.scss';
 import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider } from '@apollo/client';
-import createClient from './graphql/apollo-client';
-import { userStore } from './state-stores/state-stores';
-
-//TODO: consider returning to old format and using Apollo link https://www.apollographql.com/docs/react/api/link/introduction/
+import client from './graphql/apollo-client';
 
 export default function Index() {
-  const userAt = userStore((state) => state.userAT);
-  const [client, setClient] = useState(createClient());
-
-  useEffect(() => {
-    if (userAt) setClient(createClient(userAt));
-  }, [userAt]);
-
   return (
     <React.Fragment>
       <ApolloProvider client={client}>
