@@ -1,34 +1,29 @@
-
-import { useEffect } from "react";
-import { useStore } from "../../state-stores/state-stores";
-import "./App.scss";
-import Navbar from "../navbar/navbar";
-import Login from "./auth/login/login";
-import Register from "./auth/register/register";
-import Reset from "./auth/reset/reset";
-import CreateHelp from "./dashboard/create-help-request/create-help-request";
-import Dashboard from "./dashboard/dashboard";
-import { userStore } from "../../state-stores/state-stores";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase";
-
+import { useEffect } from 'react';
+import { useStore } from '../../state-stores/state-stores';
+import './App.scss';
+import Navbar from '../navbar/navbar';
+import Login from './auth/login/login';
+import Register from './auth/register/register';
+import Reset from './auth/reset/reset';
+import CreateHelp from './dashboard/create-help-request/create-help-request';
+import Dashboard from './dashboard/dashboard';
+import { userStore } from '../../state-stores/state-stores';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 function App() {
   const setUser = userStore((state) => state.setUser);
-  const currentUser = userStore((state) => state);
   const reset = useStore((state) => state.counter);
-  const usAt = userStore((state) => state.userAT);
+  const userAt = userStore((state) => state.userAT);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         user.getIdToken().then((token) => {
           setUser(user.uid, token);
-          console.log(currentUser);
         });
       } else {
-        // setUser('', '');
-        console.log('no user signed in');
+        setUser('', '');
       }
       return unsubscribe;
     });
@@ -48,7 +43,7 @@ function App() {
   }
 
   function authorize() {
-    switch (usAt.length > 0) {
+    switch (userAt.length > 0) {
       case true:
         return (
           <>
