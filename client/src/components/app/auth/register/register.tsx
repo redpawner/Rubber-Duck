@@ -1,16 +1,20 @@
-import { useStore, userStore } from '../../../../state-stores/state-stores';
-import git from '../../../../Images/git.png';
-import google from '../../../../Images/google.png';
-import apple from '../../../../Images/apple.png';
-import '../login/login.scss';
-import './register.scss';
-import logo from '../../../../Images/logo.png';
-import { fbCreateUser } from '../../../../api-services/api-auth';
-import { useMutation } from '@apollo/client';
-import CREATE_USER from '../../../../graphql/queries-mutations';
+import {
+  buttonsLogicStore,
+  userStore,
+} from "../../../../state-stores/state-stores";
+import git from "../../../../Images/git.png";
+import google from "../../../../Images/google.png";
+import apple from "../../../../Images/apple.png";
+import "../login/login.scss";
+import "./register.scss";
+import logo from "../../../../Images/logo.png";
+import { fbCreateUser } from "../../../../api-services/api-auth";
+import { useMutation } from "@apollo/client";
+import CREATE_USER from "../../../../graphql/queries-mutations";
+import Dropdown from "../../../dropdown/dropdown";
 
 export default function Register() {
-  const loginShow = useStore((state) => state.setLogin);
+  const loginShow = buttonsLogicStore((state) => state.setLogin);
   const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
 
   //this event typescript type should be interfaced somewhere (any is bad)
@@ -87,13 +91,7 @@ export default function Register() {
             name="username"
             autoComplete="off"
           />
-          <p className="reg-input">Programming Languages:</p>
-          <input
-            type="text"
-            className="reg-textBox"
-            name="languages"
-            autoComplete="off"
-          />
+          <Dropdown />
           <button
             className="login-btn2"
             // onClick={}

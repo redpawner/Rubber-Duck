@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import { useStore, userStore } from '../../../../state-stores/state-stores';
+import React, { useState } from "react";
+import {
+  buttonsLogicStore,
+  userStore,
+} from "../../../../state-stores/state-stores";
 
-import './login.scss';
-import git from '../../../../Images/git.png';
-import google from '../../../../Images/google.png';
-import apple from '../../../../Images/apple.png';
-import logo from '../../../../Images/logo.png';
-import { loginUser } from '../../../../api-services/api-auth';
+import "./login.scss";
+import git from "../../../../Images/git.png";
+import google from "../../../../Images/google.png";
+import apple from "../../../../Images/apple.png";
+import logo from "../../../../Images/logo.png";
+import { loginUser } from "../../../../api-services/api-auth";
 
 export default function Login() {
-  const registerShow = useStore((state) => state.setReg);
-  const forgotShow = useStore((state) => state.setReset);
+  const registerShow = buttonsLogicStore((state) => state.setReg);
+  const forgotShow = buttonsLogicStore((state) => state.setReset);
   const user = userStore((state) => state.userAT);
 
   //this event typescript type should be interfaced somewhere (any is bad)
@@ -70,14 +73,14 @@ export default function Login() {
       </div>
       <p className="divider-login">
         ---------------------------------------- Or
-        ----------------------------------------{' '}
+        ----------------------------------------{" "}
       </p>
       <div className="login-other-platforms">
         <button id="platform-butt">
           <img id="socialmedia-img" src={google} alt="facebook"></img>
         </button>
         <button id="platform-butt">
-          {' '}
+          {" "}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-butt">

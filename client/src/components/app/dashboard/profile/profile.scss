@@ -1,0 +1,14 @@
+@import "../../../../stylesheet.scss";
+
+.save-profile-button {
+  border-radius: $radius;
+  height: 5vh;
+  width: 13.55vw;
+  cursor: pointer;
+  font-family: $main-font;
+  background-color: #3022ab;
+  border: none;
+  color: white;
+  font-size: 0.8999999999999999vw;
+  font-weight: bold;
+}

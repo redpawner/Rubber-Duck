@@ -1,10 +1,10 @@
 import React from "react";
 import "./dashboard.scss";
-import { useStore } from "../../../state-stores/state-stores";
+import { buttonsLogicStore } from "../../../state-stores/state-stores";
 import Help from "./help-request/help-request";
 
 export default function Dashboard() {
-  const helpDash = useStore((state) => state.toggleShow);
+  const helpDash = buttonsLogicStore((state) => state.toggleShow);
 
   return (
     <div className="dashboard-container">
@@ -15,6 +15,24 @@ export default function Dashboard() {
         </button>
       </div>
       <ul className="help-list">
+        <li>
+          <Help />
+        </li>
+        <li>
+          <Help />
+        </li>
+        <li>
+          <Help />
+        </li>
+        <li>
+          <Help />
+        </li>
+        <li>
+          <Help />
+        </li>
+        <li>
+          <Help />
+        </li>
         <li>
           <Help />
         </li>
