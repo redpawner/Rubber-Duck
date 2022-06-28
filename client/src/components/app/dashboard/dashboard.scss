@@ -43,10 +43,6 @@
   font-weight: bold;
 }
 
-// .create-help-butt p {
-//   font: ;
-// }
-
 .create-help-butt:hover {
   color: $grey-shade;
 }
@@ -55,43 +51,14 @@
   height: 60vh;
   width: 80%;
   overflow: scroll;
-  column-count: 2;
   list-style: none;
+  // display: flex;
+  // flex-direction: column;
+  column-count: 2;
 }
 
 .help-list::-webkit-scrollbar {
   display: none;
-}
-
-.sort-button {
-  width: 8vw;
-  height: 3vh;
-  border-radius: $radius;
-  border: 0.1vw solid $blue-shade;
-  font-family: $main-font;
-  font-weight: bold;
-  color: $blue-shade;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.sort-butt-container {
-  margin-top: 2vh;
-  width: 75%;
-  display: flex;
-  align-items: flex-start;
-}
-
-.arrow {
-  border: solid $blue-shade;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 2.5px;
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
 }
 
 .fa fa-plus {
