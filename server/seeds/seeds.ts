@@ -1,6 +1,6 @@
 const seeds = [
   {
-    _id: '1',
+    uid: '1',
     username: 'Alicia',
     email: 'alicia@gmail.com',
     user_languages: [],
@@ -9,7 +9,7 @@ const seeds = [
     needHelp: false,
   },
   {
-    _id: '2',
+    uid: '2',
     username: 'Ferdinand',
     email: 'ferdinand@gmail.com',
     user_languages: [],
@@ -18,7 +18,7 @@ const seeds = [
     needHelp: false,
   },
   {
-    _id: '3',
+    uid: '3',
     username: 'Tekraj',
     email: 'tekraj@gmail.com',
     user_languages: [],
@@ -27,7 +27,7 @@ const seeds = [
     needHelp: false,
   },
   {
-    _id: '4',
+    uid: '4',
     username: 'Raymond',
     email: 'raymond@gmail.com',
     user_languages: [],
@@ -36,7 +36,7 @@ const seeds = [
     needHelp: false,
   },
   {
-    _id: '5',
+    uid: '5',
     username: 'Robert',
     email: 'robert@gmail.com',
     user_languages: [],
@@ -50,7 +50,7 @@ const seeds = [
     },
   },
   {
-    _id: '6',
+    uid: '6',
     username: 'Tekraj',
     email: 'tekraj3@gmail.com',
     user_languages: [],
