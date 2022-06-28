@@ -1,6 +1,6 @@
-import create from 'zustand';
+import create from "zustand";
 //Enable redux devtools in browser
-import { devtools, persist } from 'zustand/middleware';
+import { devtools, persist } from "zustand/middleware";
 
 // NEEDED OTHERWISE TypeScript complains
 // we should consider moving all interfaces to a global interface file like in the server
@@ -8,10 +8,12 @@ import { devtools, persist } from 'zustand/middleware';
 type MyStore = {
   show: boolean;
   counter: number;
+  profile: boolean;
   toggleShow: () => void;
   setReset: () => void;
   setReg: () => void;
   setLogin: () => void;
+  setProfile: () => void;
 };
 
 type UserSettingsStore = {
@@ -29,11 +31,13 @@ type User = {
 const useStore = create<MyStore>()(
   devtools((set) => ({
     show: false,
+    profile: true,
     counter: 1,
     toggleShow: () => set((state) => ({ show: !state.show })),
     setReset: () => set({ counter: 2 }),
     setReg: () => set({ counter: 0 }),
     setLogin: () => set({ counter: 1 }),
+    setProfile: () => set((state) => ({ profile: !state.profile })),
   }))
 );
 
@@ -49,9 +53,9 @@ const useUserSettingsStore = create<UserSettingsStore>()(
 
 const userStore = create<User>()(
   devtools((set) => ({
-    userUID: '',
-    userAT: '',
-    username: '',
+    userUID: "",
+    userAT: "",
+    username: "",
     //console log below just useful for development and seeing current user details
     setUser: (userUID: string, userAT: string) => {
       set({ userUID: userUID, userAT: userAT });

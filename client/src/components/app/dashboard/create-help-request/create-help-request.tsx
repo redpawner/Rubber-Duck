@@ -9,15 +9,26 @@ export default function CreateHelp() {
     <div className="dashboard-container">
       <div className="create-help-butt-div">
         <h1 className="dashboard-title">Create Help Request</h1>
-        {/* <button className="create-help-butt" onClick={helpDash}>
-      <i className="fa fa-plus"></i> &nbsp; Create
-    </button> */}
       </div>
-      <form className="help-container">
-        <p className="help-request-input">Title:</p>
-        <input type="text" className="help-title" name="title" />
-        <input type="password" className="login-textBox" name="password" />
-      </form>
+      <div className="create-help-container">
+        <form className="help-form">
+          <p className="help-request-input">Title:</p>
+          <input type="text" className="help-title2" name="title" />
+          <p className="help-request-input">Description:</p>
+          <textarea
+            className="help-description"
+            name="description"
+            placeholder="Max. 50 words"
+          ></textarea>
+          <p className="help-request-input">Tags:</p>
+          <input
+            type="text"
+            className="help-title2"
+            name="tags"
+            placeholder="Followed by ',' "
+          />
+        </form>
+      </div>
       <div className="create-req-butt-cont">
         <button className="create-cancel-btn" id="create">
           Publish

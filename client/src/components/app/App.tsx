@@ -10,12 +10,14 @@ import Dashboard from "./dashboard/dashboard";
 import { userStore } from "../../state-stores/state-stores";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
+import Profile from "./dashboard/profile/profile";
 
 function App() {
   const setUser = userStore((state) => state.setUser);
   const currentUser = userStore((state) => state);
   const reset = useStore((state) => state.counter);
   const usAt = userStore((state) => state.userAT);
+  const profile = useStore((state) => state.profile);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -49,18 +51,31 @@ function App() {
   function authorize() {
     switch (usAt.length > 0) {
       case true:
-        return (
-          <>
-            <Navbar />
-            <div className="container">{helpReq}</div>
-          </>
-        );
+        if (profile) {
+          return (
+            <>
+              <Navbar />
+              <div className="container">
+                <Profile />
+              </div>
+            </>
+          );
+        } else {
+          return (
+            <>
+              <Navbar />
+              <div className="container"> {helpReq}</div>
+            </>
+          );
+        }
+
       case false:
         return <div className="container">{renderSwitch()}</div>;
     }
   }
 
   const helpReq = !help ? <Dashboard /> : <CreateHelp />;
+
   return <>{authorize()};</>;
 }
 export default App;

@@ -3,11 +3,14 @@ import "./navbar.scss";
 import profile from "../../Images/profile.png";
 import logo from "../../Images/logo.png";
 import { logoutUser } from "../../api-services/api-auth";
+import { useStore } from "../../state-stores/state-stores";
 
 export default function Navbar() {
   const logout = () => {
     logoutUser();
   };
+  const changer = useStore((state) => state.setProfile);
+  // const profiles = () => {};
 
   return (
     <div className="navbar">
@@ -17,7 +20,9 @@ export default function Navbar() {
       <div className="button2">
         <img className="navbar-icon" src={profile} alt="profile"></img>
         <div className="dropdown-content">
-          <button className="dropdown-butt">Profile</button>
+          <button className="dropdown-butt" onClick={changer}>
+            Profile
+          </button>
           <button className="dropdown-butt" onClick={logout}>
             Logout
           </button>
