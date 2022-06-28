@@ -1,9 +1,8 @@
-import { model, Schema } from 'mongoose';
+import { Schema } from 'mongoose';
 import { User, HelpReqSchema } from '../interfaces/interfaces';
 import { composeMongoose } from 'graphql-compose-mongoose';
 import { schemaComposer } from 'graphql-compose';
 import conn from './db';
-import seeds from '../seeds/seeds';
 
 const helpRequestSchema = new Schema<HelpReqSchema>({
   username: String,
@@ -15,7 +14,7 @@ const helpRequestSchema = new Schema<HelpReqSchema>({
 
 const userSchema = new Schema<User>(
   {
-    _id: { type: String, required: true },
+    uid: { type: String, required: true },
     username: { type: String, required: true },
     email: { type: String, required: true },
     avatar: String,
