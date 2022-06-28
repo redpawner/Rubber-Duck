@@ -9,7 +9,6 @@ import {
 const fbCreateUser = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // remove at production
       console.log('user registered');
       const user = userCredential.user;
       return user;
@@ -22,8 +21,6 @@ const fbCreateUser = (email: string, password: string) => {
 const loginUser = (email: string, password: string) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // remove at production
-      console.log('user logged in');
       const user = userCredential.user;
       return user;
     })
@@ -34,10 +31,7 @@ const loginUser = (email: string, password: string) => {
 
 const logoutUser = () => {
   signOut(auth)
-    .then(() => {
-      //remove at production
-      console.log('sign-out success');
-    })
+    .then(() => {})
     .catch((error) => {
       console.log(error);
     });

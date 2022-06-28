@@ -1,4 +1,5 @@
 
+
 import { useEffect } from "react";
 import { useStore } from "../../state-stores/state-stores";
 import "./App.scss";
@@ -16,21 +17,20 @@ import Profile from "./dashboard/profile/profile";
 
 function App() {
   const setUser = userStore((state) => state.setUser);
-  const currentUser = userStore((state) => state);
   const reset = useStore((state) => state.counter);
+
   const usAt = userStore((state) => state.userAT);
   const profile = useStore((state) => state.profile);
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         user.getIdToken().then((token) => {
           setUser(user.uid, token);
-          console.log(currentUser);
         });
       } else {
-        // setUser('', '');
-        console.log('no user signed in');
+        setUser('', '');
       }
       return unsubscribe;
     });
@@ -50,7 +50,7 @@ function App() {
   }
 
   function authorize() {
-    switch (usAt.length > 0) {
+    switch (userAt.length > 0) {
       case true:
         if (profile) {
           return (
