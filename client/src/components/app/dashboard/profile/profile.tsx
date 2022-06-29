@@ -3,7 +3,7 @@ import "./profile.scss";
 import { buttonsLogicStore } from "../../../../state-stores/state-stores";
 
 export default function Profile() {
-  const help = buttonsLogicStore((state) => state.setProfile);
+  const help = buttonsLogicStore((state) => state.setDashboard);
 
   return (
     <div className="dashboard-container">

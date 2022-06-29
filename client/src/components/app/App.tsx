@@ -7,6 +7,7 @@ import Register from "./auth/register/register";
 import Reset from "./auth/reset/reset";
 import CreateHelp from "./dashboard/create-help-request/create-help-request";
 import Dashboard from "./dashboard/dashboard";
+import Chat from "./dashboard/chat-room/chat";
 import { userStore } from "../../state-stores/state-stores";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
@@ -17,7 +18,6 @@ function App() {
   const reset = buttonsLogicStore((state) => state.counter);
 
   const usAt = userStore((state) => state.userAT);
-  const profile = buttonsLogicStore((state) => state.profile);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -45,33 +45,33 @@ function App() {
     }
   }
 
+  function renderBoards() {
+    switch (help) {
+      case 0:
+        return <Chat />;
+      case 1:
+        return <Dashboard />;
+      case 2:
+        return <CreateHelp />;
+      case 3:
+        return <Profile />;
+    }
+  }
+
   function authorize() {
     switch (usAt.length > 0) {
       case true:
-        if (!profile) {
-          return (
-            <>
-              <Navbar />
-              <div className="container">
-                <Profile />
-              </div>
-            </>
-          );
-        } else {
-          return (
-            <>
-              <Navbar />
-              <div className="container"> {helpReq}</div>
-            </>
-          );
-        }
+        return (
+          <>
+            <Navbar />
+            <div className="container"> {renderBoards()}</div>
+          </>
+        );
 
       case false:
         return <div className="container">{renderSwitch()}</div>;
     }
   }
-
-  const helpReq = !help ? <Dashboard /> : <CreateHelp />;
 
   return <>{authorize()};</>;
 }
