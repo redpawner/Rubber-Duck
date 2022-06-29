@@ -3,7 +3,8 @@ import "./create-help-request.scss";
 import { buttonsLogicStore } from "../../../../state-stores/state-stores";
 
 export default function CreateHelp() {
-  const helpDash = buttonsLogicStore((state) => state.toggleShow);
+  const helpDash = buttonsLogicStore((state) => state.setDashboard);
+  const showChat = buttonsLogicStore((state) => state.setChat);
 
   return (
     <div className="dashboard-container">
@@ -30,7 +31,7 @@ export default function CreateHelp() {
         </form>
       </div>
       <div className="create-req-butt-cont">
-        <button className="create-cancel-btn" id="create">
+        <button className="create-cancel-btn" id="create" onClick={showChat}>
           Publish
         </button>
         <button className="create-cancel-btn" id="cancel" onClick={helpDash}>

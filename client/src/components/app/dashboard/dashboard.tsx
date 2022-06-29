@@ -5,9 +5,10 @@ import { buttonsLogicStore } from "../../../state-stores/state-stores";
 import Help from "./help-request/help-request";
 
 export default function Dashboard() {
-  const helpDash = buttonsLogicStore((state) => state.toggleShow);
+  const helpDash = buttonsLogicStore((state) => state.setHelp);
 
   const [formValue, setFormValue] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
     console.log(formValue);
@@ -15,6 +16,10 @@ export default function Dashboard() {
 
   const handleChange = (e: any) => {
     setFormValue(e.target.value);
+  };
+
+  const handleClick = () => {
+    setTags((tags) => [...tags, formValue]);
   };
 
   return (
@@ -35,14 +40,15 @@ export default function Dashboard() {
           >
             <input
               type="text"
-              // onChange={handleChange}
+              onChange={handleChange}
               name="search"
               autoComplete="off"
               placeholder="Filter..."
             />
+            <button onClick={handleClick}>Bread</button>
           </form>
           <ul className="search-tags">
-            <li>CSS</li>
+            <li>{tags}</li>
           </ul>
         </div>
       </div>

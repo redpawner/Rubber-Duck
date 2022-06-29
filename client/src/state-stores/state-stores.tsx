@@ -1,19 +1,23 @@
-import create from 'zustand';
+import { VoidExpression } from "typescript";
+import create from "zustand";
 //Enable redux devtools in browser
-import { devtools, persist } from 'zustand/middleware';
+import { devtools, persist } from "zustand/middleware";
 
 // NEEDED OTHERWISE TypeScript complains
 // we should consider moving all types/interfaces to a global interface file like in the server
 
 type MyStore = {
-  show: boolean;
+  show: number;
   counter: number;
   profile: boolean;
-  toggleShow: () => void;
+  // toggleShow: () => void;
   setReset: () => void;
   setReg: () => void;
   setLogin: () => void;
   setProfile: () => void;
+  setDashboard: () => void;
+  setChat: () => void;
+  setHelp: () => void;
 };
 
 type UserSettingsStore = {
@@ -43,14 +47,17 @@ type User = {
 
 const buttonsLogicStore = create<MyStore>()(
   devtools((set) => ({
-    show: false,
+    show: 1,
     profile: true,
     counter: 1,
-    toggleShow: () => set((state) => ({ show: !state.show })),
+    // toggleShow: () => set((state) => ({ show: !state.show })),
+    setDashboard: () => set({ show: 1 }),
+    setChat: () => set({ show: 0 }),
+    setHelp: () => set({ show: 2 }),
     setReset: () => set({ counter: 2 }),
+    setProfile: () => set({ show: 3 }),
     setReg: () => set({ counter: 0 }),
     setLogin: () => set({ counter: 1 }),
-    setProfile: () => set((state) => ({ profile: !state.profile })),
   }))
 );
 
@@ -66,20 +73,20 @@ const useUserSettingsStore = create<UserSettingsStore>()(
 
 const userStore = create<User>()(
   devtools((set) => ({
-    uid: '',
-    userAT: '',
-    username: '',
-    avatar: '',
+    uid: "",
+    userAT: "",
+    username: "",
+    avatar: "",
     rating_total: 0,
     rating_count: 0,
     needHelp: false,
     help_request: {
-      _id: '',
-      username: '',
-      title: '',
-      description: '',
+      _id: "",
+      username: "",
+      title: "",
+      description: "",
       hr_languages: [],
-      time_created: '',
+      time_created: "",
     },
     //console log below just useful for development and seeing current user details
     setUser: (uid: string, userAT: string) => {
