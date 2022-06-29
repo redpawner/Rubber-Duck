@@ -1,9 +1,9 @@
-import create from "zustand";
+import create from 'zustand';
 //Enable redux devtools in browser
-import { devtools, persist } from "zustand/middleware";
+import { devtools, persist } from 'zustand/middleware';
 
 // NEEDED OTHERWISE TypeScript complains
-// we should consider moving all interfaces to a global interface file like in the server
+// we should consider moving all types/interfaces to a global interface file like in the server
 
 type MyStore = {
   show: boolean;
@@ -20,11 +20,24 @@ type UserSettingsStore = {
   darkMode: boolean;
   toggleDarkMode: () => void;
 };
+interface HelpReqSchema {
+  _id: string;
+  username: string;
+  title: string;
+  description: string;
+  hr_languages: string[];
+  time_created: string;
+}
 
 type User = {
   uid: string;
   userAT: string;
   username: string;
+  avatar?: string;
+  rating_total: Number;
+  rating_count: Number;
+  needHelp: Boolean;
+  help_request: HelpReqSchema;
   setUser: (userUID: string, userAT: string) => void;
 };
 
@@ -53,9 +66,21 @@ const useUserSettingsStore = create<UserSettingsStore>()(
 
 const userStore = create<User>()(
   devtools((set) => ({
-    uid: "",
-    userAT: "",
-    username: "",
+    uid: '',
+    userAT: '',
+    username: '',
+    avatar: '',
+    rating_total: 0,
+    rating_count: 0,
+    needHelp: false,
+    help_request: {
+      _id: '',
+      username: '',
+      title: '',
+      description: '',
+      hr_languages: [],
+      time_created: '',
+    },
     //console log below just useful for development and seeing current user details
     setUser: (uid: string, userAT: string) => {
       set({ uid: uid, userAT: userAT });

@@ -18,7 +18,6 @@ const userSchema = new Schema<User>(
     username: { type: String, required: true },
     email: { type: String, required: true },
     avatar: String,
-    user_languages: [String],
     rating_total: { type: Number, default: 0 },
     rating_count: { type: Number, default: 0 },
     needHelp: { type: Boolean, default: false },
