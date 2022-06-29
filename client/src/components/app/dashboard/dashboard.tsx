@@ -48,7 +48,7 @@ export default function Dashboard() {
             <button onClick={handleClick}>Bread</button>
           </form>
           <ul className="search-tags">
-            <li>{tags}</li>
+            <li>{tags + ","}</li>
           </ul>
         </div>
       </div>
