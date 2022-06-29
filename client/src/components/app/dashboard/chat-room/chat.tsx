@@ -1,8 +1,15 @@
+//@ts-nocheck
 import './chat.scss';
 import io from 'socket.io-client';
-import { useEffect, useState, useRef } from 'react';
+import {
+  useEffect,
+  useState,
+  useRef,
+  ChangeEvent,
+  SetStateAction,
+} from 'react';
 import Message from '../message/message';
-import { ArrivalMessage } from '../../../../interfaces';
+import { ArrivalMessage } from '../interfaces';
 
 import Prism from 'prismjs';
 import '../themes/prism-one-dark.css';
@@ -10,11 +17,11 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
-import { ChangeEvent } from 'react';
+import Picker from 'emoji-picker-react';
 
 const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
-const socket = io(`http://localhost:3001/`, {
+const socket = io(`http://localhost:${backendPORT}`, {
   transports: ['websocket'],
 });
 
@@ -30,7 +37,8 @@ function Chat() {
     body: undefined,
     imgSource: '',
   } as ArrivalMessage);
-
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const scrollRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const langList = [
@@ -41,6 +49,20 @@ function Chat() {
     'python',
     'typescript',
   ];
+
+  const onEmojiClick = (event: any, emojiObject: SetStateAction<null>) => {
+    setChosenEmoji(emojiObject);
+
+    setArrivalMessage({
+      ...arrivalMessage,
+      type: 'text',
+      text: arrivalMessage.text + emojiObject.emoji,
+    });
+  };
+
+  const handleShowEmojiPicker = (event: any) => {
+    setShowEmojiPicker(!showEmojiPicker);
+  };
 
   const handleLanguageChange = (event: {
     target: { value: string | undefined };
@@ -89,6 +111,9 @@ function Chat() {
     if (showLangDropDown) {
       setShowLangDropDown(!showLangDropDown);
     }
+    if (showEmojiPicker) {
+      setShowEmojiPicker(!showEmojiPicker);
+    }
   };
 
   const selectFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -104,6 +129,8 @@ function Chat() {
         imgSource: URL.createObjectURL(e.target.files[0]),
       });
   };
+
+  // const selectEmoji = (e) => {};
 
   useEffect(() => {
     Prism.highlightAll();
@@ -199,6 +226,18 @@ function Chat() {
                   ></img>
                 </label>
               </button>
+
+              <button
+                className="emoji-btn"
+                onClick={handleShowEmojiPicker}
+                type="button"
+              >
+                <img
+                  src={require('../assets/emoji-icon.png')}
+                  alt="emoji icon"
+                  className="emoji-icon"
+                ></img>
+              </button>
             </div>
           </div>
         </form>
@@ -214,6 +253,17 @@ function Chat() {
           </div>
         ))}
       </div>
+
+      {showEmojiPicker ? (
+        <div className="emoji-picker">
+          {chosenEmoji ? (
+            <span>You chose: {chosenEmoji.emoji}</span>
+          ) : (
+            <span>No emoji Chosen</span>
+          )}
+          <Picker onEmojiClick={onEmojiClick} />
+        </div>
+      ) : null}
     </div>
   );
 }
