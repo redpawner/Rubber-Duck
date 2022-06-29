@@ -20,15 +20,15 @@ function App() {
   const profile = buttonsLogicStore((state) => state.profile);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         user.getIdToken().then((token) => {
+          console.log(user.uid);
           setUser(user.uid, token);
         });
       } else {
         setUser("", "");
       }
-      return unsubscribe;
     });
   }, []);
 
