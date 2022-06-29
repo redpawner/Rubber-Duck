@@ -26,7 +26,10 @@
     "koa-bodyparser": "^4.3.0",
     "mongodb": "^4.7.0",
     "mongoose": "^6.4.0",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "prismjs": "^1.28.0",
+    "socket.io": "^4.5.1",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
