@@ -2,6 +2,8 @@
 
 ## Installation
 
+### Authentication:
+
 ### SERVER FOLDER:
 
 Database:

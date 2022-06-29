@@ -1,16 +1,15 @@
-import React from "react";
-import "./navbar.scss";
-import profile from "../../Images/profile.png";
-import logo from "../../Images/logo.png";
-import { logoutUser } from "../../api-services/api-auth";
-import { useStore } from "../../state-stores/state-stores";
+import React from 'react';
+import './navbar.scss';
+import profile from '../../Images/profile.png';
+import logo from '../../Images/logo.png';
+import { logoutUser } from '../../api-services/api-auth';
+import { useStore } from '../../state-stores/state-stores';
 
 export default function Navbar() {
   const logout = () => {
     logoutUser();
   };
   const changer = useStore((state) => state.setProfile);
-  // const profiles = () => {};
 
   return (
     <div className="navbar">

@@ -37,7 +37,6 @@ const userSchema = new Schema<User>(
 
 const User: any = conn.model('User', userSchema);
 
-
 const UserTC = composeMongoose(User, {});
 
 schemaComposer.Query.addFields({
@@ -61,7 +60,12 @@ schemaComposer.Query.addFields({
 });
 
 schemaComposer.Mutation.addFields({
-  userCreateOne: UserTC.mongooseResolvers.createOne(),
+  userCreateOne: UserTC.mongooseResolvers
+    .createOne()
+    .wrapResolve((next) => (rp) => {
+      rp.args.record.uid = rp.context.ctx.state.uid;
+      return next(rp);
+    }),
   userCreateMany: UserTC.mongooseResolvers.createMany(),
   userUpdateById: UserTC.mongooseResolvers.updateById(),
   userUpdateOne: UserTC.mongooseResolvers.updateOne(),

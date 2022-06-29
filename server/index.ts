@@ -5,6 +5,7 @@ import { ApolloServer } from 'apollo-server-koa';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import http from 'http';
 import graphqlSchema from './models/schema';
+import validateAuthorization from './middleware/authentication';
 
 const PORT = process.env.PORT || 3002;
 
@@ -17,6 +18,7 @@ console.log(process.env.PORT);
     csrfPrevention: true,
     cache: 'bounded',
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    context: (ctx) => ctx,
   });
 
   await server.start();
@@ -24,9 +26,9 @@ console.log(process.env.PORT);
 
   app.use(cors());
   app.use(parser());
+  app.use(validateAuthorization);
 
   app.use(async (ctx: any, next: any) => {
-    console.log(ctx.request.headers);
     await next();
     if (ctx.status === 404) {
       ctx.body = '_404';

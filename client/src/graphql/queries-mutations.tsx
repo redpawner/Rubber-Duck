@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 // QUERIES
 
@@ -10,13 +10,13 @@ import { gql } from "@apollo/client";
 
 //   }
 const GET_USER = gql`
-query Query($filter: FilterFindOneUserInput) {
-  userOne(filter: $filter) {
-    uid
-    username
-    email
+  query Query($filter: FilterFindOneUserInput) {
+    userOne(filter: $filter) {
+      uid
+      username
+      email
+    }
   }
-}
 `;
 
 // {
@@ -56,17 +56,15 @@ const CREATE_USER = gql`
   }
 `;
 
-
 // {
 //   "filter": {
 //     "uid": "uid"
 //   }
 // } for below
 
-
 const DELETE_USER = gql`
   mutation Mutation($filter: FilterRemoveOneUserInput) {
-    userRemoveOne(filter: $filter) {
+    userRemoveOne(filter: $filter, uid: $uid) {
       record {
         uid
         username
@@ -74,7 +72,7 @@ const DELETE_USER = gql`
       }
     }
   }
-`
+`;
 
 // {
 
@@ -90,22 +88,24 @@ const DELETE_USER = gql`
 //     }
 //   }
 const UPDATE_HR = gql`
-mutation Mutation($record: UpdateOneUserInput!, $filter: FilterUpdateOneUserInput) {
-  userUpdateOne(record: $record, filter: $filter) {
-    record {
-      username
-      avatar
-      help_request {
-        title
-        description
-        hr_languages
+  mutation Mutation(
+    $record: UpdateOneUserInput!
+    $filter: FilterUpdateOneUserInput
+  ) {
+    userUpdateOne(record: $record, filter: $filter) {
+      record {
+        username
+        avatar
+        help_request {
+          title
+          description
+          hr_languages
+        }
       }
     }
   }
-}
 `;
 
 //user_languages
-
 
 export default CREATE_USER;
