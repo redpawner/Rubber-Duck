@@ -1,16 +1,16 @@
 import {
   buttonsLogicStore,
   userStore,
-} from "../../../../state-stores/state-stores";
-import git from "../../../../Images/git.png";
-import google from "../../../../Images/google.png";
-import apple from "../../../../Images/apple.png";
-import "../login/login.scss";
-import "./register.scss";
-import logo from "../../../../Images/logo.png";
-import { fbCreateUser } from "../../../../api-services/api-auth";
-import { useMutation } from "@apollo/client";
-import CREATE_USER from "../../../../graphql/queries-mutations";
+} from '../../../../state-stores/state-stores';
+import git from '../../../../Images/git.png';
+import google from '../../../../Images/google.png';
+import apple from '../../../../Images/apple.png';
+import '../login/login.scss';
+import './register.scss';
+import logo from '../../../../Images/logo.png';
+import { fbCreateUser } from '../../../../api-services/api-auth';
+import { useMutation } from '@apollo/client';
+import CREATE_USER from '../../../../graphql/queries-mutations';
 
 export default function Register() {
   const loginShow = buttonsLogicStore((state) => state.setLogin);
@@ -25,8 +25,6 @@ export default function Register() {
     // const languages: [string] = [event.target.languages.value];
 
     const result = await fbCreateUser(email, password);
-    console.log(result.uid);
-    console.log(result.accessToken);
 
     createUser({
       variables: {

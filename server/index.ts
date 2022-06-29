@@ -27,8 +27,6 @@ const PORT = process.env.PORT || 3002;
   app.use(cors());
   app.use(parser());
 
-  app.use((ctx) => console.log(ctx.url));
-
   app.use(validateAuthorization);
 
   app.use(async (ctx: any, next: any) => {
