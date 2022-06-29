@@ -9,7 +9,6 @@ import {
 const fbCreateUser = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      console.log('user registered');
       const user = userCredential.user;
       return user;
     })
@@ -25,7 +24,7 @@ const loginUser = (email: string, password: string) => {
       return user;
     })
     .catch((error) => {
-      console.log(error);
+      return error;
     });
 };
 
@@ -33,7 +32,7 @@ const logoutUser = () => {
   signOut(auth)
     .then(() => {})
     .catch((error) => {
-      console.log(error);
+      return error;
     });
 };
 
