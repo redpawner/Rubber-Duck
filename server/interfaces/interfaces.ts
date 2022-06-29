@@ -3,7 +3,6 @@ interface User {
   username: string;
   email: string;
   avatar?: string;
-  user_languages: string[];
   rating_total: Number;
   rating_count: Number;
   needHelp: Boolean;
