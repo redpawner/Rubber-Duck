@@ -18,15 +18,7 @@ const userSchema = new Schema<User>(
     username: { type: String, required: true },
     email: { type: String, required: true },
     avatar: String,
-    user_languages: [
-      {
-        type: String,
-        enum: {
-          values: ['Javascript', 'Java', 'PHP', 'C#'],
-          message: 'No language selected.',
-        },
-      },
-    ],
+    user_languages: [String],
     rating_total: { type: Number, default: 0 },
     rating_count: { type: Number, default: 0 },
     needHelp: { type: Boolean, default: false },
@@ -43,7 +35,14 @@ schemaComposer.Query.addFields({
   userById: UserTC.mongooseResolvers.findById(),
   userByIds: UserTC.mongooseResolvers.findByIds(),
   userOne: UserTC.mongooseResolvers.findOne(),
-  userMany: UserTC.mongooseResolvers.findMany(),
+  userMany: UserTC.mongooseResolvers.findMany().addFilterArg({
+    name: 'hr_languages',
+    type: '[String]',
+    query: (rawQuery, value) => {
+      rawQuery['help_request.hr_languages'] = { $elemMatch: { $in: value } };
+    },
+  }),
+
   userDataLoader: UserTC.mongooseResolvers.dataLoader(),
   // userDataLoaderMany: UserTC.mongooseResolvers.dataLoaderMany(),
   // userByIdLean: UserTC.mongooseResolvers.findById({ lean: true }),

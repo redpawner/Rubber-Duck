@@ -26,7 +26,7 @@ console.log(process.env.PORT);
 
   app.use(cors());
   app.use(parser());
-  app.use(validateAuthorization);
+  // app.use(validateAuthorization);
 
   app.use(async (ctx: any, next: any) => {
     await next();
