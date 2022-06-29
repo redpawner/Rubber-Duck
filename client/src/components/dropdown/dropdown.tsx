@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./dropdown.scss";
 export default function Dropdown() {
-  function unfold() {}
+  const [isActive, setActive] = useState(false);
+
+  const ToggleClass = () => {
+    setActive(!isActive);
+  };
   return (
     <div className="dropdown-container">
-      <div className="dropdown-select-btn" onClick={unfold}>
+      <div className="dropdown-select-btn">
         <span className="btn-txt">Select technology</span>
         <span className="arrow-dwn">
           <i className="fa-solid fa-chevron-down"></i>
