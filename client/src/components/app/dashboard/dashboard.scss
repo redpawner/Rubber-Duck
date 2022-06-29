@@ -52,10 +52,19 @@
   width: 80%;
   overflow: scroll;
   list-style: none;
-  // display: flex;
-  // flex-direction: column;
+  display: flex;
+  padding: 0;
+  flex-wrap: wrap;
   column-count: 2;
+  justify-content: space-around;
 }
+
+// @media (max-width: 1300px) {
+//   .help-list {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
 
 .help-list::-webkit-scrollbar {
   display: none;

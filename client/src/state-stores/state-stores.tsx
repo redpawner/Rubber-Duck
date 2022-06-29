@@ -22,13 +22,13 @@ type UserSettingsStore = {
 };
 
 type User = {
-  userUID: string;
+  uid: string;
   userAT: string;
   username: string;
   setUser: (userUID: string, userAT: string) => void;
 };
 
-const useStore = create<MyStore>()(
+const buttonsLogicStore = create<MyStore>()(
   devtools((set) => ({
     show: false,
     profile: true,
@@ -53,14 +53,14 @@ const useUserSettingsStore = create<UserSettingsStore>()(
 
 const userStore = create<User>()(
   devtools((set) => ({
-    userUID: "",
+    uid: "",
     userAT: "",
     username: "",
     //console log below just useful for development and seeing current user details
-    setUser: (userUID: string, userAT: string) => {
-      set({ userUID: userUID, userAT: userAT });
+    setUser: (uid: string, userAT: string) => {
+      set({ uid: uid, userAT: userAT });
     },
   }))
 );
 
-export { useStore, useUserSettingsStore, userStore };
+export { buttonsLogicStore, useUserSettingsStore, userStore };

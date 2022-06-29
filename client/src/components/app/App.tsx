@@ -1,21 +1,23 @@
-import { useEffect } from 'react';
-import { useStore } from '../../state-stores/state-stores';
-import './App.scss';
-import Navbar from '../navbar/navbar';
-import Login from './auth/login/login';
-import Register from './auth/register/register';
-import Reset from './auth/reset/reset';
-import CreateHelp from './dashboard/create-help-request/create-help-request';
-import Dashboard from './dashboard/dashboard';
-import { userStore } from '../../state-stores/state-stores';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { useEffect } from "react";
+import { buttonsLogicStore } from "../../state-stores/state-stores";
+import "./App.scss";
+import Navbar from "../navbar/navbar";
+import Login from "./auth/login/login";
+import Register from "./auth/register/register";
+import Reset from "./auth/reset/reset";
+import CreateHelp from "./dashboard/create-help-request/create-help-request";
+import Dashboard from "./dashboard/dashboard";
+import { userStore } from "../../state-stores/state-stores";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import Profile from "./dashboard/profile/profile";
 
 function App() {
   const setUser = userStore((state) => state.setUser);
-  const currentUser = userStore((state) => state);
-  const reset = useStore((state) => state.counter);
-  const userAT = userStore((state) => state.userAT);
+  const reset = buttonsLogicStore((state) => state.counter);
+
+  const usAt = userStore((state) => state.userAT);
+  const profile = buttonsLogicStore((state) => state.profile);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -25,12 +27,12 @@ function App() {
           setUser(user.uid, token);
         });
       } else {
-        setUser('', '');
+        setUser("", "");
       }
     });
   }, []);
 
-  const help = useStore((state) => state.show);
+  const help = buttonsLogicStore((state) => state.show);
 
   function renderSwitch() {
     switch (reset) {
@@ -44,14 +46,26 @@ function App() {
   }
 
   function authorize() {
-    switch (userAT.length > 0) {
+    switch (usAt.length > 0) {
       case true:
-        return (
-          <>
-            <Navbar />
-            <div className="container">{helpReq}</div>
-          </>
-        );
+        if (!profile) {
+          return (
+            <>
+              <Navbar />
+              <div className="container">
+                <Profile />
+              </div>
+            </>
+          );
+        } else {
+          return (
+            <>
+              <Navbar />
+              <div className="container"> {helpReq}</div>
+            </>
+          );
+        }
+
       case false:
         return <div className="container">{renderSwitch()}</div>;
     }

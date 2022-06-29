@@ -4,10 +4,10 @@ import git from "../../../../Images/git.png";
 import google from "../../../../Images/google.png";
 import apple from "../../../../Images/apple.png";
 import logo from "../../../../Images/logo.png";
-import { useStore } from "../../../../state-stores/state-stores";
+import { buttonsLogicStore } from "../../../../state-stores/state-stores";
 
 export default function Reset() {
-  const registerShow = useStore((state) => state.setReg);
+  const registerShow = buttonsLogicStore((state) => state.setReg);
 
   return (
     <div className="form-container">

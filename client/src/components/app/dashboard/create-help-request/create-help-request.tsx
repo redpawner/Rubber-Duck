@@ -1,9 +1,9 @@
 import React from "react";
 import "./create-help-request.scss";
-import { useStore } from "../../../../state-stores/state-stores";
+import { buttonsLogicStore } from "../../../../state-stores/state-stores";
 
 export default function CreateHelp() {
-  const helpDash = useStore((state) => state.toggleShow);
+  const helpDash = buttonsLogicStore((state) => state.toggleShow);
 
   return (
     <div className="dashboard-container">

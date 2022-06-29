@@ -1,0 +1,77 @@
+@import "../../stylesheet.scss";
+
+.dropdown-container {
+  position: relative;
+  max-width: 16vw;
+  width: 100%;
+  background-color: white;
+}
+
+.dropdown-select-btn {
+  display: flex;
+  height: 2.5vw;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.8vw;
+  border-radius: 0.4vw;
+  box-shadow: $div-shadow;
+  cursor: pointer;
+}
+
+.dropdown-select-btn .btn-text {
+  font-size: 17px;
+  font-weight: bold;
+  color: $blue-shade;
+  font-family: $main-font;
+}
+
+.list-items {
+  position: relative;
+  margin-top: 15px;
+  border-radius: $radius;
+  padding: 16px;
+  background-color: white;
+  box-shadow: $div-shadow;
+  display: none;
+}
+
+.dropdown-select-btn.open ~ .list-items {
+  display: block;
+}
+
+.list-items .item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0 15px;
+  border-radius: 8px;
+}
+
+.list-items .item:hover {
+  background-color: #e7edfe;
+}
+
+.item .item-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+}
+.item .checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  width: 16px;
+  border-radius: 4px;
+  margin-right: 12px;
+  border: 1.5px solid grey;
+  transition: all 0.3s ease-in-out;
+}
+
+.checkbox .check-icon {
+  font-size: 11px;
+  transform: scale(0);
+}
