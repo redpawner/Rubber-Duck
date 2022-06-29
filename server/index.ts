@@ -40,6 +40,7 @@ const PORT = process.env.PORT || 3002;
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: PORT }, resolve)
   );
+
   const io = require('socket.io')(httpServer, {
     origin: 'http://localhost:3000',
   });
@@ -51,7 +52,6 @@ const PORT = process.env.PORT || 3002;
       io.emit('receiveMessage', data);
     });
   });
-
   console.log(
     `🦆 Server ready at http://localhost:${PORT}${server.graphqlPath} 🦆`
   );
