@@ -13,15 +13,48 @@
   box-shadow: $div-shadow;
 }
 
-.create-help-butt-div {
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
   width: 75%;
+}
+.create-help-butt-div {
+  width: 100%;
   height: 20vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   // background-color: blue;
+}
+
+.search-field {
+  margin-top: 1.5vh;
+}
+
+.search-field input {
+  width: 7vw;
+  height: 2.5vh;
+  border-radius: $radius;
+  border: none;
+  font-family: $main-font;
+  font-size: $button-font-size;
+}
+
+.search-me-officer {
   border-bottom: $divider-line;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search-tags {
+  list-style: none;
+  font-family: $main-font;
+  font-size: $button-font-size;
+  color: $blue-shade;
+  font-weight: bold;
+  margin-bottom: 0.5vh;
 }
 
 .dashboard-title {
