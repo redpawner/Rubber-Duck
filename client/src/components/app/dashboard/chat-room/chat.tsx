@@ -9,7 +9,7 @@ import {
   SetStateAction,
 } from 'react';
 import Message from '../message/message';
-import { ArrivalMessage } from '../interfaces';
+import { ArrivalMessage } from '../../../../interfaces';
 
 import Prism from 'prismjs';
 import '../themes/prism-one-dark.css';
@@ -21,7 +21,7 @@ import Picker from 'emoji-picker-react';
 
 const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
-const socket = io(`http://localhost:${backendPORT}`, {
+const socket = io(`http://localhost:3001/`, {
   transports: ['websocket'],
 });
 
