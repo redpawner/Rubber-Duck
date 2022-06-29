@@ -11,7 +11,6 @@ import logo from "../../../../Images/logo.png";
 import { fbCreateUser } from "../../../../api-services/api-auth";
 import { useMutation } from "@apollo/client";
 import CREATE_USER from "../../../../graphql/queries-mutations";
-import Dropdown from "../../../dropdown/dropdown";
 
 export default function Register() {
   const loginShow = buttonsLogicStore((state) => state.setLogin);
@@ -83,7 +82,6 @@ export default function Register() {
             name="username"
             autoComplete="off"
           />
-          <Dropdown />
           <button
             className="login-btn2"
             // onClick={}
