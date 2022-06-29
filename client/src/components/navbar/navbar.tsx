@@ -1,11 +1,17 @@
-import React from "react";
-import "./navbar.scss";
-import profile from "../../Images/user.png";
-import logo from "../../Images/logo.png";
-import { logoutUser } from "../../api-services/api-auth";
-import { buttonsLogicStore } from "../../state-stores/state-stores";
+import React from 'react';
+import './navbar.scss';
+import avatar1 from '../../Images/avatar1.png';
+import logo from '../../Images/logo.png';
+import { logoutUser } from '../../api-services/api-auth';
+import { buttonsLogicStore, userStore } from '../../state-stores/state-stores';
 
 export default function Navbar() {
+  const avatar = userStore((state) => state.avatar);
+
+  const profile = `static/media/${avatar}`;
+  console.log(profile);
+  console.log(avatar1);
+
   const logout = () => {
     logoutUser();
   };

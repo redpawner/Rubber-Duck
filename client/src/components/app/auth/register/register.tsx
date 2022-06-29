@@ -14,7 +14,9 @@ import CREATE_USER from '../../../../graphql/queries-mutations';
 
 export default function Register() {
   const loginShow = buttonsLogicStore((state) => state.setLogin);
-  const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
+  const regUser = userStore((state) => state.regUser);
+
+  const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
 
   const useHandleSubmit = async (event: any) => {
@@ -35,6 +37,8 @@ export default function Register() {
         },
       },
     });
+
+    regUser(result.uid, username, 'user.59168e41eade7de7457f.png');
   };
 
   return (
