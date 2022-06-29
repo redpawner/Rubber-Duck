@@ -14,7 +14,7 @@ import { ChangeEvent } from 'react';
 
 const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
-const socket = io(`http://localhost:3001/graphql`, {
+const socket = io(`http://localhost:3001/`, {
   transports: ['websocket'],
 });
 
