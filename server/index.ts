@@ -9,8 +9,6 @@ import validateAuthorization from './middleware/authentication';
 
 const PORT = process.env.PORT || 3002;
 
-console.log(process.env.PORT);
-
 (async () => {
   const httpServer = http.createServer();
   const server = new ApolloServer({
@@ -42,6 +40,17 @@ console.log(process.env.PORT);
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: PORT }, resolve)
   );
+  const io = require('socket.io')(httpServer, {
+    origin: 'http://localhost:3000',
+  });
+
+  io.on('connection', function (socket: any) {
+    console.log('io server connected');
+
+    socket.on('sendMessage', function (data: any) {
+      io.emit('receiveMessage', data);
+    });
+  });
 
   console.log(
     `🦆 Server ready at http://localhost:${PORT}${server.graphqlPath} 🦆`
