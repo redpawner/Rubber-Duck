@@ -1,4 +1,4 @@
-@import "../../stylesheet.scss";
+@import '../../stylesheet.scss';
 
 .navbar {
   height: 10vh;
@@ -50,7 +50,7 @@
   // border: solid white;
 }
 
-.button2:hover .dropdown-content {
+.profile-button:hover .dropdown-content {
   display: block;
 }
 

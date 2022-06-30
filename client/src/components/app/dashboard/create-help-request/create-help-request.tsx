@@ -1,6 +1,6 @@
-import React from "react";
-import "./create-help-request.scss";
-import { buttonsLogicStore } from "../../../../state-stores/state-stores";
+import React from 'react';
+import './create-help-request.scss';
+import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 
 export default function CreateHelp() {
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
@@ -8,7 +8,7 @@ export default function CreateHelp() {
 
   return (
     <div className="dashboard-container">
-      <div className="create-help-butt-div">
+      <div className="create-help-button-div">
         <h1 className="dashboard-title">Create Help Request</h1>
       </div>
       <div className="create-help-container">

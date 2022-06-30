@@ -1,10 +1,11 @@
-@import "../../../../stylesheet.scss";
+@import '../../../../stylesheet.scss';
 
-.create-req-butt-cont {
+.create-req-button-div {
   width: 75%;
   height: 4vh;
   display: flex;
   justify-content: space-around;
+  border-bottom: $divider-line;
 }
 
 .create-cancel-btn {
