@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 // QUERIES
 
@@ -49,6 +49,31 @@ const ALL_HR = gql`
           hr_languages
         }
       }
+    }
+  }
+`;
+
+// {
+//   "filter": {
+//     "hr_languages": [
+//       "Javascript"
+//     ],
+//     "needHelp": true
+//   },
+//   "sort": "createdAt"
+// }
+
+const GET_HR_BY_LANGUAGE = gql`
+  query Query($filter: FilterFindManyUserInput, $sort: SortFindManyUserInput) {
+    userMany(filter: $filter, sort: $sort) {
+      username
+      needHelp
+      help_request {
+        title
+        description
+        hr_languages
+      }
+      createdAt
     }
   }
 `;
