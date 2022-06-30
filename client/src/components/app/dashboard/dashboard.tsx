@@ -1,14 +1,44 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import "./dashboard.scss";
-import { buttonsLogicStore } from "../../../state-stores/state-stores";
-import Help from "./help-request/help-request";
+import { useState, useEffect } from 'react';
+import './dashboard.scss';
+import { buttonsLogicStore } from '../../../state-stores/state-stores';
+import Help from './help-request/help-request';
+import { useQuery, useLazyQuery } from '@apollo/client';
+import { GET_USER } from '../../../graphql/queries-mutations';
+import { userStore } from '../../../state-stores/state-stores';
 
 export default function Dashboard() {
   const helpDash = buttonsLogicStore((state) => state.setHelp);
+  const setUser = userStore((state) => state.setUser);
 
-  const [formValue, setFormValue] = useState("");
+  const uid = userStore((state) => state.uid);
+
+  const [formValue, setFormValue] = useState('');
   const [tags, setTags] = useState<string[]>([]);
+
+  const [getUser, { loading, error, data }] = useLazyQuery(GET_USER, {
+    variables: {
+      filter: {
+        uid: uid,
+      },
+    },
+  });
+
+  const collectUser = async () => {
+    const result = await getUser();
+    const user = result.data.userOne;
+    setUser(
+      user.username,
+      user.rating_total,
+      user.rating_count,
+      user.needHelp,
+      user.avatar,
+      user.help_request
+    );
+  };
+
+  useEffect(() => {
+    collectUser();
+  }, []);
 
   useEffect(() => {
     console.log(formValue);

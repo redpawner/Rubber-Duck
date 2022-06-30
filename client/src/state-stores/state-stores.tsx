@@ -1,7 +1,7 @@
-import { VoidExpression } from "typescript";
-import create from "zustand";
+import { VoidExpression } from 'typescript';
+import create from 'zustand';
 //Enable redux devtools in browser
-import { devtools, persist } from "zustand/middleware";
+import { devtools, persist } from 'zustand/middleware';
 
 // NEEDED OTHERWISE TypeScript complains
 // we should consider moving all types/interfaces to a global interface file like in the server
@@ -42,7 +42,17 @@ type User = {
   rating_count: Number;
   needHelp: Boolean;
   help_request: HelpReqSchema;
-  setUser: (userUID: string, userAT: string) => void;
+  regUser: (uid: string, username: string, avatar: string) => void;
+  setUser: (
+    username: string,
+    rating_total: Number,
+    rating_count: Number,
+    needHelp: Boolean,
+    avatar?: string,
+    help_request?: HelpReqSchema
+  ) => void;
+  setUserToken: (userAT: string) => void;
+  setUserUid: (uid: string) => void;
 };
 
 const buttonsLogicStore = create<MyStore>()(
@@ -73,24 +83,46 @@ const useUserSettingsStore = create<UserSettingsStore>()(
 
 const userStore = create<User>()(
   devtools((set) => ({
-    uid: "",
-    userAT: "",
-    username: "",
-    avatar: "",
+    uid: '',
+    userAT: '',
+    username: '',
+    avatar: '',
     rating_total: 0,
     rating_count: 0,
     needHelp: false,
     help_request: {
-      _id: "",
-      username: "",
-      title: "",
-      description: "",
+      _id: '',
+      username: '',
+      title: '',
+      description: '',
       hr_languages: [],
-      time_created: "",
+      time_created: '',
     },
-    //console log below just useful for development and seeing current user details
-    setUser: (uid: string, userAT: string) => {
-      set({ uid: uid, userAT: userAT });
+    regUser: (uid: string, username: string, avatar: string) => {
+      set({ uid: uid, username: username, avatar: avatar });
+    },
+    setUser: (
+      username: string,
+      rating_total: Number,
+      rating_count: Number,
+      needHelp: Boolean,
+      avatar?: string,
+      help_request?: HelpReqSchema
+    ) => {
+      set({
+        username: username,
+        rating_total: rating_total,
+        rating_count: rating_count,
+        needHelp: needHelp,
+        avatar: avatar,
+        help_request: help_request,
+      });
+    },
+    setUserUid: (uid: string) => {
+      set({ uid: uid });
+    },
+    setUserToken: (userAT: string) => {
+      set({ userAT: userAT });
     },
   }))
 );

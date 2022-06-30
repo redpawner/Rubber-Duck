@@ -33,7 +33,10 @@ const UserTC = composeMongoose(User, {});
 schemaComposer.Query.addFields({
   userById: UserTC.mongooseResolvers.findById(),
   userByIds: UserTC.mongooseResolvers.findByIds(),
-  userOne: UserTC.mongooseResolvers.findOne(),
+  userOne: UserTC.mongooseResolvers.findOne().wrapResolve((next) => (rp) => {
+    rp.args.filter.uid = rp.context.ctx.state.uid;
+    return next(rp);
+  }),
   userMany: UserTC.mongooseResolvers.findMany().addFilterArg({
     name: 'hr_languages',
     type: '[String]',
