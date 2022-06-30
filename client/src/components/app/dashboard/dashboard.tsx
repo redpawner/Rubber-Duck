@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react';
 import './dashboard.scss';
 import { buttonsLogicStore } from '../../../state-stores/state-stores';
 import Help from './help-request/help-request';
-import { useQuery, useLazyQuery } from '@apollo/client';
-import { GET_USER } from '../../../graphql/queries-mutations';
+import { useLazyQuery } from '@apollo/client';
+import {
+  GET_USER,
+  GET_HR_BY_LANGUAGE,
+} from '../../../graphql/queries-mutations';
 import { userStore } from '../../../state-stores/state-stores';
+import { HelpReqSchema } from '../../../interfaces';
 
 export default function Dashboard() {
   const helpDash = buttonsLogicStore((state) => state.setHelp);
@@ -14,8 +18,9 @@ export default function Dashboard() {
 
   const [formValue, setFormValue] = useState('');
   const [tags, setTags] = useState<string[]>([]);
+  const [helpRequests, setHelpRequests] = useState([]);
 
-  const [getUser, { loading, error, data }] = useLazyQuery(GET_USER, {
+  const [getUser] = useLazyQuery(GET_USER, {
     variables: {
       filter: {
         uid: uid,
@@ -40,9 +45,38 @@ export default function Dashboard() {
     collectUser();
   }, []);
 
+  const [getHRByLanguage] = useLazyQuery(GET_HR_BY_LANGUAGE);
+
+  const getHelpRequests = async () => {
+    if (tags.length > 0) {
+      const result = await getHRByLanguage({
+        variables: {
+          filter: {
+            hr_languages: tags,
+            needHelp: true,
+          },
+        },
+      });
+
+      setHelpRequests(result.data.userMany.map((hr: any) => hr.help_request));
+    } else {
+      const result = await getHRByLanguage({
+        variables: {
+          filter: {
+            hr_languages: null,
+            needHelp: true,
+          },
+        },
+      });
+      console.log(result.data.userMany);
+      setHelpRequests(result.data.userMany.map((hr: any) => hr.help_request));
+    }
+    // const requests = result.data.userOne;
+  };
+
   useEffect(() => {
-    console.log(formValue);
-  }, [formValue]);
+    getHelpRequests();
+  }, [tags]);
 
   const handleChange = (e: any) => {
     setFormValue(e.target.value);
@@ -51,6 +85,20 @@ export default function Dashboard() {
   const handleClick = () => {
     setTags((tags) => [...tags, formValue]);
   };
+
+  helpRequests.sort((a: HelpReqSchema, b: HelpReqSchema) => {
+    return (
+      new Date(a.time_created).getTime() - new Date(b.time_created).getTime()
+    );
+  });
+
+  const mapHelpRequests = helpRequests.map((helpRequest: HelpReqSchema) => {
+    return (
+      <li>
+        <Help helpRequest={helpRequest} key={helpRequest.username} />
+      </li>
+    );
+  });
 
   return (
     <div className="dashboard-container">
@@ -83,50 +131,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <ul className="help-list">
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-        <li>
-          <Help />
-        </li>
-      </ul>
+      <ul className="help-list">{mapHelpRequests}</ul>
     </div>
   );
 }
