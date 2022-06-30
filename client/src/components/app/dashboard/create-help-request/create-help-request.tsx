@@ -1,8 +1,8 @@
-import React from "react";
-import "./create-help-request.scss";
-import { buttonsLogicStore } from "../../../../state-stores/state-stores";
+import React from 'react';
+import './create-help-request.scss';
+import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 
-export default function CreateHelp() {
+function CreateHelp() {
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
   const showChat = buttonsLogicStore((state) => state.setChat);
 
@@ -45,3 +45,5 @@ export default function CreateHelp() {
     </div>
   );
 }
+
+export default CreateHelp;

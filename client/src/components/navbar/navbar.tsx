@@ -3,7 +3,7 @@ import logo from '../../Images/logo.png';
 import { logoutUser } from '../../api-services/api-auth';
 import { buttonsLogicStore, userStore } from '../../state-stores/state-stores';
 
-export default function Navbar() {
+function Navbar() {
   const avatar = userStore((state) => state.avatar);
   const setUserToken = userStore((state) => state.setUserToken);
   // console.log(avatar);
@@ -35,3 +35,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+export default Navbar;

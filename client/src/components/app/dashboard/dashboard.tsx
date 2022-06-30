@@ -10,7 +10,7 @@ import {
 import { userStore } from '../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../interfaces';
 
-export default function Dashboard() {
+function Dashboard() {
   const helpDash = buttonsLogicStore((state) => state.setHelp);
   const setUser = userStore((state) => state.setUser);
 
@@ -57,7 +57,6 @@ export default function Dashboard() {
           },
         },
       });
-
       setHelpRequests(result.data.userMany.map((hr: any) => hr.help_request));
     } else {
       const result = await getHRByLanguage({
@@ -70,7 +69,6 @@ export default function Dashboard() {
       });
       setHelpRequests(result.data.userMany.map((hr: any) => hr.help_request));
     }
-    // const requests = result.data.userOne;
   };
 
   useEffect(() => {
@@ -134,3 +132,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+export default Dashboard;

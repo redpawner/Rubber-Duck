@@ -1,8 +1,8 @@
-import React from "react";
-import "./profile.scss";
-import { buttonsLogicStore } from "../../../../state-stores/state-stores";
+import React from 'react';
+import './profile.scss';
+import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 
-export default function Profile() {
+function Profile() {
   const help = buttonsLogicStore((state) => state.setDashboard);
 
   return (
@@ -29,3 +29,5 @@ export default function Profile() {
     </div>
   );
 }
+
+export default Profile;
