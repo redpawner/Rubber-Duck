@@ -44,7 +44,6 @@ type User = {
   help_request: HelpReqSchema;
   regUser: (uid: string, username: string, avatar: string) => void;
   setUser: (
-    uid: string,
     username: string,
     rating_total: Number,
     rating_count: Number,
@@ -53,6 +52,7 @@ type User = {
     help_request?: HelpReqSchema
   ) => void;
   setUserToken: (userAT: string) => void;
+  setUserUid: (uid: string) => void;
 };
 
 const buttonsLogicStore = create<MyStore>()(
@@ -102,7 +102,6 @@ const userStore = create<User>()(
       set({ uid: uid, username: username, avatar: avatar });
     },
     setUser: (
-      uid: string,
       username: string,
       rating_total: Number,
       rating_count: Number,
@@ -111,7 +110,6 @@ const userStore = create<User>()(
       help_request?: HelpReqSchema
     ) => {
       set({
-        uid: uid,
         username: username,
         rating_total: rating_total,
         rating_count: rating_count,
@@ -119,6 +117,9 @@ const userStore = create<User>()(
         avatar: avatar,
         help_request: help_request,
       });
+    },
+    setUserUid: (uid: string) => {
+      set({ uid: uid });
     },
     setUserToken: (userAT: string) => {
       set({ userAT: userAT });

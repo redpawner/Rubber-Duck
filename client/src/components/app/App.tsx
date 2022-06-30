@@ -19,17 +19,17 @@ function App() {
 
   const usAt = userStore((state) => state.userAT);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        user.getIdToken().then((token) => {
-          setUserToken(token);
-        });
-      } else {
-        setUserToken('');
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       user.getIdToken().then((token) => {
+  //         setUserToken(token);
+  //       });
+  //     } else {
+  //       setUserToken('');
+  //     }
+  //   });
+  // }, []);
 
   const help = buttonsLogicStore((state) => state.show);
 

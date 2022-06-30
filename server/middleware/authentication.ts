@@ -9,14 +9,6 @@ admin.initializeApp({
 });
 
 const validateAuthorization = async (ctx: any, next: any) => {
-  // comment/uncomment below to disable/enable authorization >>
-
-  // if (ctx.request.url.includes('graphql')) {
-  //   console.log('authorisation is disabled');
-  //   return next();
-  // }
-
-  // <<
   const token: string = ctx.request.headers.authorization;
 
   if (!token) {

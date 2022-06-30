@@ -7,13 +7,13 @@ import { buttonsLogicStore, userStore } from '../../state-stores/state-stores';
 
 export default function Navbar() {
   const avatar = userStore((state) => state.avatar);
+  const setUserToken = userStore((state) => state.setUserToken);
 
   const profile = `static/media/${avatar}`;
-  console.log(profile);
-  console.log(avatar1);
 
   const logout = () => {
     logoutUser();
+    setUserToken('');
   };
   const changer = buttonsLogicStore((state) => state.setProfile);
   // const profiles = () => {};

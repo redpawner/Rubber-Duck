@@ -1,29 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   buttonsLogicStore,
   userStore,
-} from "../../../../state-stores/state-stores";
+} from '../../../../state-stores/state-stores';
 
-import "./login.scss";
-import git from "../../../../Images/git.png";
-import google from "../../../../Images/google.png";
-import apple from "../../../../Images/apple.png";
-import logo from "../../../../Images/logo.png";
-import { loginUser } from "../../../../api-services/api-auth";
+import './login.scss';
+import git from '../../../../Images/git.png';
+import google from '../../../../Images/google.png';
+import apple from '../../../../Images/apple.png';
+import logo from '../../../../Images/logo.png';
+import { loginUser } from '../../../../api-services/api-auth';
+import { GET_USER } from '../../../../graphql/queries-mutations';
 
 export default function Login() {
   const registerShow = buttonsLogicStore((state) => state.setReg);
   const forgotShow = buttonsLogicStore((state) => state.setReset);
-  const user = userStore((state) => state.userAT);
+  const setUserUid = userStore((state) => state.setUserUid);
+  const setUserToken = userStore((state) => state.setUserToken);
 
   //this event typescript type should be interfaced somewhere (any is bad)
   //component id's need changing to classNames (and maybe named better) => check console logs to see what I mean
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
-    loginUser(email, password);
+    const result = await loginUser(email, password);
+    setUserUid(result.uid);
+    setUserToken(result.accessToken);
   };
 
   return (
@@ -73,14 +77,14 @@ export default function Login() {
       </div>
       <p className="divider-login">
         ---------------------------------------- Or
-        ----------------------------------------{" "}
+        ----------------------------------------{' '}
       </p>
       <div className="login-other-platforms">
         <button id="platform-butt">
           <img id="socialmedia-img" src={google} alt="facebook"></img>
         </button>
         <button id="platform-butt">
-          {" "}
+          {' '}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-butt">
