@@ -1,4 +1,4 @@
-@import "../../stylesheet.scss";
+@import '../../stylesheet.scss';
 
 .navbar {
   height: 10vh;
@@ -22,11 +22,13 @@
 
 .button2 {
   margin-top: 1.5vh;
-  margin-right: 8vh;
-  height: 8vh;
-  width: 8vh;
+  margin-right: 6vh;
+  height: 10vh;
+  width: 10vh;
   cursor: pointer;
   border: none;
+  background-color: white;
+  border-radius: 50%;
 }
 
 .navbar-icon {

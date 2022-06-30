@@ -18,7 +18,7 @@ const fbCreateUser = (email: string, password: string) => {
 };
 
 const loginUser = (email: string, password: string) => {
-  signInWithEmailAndPassword(auth, email, password)
+  return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       return user;

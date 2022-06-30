@@ -10,11 +10,15 @@ import './register.scss';
 import logo from '../../../../Images/logo.png';
 import { fbCreateUser } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
-import CREATE_USER from '../../../../graphql/queries-mutations';
+import { CREATE_USER } from '../../../../graphql/queries-mutations';
 
 export default function Register() {
   const loginShow = buttonsLogicStore((state) => state.setLogin);
-  const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
+  const regUser = userStore((state) => state.regUser);
+  const setUserUid = userStore((state) => state.setUserUid);
+  const setUserToken = userStore((state) => state.setUserToken);
+
+  const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
 
   const useHandleSubmit = async (event: any) => {
@@ -26,15 +30,22 @@ export default function Register() {
 
     const result = await fbCreateUser(email, password);
 
-    createUser({
+    setUserUid(result.uid);
+
+    await createUser({
       variables: {
         record: {
+          avatar: 'user.59168e41eade7de7457f.png',
           username: username,
           email: email,
           uid: result.uid,
         },
       },
     });
+
+    setUserToken(result.accessToken);
+
+    // regUser(result.uid, username, 'user.59168e41eade7de7457f.png');
   };
 
   return (

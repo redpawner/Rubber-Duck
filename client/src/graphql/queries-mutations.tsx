@@ -10,11 +10,22 @@ import { gql } from '@apollo/client';
 
 //   }
 const GET_USER = gql`
-  query Query($filter: FilterFindOneUserInput) {
+  query UserMany($filter: FilterFindOneUserInput) {
     userOne(filter: $filter) {
-      uid
       username
       email
+      avatar
+      rating_total
+      rating_count
+      needHelp
+      help_request {
+        username
+        title
+        description
+        hr_languages
+        time_created
+        _id
+      }
     }
   }
 `;
@@ -48,6 +59,7 @@ const CREATE_USER = gql`
   mutation Mutation($record: CreateOneUserInput!) {
     userCreateOne(record: $record) {
       record {
+        avatar
         email
         username
         uid
@@ -108,4 +120,4 @@ const UPDATE_HR = gql`
 
 //user_languages
 
-export default CREATE_USER;
+export { CREATE_USER, GET_USER };
