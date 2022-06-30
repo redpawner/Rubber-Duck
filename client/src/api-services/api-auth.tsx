@@ -3,11 +3,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  User,
 } from 'firebase/auth';
 
-const fbCreateUser = (email: string, password: string) => {
-  return createUserWithEmailAndPassword(auth, email, password)
+const fbCreateUser = async (email: string, password: string) => {
+  return await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       return user;
@@ -17,8 +16,8 @@ const fbCreateUser = (email: string, password: string) => {
     });
 };
 
-const loginUser = (email: string, password: string) => {
-  return signInWithEmailAndPassword(auth, email, password)
+const loginUser = async (email: string, password: string) => {
+  return await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       return user;
@@ -28,12 +27,10 @@ const loginUser = (email: string, password: string) => {
     });
 };
 
-const logoutUser = () => {
-  signOut(auth)
-    .then(() => {})
-    .catch((error) => {
-      return error;
-    });
+const logoutUser = async () => {
+  await signOut(auth).catch((error) => {
+    return error;
+  });
 };
 
 export { fbCreateUser, loginUser, logoutUser };

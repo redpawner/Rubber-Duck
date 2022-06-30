@@ -68,7 +68,6 @@ export default function Dashboard() {
           },
         },
       });
-      console.log(result.data.userMany);
       setHelpRequests(result.data.userMany.map((hr: any) => hr.help_request));
     }
     // const requests = result.data.userOne;
@@ -126,7 +125,7 @@ export default function Dashboard() {
             <button onClick={handleClick}>Bread</button>
           </form>
           <ul className="search-tags">
-            <li>{tags + ","}</li>
+            <li>{tags + ','}</li>
           </ul>
         </div>
       </div>
