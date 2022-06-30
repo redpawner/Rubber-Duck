@@ -87,4 +87,31 @@ const UPDATE_HR = gql`
   }
 `;
 
+//NOT IN USE YET
+// {
+//   "filter": {
+//     "uid": "nASbai2fxwVZTTVBmCzUNLpopoa2"
+//   },
+//   "record": {
+//     "needHelp":false,
+//     "help_request": null
+//   }
+// }
+const DELETE_HR = gql`
+  mutation Mutation($record: UpdateOneUserInput!, $filter: FilterUpdateOneUserInput) {
+  userUpdateOne(record: $record, filter: $filter) {
+    record {
+      username
+      avatar
+      help_request {
+        title
+        description
+        hr_languages
+      }
+      createdAt
+    }
+  }
+}
+`
+
 export { CREATE_USER, GET_USER, GET_HR_BY_LANGUAGE };
