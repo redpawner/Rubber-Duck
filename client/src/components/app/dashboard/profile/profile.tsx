@@ -17,9 +17,9 @@ export default function Profile() {
               alt="avatar"
             ></img>
           </div>
-          <div className="dropdown-avatar">
-            <button className="set-avatar-btn">Change</button>
-          </div>
+
+          <button className="set-avatar-btn">Change</button>
+          <div className="dropdown-avatar"></div>
         </div>
       </div>
 

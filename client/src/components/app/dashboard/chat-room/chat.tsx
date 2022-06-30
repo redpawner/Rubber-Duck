@@ -1,5 +1,9 @@
 //@ts-nocheck
 import "./chat.scss";
+import sand from "../../../../Images/sandbox.jpg";
+import board from "../../../../Images/board.png";
+import video from "../../../../Images/video.png";
+import britney from "../../../../Images/britney.png";
 import io from "socket.io-client";
 import {
   useEffect,
@@ -155,119 +159,158 @@ function Chat() {
   }, [messages]);
 
   return (
-    <div className="dashboard-container">
-      <div className="chat-container">
-        <div className="chat-form">
-          <form className="text-area-form" onSubmit={sendMessage}>
-            {" "}
-            {/* chat area */}
-            <textarea
-              value={arrivalMessage.text}
-              onChange={createMessage}
-              placeholder="Type a message..."
-              onKeyDown={onEnterPress}
-              required
-            />
-            <div className="buttons">
-              {arrivalMessage.type !== "file" && arrivalMessage.text === "" ? ( //button for sending message
-                <button className="send-btn" type="submit" disabled>
-                  <img
-                    src={require("../../../../Images/send-icon.png")}
-                    alt="send icon"
-                    className="send-icon"
-                  ></img>
-                </button>
-              ) : (
-                <button className="send-btn" type="submit">
-                  <img
-                    src={require("../../../../Images/send-icon.png")}
-                    alt="send icon"
-                    className="send-icon"
-                  ></img>
-                </button>
-              )}
-              <div className="img-code-buttons">
-                {showLangDropDown ? (
-                  <select onChange={handleLanguageChange} name="languages">
-                    <option value="">Select a language</option>
-                    {langList.map((lang) => (
-                      <option key={lang} value={lang}>
-                        {lang}
-                      </option>
-                    ))}
-                  </select>
-                ) : null}
-                <button
-                  className="input-type-btn"
-                  onClick={handleInputTypeClick}
-                >
-                  {showLangDropDown ? (
-                    <img
-                      src={require("../../../../Images/text-button-icon-48.png")}
-                      alt="code-icon"
-                    />
-                  ) : (
-                    <img
-                      src={require("../../../../Images/code-icon-32.png")}
-                      alt="code-icon"
-                    />
-                  )}
-                </button>
-                <input
-                  type="file"
-                  name="file"
-                  id="files"
-                  className="hidden"
-                  accept="image/*"
-                  onChange={selectFile}
-                />
-                <button className="file-btn" type="button">
-                  <label htmlFor="files" className="file-label">
-                    <img
-                      src={require("../../../../Images/upload-image-icon.png")}
-                      alt="upload icon"
-                      className="upload-image-icon"
-                    ></img>
-                  </label>
-                </button>
-
-                <button
-                  className="emoji-btn"
-                  onClick={handleShowEmojiPicker}
-                  type="button"
-                >
-                  <img
-                    src={require("../../../../Images/emoji-icon.png")}
-                    alt="emoji icon"
-                    className="emoji-icon"
-                  ></img>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <div className="chat-messages">
-          {messages.map((message) => (
-            <div ref={scrollRef} key={message.time.toString()}>
-              <Message
-                key={message.time.toString() + message.text + message.language}
-                message={message}
+    <div className="chat-main">
+      <div className="play">
+        <div className="chat-container">
+          <div className="chat-form">
+            <form className="text-area-form" onSubmit={sendMessage}>
+              {" "}
+              {/* chat area */}
+              <textarea
+                value={arrivalMessage.text}
+                onChange={createMessage}
+                placeholder="Type a message..."
+                onKeyDown={onEnterPress}
+                required
               />
-            </div>
-          ))}
-        </div>
+              <div className="buttons">
+                {arrivalMessage.type !== "file" &&
+                arrivalMessage.text === "" ? ( //button for sending message
+                  <button className="send-btn" type="submit" disabled>
+                    <img
+                      src={require("../../../../Images/send-icon.png")}
+                      alt="send icon"
+                      className="send-icon"
+                    ></img>
+                  </button>
+                ) : (
+                  <button className="send-btn" type="submit">
+                    <img
+                      src={require("../../../../Images/send-icon.png")}
+                      alt="send icon"
+                      className="send-icon"
+                    ></img>
+                  </button>
+                )}
+                <div className="img-code-buttons">
+                  {showLangDropDown ? (
+                    <select onChange={handleLanguageChange} name="languages">
+                      <option value="">Select a language</option>
+                      {langList.map((lang) => (
+                        <option key={lang} value={lang}>
+                          {lang}
+                        </option>
+                      ))}
+                    </select>
+                  ) : null}
+                  <button
+                    className="input-type-btn"
+                    onClick={handleInputTypeClick}
+                  >
+                    {showLangDropDown ? (
+                      <img
+                        src={require("../../../../Images/text-button-icon-48.png")}
+                        alt="code-icon"
+                      />
+                    ) : (
+                      <img
+                        src={require("../../../../Images/code-icon-32.png")}
+                        alt="code-icon"
+                      />
+                    )}
+                  </button>
+                  <input
+                    type="file"
+                    name="file"
+                    id="files"
+                    className="hidden"
+                    accept="image/*"
+                    onChange={selectFile}
+                  />
+                  <button className="file-btn" type="button">
+                    <label htmlFor="files" className="file-label">
+                      <img
+                        src={require("../../../../Images/upload-image-icon.png")}
+                        alt="upload icon"
+                        className="upload-image-icon"
+                      ></img>
+                    </label>
+                  </button>
 
-        {showEmojiPicker ? (
-          <div className="emoji-picker">
-            {chosenEmoji ? (
-              <span>You chose: {chosenEmoji.emoji}</span>
-            ) : (
-              <span>No emoji Chosen</span>
-            )}
-            <Picker onEmojiClick={onEmojiClick} />
+                  <button
+                    className="emoji-btn"
+                    onClick={handleShowEmojiPicker}
+                    type="button"
+                  >
+                    <img
+                      src={require("../../../../Images/emoji-icon.png")}
+                      alt="emoji icon"
+                      className="emoji-icon"
+                    ></img>
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-        ) : null}
+
+          <div className="chat-messages">
+            {messages.map((message) => (
+              <div ref={scrollRef} key={message.time.toString()}>
+                <Message
+                  key={
+                    message.time.toString() + message.text + message.language
+                  }
+                  message={message}
+                />
+              </div>
+            ))}
+          </div>
+
+          {showEmojiPicker ? (
+            <div className="emoji-picker">
+              {chosenEmoji ? (
+                <span>You chose: {chosenEmoji.emoji}</span>
+              ) : (
+                <span>No emoji Chosen</span>
+              )}
+              <Picker onEmojiClick={onEmojiClick} />
+            </div>
+          ) : null}
+        </div>
+      </div>
+      <div className="features-container">
+        <h1 className="help-chat-title">Daddy Issues Help</h1>
+        <div className="problem-div">
+          <p className="problem-content">
+            My name is Ozymandias, King of Kings; Look on my Works, ye Mighty,
+            and despair! Nothing beside remains. Round the decay Of that
+            colossal Wreck, boundless and bare The lone and level sands stretch
+            far away.”
+          </p>
+          <ul className="help-tags-list">
+            <li>CSS</li>
+            <li>CSS</li>
+          </ul>
+        </div>
+        <div className="people-online">
+          <h2 className="currently-online">Currently online:</h2>
+          <img
+            className="avatar-img2"
+            src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj"
+            alt="avatar"
+          />
+        </div>
+        <div className="people-online">
+          <h2 className="currently-online">Try:</h2>
+          <div className="options">
+            <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
+              <img src={britney} alt="sand" className="avatar-img3" />
+            </a>
+            <img src={sand} alt="sand" className="avatar-img3" />
+            <img src={board} alt="whiteboard" className="avatar-img3" />
+            <img src={video} alt="video" className="avatar-img3" />
+          </div>
+        </div>
       </div>
     </div>
   );
