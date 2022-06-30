@@ -1,14 +1,7 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 // QUERIES
 
-//Use Firebase id instead of MongoID
-// {
-
-//   "filter": {
-//     "uid": "9luz6VTuykNQFFxaZfYuz8LfXLh2",
-
-//   }
 const GET_USER = gql`
   query UserMany($filter: FilterFindOneUserInput) {
     userOne(filter: $filter) {
@@ -30,50 +23,17 @@ const GET_USER = gql`
   }
 `;
 
-// {
-//   "filter": {
-//     "needHelp": true
-//   }
-// } for query below
-
-const ALL_HR = gql`
-  query Query($filter: FilterFindManyUserInput) {
-    userPagination(filter: $filter) {
-      items {
-        username
-        avatar
-        user_languages
-        help_request {
-          title
-          description
-          hr_languages
-        }
-      }
-    }
-  }
-`;
-
-// {
-//   "filter": {
-//     "hr_languages": [
-//       "Javascript"
-//     ],
-//     "needHelp": true
-//   },
-//   "sort": "createdAt"
-// }
-
 const GET_HR_BY_LANGUAGE = gql`
-  query Query($filter: FilterFindManyUserInput, $sort: SortFindManyUserInput) {
-    userMany(filter: $filter, sort: $sort) {
-      username
+  query Query($filter: FilterFindManyUserInput) {
+    userMany(filter: $filter) {
       needHelp
       help_request {
+        time_created
         title
         description
         hr_languages
+        username
       }
-      createdAt
     }
   }
 `;
@@ -93,12 +53,7 @@ const CREATE_USER = gql`
   }
 `;
 
-// {
-//   "filter": {
-//     "uid": "uid"
-//   }
-// } for below
-
+//NOT IN USE YET:
 const DELETE_USER = gql`
   mutation Mutation($filter: FilterRemoveOneUserInput) {
     userRemoveOne(filter: $filter, uid: $uid) {
@@ -111,19 +66,8 @@ const DELETE_USER = gql`
   }
 `;
 
-// {
+// NOT IN USE YET:
 
-//   "filter": {
-//     "uid": "9luz6VTuykNQFFxaZfYuz8LfXLh2"
-//   },
-//   "record": {
-//     "needHelp": true,
-//     "help_request": {
-//       "title": "title",
-//       "description": "descript",
-//       "hr_languages": "Javascript"
-//     }
-//   }
 const UPDATE_HR = gql`
   mutation Mutation(
     $record: UpdateOneUserInput!
@@ -143,6 +87,31 @@ const UPDATE_HR = gql`
   }
 `;
 
-//user_languages
+//NOT IN USE YET
+// {
+//   "filter": {
+//     "uid": "nASbai2fxwVZTTVBmCzUNLpopoa2"
+//   },
+//   "record": {
+//     "needHelp":false,
+//     "help_request": null
+//   }
+// }
+const DELETE_HR = gql`
+  mutation Mutation($record: UpdateOneUserInput!, $filter: FilterUpdateOneUserInput) {
+  userUpdateOne(record: $record, filter: $filter) {
+    record {
+      username
+      avatar
+      help_request {
+        title
+        description
+        hr_languages
+      }
+      createdAt
+    }
+  }
+}
+`
 
-export { CREATE_USER, GET_USER };
+export { CREATE_USER, GET_USER, GET_HR_BY_LANGUAGE };
