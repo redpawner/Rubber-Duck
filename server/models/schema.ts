@@ -43,6 +43,11 @@ schemaComposer.Query.addFields({
     query: (rawQuery, value) => {
       rawQuery['help_request.hr_languages'] = { $elemMatch: { $in: value } };
     },
+  }).addSortArg({
+    name:'createdAt',
+    description:'Sort By CreatedAt Date',
+    value:(resolveParams)=>{return {createdAt:1};
+    },
   }),
 
   userDataLoader: UserTC.mongooseResolvers.dataLoader(),
