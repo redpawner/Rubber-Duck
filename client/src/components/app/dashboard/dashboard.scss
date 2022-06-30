@@ -1,7 +1,7 @@
 @import "../../../stylesheet.scss";
 
 .dashboard-container {
-  border-radius: $radius;
+  border-radius: $border-radius;
   margin-top: 2%;
   height: 80vh;
   width: 55%;
@@ -35,9 +35,9 @@
 .search-field input {
   width: 7vw;
   height: 2.5vh;
-  border-radius: $radius;
+  border-radius: $border-radius;
   border: none;
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-size: $button-font-size;
 }
 
@@ -50,7 +50,7 @@
 
 .search-tags {
   list-style: none;
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-size: $button-font-size;
   color: $blue-shade;
   font-weight: bold;
@@ -58,17 +58,17 @@
 }
 
 .dashboard-title {
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-size: $title-font-size;
   color: $grey-shade;
 }
 
 .create-help-butt {
-  border-radius: $radius;
+  border-radius: $border-radius;
   height: 5vh;
   width: 13.55vw;
   cursor: pointer;
-  font-family: $main-font;
+  font-family: $main-font-family;
   background-color: #3022ab;
   border: none;
   color: white;

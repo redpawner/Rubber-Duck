@@ -8,11 +8,11 @@
 }
 
 .create-cancel-btn {
-  border-radius: $radius;
+  border-radius: $border-radius;
   height: 5vh;
   width: 13.55vw;
   cursor: pointer;
-  font-family: $main-font;
+  font-family: $main-font-family;
   border: none;
   color: white;
   font-size: 0.8999999999999999vw;
@@ -36,7 +36,7 @@
 }
 
 .help-request-input {
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-weight: bold;
   color: $blue-shade;
   margin-bottom: -0.1vh;
@@ -46,7 +46,7 @@
   width: 20vw;
   height: 3vh;
   border: $divider-line;
-  font-family: $main-font;
+  font-family: $main-font-family;
   color: $grey-shade;
   font-weight: bold;
 }
@@ -54,7 +54,7 @@
 .help-description {
   width: 20vw;
   height: 20vh;
-  font-family: $main-font;
+  font-family: $main-font-family;
   border: $divider-line;
   color: $grey-shade;
   font-weight: bold;
