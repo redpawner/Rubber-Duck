@@ -1,6 +1,6 @@
 import React from "react";
 import "../login/login.scss";
-import git from "../../../../Images/git.png";
+import github from "../../../../Images/git.png";
 import google from "../../../../Images/google.png";
 import apple from "../../../../Images/apple.png";
 import logo from "../../../../Images/logo.png";
@@ -16,15 +16,15 @@ export default function Reset() {
       </div>
       <div className="login-form">
         <div className="sign-buttons-cont">
-          <button id="sign-butt" className="sign-in-butt">
-            SIGN IN
+          <button id="sign-button" className="sign-in-button">
+            Sign in
           </button>
           <button
-            id="sign-butt"
-            className="sign-up-butt"
+            id="sign-button"
+            className="sign-up-button"
             onClick={registerShow}
           >
-            SIGN UP
+            Sign up
           </button>
         </div>
         <div className="login-container">
@@ -34,6 +34,7 @@ export default function Reset() {
             // value={}
             // onChange={}
             placeholder="Email"
+            required
           />
           <button
             className="reset-btn"
@@ -48,17 +49,18 @@ export default function Reset() {
         ----------------------------------------{" "}
       </p>
       <div className="login-other-platforms">
-        <button id="platform-butt">
+        <button id="platform-button">
           <img id="socialmedia-img" src={google} alt="google"></img>
         </button>
-        <button id="platform-butt">
+        <button id="platform-button">
           {" "}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
-        <button id="platform-butt">
-          <img id="socialmedia-img" src={git} alt="github"></img>
+        <button id="platform-button">
+          <img id="socialmedia-img" src={github} alt="github"></img>
         </button>
       </div>
+      //{" "}
     </div>
   );
 }

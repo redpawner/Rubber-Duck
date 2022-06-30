@@ -1,11 +1,11 @@
 @import "../../../../stylesheet.scss";
 
 .save-profile-button {
-  border-radius: $radius;
+  border-radius: $border-radius;
   height: 5vh;
   width: 13.55vw;
   cursor: pointer;
-  font-family: $main-font;
+  font-family: $main-font-family;
   background-color: #3022ab;
   border: none;
   color: white;
@@ -44,9 +44,9 @@
     height: 1vh;
     width: 10vh;
     border: none;
-    border-radius: $radius;
+    border-radius: $border-radius;
     cursor: pointer;
-    font-family: $main-font;
+    font-family: $main-font-family;
     font-size: $button-font-size;
     background-color: transparent;
   }
@@ -63,7 +63,7 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
-  border-radius: $radius;
+  border-radius: $border-radius;
   // border: solid white;
 }
 

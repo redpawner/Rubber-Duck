@@ -14,7 +14,7 @@ type messageProps = {
 };
 
 type MyStore = {
-  show: number;
+  show: string;
   counter: number;
   profile: boolean;
   // toggleShow: () => void;

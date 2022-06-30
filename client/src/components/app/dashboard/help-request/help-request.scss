@@ -5,14 +5,14 @@
   width: 40vh;
   background-color: #f8eef6;
   // opacity: 0.4;
-  border-radius: $radius;
+  border-radius: $border-radius;
   display: flex;
   flex-direction: column;
   margin-bottom: 4vh;
 
   .help-title {
     margin-left: 2vh;
-    font-family: $main-font;
+    font-family: $main-font-family;
     font-size: 0.95vw;
     color: $blue-shade;
     font-weight: bold;
@@ -21,7 +21,7 @@
 
   .help-details {
     margin-left: 2vh;
-    font-family: $main-font;
+    font-family: $main-font-family;
     font-size: 0.65vw;
     color: $blue-shade;
     margin-top: -1vh;
@@ -36,7 +36,7 @@
 
   #tags {
     margin-left: 2vh;
-    font-family: $main-font;
+    font-family: $main-font-family;
     color: $blue-shade;
     font-weight: bold;
   }
@@ -51,11 +51,11 @@
     display: flex;
 
     .help-button {
-      border-radius: $radius;
+      border-radius: $border-radius;
       width: 7vh;
       height: 3.5vh;
       cursor: pointer;
-      font-family: $main-font;
+      font-family: $main-font-family;
       color: white;
       background-color: #a53993;
       font-size: 0.65vw;
