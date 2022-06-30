@@ -7,7 +7,7 @@ interface Props {
   helpRequest: HelpReqSchema;
 }
 
-export default function Help({ helpRequest }: Props) {
+function Help({ helpRequest }: Props) {
   const showChat = buttonsLogicStore((state) => state.setChat);
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
@@ -46,3 +46,5 @@ export default function Help({ helpRequest }: Props) {
     </div>
   );
 }
+
+export default Help;

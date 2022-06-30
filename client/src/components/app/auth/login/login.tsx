@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
 import {
   buttonsLogicStore,
   userStore,
-} from "../../../../state-stores/state-stores";
+} from '../../../../state-stores/state-stores';
 
-import "./login.scss";
-import git from "../../../../Images/git.png";
-import google from "../../../../Images/google.png";
-import apple from "../../../../Images/apple.png";
-import logo from "../../../../Images/logo.png";
-import { loginUser } from "../../../../api-services/api-auth";
-import { GET_USER } from "../../../../graphql/queries-mutations";
+import './login.scss';
+import git from '../../../../Images/git.png';
+import google from '../../../../Images/google.png';
+import apple from '../../../../Images/apple.png';
+import logo from '../../../../Images/logo.png';
+import { loginUser } from '../../../../api-services/api-auth';
 
-export default function Login() {
+function Login() {
   const registerShow = buttonsLogicStore((state) => state.setReg);
   const forgotPassword = buttonsLogicStore((state) => state.setReset);
   const setUserUid = userStore((state) => state.setUserUid);
@@ -79,14 +77,14 @@ export default function Login() {
       </div>
       <h1 className="divider-login">
         ---------------------------------------- Or
-        ----------------------------------------{" "}
+        ----------------------------------------{' '}
       </h1>
       <div className="login-other-platforms">
         <button id="platform-button">
           <img id="socialmedia-img" src={google} alt="facebook"></img>
         </button>
         <button id="platform-button">
-          {" "}
+          {' '}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-button">
@@ -96,3 +94,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
