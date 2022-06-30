@@ -6,17 +6,13 @@ dotenv.config({ path: './.env' });
 
 const SERVER = process.env.SERVER;
 
-main().catch((err) => console.log(err));
-
-
-
 async function main() {
   await mongoose.connect('mongodb://' + SERVER);
 }
+main().catch((err) => console.log(err));
 
 let conn = mongoose.connection;
 conn.on('connected', function () {
-
   console.log('Database connected successfully.');
 });
 conn.on('disconnected', function () {
