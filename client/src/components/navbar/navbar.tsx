@@ -21,13 +21,13 @@ export default function Navbar() {
       <div className="small-logo">
         <img className="logo-img" src={logo} alt="logo"></img>
       </div>
-      <div className="button2">
+      <div className="profile-button">
         <img className="navbar-icon" src={profile} alt="profile"></img>
         <div className="dropdown-content">
-          <button className="dropdown-butt" onClick={changer}>
+          <button className="dropdown-button" onClick={changer}>
             Profile
           </button>
-          <button className="dropdown-butt" onClick={logout}>
+          <button className="dropdown-button" onClick={logout}>
             Logout
           </button>
         </div>

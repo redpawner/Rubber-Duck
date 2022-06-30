@@ -13,15 +13,19 @@ export default function CreateHelp() {
       </div>
       <div className="create-help-container">
         <form className="help-form">
-          <p className="help-request-input">Title:</p>
-          <input type="text" className="help-title2" name="title" />
-          <p className="help-request-input">Description:</p>
+          <label className="help-request-input">Title:</label>
+          <br></br>
+          <input type="text" className="help-title2" name="title" /> <br></br>
+          <label className="help-request-input">Description:</label>
+          <br></br>
           <textarea
             className="help-description"
             name="description"
             placeholder="Max. 50 words"
           ></textarea>
-          <p className="help-request-input">Tags:</p>
+          <br></br>
+          <label className="help-request-input">Tags:</label>
+          <br></br>
           <input
             type="text"
             className="help-title2"

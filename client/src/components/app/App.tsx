@@ -1,23 +1,23 @@
-import { useEffect } from 'react';
-import { buttonsLogicStore } from '../../state-stores/state-stores';
-import './App.scss';
-import Navbar from '../navbar/navbar';
-import Login from './auth/login/login';
-import Register from './auth/register/register';
-import Reset from './auth/reset/reset';
-import CreateHelp from './dashboard/create-help-request/create-help-request';
-import Dashboard from './dashboard/dashboard';
-import Chat from './dashboard/chat-room/chat';
-import { userStore } from '../../state-stores/state-stores';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase';
-import Profile from './dashboard/profile/profile';
+import { useEffect } from "react";
+import { buttonsLogicStore } from "../../state-stores/state-stores";
+import "./App.scss";
+import Navbar from "../navbar/navbar";
+import Login from "./auth/login/login";
+import Register from "./auth/register/register";
+import Reset from "./auth/reset/reset";
+import CreateHelp from "./dashboard/create-help-request/create-help-request";
+import Dashboard from "./dashboard/dashboard";
+import Chat from "./dashboard/chat-room/chat";
+import { userStore } from "../../state-stores/state-stores";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import Profile from "./dashboard/profile/profile";
 
 function App() {
   const setUserToken = userStore((state) => state.setUserToken);
-  const reset = buttonsLogicStore((state) => state.counter);
+  const counter = buttonsLogicStore((state) => state.counter);
 
-  const usAt = userStore((state) => state.userAT);
+  const userAT = userStore((state) => state.userAT);
 
   // useEffect(() => {
   //   onAuthStateChanged(auth, (user) => {
@@ -34,7 +34,7 @@ function App() {
   const help = buttonsLogicStore((state) => state.show);
 
   function renderSwitch() {
-    switch (reset) {
+    switch (counter) {
       case 0:
         return <Register />;
       case 1:
@@ -46,19 +46,19 @@ function App() {
 
   function renderBoards() {
     switch (help) {
-      case 0:
+      case "chat":
         return <Chat />;
-      case 1:
+      case "dashboard":
         return <Dashboard />;
-      case 2:
+      case "help":
         return <CreateHelp />;
-      case 3:
+      case "profile":
         return <Profile />;
     }
   }
 
   function authorize() {
-    switch (usAt.length > 0) {
+    switch (userAT.length > 0) {
       case true:
         return (
           <>
@@ -72,6 +72,6 @@ function App() {
     }
   }
 
-  return <>{authorize()};</>;
+  return authorize();
 }
 export default App;

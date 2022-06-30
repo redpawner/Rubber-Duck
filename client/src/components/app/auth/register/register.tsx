@@ -1,16 +1,13 @@
 import {
   buttonsLogicStore,
   userStore,
-} from '../../../../state-stores/state-stores';
-import git from '../../../../Images/git.png';
-import google from '../../../../Images/google.png';
-import apple from '../../../../Images/apple.png';
-import '../login/login.scss';
-import './register.scss';
-import logo from '../../../../Images/logo.png';
-import { fbCreateUser } from '../../../../api-services/api-auth';
-import { useMutation } from '@apollo/client';
-import { CREATE_USER } from '../../../../graphql/queries-mutations';
+} from "../../../../state-stores/state-stores";
+import "../login/login.scss";
+import "./register.scss";
+import logo from "../../../../Images/logo.png";
+import { fbCreateUser } from "../../../../api-services/api-auth";
+import { useMutation } from "@apollo/client";
+import { CREATE_USER } from "../../../../graphql/queries-mutations";
 
 export default function Register() {
   const loginShow = buttonsLogicStore((state) => state.setLogin);
@@ -35,7 +32,7 @@ export default function Register() {
     await createUser({
       variables: {
         record: {
-          avatar: 'user.59168e41eade7de7457f.png',
+          avatar: "user.59168e41eade7de7457f.png",
           username: username,
           email: email,
           uid: result.uid,
@@ -55,41 +52,57 @@ export default function Register() {
       </div>
       <div className="register-form">
         <div className="sign-buttons-cont">
-          <button id="sign-butt" className="sign-in-butt2" onClick={loginShow}>
-            SIGN IN
+          <button
+            id="sign-button"
+            className="sign-in-button2"
+            onClick={loginShow}
+          >
+            Sign in
           </button>
-          <button id="sign-butt" className="sign-up-butt2">
-            SIGN UP
+          <button id="sign-button" className="sign-up-button2">
+            Sign up
           </button>
         </div>
         <form className="login-container" onSubmit={useHandleSubmit}>
-          <p className="reg-input">Email:</p>
+          <br></br>
+          <label className="reg-input">Email:</label>
+          <br></br>
           <input
             type="text"
             className="reg-textBox"
             name="email"
             autoComplete="off"
+            required
           />
-          <p className="reg-input">Password:</p>
+          <br></br>
+          <label className="reg-input">Password:</label>
+          <br></br>
           <input
             type="password"
             className="reg-textBox"
             name="password"
             autoComplete="new-password"
+            required
           />
-          <p className="reg-input">Confirm Password:</p>
+          <br></br>
+          <label className="reg-input">Confirm Password:</label>
+          <br></br>
           <input
             type="password"
             className="reg-textBox"
             name="password1"
             autoComplete="off"
+            required
           />
-          <p className="reg-input">Username:</p>
+          <br></br>
+          <label className="reg-input">Username:</label>
+          <br></br>
           <input
             type="text"
             className="reg-textBox"
             name="username"
             autoComplete="off"
+            required
           />
           <button
             className="login-btn2"

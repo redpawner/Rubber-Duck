@@ -1,23 +1,23 @@
 @import "../../../../stylesheet.scss";
-.sign-in-butt2 {
+.sign-in-button2 {
   background-color: #d3d3d3;
   border-radius: 15px 0px 0px 0px;
   cursor: pointer;
 }
 
-.sign-up-butt2 {
+.sign-up-button2 {
   background-color: white;
   border-radius: 0px 15px 0px 0px;
 }
 
-.sign-in-butt2:hover {
+.sign-in-button2:hover {
   color: grey;
 }
 
 .register-form {
   width: 40%;
   height: 60%;
-  border-radius: $radius;
+  border-radius: $border-radius;
   background-color: white;
   border: $border;
   box-shadow: $div-shadow;
@@ -27,18 +27,18 @@
   width: 90%;
   height: 5vh;
   background-color: $blue-shade;
-  border-radius: $radius;
+  border-radius: $border-radius;
   color: white;
   border: none;
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-size: $button-font-size;
   cursor: pointer;
-  margin-bottom: -1vh;
+  margin-bottom: 1vh;
   // margin-top: 3vh;
 }
 
 .reg-textBox {
-  margin-top: -2vh;
+  margin-top: -4vh;
   width: 90%;
   border: none;
   border-bottom: $divider-line;
@@ -48,6 +48,6 @@
 .reg-input {
   text-align: left;
   width: 90%;
-  font-family: $main-font;
+  font-family: $main-font-family;
   color: $blue-shade;
 }

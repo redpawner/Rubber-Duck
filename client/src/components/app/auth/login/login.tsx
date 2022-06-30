@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   buttonsLogicStore,
   userStore,
-} from '../../../../state-stores/state-stores';
+} from "../../../../state-stores/state-stores";
 
-import './login.scss';
-import git from '../../../../Images/git.png';
-import google from '../../../../Images/google.png';
-import apple from '../../../../Images/apple.png';
-import logo from '../../../../Images/logo.png';
-import { loginUser } from '../../../../api-services/api-auth';
-import { GET_USER } from '../../../../graphql/queries-mutations';
+import "./login.scss";
+import git from "../../../../Images/git.png";
+import google from "../../../../Images/google.png";
+import apple from "../../../../Images/apple.png";
+import logo from "../../../../Images/logo.png";
+import { loginUser } from "../../../../api-services/api-auth";
+import { GET_USER } from "../../../../graphql/queries-mutations";
 
 export default function Login() {
   const registerShow = buttonsLogicStore((state) => state.setReg);
-  const forgotShow = buttonsLogicStore((state) => state.setReset);
+  const forgotPassword = buttonsLogicStore((state) => state.setReset);
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
 
@@ -37,15 +37,15 @@ export default function Login() {
       </div>
       <div className="login-form">
         <div className="sign-buttons-cont">
-          <button id="sign-butt" className="sign-in-butt">
-            SIGN IN
+          <button id="sign-button" className="sign-in-button">
+            Sign in
           </button>
           <button
-            id="sign-butt"
-            className="sign-up-butt"
+            id="sign-button"
+            className="sign-up-button"
             onClick={registerShow}
           >
-            SIGN UP
+            Sign up
           </button>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
@@ -54,6 +54,7 @@ export default function Login() {
             className="login-textBox"
             name="email"
             placeholder="Email"
+            required
           />
           <input
             type="password"
@@ -61,6 +62,7 @@ export default function Login() {
             name="password"
             placeholder="Password"
             autoComplete="new-password"
+            required
           />
           <button
             className="login-btn"
@@ -69,25 +71,25 @@ export default function Login() {
             Log In
           </button>
           <div>
-            <a className="forgot-pass" onClick={forgotShow}>
+            <a className="forgot-password" onClick={forgotPassword}>
               Forgot Password ?
             </a>
           </div>
         </form>
       </div>
-      <p className="divider-login">
+      <h1 className="divider-login">
         ---------------------------------------- Or
-        ----------------------------------------{' '}
-      </p>
+        ----------------------------------------{" "}
+      </h1>
       <div className="login-other-platforms">
-        <button id="platform-butt">
+        <button id="platform-button">
           <img id="socialmedia-img" src={google} alt="facebook"></img>
         </button>
-        <button id="platform-butt">
-          {' '}
+        <button id="platform-button">
+          {" "}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
-        <button id="platform-butt">
+        <button id="platform-button">
           <img id="socialmedia-img" src={git} alt="github"></img>
         </button>
       </div>

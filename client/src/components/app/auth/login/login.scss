@@ -23,7 +23,7 @@
   .login-form {
     width: 40%;
     height: 40%;
-    border-radius: $radius;
+    border-radius: $border-radius;
     background-color: white;
     border: $border;
     box-shadow: $div-shadow;
@@ -34,28 +34,28 @@
     height: 7vh;
     border-radius: 5%;
 
-    #sign-butt {
+    #sign-button {
       width: 50%;
       height: 100%;
 
       border: none;
       // background-color: white;
-      font-family: $main-font;
+      font-family: $main-font-family;
       font-size: $button-font-size;
       font-weight: $button-weight;
     }
 
-    .sign-up-butt:hover {
+    .sign-up-button:hover {
       color: grey;
     }
   }
-  .sign-up-butt {
+  .sign-up-button {
     background-color: #d3d3d3;
     border-radius: 0px 15px 0px 0px;
     cursor: pointer;
   }
 
-  .sign-in-butt {
+  .sign-in-button {
     background-color: white;
     border-radius: 15px 10px 0px 0px;
   }
@@ -76,7 +76,7 @@
     }
     ::placeholder {
       color: $blue-shade;
-      font-family: $main-font;
+      font-family: $main-font-family;
       font-size: 15px;
     }
 
@@ -84,16 +84,16 @@
       width: 90%;
       height: 5vh;
       background-color: $blue-shade;
-      border-radius: $radius;
+      border-radius: $border-radius;
       color: white;
       border: none;
-      font-family: $main-font;
+      font-family: $main-font-family;
       font-size: $button-font-size;
       cursor: pointer;
     }
 
-    .forgot-pass {
-      font-family: $main-font;
+    .forgot-password {
+      font-family: $main-font-family;
       color: $blue-shade;
       font-size: 15px;
       cursor: pointer;
@@ -101,7 +101,7 @@
   }
 
   .divider-login {
-    font-family: $main-font;
+    font-family: $main-font-family;
     color: white;
     font-size: 12px;
   }
@@ -113,7 +113,7 @@
   justify-content: space-between;
   width: 30%;
 
-  #platform-butt {
+  #platform-button {
     height: 5vh;
     background-color: transparent;
     border: none;
@@ -130,10 +130,10 @@
   width: 90%;
   height: 5vh;
   background-color: $blue-shade;
-  border-radius: $radius;
+  border-radius: $border-radius;
   color: white;
   border: none;
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-size: $button-font-size;
   margin-bottom: 5vh;
   cursor: pointer;

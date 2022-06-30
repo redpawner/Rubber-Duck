@@ -4,7 +4,7 @@
 //   box-sizing: border-box;
 // }
 .chat-main {
-  border-radius: $radius;
+  border-radius: $border-radius;
   margin-top: 2%;
   height: 80vh;
   width: 55%;
@@ -65,7 +65,7 @@
         width: 98%;
         height: 6vw;
         // border: none;
-        border-radius: $radius;
+        border-radius: $border-radius;
         padding: 1%;
         margin-bottom: 1%;
         font-size: $button-font-size;
@@ -158,7 +158,7 @@
       margin-bottom: 10px;
       padding: 10px;
       background-color: #f8eef6;
-      border-radius: $radius;
+      border-radius: $border-radius;
       max-width: 100%;
       box-shadow: $div-shadow;
 
@@ -170,7 +170,7 @@
         margin-left: 10px;
         font-size: $button-font-size;
         color: $grey-shade;
-        font-family: $main-font;
+        font-family: $main-font-family;
       }
     }
   }
@@ -181,7 +181,7 @@
 }
 
 .chat-message-avatar-name {
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-weight: bold;
 }
 .chat-message-text {
@@ -195,7 +195,7 @@
   margin-left: 10px;
   position: relative;
   align-self: flex-end;
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-weight: bold;
 }
 
@@ -209,7 +209,7 @@
 }
 
 .play {
-  border-radius: $radius;
+  border-radius: $border-radius;
   // margin-top: 1%;
   height: 80vh;
   width: 55%;
@@ -220,11 +220,11 @@
   // border: solid;
   box-shadow: $div-shadow;
   border-right: solid thin;
-  border-radius: $radius 0 0 $radius;
+  border-radius: $border-radius 0 0 $border-radius;
 }
 
 .help-chat-title {
-  font-family: $main-font;
+  font-family: $main-font-family;
   text-align: center;
   color: $grey-shade;
 }
@@ -238,18 +238,18 @@
   flex-direction: column;
   justify-content: space-between;
   color: $blue-shade;
-  border-radius: $radius;
+  border-radius: $border-radius;
   background-color: #f8eef6;
 }
 
 .problem-content {
   margin-left: 1vw;
   margin-right: 1vw;
-  font-family: $main-font;
+  font-family: $main-font-family;
 }
 
 .help-tags-list {
-  font-family: $main-font;
+  font-family: $main-font-family;
   color: $blue-shade;
   font-weight: bold;
   list-style: none;
@@ -263,7 +263,7 @@
   width: 95%;
   height: 10vh;
   background-color: #f8eef6;
-  border-radius: $radius;
+  border-radius: $border-radius;
   margin-left: 12%;
   margin-top: 5%;
   display: flex;
@@ -283,7 +283,7 @@
 
 .currently-online {
   margin-left: 2vh;
-  font-family: $main-font;
+  font-family: $main-font-family;
   font-size: $button-font-size;
 }
 

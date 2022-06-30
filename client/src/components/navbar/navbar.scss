@@ -1,4 +1,4 @@
-@import '../../stylesheet.scss';
+@import "../../stylesheet.scss";
 
 .navbar {
   height: 10vh;
@@ -20,7 +20,7 @@
   height: 100%;
 }
 
-.button2 {
+.profile-button {
   margin-top: 1.5vh;
   margin-right: 6vh;
   height: 10vh;
@@ -46,7 +46,7 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
-  border-radius: $radius;
+  border-radius: $border-radius;
   // border: solid white;
 }
 
@@ -54,8 +54,8 @@
   display: block;
 }
 
-.dropdown-butt {
-  border-radius: $radius;
+.dropdown-button {
+  border-radius: $border-radius;
   width: 100%;
   background-color: transparent;
   color: white;
@@ -64,12 +64,12 @@
   margin-top: 1vh;
   cursor: pointer;
   // border: solid;
-  font-family: $main-font;
+  font-family: $main-font-family;
   border: none;
   font-weight: bold;
 }
 
-.dropdown-butt:hover {
+.dropdown-button:hover {
   color: $grey-shade;
 }
 
