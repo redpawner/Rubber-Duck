@@ -35,7 +35,6 @@ schemaComposer.Query.addFields({
   userByIds: UserTC.mongooseResolvers.findByIds(),
   userOne: UserTC.mongooseResolvers.findOne().wrapResolve((next) => (rp) => {
     rp.args.filter.uid = rp.context.ctx.state.uid;
-    console.log('uid: ' + rp.args.filter.uid);
     return next(rp);
   }),
   userMany: UserTC.mongooseResolvers.findMany().addFilterArg({
