@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 
 import dotenv from 'dotenv';
-import { UserInputError } from 'apollo-server-core';
+
 dotenv.config({ path: './.env' });
 
-const SERVER = process.env.SERVER;
+const SERVER = process.env.SERVER || '';
 
 async function main() {
-  await mongoose.connect('mongodb://' + SERVER);
+  await mongoose.connect(SERVER);
 }
 main().catch((err) => console.log(err));
 
