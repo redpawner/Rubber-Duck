@@ -7,6 +7,7 @@ type ArrivalMessage = {
   body?: File;
   imgSource?: string;
   blob?: Blob;
+  author: string;
 };
 
 type messageProps = {
