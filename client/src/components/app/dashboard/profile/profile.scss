@@ -1,4 +1,4 @@
-@import "../../../../stylesheet.scss";
+@import '../../../../stylesheet.scss';
 
 .save-profile-button {
   border-radius: $border-radius;
@@ -50,23 +50,31 @@
     font-size: $button-font-size;
     background-color: transparent;
   }
-  .set-avatar-btn:hover {
-    color: $blue-shade;
-  }
+  // .set-avatar-btn:hover {
+  //   color: $blue-shade;
+  // }
 }
 
 .dropdown-avatar {
   display: none;
   position: absolute;
-  background-color: black;
-  width: 8vh;
+  background-color: white;
+  width: 40vh;
+  height: 40vh;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
   border-radius: $border-radius;
-  // border: solid white;
 }
 
-.set-avatar-btn:hover .dropdown-avatar {
+.dropdown-daddy:hover .dropdown-avatar {
   display: block;
+  color: $blue-shade;
+}
+
+.ava-img {
+  height: 10vh;
+  width: 10vh;
+  border-radius: 50%;
+  cursor: pointer;
 }

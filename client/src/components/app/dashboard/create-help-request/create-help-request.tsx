@@ -7,29 +7,9 @@ import {
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 
-function string_to_slug(str: any) {
-  str = str.replace(/^\s+|\s+$/g, ''); // trim
-  str = str.toLowerCase();
-
-  // remove accents, swap ñ for n, etc
-  var from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
-  var to = 'aaaaeeeeiiiioooouuuunc------';
-  for (var i = 0, l = from.length; i < l; i++) {
-    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-  }
-
-  str = str
-    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
-
-  return str;
-}
-
 function CreateHelp() {
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
   const userState = userStore((state) => state);
-  const description = userStore((state) => state.help_request.description);
 
   // SHOWCHAT CAN BE REMOVED ONCE ROUTER LOGIC IN PLACE:
   const showChat = buttonsLogicStore((state) => state.setChat);
@@ -50,9 +30,6 @@ function CreateHelp() {
   const publish = async (event: any) => {
     event.preventDefault();
     // GENERATE UNIQUE CHAT ROOM LOGIC HERE
-    const slugDescription = string_to_slug(description);
-    const roomID = slugDescription;
-    window.location.hash = roomID;
 
     // GATHER DATA AND SEND HELP REQUEST TO DATABASE LOGIC HERE:
 
@@ -62,7 +39,7 @@ function CreateHelp() {
       description: event.target.description.value,
       hr_languages: tags,
       time_created: Date.now(),
-      url: roomID,
+      url: 'filler url',
     };
 
     await updateHR({
@@ -78,7 +55,6 @@ function CreateHelp() {
     });
     // REPLACE showChat() WITH ROUTER/URL LOGIC TO GO TO CHATROOM HERE:
 
-    // location.hash = roomID;
     showChat();
   };
 
@@ -131,7 +107,7 @@ function CreateHelp() {
               placeholder="Javascript"
             />
           </div>
-          <button className="create-cancel-btn" id="submit">
+          <button className="create-cancel-btn" id="submit" onClick={showChat}>
             Publish
           </button>
           {tags}
