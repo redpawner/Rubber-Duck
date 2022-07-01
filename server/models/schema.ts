@@ -10,6 +10,7 @@ const helpRequestSchema = new Schema<HelpReqSchema>({
   description: String,
   hr_languages: [String],
   time_created: Date,
+  url: String,
 });
 
 const userSchema = new Schema<User>(
