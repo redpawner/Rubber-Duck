@@ -24,22 +24,6 @@
   font-weight: bold;
 }
 
-#create {
-  background-color: #3022ab;
-}
-
-#cancel {
-  background-color: #a53993;
-}
-
-// .create-help-container {
-//   height: 65%;
-//   width: 75%;
-//   display: flex;
-//   align-items: flex-start;
-//   overflow: hidden;
-// }
-
 .help-request-input {
   font-family: $main-font-family;
   font-weight: bold;
@@ -112,11 +96,18 @@
 }
 
 .rules-list {
+  display: flex;
+  flex-direction: column;
   text-align: left;
   list-style: none;
   font-family: $main-font-family;
   font-weight: bold;
   color: $blue-shade;
+  overflow: scroll;
+}
+
+.rules-list::-webkit-scrollbar {
+  overflow: hidden;
 }
 
 .rules-element {
@@ -126,9 +117,16 @@
 #submit {
   background-color: $blue-shade;
   align-self: center;
-  margin-top: 11%;
 }
 
 #cancel {
-  margin-top: 16%;
+  position: relative;
+
+  background-color: #a53993;
+}
+
+.container-height {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
 }
