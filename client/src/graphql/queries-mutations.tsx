@@ -17,7 +17,7 @@ const GET_USER = gql`
         description
         hr_languages
         time_created
-        _id
+        url
       }
     }
   }
@@ -34,6 +34,7 @@ const GET_HR_BY_LANGUAGE = gql`
         description
         hr_languages
         username
+        url
       }
     }
   }
@@ -83,6 +84,7 @@ const UPDATE_HR = gql`
           hr_languages
           username
           time_created
+          url
         }
       }
     }

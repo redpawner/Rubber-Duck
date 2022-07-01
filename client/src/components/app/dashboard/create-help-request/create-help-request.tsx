@@ -4,7 +4,19 @@ import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 
 function CreateHelp() {
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
+
+  // CAN BE REMOVED ONCE ROUTER LOGIC IN PLACE:
   const showChat = buttonsLogicStore((state) => state.setChat);
+
+  const publish = (event: any) => {
+    // GENERATE UNIQUE CHAT ROOM LOGIC HERE
+
+    // GATHER DATA AND SEND HELP REQUEST TO DATABASE LOGIC HERE:
+
+    // REPLACE showChat() WITH ROUTER/URL LOGIC TO GO TO CHATROOM HERE:
+
+    showChat();
+  };
 
   return (
     <div className="dashboard-container">
@@ -75,7 +87,7 @@ function CreateHelp() {
         </div>
       </div>
       <div className="create-req-butt-cont">
-        <button className="create-cancel-btn" id="create" onClick={showChat}>
+        <button className="create-cancel-btn" id="create" onClick={publish}>
           Publish
         </button>
         <button className="create-cancel-btn" id="cancel" onClick={helpDash}>
