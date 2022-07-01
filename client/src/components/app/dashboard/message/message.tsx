@@ -4,8 +4,8 @@ import { userStore } from '../../../../state-stores/state-stores';
 import '../chat-room/chat.scss';
 
 function Message({ message }: messageProps) {
-  const avatar = userStore((state) => state.avatar);
-  const profile = `static/media/${avatar}`;
+  const userState = userStore((state) => state);
+  const profile = `static/media/${userState.avatar}`;
 
   return (
     <div className="chat-message">
@@ -13,7 +13,7 @@ function Message({ message }: messageProps) {
         <img className="avatar-img" src={profile} alt="avatar" />
 
         <div className="chat-message-avatar-name">
-          <span>John Doe</span>
+          <span>{userState.username}</span>
         </div>
       </div>
 
