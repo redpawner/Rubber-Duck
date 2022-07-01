@@ -58,7 +58,7 @@
 
 .help-description {
   width: 20vw;
-  height: 20vh;
+  height: 15vh;
   font-family: $main-font-family;
   border: $divider-line;
   color: $grey-shade;
@@ -106,6 +106,9 @@
   width: 65%;
   // background-color: #a53993;
   height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .rules-list {
@@ -118,4 +121,14 @@
 
 .rules-element {
   margin-bottom: 1vh;
+}
+
+#submit {
+  background-color: $blue-shade;
+  align-self: center;
+  margin-top: 11%;
+}
+
+#cancel {
+  margin-top: 16%;
 }

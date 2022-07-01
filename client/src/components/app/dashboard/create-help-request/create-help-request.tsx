@@ -91,7 +91,6 @@ function CreateHelp() {
           </label>
           <br></br>
           <textarea
-            type="text"
             className="help-description"
             name="description"
             id="description"
@@ -109,7 +108,9 @@ function CreateHelp() {
             name="tags"
             placeholder="Javascript"
           />
-          <button />
+          <button className="create-cancel-btn" id="submit" onClick={showChat}>
+            Publish
+          </button>
           {tags}
         </form>
         {/* </div> */}
