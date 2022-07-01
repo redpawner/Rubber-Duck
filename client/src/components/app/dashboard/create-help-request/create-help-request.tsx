@@ -29,6 +29,7 @@ function string_to_slug(str: any) {
 function CreateHelp() {
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
   const userState = userStore((state) => state);
+  const description = userStore((state) => state.help_request.description);
 
   // SHOWCHAT CAN BE REMOVED ONCE ROUTER LOGIC IN PLACE:
   const showChat = buttonsLogicStore((state) => state.setChat);
@@ -49,8 +50,7 @@ function CreateHelp() {
   const publish = async (event: any) => {
     event.preventDefault();
     // GENERATE UNIQUE CHAT ROOM LOGIC HERE
-    const description = event.target.description.value;
-    const slugDescription = string_to_slug(description + userState.uid);
+    const slugDescription = string_to_slug(description);
     const roomID = slugDescription;
     window.location.hash = roomID;
 
