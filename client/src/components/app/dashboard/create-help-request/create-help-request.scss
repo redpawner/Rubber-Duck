@@ -2,7 +2,7 @@
 
 .create-req-button-div {
   width: 75%;
-  height: 4vh;
+  height: 3vh;
   display: flex;
   justify-content: space-around;
 }
@@ -32,13 +32,13 @@
   background-color: #a53993;
 }
 
-.create-help-container {
-  height: 65%;
-  width: 75%;
-  display: flex;
-  align-items: flex-start;
-  overflow: hidden;
-}
+// .create-help-container {
+//   height: 65%;
+//   width: 75%;
+//   display: flex;
+//   align-items: flex-start;
+//   overflow: hidden;
+// }
 
 .help-request-input {
   font-family: $main-font-family;
@@ -49,7 +49,7 @@
 
 .help-title2 {
   width: 20vw;
-  height: 3vh;
+  height: 6vh;
   border: $divider-line;
   font-family: $main-font-family;
   color: $grey-shade;
@@ -58,16 +58,64 @@
 
 .help-description {
   width: 20vw;
-  height: 20vh;
+  height: 1000vh;
   font-family: $main-font-family;
   border: $divider-line;
   color: $grey-shade;
   font-weight: bold;
   float: left;
+  overflow: scroll;
+}
+
+.help-description::-webkit-scrollbar {
+  display: none;
 }
 
 .create-req-butt-cont {
   width: 75%;
   display: flex;
   justify-content: space-around;
+}
+
+.middle-section-cont {
+  margin-top: 4vh;
+  display: flex;
+  width: 75%;
+  height: 63%;
+  // background-color: #a53993;
+}
+
+.help-form {
+  height: 70%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.readme-title {
+  margin-top: -1vh;
+  font-family: $main-font-family;
+  text-align: center;
+  width: 100%;
+  color: $grey-shade;
+}
+
+.rules-container {
+  width: 65%;
+  // background-color: #a53993;
+  height: 80%;
+}
+
+.rules-list {
+  text-align: left;
+  list-style: none;
+  font-family: $main-font-family;
+  font-weight: bold;
+  color: $blue-shade;
+}
+
+.rules-element {
+  margin-bottom: 1vh;
 }
