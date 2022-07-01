@@ -1,13 +1,20 @@
 import './navbar.scss';
 import logo from '../../Images/logo.png';
+
 import { logoutUser } from '../../api-services/api-auth';
 import { buttonsLogicStore, userStore } from '../../state-stores/state-stores';
+import { useEffect, useState } from 'react';
 
 function Navbar() {
   const avatar = userStore((state) => state.avatar);
   const setUserToken = userStore((state) => state.setUserToken);
-  // console.log(avatar);
-  const profile = `static/media/${avatar}`;
+  const [profilePic, setProfilePic] = useState(
+    '/static/media/user.59168e41eade7de7457f.png'
+  );
+
+  useEffect(() => {
+    setProfilePic(`/static/media/${avatar}`);
+  }, [avatar]);
 
   const logout = () => {
     logoutUser();
@@ -22,7 +29,7 @@ function Navbar() {
         <img className="logo-img" src={logo} alt="logo"></img>
       </div>
       <div className="profile-button">
-        <img className="navbar-icon" src={profile} alt="profile"></img>
+        <img className="navbar-icon" src={profilePic} alt="profile"></img>
         <div className="dropdown-content">
           <button className="dropdown-button" onClick={changer}>
             Profile
