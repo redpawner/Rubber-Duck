@@ -11,6 +11,7 @@ import logo from '../../../../Images/logo.png';
 import { loginUser } from '../../../../api-services/api-auth';
 
 function Login() {
+  window.history.replaceState(null, '', '/');
   const registerShow = buttonsLogicStore((state) => state.setReg);
   const forgotPassword = buttonsLogicStore((state) => state.setReset);
   const setUserUid = userStore((state) => state.setUserUid);
