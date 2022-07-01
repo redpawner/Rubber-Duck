@@ -10,13 +10,14 @@ import {
 import { userStore } from '../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../interfaces';
 import Tag from './tag/tag';
+import langTags from '../../../utils/tags'
 
 function Dashboard() {
   const helpDash = buttonsLogicStore((state) => state.setHelp);
   const setUser = userStore((state) => state.setUser);
-
   const uid = userStore((state) => state.uid);
 
+  const [showDrop,setShowDrop]=useState(false);
   const [formValue, setFormValue] = useState('');
   const [tags, setTags] = useState<string[]>([]);
   const [helpRequests, setHelpRequests] = useState([]);
@@ -88,10 +89,17 @@ function Dashboard() {
   }, [tags]);
 
   const handleChange = (e: any) => {
-    setFormValue(e.target.value);
+    e.preventDefault();
+    const value = e.target.innerHTML;
+    console.log(value);
+    setFormValue(value);
+    // setTags(tags=>[...tags,value])
   };
 
-  const handleClick = () => {
+  const handleClick = (e:any) => {
+    const value = e.target.innerHTML;
+    console.log(value);
+    setFormValue(value);
     setTags((tags) => [...tags, formValue]);
   };
 
@@ -101,6 +109,9 @@ function Dashboard() {
     setTags((tags) => tags.filter((tag) => tag !== value));
   };
 
+  const mapLang = langTags.filter(tag => !tags.includes(tag)).map(tag => {return(
+    <div onClick={handleClick}>{tag}</div>
+  )})
   helpRequests.sort((a: HelpReqSchema, b: HelpReqSchema) => {
     return (
       new Date(a.time_created).getTime() - new Date(b.time_created).getTime()
@@ -135,8 +146,10 @@ function Dashboard() {
             className="search-field"
             onSubmit={(e) => {
               e.preventDefault(); //this stops it loading URL with the name value
+              console.log(e.target);
             }}
           >
+            <div className="dropdown-box">
             <input
               type="text"
               onChange={handleChange}
@@ -144,13 +157,16 @@ function Dashboard() {
               autoComplete="off"
               placeholder="Filter..."
             />
-            <button onClick={handleClick}>Bread</button>
+            <div className="dropdown-context-none">
+              {mapLang}
+            </div>
+            </div>
           </form>
           <ul className="search-tags">
             {tags.map((tag) => {
               return (
                 <div>
-                  {/* <button onClick={deselect}>{tag}</button> */}
+
                   <Tag name={tag} onClick={deselect} />
                 </div>
               );
