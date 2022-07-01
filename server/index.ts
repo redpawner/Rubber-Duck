@@ -50,7 +50,14 @@ const PORT = process.env.PORT || 3002;
   io.on('connection', function (socket: any) {
     console.log('io server connected');
     socket.on('sendMessage', function (data: any) {
-      io.emit('receiveMessage', data);
+      socket.to(data.room).emit('receiveMessage', data);
+    });
+    socket.on('join_room', (data: any) => {
+      socket.join(data);
+      console.log(`User with ID: ${socket.id} joined room: ${data}`);
+    });
+    socket.on('disconnect', function () {
+      console.log('disconnected');
     });
   });
 
