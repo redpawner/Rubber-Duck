@@ -80,30 +80,24 @@ function CreateHelp() {
             type="text"
             className="help-title2"
             name="title"
-
             id="title"
-                 maxLength={40}
+            maxLength={40}
             placeholder="Max 40 characters..."
             required
           />{' '}
-
           <br></br>
-
           <label className="help-request-input" htmlFor="description">
             Description:
           </label>
           <br></br>
           <textarea
-            type="text"
             className="help-description"
             name="description"
-
             id="description"
-      placeholder="Max. 500 characters"
-         maxLength={500}
+            placeholder="Max. 500 characters"
+            maxLength={500}
             required
           ></textarea>
-
           <br></br>
           <label className="help-request-input">Tags:</label>
           <br></br>
@@ -114,7 +108,9 @@ function CreateHelp() {
             name="tags"
             placeholder="Javascript"
           />
-          <button />
+          <button className="create-cancel-btn" id="submit" onClick={showChat}>
+            Publish
+          </button>
           {tags}
         </form>
         {/* </div> */}
@@ -143,15 +139,10 @@ function CreateHelp() {
               fight.
             </li>
           </ul>
+          <button className="create-cancel-btn" id="cancel" onClick={helpDash}>
+            Cancel
+          </button>
         </div>
-      </div>
-      <div className="create-req-butt-cont">
-        <button className="create-cancel-btn" id="create" onClick={publish}>
-          Publish
-        </button>
-        <button className="create-cancel-btn" id="cancel" onClick={helpDash}>
-          Cancel
-        </button>
       </div>
     </div>
   );
