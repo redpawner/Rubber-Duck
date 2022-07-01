@@ -49,6 +49,7 @@ function Help({ helpRequest }: Props) {
   const answerHelpRequests = () => {
     const slugDescription = string_to_slug(helpRequest.description);
     const roomID = slugDescription;
+    window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
     showChat();
   };

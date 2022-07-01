@@ -5,6 +5,12 @@ import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 function Profile() {
   const help = buttonsLogicStore((state) => state.setDashboard);
 
+  const onHandleClick = () => {
+    window.history.replaceState(null, '', '/');
+
+    help();
+  };
+
   return (
     <div className="dashboard-container">
       <div className="profile-div">
@@ -23,7 +29,7 @@ function Profile() {
         </div>
       </div>
 
-      <button className="save-profile-button" onClick={help}>
+      <button className="save-profile-button" onClick={onHandleClick}>
         SAVE
       </button>
     </div>
