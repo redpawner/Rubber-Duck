@@ -30,35 +30,32 @@ function CreateHelp() {
   const publish = async (event: any) => {
     event.preventDefault();
     // GENERATE UNIQUE CHAT ROOM LOGIC HERE
-    const title: string = event.target.title.value;
-    console.log(title);
-    const description: string = event.target.title.value;
-    console.log(description);
+
     // GATHER DATA AND SEND HELP REQUEST TO DATABASE LOGIC HERE:
 
-    // const helpRequest = {
-    //   username: userState.username,
-    //   title: event.target.title.value,
-    //   description: event.target.description.value,
-    //   hr_languages: tags,
-    //   time_created: Date.now(),
-    //   url: 'filler url',
-    // };
+    const helpRequest = {
+      username: userState.username,
+      title: event.target.title.value,
+      description: event.target.description.value,
+      hr_languages: tags,
+      time_created: Date.now(),
+      url: 'filler url',
+    };
 
-    // await updateHR({
-    //   variables: {
-    //     filter: {
-    //       uid: userState.uid,
-    //     },
-    //     record: {
-    //       needHelp: true,
-    //       help_request: helpRequest,
-    //     },
-    //   },
-    // });
+    await updateHR({
+      variables: {
+        filter: {
+          uid: userState.uid,
+        },
+        record: {
+          needHelp: true,
+          help_request: helpRequest,
+        },
+      },
+    });
     // REPLACE showChat() WITH ROUTER/URL LOGIC TO GO TO CHATROOM HERE:
 
-    // showChat();
+    showChat();
   };
 
   return (
@@ -72,6 +69,7 @@ function CreateHelp() {
       <div className="middle-section-cont">
         {/* <div className="create-help-container"> */}
         <form className="help-form" onSubmit={publish}>
+
           <div className="container-height">
             <label className="help-request-input" htmlFor="title">
               Title:
@@ -111,6 +109,7 @@ function CreateHelp() {
             />
           </div>
           <button className="create-cancel-btn" id="submit" onClick={showChat}>
+
             Publish
           </button>
           {tags}
