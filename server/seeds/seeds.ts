@@ -25,7 +25,7 @@ const seeds = [
     needHelp: true,
     help_request: {
       username: 'test2',
-      title: 'If animals could talk, which would be the rudest?',
+      title: 'Animals can talk, which are the rudest?',
       description: 'Quack Quack',
       hr_languages: ['Python', 'Javascript'],
       time_created: '2022-06-29T12:48:09.638Z',
@@ -57,7 +57,7 @@ const seeds = [
     needHelp: true,
     help_request: {
       username: 'test4',
-      title: 'How many chickens would it take to kill an elephant?',
+      title: 'How many chickens needed to kill elephant?',
       description: 'Depends on the size of the elephant and chickens, I guess.',
       hr_languages: ['Ruby', 'C++', 'Javascript'],
       time_created: '2022-06-23T01:48:09.638Z',
@@ -74,7 +74,7 @@ const seeds = [
     help_request: {
       username: 'test5',
 
-      title: 'Who would win in a fight between Superman and Batman?',
+      title: 'Who would win a fight between Superman and Batman?',
       description: 'Man..',
       hr_languages: ['Typescript', 'Perl'],
       time_created: '2022-06-26T12:48:09.638Z',
