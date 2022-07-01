@@ -5,6 +5,10 @@
   height: 4vh;
   display: flex;
   justify-content: space-around;
+}
+
+.helper {
+  width: 75%;
   border-bottom: $divider-line;
 }
 
@@ -60,4 +64,10 @@
   color: $grey-shade;
   font-weight: bold;
   float: left;
+}
+
+.create-req-butt-cont {
+  width: 75%;
+  display: flex;
+  justify-content: space-around;
 }

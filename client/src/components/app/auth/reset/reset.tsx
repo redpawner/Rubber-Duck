@@ -1,12 +1,11 @@
-import React from "react";
-import "../login/login.scss";
-import github from "../../../../Images/git.png";
-import google from "../../../../Images/google.png";
-import apple from "../../../../Images/apple.png";
-import logo from "../../../../Images/logo.png";
-import { buttonsLogicStore } from "../../../../state-stores/state-stores";
+import '../login/login.scss';
+import github from '../../../../Images/git.png';
+import google from '../../../../Images/google.png';
+import apple from '../../../../Images/apple.png';
+import logo from '../../../../Images/logo.png';
+import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 
-export default function Reset() {
+function Reset() {
   const registerShow = buttonsLogicStore((state) => state.setReg);
 
   return (
@@ -46,21 +45,23 @@ export default function Reset() {
       </div>
       <p className="divider-login">
         ---------------------------------------- Or
-        ----------------------------------------{" "}
+        ----------------------------------------{' '}
       </p>
       <div className="login-other-platforms">
         <button id="platform-button">
           <img id="socialmedia-img" src={google} alt="google"></img>
         </button>
         <button id="platform-button">
-          {" "}
+          {' '}
           <img id="socialmedia-img" src={apple} alt="apple"></img>
         </button>
         <button id="platform-button">
           <img id="socialmedia-img" src={github} alt="github"></img>
         </button>
       </div>
-      //{" "}
+      //{' '}
     </div>
   );
 }
+
+export default Reset;

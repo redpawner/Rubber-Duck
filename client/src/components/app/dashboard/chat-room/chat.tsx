@@ -1,57 +1,57 @@
 //@ts-nocheck
-import "./chat.scss";
-import sand from "../../../../Images/sandbox.jpg";
-import board from "../../../../Images/board.png";
-import video from "../../../../Images/video.png";
-import britney from "../../../../Images/britney.png";
-import io from "socket.io-client";
+import './chat.scss';
+import sand from '../../../../Images/sandbox.jpg';
+import board from '../../../../Images/board.png';
+import video from '../../../../Images/video.png';
+import britney from '../../../../Images/britney.png';
+import io from 'socket.io-client';
 import {
   useEffect,
   useState,
   useRef,
   ChangeEvent,
   SetStateAction,
-} from "react";
-import Message from "../message/message";
-import { ArrivalMessage } from "../../../../interfaces";
+} from 'react';
+import Message from '../message/message';
+import { ArrivalMessage } from '../../../../interfaces';
 
-import Prism from "prismjs";
-import "../themes/prism-one-dark.css";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-java";
-import "prismjs/components/prism-python";
-import Picker from "emoji-picker-react";
+import Prism from 'prismjs';
+import '../themes/prism-one-dark.css';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-python';
+import Picker from 'emoji-picker-react';
 
-const backendPORT = process.env.REACT_APP_BACKEND_PORT || "3001";
+const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
 const socket = io(`http://localhost:3001/`, {
-  transports: ["websocket"],
+  transports: ['websocket'],
 });
 
 function Chat() {
   const [messages, setMessages] = useState([] as ArrivalMessage[]);
   const [showLangDropDown, setShowLangDropDown] = useState(false);
   const [arrivalMessage, setArrivalMessage] = useState({
-    text: "",
+    text: '',
     time: new Date(),
-    language: "",
-    type: "",
-    mimeType: "",
+    language: '',
+    type: '',
+    mimeType: '',
     body: undefined,
-    imgSource: "",
+    imgSource: '',
   } as ArrivalMessage);
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const scrollRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const langList = [
-    "javascript",
-    "css",
-    "html",
-    "java",
-    "python",
-    "typescript",
+    'javascript',
+    'css',
+    'html',
+    'java',
+    'python',
+    'typescript',
   ];
 
   const onEmojiClick = (event: any, emojiObject: SetStateAction<null>) => {
@@ -59,7 +59,7 @@ function Chat() {
 
     setArrivalMessage({
       ...arrivalMessage,
-      type: "text",
+      type: 'text',
       text: arrivalMessage.text + emojiObject.emoji,
     });
   };
@@ -96,20 +96,20 @@ function Chat() {
       text: e.target.value,
       time: new Date(),
       language: arrivalMessage.language,
-      type: "text",
+      type: 'text',
     };
     setArrivalMessage(messageObject);
   };
 
   const sendMessage = (e: any) => {
     e.preventDefault();
-    socket.emit("sendMessage", arrivalMessage);
+    socket.emit('sendMessage', arrivalMessage);
     setArrivalMessage({
-      text: "",
+      text: '',
       time: new Date(),
-      language: "",
-      type: "",
-      mimeType: "",
+      language: '',
+      type: '',
+      mimeType: '',
     });
 
     if (showLangDropDown) {
@@ -129,7 +129,7 @@ function Chat() {
         blob: new Blob([e.target.files[0]], {
           type: e.target.files[0].type,
         }),
-        type: "file",
+        type: 'file',
         imgSource: URL.createObjectURL(e.target.files[0]),
       });
   };
@@ -141,8 +141,8 @@ function Chat() {
   }, [messages]);
 
   useEffect(() => {
-    socket.on("receiveMessage", (data) => {
-      if (data.type === "file") {
+    socket.on('receiveMessage', (data) => {
+      if (data.type === 'file') {
         const blob = new Blob([data.blob], { type: data.mimeType });
 
         const fileReader = new FileReader();
@@ -154,7 +154,7 @@ function Chat() {
 
   useEffect(() => {
     if (messages.length > 0) {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
 
@@ -164,7 +164,7 @@ function Chat() {
         <div className="chat-container">
           <div className="chat-form">
             <form className="text-area-form" onSubmit={sendMessage}>
-              {" "}
+              {' '}
               {/* chat area */}
               <textarea
                 value={arrivalMessage.text}
@@ -174,11 +174,11 @@ function Chat() {
                 required
               />
               <div className="buttons">
-                {arrivalMessage.type !== "file" &&
-                arrivalMessage.text === "" ? ( //button for sending message
+                {arrivalMessage.type !== 'file' &&
+                arrivalMessage.text === '' ? ( //button for sending message
                   <button className="send-btn" type="submit" disabled>
                     <img
-                      src={require("../../../../Images/send-icon.png")}
+                      src={require('../../../../Images/send-icon.png')}
                       alt="send icon"
                       className="send-icon"
                     ></img>
@@ -186,7 +186,7 @@ function Chat() {
                 ) : (
                   <button className="send-btn" type="submit">
                     <img
-                      src={require("../../../../Images/send-icon.png")}
+                      src={require('../../../../Images/send-icon.png')}
                       alt="send icon"
                       className="send-icon"
                     ></img>
@@ -209,12 +209,12 @@ function Chat() {
                   >
                     {showLangDropDown ? (
                       <img
-                        src={require("../../../../Images/text-button-icon-48.png")}
+                        src={require('../../../../Images/text-button-icon-48.png')}
                         alt="code-icon"
                       />
                     ) : (
                       <img
-                        src={require("../../../../Images/code-icon-32.png")}
+                        src={require('../../../../Images/code-icon-32.png')}
                         alt="code-icon"
                       />
                     )}
@@ -230,7 +230,7 @@ function Chat() {
                   <button className="file-btn" type="button">
                     <label htmlFor="files" className="file-label">
                       <img
-                        src={require("../../../../Images/upload-image-icon.png")}
+                        src={require('../../../../Images/upload-image-icon.png')}
                         alt="upload icon"
                         className="upload-image-icon"
                       ></img>
@@ -243,7 +243,7 @@ function Chat() {
                     type="button"
                   >
                     <img
-                      src={require("../../../../Images/emoji-icon.png")}
+                      src={require('../../../../Images/emoji-icon.png')}
                       alt="emoji icon"
                       className="emoji-icon"
                     ></img>
@@ -279,7 +279,7 @@ function Chat() {
         </div>
       </div>
       <div className="features-container">
-        <h1 className="help-chat-title">Daddy Issues Help</h1>
+        <h1 className="help-chat-title">Help Request Title</h1>
         <div className="problem-div">
           <p className="problem-content">
             My name is Ozymandias, King of Kings; Look on my Works, ye Mighty,

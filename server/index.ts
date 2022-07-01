@@ -29,7 +29,7 @@ const PORT = process.env.PORT || 3002;
 
   app.use(validateAuthorization);
 
-  app.use(async (ctx: any, next: any) => {
+  app.use(async (ctx: Koa.Context, next: Function) => {
     await next();
     if (ctx.status === 404) {
       ctx.body = '_404';
