@@ -11,9 +11,11 @@ import {
   useRef,
   ChangeEvent,
   SetStateAction,
+  useParams,
 } from 'react';
 import Message from '../message/message';
 import { ArrivalMessage } from '../../../../interfaces';
+import { userStore } from '../../../../state-stores/state-stores';
 
 import Prism from 'prismjs';
 import '../themes/prism-one-dark.css';
@@ -53,6 +55,22 @@ function Chat() {
     'python',
     'typescript',
   ];
+  const uid = userStore((state) => state.uid);
+  const username = userStore((state) => state.username);
+
+  const roomID = window.location.hash;
+
+  // const { roomID } = useParams();
+
+  // useEffect(() => {
+  //   setRoom(roomID);
+  // }, [roomID]);
+
+  useEffect(() => {
+    if (uid !== '' && roomID !== '') {
+      socket.emit('join_room', roomID);
+    }
+  }, [roomID, uid]);
 
   const onEmojiClick = (event: any, emojiObject: SetStateAction<null>) => {
     setChosenEmoji(emojiObject);
@@ -97,6 +115,8 @@ function Chat() {
       time: new Date(),
       language: arrivalMessage.language,
       type: 'text',
+      room: roomID,
+      author: username,
     };
     setArrivalMessage(messageObject);
   };
@@ -104,6 +124,8 @@ function Chat() {
   const sendMessage = (e: any) => {
     e.preventDefault();
     socket.emit('sendMessage', arrivalMessage);
+    setMessages([...messages, arrivalMessage]);
+    console.log(arrivalMessage.room);
     setArrivalMessage({
       text: '',
       time: new Date(),
@@ -131,6 +153,8 @@ function Chat() {
         }),
         type: 'file',
         imgSource: URL.createObjectURL(e.target.files[0]),
+        room: roomID,
+        author: username,
       });
   };
 

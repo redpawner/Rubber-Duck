@@ -101,6 +101,7 @@ function Dashboard() {
   });
 
   const mapHelpRequests = helpRequests.map((helpRequest: HelpReqSchema) => {
+    console.log('hr', helpRequest);
     return (
       <li>
         <Help helpRequest={helpRequest} key={helpRequest.username} />

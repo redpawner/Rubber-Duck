@@ -7,6 +7,25 @@ interface Props {
   helpRequest: HelpReqSchema;
 }
 
+function string_to_slug(str: any) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
+
+  // remove accents, swap ñ for n, etc
+  var from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
+  var to = 'aaaaeeeeiiiioooouuuunc------';
+  for (var i = 0, l = from.length; i < l; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str
+    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+}
+
 function Help({ helpRequest }: Props) {
   const showChat = buttonsLogicStore((state) => state.setChat);
 
@@ -27,6 +46,13 @@ function Help({ helpRequest }: Props) {
     }
   );
 
+  const answerHelpRequests = () => {
+    const slugDescription = string_to_slug(helpRequest.description);
+    const roomID = slugDescription;
+    window.location.hash = roomID;
+    showChat();
+  };
+
   return (
     <div className="help-container">
       <h1 className="help-title">{helpRequest.title}</h1>
@@ -38,7 +64,7 @@ function Help({ helpRequest }: Props) {
         <a id="tags">{helpRequest.hr_languages.map((e) => e + ' ')}</a>
         <div className="butts-cont">
           <button className="help-button">Info</button>
-          <button className="help-button" onClick={showChat}>
+          <button className="help-button" onClick={answerHelpRequests}>
             Help
           </button>
         </div>
