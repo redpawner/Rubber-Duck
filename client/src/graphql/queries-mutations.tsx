@@ -26,6 +26,7 @@ const GET_USER = gql`
 const GET_HR_BY_LANGUAGE = gql`
   query Query($filter: FilterFindManyUserInput) {
     userMany(filter: $filter) {
+      avatar
       needHelp
       help_request {
         time_created
@@ -75,17 +76,33 @@ const UPDATE_HR = gql`
   ) {
     userUpdateOne(record: $record, filter: $filter) {
       record {
-        username
-        avatar
+        needHelp
         help_request {
           title
           description
           hr_languages
+          username
+          time_created
         }
       }
     }
   }
 `;
+
+// {
+//   filter: {
+//     uid: "QpLXkWcz6AaYfXXz55M6ecp8NVe2"
+//   },
+//   record: {
+//     needHelp: true,
+//     help_request: {
+//       username: "test20",
+//       title: "test",
+//       description: "testing things",
+//       hr_languages: ["PHP"],
+//       time_created: "2022-07-01T07:19:18.546Z"
+//     }
+//   }}
 
 //NOT IN USE YET
 // {
@@ -98,20 +115,23 @@ const UPDATE_HR = gql`
 //   }
 // }
 const DELETE_HR = gql`
-  mutation Mutation($record: UpdateOneUserInput!, $filter: FilterUpdateOneUserInput) {
-  userUpdateOne(record: $record, filter: $filter) {
-    record {
-      username
-      avatar
-      help_request {
-        title
-        description
-        hr_languages
+  mutation Mutation(
+    $record: UpdateOneUserInput!
+    $filter: FilterUpdateOneUserInput
+  ) {
+    userUpdateOne(record: $record, filter: $filter) {
+      record {
+        username
+        avatar
+        help_request {
+          title
+          description
+          hr_languages
+        }
+        createdAt
       }
-      createdAt
     }
   }
-}
-`
+`;
 
-export { CREATE_USER, GET_USER, GET_HR_BY_LANGUAGE };
+export { CREATE_USER, GET_USER, GET_HR_BY_LANGUAGE, UPDATE_HR };

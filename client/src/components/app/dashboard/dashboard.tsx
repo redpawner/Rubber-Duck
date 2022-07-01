@@ -57,7 +57,13 @@ function Dashboard() {
           },
         },
       });
-      setHelpRequests(result.data.userMany.map((hr: any) => hr.help_request));
+
+      setHelpRequests(
+        result.data.userMany.map((hr: any) => {
+          const result = { ...hr.help_request, avatar: hr.avatar };
+          return result;
+        })
+      );
     } else {
       const result = await getHRByLanguage({
         variables: {
@@ -67,7 +73,12 @@ function Dashboard() {
           },
         },
       });
-      setHelpRequests(result.data.userMany.map((hr: any) => hr.help_request));
+      setHelpRequests(
+        result.data.userMany.map((hr: any) => {
+          const result = { ...hr.help_request, avatar: hr.avatar };
+          return result;
+        })
+      );
     }
   };
 
@@ -82,6 +93,8 @@ function Dashboard() {
   const handleClick = () => {
     setTags((tags) => [...tags, formValue]);
   };
+
+  console.log(helpRequests);
 
   helpRequests.sort((a: HelpReqSchema, b: HelpReqSchema) => {
     return (
