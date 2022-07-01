@@ -91,21 +91,6 @@ const UPDATE_HR = gql`
   }
 `;
 
-// {
-//   filter: {
-//     uid: "QpLXkWcz6AaYfXXz55M6ecp8NVe2"
-//   },
-//   record: {
-//     needHelp: true,
-//     help_request: {
-//       username: "test20",
-//       title: "test",
-//       description: "testing things",
-//       hr_languages: ["PHP"],
-//       time_created: "2022-07-01T07:19:18.546Z"
-//     }
-//   }}
-
 //NOT IN USE YET
 // {
 //   "filter": {

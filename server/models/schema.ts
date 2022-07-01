@@ -70,7 +70,12 @@ schemaComposer.Mutation.addFields({
     }),
   userCreateMany: UserTC.mongooseResolvers.createMany(),
   userUpdateById: UserTC.mongooseResolvers.updateById(),
-  userUpdateOne: UserTC.mongooseResolvers.updateOne(),
+  userUpdateOne: UserTC.mongooseResolvers
+    .updateOne()
+    .wrapResolve((next) => (rp) => {
+      rp.args.record.uid = rp.context.ctx.state.uid;
+      return next(rp);
+    }),
   userUpdateMany: UserTC.mongooseResolvers.updateMany(),
   userRemoveById: UserTC.mongooseResolvers.removeById(),
   userRemoveOne: UserTC.mongooseResolvers.removeOne(),
