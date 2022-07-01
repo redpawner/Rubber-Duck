@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './create-help-request.scss';
-import { buttonsLogicStore, userStore } from '../../../../state-stores/state-stores';
-import { userStore } from '../../../../state-stores/state-stores';
+import {
+  buttonsLogicStore,
+  userStore,
+} from '../../../../state-stores/state-stores';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 
@@ -24,7 +26,6 @@ function string_to_slug(str: any) {
   return str;
 }
 
-
 function CreateHelp() {
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
   const userState = userStore((state) => state);
@@ -46,7 +47,6 @@ function CreateHelp() {
   };
 
   const publish = async (event: any) => {
-  
     event.preventDefault();
     // GENERATE UNIQUE CHAT ROOM LOGIC HERE
     const description = event.target.description.value;
@@ -62,7 +62,7 @@ function CreateHelp() {
       description: event.target.description.value,
       hr_languages: tags,
       time_created: Date.now(),
-      url: 'filler url',
+      url: roomID,
     };
 
     await updateHR({
@@ -93,7 +93,6 @@ function CreateHelp() {
       <div className="middle-section-cont">
         {/* <div className="create-help-container"> */}
         <form className="help-form" onSubmit={publish}>
-
           <div className="container-height">
             <label className="help-request-input" htmlFor="title">
               Title:
@@ -132,8 +131,7 @@ function CreateHelp() {
               placeholder="Javascript"
             />
           </div>
-          <button className="create-cancel-btn" id="submit" onClick={showChat}>
-
+          <button className="create-cancel-btn" id="submit">
             Publish
           </button>
           {tags}

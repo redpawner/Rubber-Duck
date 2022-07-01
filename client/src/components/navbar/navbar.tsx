@@ -1,9 +1,5 @@
-import React from 'react';
 import './navbar.scss';
-import avatar1 from '../../Images/avatar1.png';
-import user from '../../Images/user.png';
 import logo from '../../Images/logo.png';
-
 import { logoutUser } from '../../api-services/api-auth';
 import { buttonsLogicStore, userStore } from '../../state-stores/state-stores';
 import { useEffect, useState } from 'react';
@@ -15,9 +11,7 @@ function Navbar() {
     '/static/media/user.59168e41eade7de7457f.png'
   );
 
-  console.log(user);
   useEffect(() => {
-    console.log(avatar);
     setProfilePic(`/static/media/${avatar}`);
   }, [avatar]);
 
