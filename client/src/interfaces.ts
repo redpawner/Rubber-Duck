@@ -32,12 +32,12 @@ type UserSettingsStore = {
   toggleDarkMode: () => void;
 };
 interface HelpReqSchema {
-  _id: string;
   username: string;
   title: string;
   description: string;
   hr_languages: string[];
   time_created: string;
+  url: string;
 }
 
 type User = {

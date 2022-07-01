@@ -9,6 +9,7 @@ import {
 } from '../../../graphql/queries-mutations';
 import { userStore } from '../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../interfaces';
+import Tag from './tag/tag'
 
 function Dashboard() {
   const helpDash = buttonsLogicStore((state) => state.setHelp);
@@ -92,7 +93,15 @@ function Dashboard() {
 
   const handleClick = () => {
     setTags((tags) => [...tags, formValue]);
+
   };
+
+  const deselect = (e:any) =>{
+    e.preventDefault();
+    const value = e.target.innerHTML;
+    setTags(tags=>tags.filter((tag)=>tag!==value))
+
+  }
 
   helpRequests.sort((a: HelpReqSchema, b: HelpReqSchema) => {
     return (
@@ -123,6 +132,7 @@ function Dashboard() {
             className="search-field"
             onSubmit={(e) => {
               e.preventDefault(); //this stops it loading URL with the name value
+             
             }}
           >
             <input
@@ -135,7 +145,13 @@ function Dashboard() {
             <button onClick={handleClick}>Bread</button>
           </form>
           <ul className="search-tags">
-            <li>{tags + ','}</li>
+            {tags.map((tag)=>{
+              return(<div>
+                {/* <button onClick={deselect}>{tag}</button> */}
+                <Tag name={tag} onClick={deselect}/>
+                </div>
+              )
+            })}
           </ul>
         </div>
       </div>

@@ -40,12 +40,12 @@ const userStore = create<User>()(
     rating_count: 0,
     needHelp: false,
     help_request: {
-      _id: '',
       username: '',
       title: '',
       description: '',
       hr_languages: [],
       time_created: '',
+      url: '',
     },
     regUser: (uid: string, username: string, avatar: string) => {
       set({ uid: uid, username: username, avatar: avatar });
