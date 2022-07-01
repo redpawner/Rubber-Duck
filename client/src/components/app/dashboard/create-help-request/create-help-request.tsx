@@ -57,6 +57,9 @@ function CreateHelp() {
             name="tags"
             placeholder="Followed by ',' "
           />
+          <button className="create-cancel-btn" id="create" onClick={publish}>
+            Publish
+          </button>
         </form>
         {/* </div> */}
         <div className="rules-container">
@@ -84,15 +87,10 @@ function CreateHelp() {
               fight.
             </li>
           </ul>
+          <button className="create-cancel-btn" id="cancel" onClick={helpDash}>
+            Cancel
+          </button>
         </div>
-      </div>
-      <div className="create-req-butt-cont">
-        <button className="create-cancel-btn" id="create" onClick={publish}>
-          Publish
-        </button>
-        <button className="create-cancel-btn" id="cancel" onClick={helpDash}>
-          Cancel
-        </button>
       </div>
     </div>
   );
