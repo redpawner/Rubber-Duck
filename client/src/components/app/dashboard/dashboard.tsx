@@ -94,8 +94,6 @@ function Dashboard() {
     setTags((tags) => [...tags, formValue]);
   };
 
-  console.log(helpRequests);
-
   helpRequests.sort((a: HelpReqSchema, b: HelpReqSchema) => {
     return (
       new Date(a.time_created).getTime() - new Date(b.time_created).getTime()
