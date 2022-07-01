@@ -52,6 +52,7 @@ function CreateHelp() {
     // GENERATE UNIQUE CHAT ROOM LOGIC HERE
     const slugDescription = string_to_slug(description);
     const roomID = slugDescription;
+    window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
 
     // GATHER DATA AND SEND HELP REQUEST TO DATABASE LOGIC HERE:
