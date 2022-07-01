@@ -1,11 +1,29 @@
 import { useState } from 'react';
 import './create-help-request.scss';
-import {
-  buttonsLogicStore,
-  userStore,
-} from '../../../../state-stores/state-stores';
+import { buttonsLogicStore, userStore } from '../../../../state-stores/state-stores';
+import { userStore } from '../../../../state-stores/state-stores';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
+
+function string_to_slug(str: any) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
+
+  // remove accents, swap ñ for n, etc
+  var from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
+  var to = 'aaaaeeeeiiiioooouuuunc------';
+  for (var i = 0, l = from.length; i < l; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str
+    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+}
+
 
 function CreateHelp() {
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
@@ -28,8 +46,13 @@ function CreateHelp() {
   };
 
   const publish = async (event: any) => {
+  
     event.preventDefault();
     // GENERATE UNIQUE CHAT ROOM LOGIC HERE
+    const description = event.target.description.value;
+    const slugDescription = string_to_slug(description + userState.uid);
+    const roomID = slugDescription;
+    window.location.hash = roomID;
 
     // GATHER DATA AND SEND HELP REQUEST TO DATABASE LOGIC HERE:
 
@@ -55,6 +78,7 @@ function CreateHelp() {
     });
     // REPLACE showChat() WITH ROUTER/URL LOGIC TO GO TO CHATROOM HERE:
 
+    // location.hash = roomID;
     showChat();
   };
 
