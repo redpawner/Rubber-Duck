@@ -127,7 +127,7 @@ const seeds = [
       title: 'About cows',
       description:
         'Cows don’t actually have four stomachs; they have one stomach with four compartments.',
-      hr_languages: ['Angular', 'SQL'],
+      hr_languages: ['AngularJS', 'SQL'],
       time_created: '2022-05-29T12:48:09.638Z',
     },
   },
@@ -253,7 +253,15 @@ const seeds = [
     email: 'test16@gmail.com',
     rating_total: 0,
     rating_count: 0,
-    needHelp: false,
+    needHelp: true,
+    help_request: {
+      username: 'test16',
+      title: 'How do I create a responsive mobile app?',
+      description:
+        'I have been in this chat room for 4 months. I do not know what day it is. Please for the love of god help me.',
+      hr_languages: ['React Native', 'Capacitor', 'React'],
+      time_created: '2022-02-02T11:48:09.638Z',
+    },
   },
   {
     uid: 'HdpgIXrPKrgEvB36sDrImIqE6533',
