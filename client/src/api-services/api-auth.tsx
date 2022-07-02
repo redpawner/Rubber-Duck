@@ -30,7 +30,7 @@ const loginUser = async (email: string, password: string) => {
 };
 
 const googleLogin = async () => {
-  const provider = new GoogleAuthProvider();
+  const provider = new GoogleAuthProvider().setCustomParameters({});
   return await signInWithPopup(auth, provider)
     .then((userCredential) => {
       const user = userCredential.user;
