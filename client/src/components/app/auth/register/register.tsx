@@ -65,43 +65,55 @@ function Register() {
         </div>
         <form className="login-container" onSubmit={useHandleSubmit}>
           <br></br>
-          <label className="reg-input">Email:</label>
+          <label className="reg-input" htmlFor="email">
+            Email:
+          </label>
           <br></br>
           <input
             type="text"
             className="reg-textBox"
             name="email"
-            autoComplete="off"
+            id="email"
+            autoComplete="email"
             required
           />
           <br></br>
-          <label className="reg-input">Password:</label>
+          <label className="reg-input" htmlFor="password">
+            Password:
+          </label>
           <br></br>
           <input
             type="password"
+            id="password"
             className="reg-textBox"
             name="password"
             autoComplete="new-password"
             required
           />
           <br></br>
-          <label className="reg-input">Confirm Password:</label>
+          <label className="reg-input" htmlFor="password1">
+            Confirm Password:
+          </label>
           <br></br>
           <input
             type="password"
+            id="password1"
             className="reg-textBox"
             name="password1"
             autoComplete="off"
             required
           />
           <br></br>
-          <label className="reg-input">Username:</label>
+          <label className="reg-input" htmlFor="username">
+            Username:
+          </label>
           <br></br>
           <input
             type="text"
             className="reg-textBox"
             name="username"
-            autoComplete="off"
+            id="username"
+            autoComplete="username"
             required
           />
           <button

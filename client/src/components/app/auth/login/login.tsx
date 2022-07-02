@@ -71,27 +71,29 @@ function Login() {
           </button>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
+          <label className="reg-input" htmlFor="email">
+            Email:
+          </label>
           <input
             type="text"
-            className="login-textBox"
+            className="reg-textBox"
             name="email"
-            placeholder="Email"
+            id="email"
+            autoComplete="email"
             required
           />
+          <label className="reg-input" htmlFor="password">
+            Password:
+          </label>
           <input
             type="password"
-            className="login-textBox"
+            className="reg-textBox"
             name="password"
-            placeholder="Password"
+            id="password"
             autoComplete="new-password"
             required
           />
-          <button
-            className="login-btn"
-            // onClick={}
-          >
-            Log In
-          </button>
+          <button className="login-btn">Log In</button>
           <div>
             <a className="forgot-password" onClick={forgotPassword}>
               Forgot Password ?
@@ -100,8 +102,6 @@ function Login() {
         </form>
       </div>
       <h1 className="divider-login">
-        {/* ---------------------------------------- Or
-        ----------------------------------------{' '} */}
         <hr />
       </h1>
       <div className="login-other-platforms">

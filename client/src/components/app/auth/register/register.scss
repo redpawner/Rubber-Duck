@@ -33,12 +33,12 @@
   font-family: $main-font-family;
   font-size: $button-font-size;
   cursor: pointer;
-  margin-bottom: 1vh;
-  // margin-top: 3vh;
+  margin-top: 2vh;
 }
 
 .reg-textBox {
-  margin-top: -4vh;
+  margin-top: -1vh;
+  font-size: large;
   width: 90%;
   border: none;
   border-bottom: $divider-line;
