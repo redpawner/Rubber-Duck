@@ -92,6 +92,9 @@ function Dashboard() {
     e.preventDefault();
     const value = e.target.value;
     console.log(value,'value');
+
+    if(value) {setShowDrop(true)}
+    else{setShowDrop(false)}
     setFormValue(value);
     // setTags(tags=>[...tags,value])
   };
@@ -100,7 +103,7 @@ function Dashboard() {
     e.preventDefault();
     const value = e.target.innerHTML;
     console.log(value);
-    // setFormValue(value);
+    setFormValue(value);
     setTags((tags) => [...tags, formValue]);
   };
 
@@ -158,7 +161,7 @@ function Dashboard() {
               autoComplete="off"
               placeholder="Filter..."
             />
-            <div className="dropdown-context-none">
+            <div className={showDrop?"dropdown-context":"dropdown-context-none"}>
               {mapLang}
             </div>
             </div>
