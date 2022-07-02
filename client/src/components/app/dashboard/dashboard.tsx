@@ -90,16 +90,17 @@ function Dashboard() {
 
   const handleChange = (e: any) => {
     e.preventDefault();
-    const value = e.target.innerHTML;
-    console.log(value);
+    const value = e.target.value;
+    console.log(value,'value');
     setFormValue(value);
     // setTags(tags=>[...tags,value])
   };
 
   const handleClick = (e:any) => {
+    e.preventDefault();
     const value = e.target.innerHTML;
     console.log(value);
-    setFormValue(value);
+    // setFormValue(value);
     setTags((tags) => [...tags, formValue]);
   };
 
@@ -109,8 +110,8 @@ function Dashboard() {
     setTags((tags) => tags.filter((tag) => tag !== value));
   };
 
-  const mapLang = langTags.filter(tag => !tags.includes(tag)).map(tag => {return(
-    <div onClick={handleClick}>{tag}</div>
+  const mapLang = langTags.filter(tag => tag.includes(formValue)).map(tag => {return(
+    <div className="searchTile" onClick={handleClick}>{tag}</div>
   )})
   helpRequests.sort((a: HelpReqSchema, b: HelpReqSchema) => {
     return (
@@ -146,7 +147,7 @@ function Dashboard() {
             className="search-field"
             onSubmit={(e) => {
               e.preventDefault(); //this stops it loading URL with the name value
-              console.log(e.target);
+              console.log(e.target,'submit');
             }}
           >
             <div className="dropdown-box">
