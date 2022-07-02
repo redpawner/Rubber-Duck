@@ -90,7 +90,14 @@ function Help({ helpRequest }: Props) {
 
             <Popup open={open} closeOnDocumentClick onClose={closeModal}>
               <div className="HR-popup">
+                <div className='HR-title'>
+
+                {helpRequest.title}
+                </div>
+                <div>
+
                 {helpRequest.description}
+                </div>
               </div>
             </Popup>
           </div>

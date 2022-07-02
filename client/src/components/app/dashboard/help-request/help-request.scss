@@ -68,15 +68,26 @@
   }
 }
 .HR-popup{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #a53993;
   color:white;
 
   padding:1em;
   font-family:monospace;
   max-height: 5vw;
-  border:1px solid black;
+  border:2px solid black;
   border-radius: .3em;
 
+}
+
+.HR-title{
+  font-size: x-large;
+  margin-bottom: 1.7vh;
+  color:orange;
+  font-weight: 600;
 }
 .popup-content {
   margin: 0;
