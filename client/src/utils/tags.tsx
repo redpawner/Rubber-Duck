@@ -1,4 +1,4 @@
-const tags = [
+const langTags = [
   'Javascript',
   'PHP',
   'Java',
@@ -13,4 +13,4 @@ const tags = [
   'Social',
 ];
 
-export { tags };
+export default langTags;
