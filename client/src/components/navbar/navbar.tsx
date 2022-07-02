@@ -16,6 +16,7 @@ function Navbar() {
   }, [avatar]);
 
   const logout = () => {
+    h;
     logoutUser();
     setUserToken('');
   };

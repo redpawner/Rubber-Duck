@@ -29,7 +29,15 @@ function CreateHelp() {
 
   const publish = async (event: any) => {
     event.preventDefault();
+    const description = event.target.description.value;
     // GENERATE UNIQUE CHAT ROOM LOGIC HERE
+<<<<<<< HEAD
+=======
+    const slugDescription = string_to_slug(description);
+    const roomID = slugDescription;
+    window.history.replaceState(null, '', '/chatroom');
+    window.location.hash = roomID;
+>>>>>>> develop
 
     // GATHER DATA AND SEND HELP REQUEST TO DATABASE LOGIC HERE:
 

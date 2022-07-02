@@ -11,6 +11,7 @@ import logo from '../../../../Images/logo.png';
 import { loginUser } from '../../../../api-services/api-auth';
 
 function Login() {
+  window.history.replaceState(null, '', '/');
   const registerShow = buttonsLogicStore((state) => state.setReg);
   const forgotPassword = buttonsLogicStore((state) => state.setReset);
   const setUserUid = userStore((state) => state.setUserUid);
@@ -47,6 +48,9 @@ function Login() {
           </button>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
+          <br></br>
+          <label className="login-input">Email:</label>
+          <br></br>
           <input
             type="text"
             className="login-textBox"
@@ -54,6 +58,9 @@ function Login() {
             placeholder="Email"
             required
           />
+          <br></br>
+          <label className="login-input">Password:</label>
+          <br></br>
           <input
             type="password"
             className="login-textBox"

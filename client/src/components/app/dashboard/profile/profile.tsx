@@ -7,6 +7,12 @@ import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 function Profile() {
   const help = buttonsLogicStore((state) => state.setDashboard);
 
+  const onHandleClick = () => {
+    window.history.replaceState(null, '', '/');
+
+    help();
+  };
+
   return (
     <div className="dashboard-container">
       <div className="profile-div">
@@ -32,6 +38,7 @@ function Profile() {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <form className="profile-change-form">
         <label className="profile-username-title" htmlFor="username">
           Username:
@@ -65,6 +72,12 @@ function Profile() {
           SAVE
         </button>
       </form>
+=======
+
+      <button className="save-profile-button" onClick={onHandleClick}>
+        SAVE
+      </button>
+>>>>>>> develop
     </div>
   );
 }

@@ -115,12 +115,18 @@ function Dashboard() {
     );
   });
 
+  const onHandleClick = () => {
+    helpDash();
+
+    window.history.replaceState(null, '', '/create-help-request');
+  };
+
   return (
     <div className="dashboard-container">
       <div className="flexcolumn">
         <div className="create-help-butt-div">
           <h1 className="dashboard-title">Help Requests</h1>
-          <button className="create-help-butt" onClick={helpDash}>
+          <button className="create-help-butt" onClick={onHandleClick}>
             <i className="fa fa-plus"></i> &nbsp; Create
           </button>
         </div>
