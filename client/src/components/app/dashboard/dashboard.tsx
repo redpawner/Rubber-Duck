@@ -91,20 +91,20 @@ function Dashboard() {
   const handleChange = (e: any) => {
     e.preventDefault();
     const value = e.target.value;
-    console.log(value,'value');
+
 
     if(value) {setShowDrop(true)}
     else{setShowDrop(false)}
     setFormValue(value);
-    // setTags(tags=>[...tags,value])
+
   };
 
   const handleClick = (e:any) => {
     e.preventDefault();
     const value = e.target.innerHTML;
-    console.log(value);
-    setFormValue(value);
-    setTags((tags) => [...tags, formValue]);
+    console.log(value, 'click');
+
+    setTags((tags) => [...tags, value]);
   };
 
   const deselect = (e: any) => {
