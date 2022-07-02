@@ -44,8 +44,9 @@ function Reset() {
         </div>
       </div>
       <p className="divider-login">
-        ---------------------------------------- Or
-        ----------------------------------------{' '}
+        {/* ---------------------------------------- Or
+        ----------------------------------------{' '} */}
+        <hr />
       </p>
       <div className="login-other-platforms">
         <button id="platform-button">
@@ -58,8 +59,7 @@ function Reset() {
         <button id="platform-button">
           <img id="socialmedia-img" src={github} alt="github"></img>
         </button>
-      </div>
-      //{' '}
+      </div>{' '}
     </div>
   );
 }

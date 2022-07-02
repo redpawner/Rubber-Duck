@@ -1,9 +1,11 @@
-@import "../../../../stylesheet.scss";
+@import '../../../../stylesheet.scss';
 
 .form-container {
   margin-top: 15vh;
   height: 80vh;
+  min-height: 750px;
   width: 40vw;
+  min-width: 650px;
   display: flex;
   flex-direction: column;
   // justify-content: center;
@@ -104,6 +106,14 @@
     font-family: $main-font-family;
     color: white;
     font-size: 12px;
+    width: 40%;
+
+    hr {
+      width: 100%;
+
+      border: none;
+      border-bottom: $divider-line;
+    }
   }
 }
 

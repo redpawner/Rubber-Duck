@@ -100,8 +100,9 @@ function Login() {
         </form>
       </div>
       <h1 className="divider-login">
-        ---------------------------------------- Or
-        ----------------------------------------{' '}
+        {/* ---------------------------------------- Or
+        ----------------------------------------{' '} */}
+        <hr />
       </h1>
       <div className="login-other-platforms">
         <button id="platform-button">
