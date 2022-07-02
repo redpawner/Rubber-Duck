@@ -103,7 +103,7 @@ function Dashboard() {
   const handleClick = (e: any) => {
     e.preventDefault();
     const value = e.target.innerHTML;
-
+    if(tags.includes(value)) {return;}
     setTags((tags) => [...tags, value]);
   };
 

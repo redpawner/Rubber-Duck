@@ -1,0 +1,35 @@
+@import '../../../../stylesheet.scss';
+
+.tag-button{
+  border-radius: $border-radius;
+  padding:5px;
+  margin:5px;
+  width:auto;
+  height: auto;
+  cursor: pointer;
+  font-family: $main-font-family;
+  color: black;
+  background-color:transparent;
+  font-size: 1vw;
+  font-weight: 600;
+  border:2px solid white;
+}
+
+.tag-button:hover{
+  scale: 1.1em;
+  border:2px solid black;
+  
+
+}
+.tag-inner-box{
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-around;
+
+
+}
+.tag-inner-div{
+  margin-left:4px;
+  color:red;
+  font-weight: 1000;
+}
