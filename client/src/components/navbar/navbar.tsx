@@ -16,18 +16,12 @@ function Navbar() {
   }, [avatar]);
 
   const logout = () => {
-    window.history.replaceState(null, '', '/');
+    h;
     logoutUser();
     setUserToken('');
   };
   const changer = buttonsLogicStore((state) => state.setProfile);
   // const profiles = () => {};
-
-  const onHandleClick = () => {
-    changer();
-
-    window.history.replaceState(null, '', '/profile');
-  };
 
   return (
     <div className="navbar">
@@ -37,7 +31,7 @@ function Navbar() {
       <div className="profile-button">
         <img className="navbar-icon" src={profilePic} alt="profile"></img>
         <div className="dropdown-content">
-          <button className="dropdown-button" onClick={onHandleClick}>
+          <button className="dropdown-button" onClick={changer}>
             Profile
           </button>
           <button className="dropdown-button" onClick={logout}>

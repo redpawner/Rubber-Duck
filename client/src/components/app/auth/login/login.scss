@@ -1,8 +1,8 @@
-@import "../../../../stylesheet.scss";
+@import '../../../../stylesheet.scss';
 
 .form-container {
   margin-top: 15vh;
-  height: 80vh;
+  height: 90vh;
   width: 40vw;
   display: flex;
   flex-direction: column;
@@ -72,7 +72,7 @@
       border: none;
       border-bottom: $divider-line;
       outline: none;
-      margin-bottom: -3vh;
+      margin-top: -3vh;
     }
     ::placeholder {
       color: $blue-shade;
@@ -90,6 +90,7 @@
       font-family: $main-font-family;
       font-size: $button-font-size;
       cursor: pointer;
+      margin-top: 2vh;
     }
 
     .forgot-password {
@@ -137,4 +138,12 @@
   font-size: $button-font-size;
   margin-bottom: 5vh;
   cursor: pointer;
+}
+
+.login-input {
+  text-align: left;
+  width: 90%;
+  font-family: $main-font-family;
+  color: $blue-shade;
+  // margin-bottom: -1vh;
 }
