@@ -62,7 +62,7 @@
   color: $blue-shade;
   font-weight: bold;
   margin-bottom: 0.5vh;
-  
+
 }
 
 
@@ -87,6 +87,8 @@
 
 .create-help-butt:hover {
   color: $grey-shade;
+  background-color:transparent;
+  border:3px solid black;
 }
 
 .help-list {
@@ -125,7 +127,6 @@
   z-index: 1;
   border-radius: $border-radius;
   color:white;
-  // border: solid white;
   height:auto;
   width:8vw;
 }
@@ -146,8 +147,12 @@
   border-radius: $border-radius;
   color:white;
   // border: solid white;
-  height:30vh;
+  height:40vh;
   width:8vw;
+  overflow:scroll;
+}
+.dropdown-context-none::-webkit-scrollbar{
+  display:none;
 }
 .searchTile{
   cursor: pointer;
