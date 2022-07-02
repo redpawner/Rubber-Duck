@@ -49,6 +49,9 @@
 }
 
 .search-tags {
+  // display:flex;
+  // align-items: flex-end;
+  columns:3;
   list-style: none;
   font-family: $main-font-family;
   font-size: $button-font-size;
@@ -56,6 +59,7 @@
   font-weight: bold;
   margin-bottom: 0.5vh;
 }
+
 
 .dashboard-title {
   font-family: $main-font-family;
@@ -117,12 +121,13 @@
   border-radius: $border-radius;
   color:rgb(246, 163, 11);
   // border: solid white;
-  height:30vh;
+  height:auto;
   width:8vw;
 }
 
 .dropdown-box:hover .dropdown-context-none {
   display: block;
+
 }
 
 .dropdown-context-none {
@@ -142,8 +147,9 @@
 .searchTile{
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
+  padding:3px 0px;
 }
 .searchTile:hover{
   color:white;
-  font-size: large;
+  font-size: 1.3rem;
 }
