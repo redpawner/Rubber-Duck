@@ -8,7 +8,6 @@
   min-width: 650px;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
 
   .auth-logo {
@@ -24,7 +23,7 @@
 
   .login-form {
     width: 40%;
-    height: 40%;
+    height: 45%;
     border-radius: $border-radius;
     background-color: white;
     border: $border;
@@ -74,7 +73,6 @@
       border: none;
       border-bottom: $divider-line;
       outline: none;
-      margin-bottom: -3vh;
     }
     ::placeholder {
       color: $blue-shade;
