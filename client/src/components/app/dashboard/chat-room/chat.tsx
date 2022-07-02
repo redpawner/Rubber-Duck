@@ -312,7 +312,7 @@ function Chat() {
                       />
                     ) : (
                       <img
-                        src={require('../../../../Images/code-icon-32.png')}
+                        src={require('../../../../Images/icon-code.png')}
                         alt="code-icon"
                       />
                     )}
@@ -328,7 +328,7 @@ function Chat() {
                   <button className="file-btn" type="button">
                     <label htmlFor="files" className="file-label">
                       <img
-                        src={require('../../../../Images/upload-image-icon.png')}
+                        src={require('../../../../Images/icon-img.png')}
                         alt="upload icon"
                         className="upload-image-icon"
                       ></img>
@@ -341,7 +341,7 @@ function Chat() {
                     type="button"
                   >
                     <img
-                      src={require('../../../../Images/emoji-icon.png')}
+                      src={require('../../../../Images/icon-emoji-morado.png')}
                       alt="emoji icon"
                       className="emoji-icon"
                     ></img>

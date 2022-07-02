@@ -41,7 +41,7 @@
     img {
       width: 18px;
     height: 18px;
-     
+
     }
   }
 
@@ -97,6 +97,7 @@
           flex-direction: row-reverse;
 
           .file-btn {
+            background-color: white;
             width:35px;
             height:30px;
             border: none;
@@ -106,8 +107,13 @@
               cursor: pointer;
             }
           }
+          .file-btn:hover {
+            background-color: rgb(248, 245, 245);
+           }
+
 
           .input-type-btn {
+            background-color: white;
             width:35px;
             height:30px;
             margin: 1%;
@@ -115,29 +121,36 @@
             border-radius: 15%;
             cursor: pointer;
           }
+          .input-type-btn:hover {
+            background-color: rgb(248, 245, 245);
+           }
           .emoji-btn {
+            background-color: white;
             width:35px;
             height:30px;
             margin: 1%;
             border: none;
             border-radius: 15%;
             cursor: pointer;
-            // .emoji-icon img {
-            //   min-width: 100%;
-            // }
+          }
+          .emoji-btn:hover {
+           background-color: rgb(248, 245, 245);
           }
         }
         .send-btn {
           min-width:35px;
           min-height:30px;
-
+          background-color: white;
           border: none;
           border-radius: 15%;
           cursor: pointer;
         }
-
+        .send-btn:hover {
+          background-color: rgb(248, 245, 245);
+         }
         .send-btn:disabled {
-          background-color: rgba(238, 238, 238);
+          // background-color: rgba(238, 238, 238);
+          background-color: white;
           color: -internal-light-dark(
             rgba(16, 16, 16, 0.3),
             rgba(255, 255, 255, 0.3)
@@ -148,20 +161,6 @@
           );
           filter: grayscale(100%);
         }
-      }
-      .buttons:hover {
-        background-color: -internal-light-dark(
-          rgba(239, 239, 239, 0.3),
-          rgba(19, 1, 1, 0.3)
-        );
-        color: -internal-light-dark(
-          rgba(16, 16, 16, 0.3),
-          rgba(255, 255, 255, 0.3)
-        );
-        border-color: -internal-light-dark(
-          rgba(118, 118, 118, 0.3),
-          rgba(195, 195, 195, 0.3)
-        );
       }
     }
   }
