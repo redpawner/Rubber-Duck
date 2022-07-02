@@ -2,13 +2,15 @@ import {
   buttonsLogicStore,
   userStore,
 } from '../../../../state-stores/state-stores';
-
 import './login.scss';
 import git from '../../../../Images/git.png';
 import google from '../../../../Images/google.png';
 import apple from '../../../../Images/apple.png';
 import logo from '../../../../Images/logo.png';
 import { loginUser } from '../../../../api-services/api-auth';
+import { googleLogin } from '../../../../api-services/api-auth';
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../../../../graphql/queries-mutations';
 
 function Login() {
   window.history.replaceState(null, '', '/');
@@ -16,7 +18,7 @@ function Login() {
   const forgotPassword = buttonsLogicStore((state) => state.setReset);
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
-
+  const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
   //component id's need changing to classNames (and maybe named better) => check console logs to see what I mean
 
@@ -24,9 +26,30 @@ function Login() {
     event.preventDefault();
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
-    const result = await loginUser(email, password);
-    setUserUid(result.uid);
-    setUserToken(result.accessToken);
+    const user = await loginUser(email, password);
+    setUserUid(user.uid);
+    setUserToken(user.accessToken);
+  };
+
+  const googleSignIn = async () => {
+    const user = await googleLogin();
+    if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+      setUserUid(user.uid);
+      await createUser({
+        variables: {
+          record: {
+            avatar: 'user.59168e41eade7de7457f.png',
+            username: user.displayName,
+            email: user.email,
+            uid: user.uid,
+          },
+        },
+      });
+      setUserToken(user.accessToken);
+    } else {
+      setUserUid(user.uid);
+      setUserToken(user.accessToken);
+    }
   };
 
   return (
@@ -82,7 +105,12 @@ function Login() {
       </h1>
       <div className="login-other-platforms">
         <button id="platform-button">
-          <img id="socialmedia-img" src={google} alt="facebook"></img>
+          <img
+            id="socialmedia-img"
+            src={google}
+            alt="facebook"
+            onClick={googleSignIn}
+          ></img>
         </button>
         <button id="platform-button">
           {' '}
