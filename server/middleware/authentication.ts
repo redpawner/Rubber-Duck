@@ -1,5 +1,5 @@
 import Koa from 'koa';
-const GOOGLE_APPLICATION_CREDENTIALS: string = process.env
+const GOOGLE_APPLICATION_CREDENTIALS = process.env
   .GOOGLE_APPLICATION_CREDENTIALS as string;
 const serviceAccount = require(GOOGLE_APPLICATION_CREDENTIALS);
 
@@ -10,7 +10,7 @@ admin.initializeApp({
 });
 
 const validateAuthorization = async (ctx: Koa.Context, next: Function) => {
-  const token: string | undefined = ctx.request.headers.authorization;
+  const token = ctx.request.headers.authorization;
 
   if (!token) {
     ctx.throw(401);
