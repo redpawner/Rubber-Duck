@@ -7,7 +7,7 @@
   border-radius: $border-radius;
   margin-top: 2%;
   height: 80vh;
-  width: 75%;
+  width: 80%;
   background: $dashboard-color;
   display: flex;
   flex-direction: row;
@@ -20,37 +20,46 @@
 }
 .chat-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: flex-start;
-  height: 71%;
+  height: 100%;
   width: 100%;
   overflow: scroll;
-  border-right: solid thin;
+  min-width: 300px;
+  min-height: 400px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  max-width: 100%;
+  max-height: 100%;
+
+
 
   // background-color: #333;
 
   button {
     img {
-      max-width: 1vw;
-      max-height: 1vw;
+      width: 18px;
+    height: 18px;
+     
     }
   }
 
   .chat-form {
-    position: absolute;
     bottom: 7vh;
-    width: 45%;
-    height: 10%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    width: 93%;
+    height: 15%;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-between;
     align-items: center;
     padding: 1%;
     // margin: 1vw;
-    margin-right: 1vh;
+    // margin-right: 1vh;
     background-color: white;
     // box-shadow: $div-shadow;
     overflow: hidden;
+    min-height: auto;
 
     .hidden {
       display: none;
@@ -61,11 +70,11 @@
       border: none;
       padding: 0.5vw;
       font-size: 0.8vw;
-
       color: #333;
       resize: none;
       textarea {
-        width: 100%;
+        // position: relative;
+        width: 97%;
         height: 40%;
          border: none;
         border-radius: $border-radius;
@@ -81,25 +90,47 @@
         flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
 
         .img-code-buttons {
           display: flex;
           flex-direction: row-reverse;
+
           .file-btn {
+            width:35px;
+            height:30px;
             border: none;
             border-radius: 15%;
+            margin: 1%;
             label {
               cursor: pointer;
             }
           }
 
           .input-type-btn {
+            width:35px;
+            height:30px;
+            margin: 1%;
             border: none;
             border-radius: 15%;
             cursor: pointer;
           }
+          .emoji-btn {
+            width:35px;
+            height:30px;
+            margin: 1%;
+            border: none;
+            border-radius: 15%;
+            cursor: pointer;
+            // .emoji-icon img {
+            //   min-width: 100%;
+            // }
+          }
         }
         .send-btn {
+          min-width:35px;
+          min-height:30px;
+
           border: none;
           border-radius: 15%;
           cursor: pointer;
@@ -162,8 +193,8 @@
       padding: 10px;
       background-color: #f8eef6;
       border-radius: $border-radius;
-      max-width: 100%;
-      box-shadow: $div-shadow;
+      width: 96%;
+      // box-shadow: $div-shadow;
 
       // word-wrap: break-word;
       // word-break: break-word;
@@ -215,10 +246,11 @@
 }
 
 .play {
-  border-radius: $border-radius;
+
+  // border-radius: $border-radius;
   // margin-top: 1%;
-  height: 80vh;
-  width: 65%;
+  height: 100%;
+  width: 70%;
   background: $dashboard-color;
   display: flex;
   flex-direction: column;
@@ -227,6 +259,9 @@
   box-shadow: $div-shadow;
   border-right: solid thin;
   border-radius: $border-radius 0 0 $border-radius;
+  min-width: 300px;
+  min-height: 400px;
+
 }
 
 .help-chat-title {
