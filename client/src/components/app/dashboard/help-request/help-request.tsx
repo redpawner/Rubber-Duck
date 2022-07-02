@@ -3,6 +3,7 @@ import './help-request.scss';
 import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../../interfaces';
 
+
 interface Props {
   helpRequest: HelpReqSchema;
 }
@@ -54,6 +55,10 @@ function Help({ helpRequest }: Props) {
     showChat();
   };
 
+  const infoHandler=(e:any)=>{
+    console.log(helpRequest.description);
+  }
+
   return (
     <div className="help-container">
       <h1 className="help-title">{helpRequest.title}</h1>
@@ -64,7 +69,8 @@ function Help({ helpRequest }: Props) {
       <div className="bottom-details">
         <a id="tags">{helpRequest.hr_languages.map((e) => e + ' ')}</a>
         <div className="butts-cont">
-          <button className="help-button">Info</button>
+        
+          <button className="help-button" onClick={infoHandler}>Info</button>
           <button className="help-button" onClick={answerHelpRequests}>
             Help
           </button>
