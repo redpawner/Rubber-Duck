@@ -1,16 +1,17 @@
 @import '../../stylesheet.scss';
 
 .navbar {
-  height: 10vh;
+  height: 12vh;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .small-logo {
   margin-top: 1vh;
-  margin-left: 1vw;
+  margin-left: 2vw;
   width: 10vh;
   height: 10vh;
 }
@@ -21,37 +22,39 @@
 }
 
 .profile-button {
-  margin-top: 1.5vh;
-  margin-right: 6vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1vh;
+  margin-right: 2vw;
   height: 10vh;
   width: 10vh;
   cursor: pointer;
   border: none;
-
   border-radius: 50%;
+  &:hover .dropdown-content {
+    display: block;
+  }
 }
 
-.navbar-icon {
+.profile-icon {
   height: 100%;
-  margin-right: 8vh;
+  padding-bottom: 2vh;
   display: flex;
   flex-direction: column;
+  &:hover .dropdown-content {
+    display: block;
+  }
 }
 
 .dropdown-content {
   display: none;
-  position: absolute;
-  background-color: transparent;
-  width: 8vh;
+  background-color: #9f6ebf;
+  width: 10vh;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
+  padding: 1vh 2vh;
   z-index: 1;
   border-radius: $border-radius;
-  // border: solid white;
-}
-
-.profile-button:hover .dropdown-content {
-  display: block;
 }
 
 .dropdown-button {
@@ -65,6 +68,7 @@
   cursor: pointer;
   // border: solid;
   font-family: $main-font-family;
+  font-size: larger;
   border: none;
   font-weight: bold;
 }
