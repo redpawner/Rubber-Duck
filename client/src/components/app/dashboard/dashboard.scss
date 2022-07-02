@@ -106,18 +106,19 @@
 .fa fa-plus {
   font-size: 0.8999999999999999vw;
 }
-.dropdown-context {
+.dropdown-context{
   display: block;
   position: absolute;
-  background-color: green;
+  background-color: rgb(15, 67, 65);
   width: 8vh;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
   border-radius: $border-radius;
-  color:white;
+  color:rgb(246, 163, 11);
   // border: solid white;
   height:30vh;
+  width:8vw;
 }
 
 .dropdown-box:hover .dropdown-context-none {
@@ -127,16 +128,22 @@
 .dropdown-context-none {
   display: none;
   position: absolute;
-  background-color: green;
+  background-color: rgb(15, 67, 65);
   width: 8vh;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
   border-radius: $border-radius;
-  color:white;
+  color:rgb(246, 163, 11);
   // border: solid white;
   height:30vh;
+  width:8vw;
 }
 .searchTile{
   cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.searchTile:hover{
+  color:white;
+  font-size: large;
 }

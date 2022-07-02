@@ -10,14 +10,14 @@ import {
 import { userStore } from '../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../interfaces';
 import Tag from './tag/tag';
-import langTags from '../../../utils/tags'
+import langTags from '../../../utils/tags';
 
 function Dashboard() {
   const helpDash = buttonsLogicStore((state) => state.setHelp);
   const setUser = userStore((state) => state.setUser);
   const uid = userStore((state) => state.uid);
 
-  const [showDrop,setShowDrop]=useState(false);
+  const [showDrop, setShowDrop] = useState(false);
   const [formValue, setFormValue] = useState('');
   const [tags, setTags] = useState<string[]>([]);
   const [helpRequests, setHelpRequests] = useState([]);
@@ -92,17 +92,17 @@ function Dashboard() {
     e.preventDefault();
     const value = e.target.value;
 
-
-    if(value) {setShowDrop(true)}
-    else{setShowDrop(false)}
+    if (value) {
+      setShowDrop(true);
+    } else {
+      setShowDrop(false);
+    }
     setFormValue(value);
-
   };
 
-  const handleClick = (e:any) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
     const value = e.target.innerHTML;
-    console.log(value, 'click');
 
     setTags((tags) => [...tags, value]);
   };
@@ -113,9 +113,15 @@ function Dashboard() {
     setTags((tags) => tags.filter((tag) => tag !== value));
   };
 
-  const mapLang = langTags.filter(tag => tag.includes(formValue)).map(tag => {return(
-    <div className="searchTile" onClick={handleClick}>{tag}</div>
-  )})
+  const mapLang = langTags
+    .filter((tag) => tag.includes(formValue))
+    .map((tag) => {
+      return (
+        <div className="searchTile" onClick={handleClick}>
+          {tag}
+        </div>
+      );
+    });
   helpRequests.sort((a: HelpReqSchema, b: HelpReqSchema) => {
     return (
       new Date(a.time_created).getTime() - new Date(b.time_created).getTime()
@@ -150,27 +156,31 @@ function Dashboard() {
             className="search-field"
             onSubmit={(e) => {
               e.preventDefault(); //this stops it loading URL with the name value
-              console.log(e.target,'submit');
+              console.log(e.target.input.value, 'submit');
+              setShowDrop(false);
             }}
           >
             <div className="dropdown-box">
-            <input
-              type="text"
-              onChange={handleChange}
-              name="search"
-              autoComplete="off"
-              placeholder="Filter..."
-            />
-            <div className={showDrop?"dropdown-context":"dropdown-context-none"}>
-              {mapLang}
-            </div>
+              <input
+                type="text"
+                onChange={handleChange}
+                name="search"
+                autoComplete="off"
+                placeholder="Filter..."
+              />
+              <div
+                className={
+                  showDrop ? 'dropdown-context' : 'dropdown-context-none'
+                }
+              >
+                {mapLang}
+              </div>
             </div>
           </form>
           <ul className="search-tags">
             {tags.map((tag) => {
               return (
                 <div>
-
                   <Tag name={tag} onClick={deselect} />
                 </div>
               );
