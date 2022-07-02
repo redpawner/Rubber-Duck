@@ -30,7 +30,7 @@ const langTags = [
   'HTML',
   'Jasmine',
   'Java',
-  'JavaScript',
+  'Javascript',
   'Jest',
   'jQuery',
   'JSON',

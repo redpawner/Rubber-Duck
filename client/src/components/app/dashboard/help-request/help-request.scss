@@ -67,3 +67,45 @@
     }
   }
 }
+.HR-popup{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #a53993;
+  color:white;
+
+  padding:1em;
+  font-family:monospace;
+  max-height: 5vw;
+  border:2px solid black;
+  border-radius: .3em;
+
+}
+
+.HR-title{
+  font-size: x-large;
+  margin-bottom: 1.7vh;
+  color:orange;
+  font-weight: 600;
+}
+.popup-content {
+  margin: 0;
+  background: rgb(255, 255, 255);
+  width: 50%;
+  padding: 0;
+}
+.popup-arrow {
+  color: rgb(255, 255, 255);
+}
+[role='tooltip'].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+}

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './help-request.scss';
 import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../../interfaces';
+import Popup from 'reactjs-popup';
 
 interface Props {
   helpRequest: HelpReqSchema;
@@ -27,6 +28,8 @@ function string_to_slug(str: any) {
 }
 
 function Help({ helpRequest }: Props) {
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
   const showChat = buttonsLogicStore((state) => state.setChat);
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
@@ -54,6 +57,10 @@ function Help({ helpRequest }: Props) {
     showChat();
   };
 
+  const infoHandler = (e: any) => {
+    console.log(helpRequest.description);
+  };
+
   return (
     <div className="help-container">
       <h1 className="help-title">{helpRequest.title}</h1>
@@ -63,8 +70,38 @@ function Help({ helpRequest }: Props) {
       </p>
       <div className="bottom-details">
         <a id="tags">{helpRequest.hr_languages.map((e) => e + ' ')}</a>
+        {/* <div>
+          <Popup
+            trigger={<button className="help-button">Info</button>}
+            position="right center"
+          >
+            <div>{helpRequest.description}</div>
+          </Popup>
+        </div> */}
         <div className="butts-cont">
-          <button className="help-button">Info</button>
+          <div>
+            <button
+              type="button"
+              className="help-button"
+              onClick={() => setOpen((o) => !o)}
+            >
+              Info
+            </button>
+
+            <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+              <div className="HR-popup">
+                <div className='HR-title'>
+
+                {helpRequest.title}
+                </div>
+                <div>
+
+                {helpRequest.description}
+                </div>
+              </div>
+            </Popup>
+          </div>
+          {/* <button className="help-button">Info</button> */}
           <button className="help-button" onClick={answerHelpRequests}>
             Help
           </button>
