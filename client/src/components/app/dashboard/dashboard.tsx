@@ -156,7 +156,7 @@ function Dashboard() {
             className="search-field"
             onSubmit={(e) => {
               e.preventDefault(); //this stops it loading URL with the name value
-              console.log(e.target.input.value, 'submit');
+              console.log(e, 'submit');
               setShowDrop(false);
             }}
           >
