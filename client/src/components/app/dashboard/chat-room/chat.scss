@@ -7,13 +7,16 @@
   border-radius: $border-radius;
   margin-top: 2%;
   height: 80vh;
-  width: 55%;
+  width: 75%;
   background: $dashboard-color;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   // border: solid;
   box-shadow: $div-shadow;
+  min-width: 600px;
+  min-height: 400px;
+
 }
 .chat-container {
   display: flex;
@@ -36,8 +39,8 @@
   .chat-form {
     position: absolute;
     bottom: 7vh;
-    width: 25%;
-    height: 15%;
+    width: 45%;
+    height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -54,7 +57,7 @@
     }
     .text-area-form {
       width: 100%;
-      // height: 100%;
+      height: 100%;
       border: none;
       padding: 0.5vw;
       font-size: 0.8vw;
@@ -62,9 +65,9 @@
       color: #333;
       resize: none;
       textarea {
-        width: 98%;
-        height: 6vw;
-        // border: none;
+        width: 100%;
+        height: 40%;
+         border: none;
         border-radius: $border-radius;
         padding: 1%;
         margin-bottom: 1%;
@@ -201,18 +204,21 @@
 
 .features-container {
   height: 100%;
-  width: 40%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
   // background-color: red;
+  min-width: 300px;
+  min-height: 400px;
+
 }
 
 .play {
   border-radius: $border-radius;
   // margin-top: 1%;
   height: 80vh;
-  width: 55%;
+  width: 65%;
   background: $dashboard-color;
   display: flex;
   flex-direction: column;
@@ -231,9 +237,8 @@
 
 .problem-div {
   // margin-left: ;
-  width: 95%;
+  width: 80%;
   height: 30%;
-  margin-left: 12%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -260,11 +265,10 @@
 }
 
 .people-online {
-  width: 95%;
+  width: 80%;
   height: 10vh;
   background-color: #f8eef6;
   border-radius: $border-radius;
-  margin-left: 12%;
   margin-top: 5%;
   display: flex;
   justify-content: space-between;
