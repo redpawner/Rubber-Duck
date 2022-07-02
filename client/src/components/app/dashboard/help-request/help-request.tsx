@@ -82,7 +82,7 @@ function Help({ helpRequest }: Props) {
           <div>
             <button
               type="button"
-              className="button"
+              className="help-button"
               onClick={() => setOpen((o) => !o)}
             >
               Info
