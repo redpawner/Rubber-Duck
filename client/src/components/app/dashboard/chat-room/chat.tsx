@@ -39,7 +39,7 @@ const socket = io(`http://localhost:3001/`, {
 });
 
 const createDefaultMessage = (room, user)=>{
-  return {text:'Hello there, how can I help you?',
+  return {text:'Hey there!',
   time: new Date(),
   language: '',
   type: 'text',
@@ -252,10 +252,9 @@ function Chat() {
 
 
   useEffect(()=> {
-console.log(isUserHelper)
 const defaultMessage = createDefaultMessage(roomID, username)
 isUserHelper && sendDefaultMessage(defaultMessage)
-  }, [])
+  }, [username])
 
   useEffect(() => {
     Prism.highlightAll();
@@ -283,6 +282,19 @@ isUserHelper && sendDefaultMessage(defaultMessage)
     <div className="chat-main">
       <div className="play">
         <div className="chat-container">
+
+          <div className="chat-messages">
+            {messages.map((message) => (
+              <div ref={scrollRef} key={message.time.toString()}>
+                <Message
+                  key={
+                    message.time.toString() + message.text + message.language
+                  }
+                  message={message}
+                />
+              </div>
+            ))}
+          </div>
           <div className="chat-form">
             <form className="text-area-form" onSubmit={sendMessage}>
               {' '}
@@ -372,19 +384,6 @@ isUserHelper && sendDefaultMessage(defaultMessage)
                 </div>
               </div>
             </form>
-          </div>
-
-          <div className="chat-messages">
-            {messages.map((message) => (
-              <div ref={scrollRef} key={message.time.toString()}>
-                <Message
-                  key={
-                    message.time.toString() + message.text + message.language
-                  }
-                  message={message}
-                />
-              </div>
-            ))}
           </div>
 
           {showEmojiPicker ? (

@@ -12,17 +12,23 @@ function Message({ message }: messageProps) {
       <div className="chat-message-avatar">
         <img className="avatar-img" src={profile} alt="avatar" />
 
-        <div className="chat-message-avatar-name">
+        {/* <div className="chat-message-avatar-name">
+          <span>{message.author}</span>
+        </div> */}
+      </div>
+      <div className="chat-message-data">
+        <div className= "chat-message-info">
+      <div className="chat-message-name">
           <span>{message.author}</span>
         </div>
-      </div>
-
+          <div className="chat-message-time">{format(message.time)}</div>
+        </div>
       {message.type === 'text' ? (
         <div className="chat-message-text">
           {message.language === '' ? (
             <div className="chat-message-text">{message.text}</div>
           ) : (
-            <div className="chat-message-text">
+            <div className="chat-message-code">
               <pre>
                 <code className={`language-${message.language}`}>
                   {message.text}
@@ -35,7 +41,7 @@ function Message({ message }: messageProps) {
         <img src={message.imgSource} alt={message.text} />
       )}
 
-      <div className="chat-message-time">{format(message.time)}</div>
+      </div>
     </div>
   );
 }
