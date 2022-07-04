@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './help-request.scss';
 import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../../interfaces';
+import { useMutation } from '@apollo/client';
+import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 import Popup from 'reactjs-popup';
 
 interface Props {
@@ -11,6 +13,7 @@ interface Props {
 function Help({ helpRequest }: Props) {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
+  const [updateHR] = useMutation(UPDATE_HR);
   const showChat = buttonsLogicStore((state) => state.setChat);
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
@@ -30,7 +33,21 @@ function Help({ helpRequest }: Props) {
     }
   );
 
-  const answerHelpRequests = () => {
+  const answerHelpRequests = async (event:any) => {
+    //update needHelp to false
+    await updateHR({
+      variables: {
+        filter: {
+          username: helpRequest.username
+        },
+        record: {
+          needHelp: false,
+
+        },
+      },
+    });
+    console.log(helpRequest.username);
+    //update  const [helpRequests, setHelpRequests]
     const roomID = helpRequest.url;
     window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
