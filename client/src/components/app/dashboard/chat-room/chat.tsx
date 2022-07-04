@@ -11,7 +11,6 @@ import {
   useRef,
   ChangeEvent,
   SetStateAction,
-  useParams,
 } from 'react';
 import Message from '../message/message';
 import { ArrivalMessage } from '../../../../interfaces';
@@ -24,6 +23,8 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
 import Picker from 'emoji-picker-react';
+import { useLazyQuery } from '@apollo/client';
+import { GET_HR_BY_URL } from '../../../../graphql/queries-mutations';
 
 const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
@@ -34,6 +35,35 @@ const socket = io(`http://localhost:3001/`, {
 function Chat() {
   const [messages, setMessages] = useState([] as ArrivalMessage[]);
   const [showLangDropDown, setShowLangDropDown] = useState(false);
+  const [helpRequestInfo, setHelpRequestInfo] = useState('');
+
+  const uid = userStore((state) => state.uid);
+  const username = userStore((state) => state.username);
+
+  const roomID = window.location.hash;
+
+  //currently grabbing url through lazy slice method (this will have to change when URL changes)
+  const url = window.location.href.slice(31);
+
+  const [getHR] = useLazyQuery(GET_HR_BY_URL, {
+    variables: {
+      filter: {
+        help_request: {
+          url: url,
+        },
+      },
+    },
+  });
+
+  const getHelpRequestInfo = async () => {
+    const data = await getHR();
+    setHelpRequestInfo(data.data.userMany[0].help_request);
+  };
+
+  useEffect(() => {
+    getHelpRequestInfo();
+  }, []);
+
   const [arrivalMessage, setArrivalMessage] = useState({
     text: '',
     time: new Date(),
@@ -55,10 +85,6 @@ function Chat() {
     'python',
     'typescript',
   ];
-  const uid = userStore((state) => state.uid);
-  const username = userStore((state) => state.username);
-
-  const roomID = window.location.hash;
 
   // const { roomID } = useParams();
 
@@ -303,7 +329,7 @@ function Chat() {
         </div>
       </div>
       <div className="features-container">
-        <h1 className="help-chat-title">Help Request Title</h1>
+        <h1 className="help-chat-title">{helpRequestInfo.title}</h1>
         <div className="problem-div">
           <p className="problem-content">
             My name is Ozymandias, King of Kings; Look on my Works, ye Mighty,

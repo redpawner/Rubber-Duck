@@ -40,6 +40,22 @@ const GET_HR_BY_LANGUAGE = gql`
   }
 `;
 
+const GET_HR_BY_URL = gql`
+  query Query($filter: FilterFindManyUserInput) {
+    userMany(filter: $filter) {
+      help_request {
+        username
+        title
+        description
+        hr_languages
+        time_created
+        sandbox
+        url
+      }
+    }
+  }
+`;
+
 // MUTATIONS
 
 const CREATE_USER = gql`
@@ -121,4 +137,4 @@ const DELETE_HR = gql`
   }
 `;
 
-export { CREATE_USER, GET_USER, GET_HR_BY_LANGUAGE, UPDATE_HR };
+export { CREATE_USER, GET_USER, GET_HR_BY_LANGUAGE, UPDATE_HR, GET_HR_BY_URL };
