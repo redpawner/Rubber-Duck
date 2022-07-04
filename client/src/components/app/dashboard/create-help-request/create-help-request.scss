@@ -232,7 +232,8 @@
   margin-top: 12vh;
   padding: 0em 2em 2em .8em;
 
-  max-height: 70vh;
+  max-height: 75vh;
+  width:35vw;
 
   font-family: $main-font-family;
 
@@ -250,6 +251,7 @@
 #guide-box-headline{
   padding-top: 5vh;
   padding-left:1.5vw;
+  padding-bottom: 2vh;
   display: flex;
   justify-content: center;
   width: 28vw;
@@ -263,10 +265,10 @@
 .guide-box-title{
   font-size: medium;
   font-weight: bold;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
 
 }
 .guide-box-point{
-  margin:1vh;
+  margin:.5vh;
 }
 

@@ -163,7 +163,7 @@ function CreateHelp() {
                     <ul>
                       <li className="guide-box-point">
                         In the body of your question, start by expanding on the
-                        summary you put in the title. Explain how you
+                        summary you put in the title. <i>Explain</i> how you
                         encountered the problem you're trying to solve, and any
                         difficulties that have prevented you from solving it
                         yourself. The first paragraph in your question is the
@@ -199,8 +199,8 @@ function CreateHelp() {
                     <ul>
                       <li className="guide-box-point">
                         Now that you're ready to ask your question, take a deep
-                        breath and read through it from start to finish. Pretend
-                        you're seeing it for the first time: does it make sense?
+                        breath and read through it from start to finish. <i>Pretend </i>
+                         you're seeing it for the first time: does it make sense?
                         Try reproducing the problem yourself, in a fresh
                         environment and make sure you can do so using only the
                         information included in your question. Add any details
