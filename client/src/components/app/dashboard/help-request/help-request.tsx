@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './help-request.scss';
-import { buttonsLogicStore } from '../../../../state-stores/state-stores';
+import { buttonsLogicStore} from '../../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../../interfaces';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
@@ -47,7 +47,8 @@ function Help({ helpRequest }: Props) {
     const roomID = helpRequest.url;
     window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
-    showChat();
+//We can take this out if we can get the specific hr frome the db
+showChat();
   };
 
   return (

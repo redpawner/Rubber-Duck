@@ -32,6 +32,11 @@ type UserSettingsStore = {
   darkMode: boolean;
   toggleDarkMode: () => void;
 };
+interface UserRole {
+helper: string;
+author: string;
+}
+
 interface HelpReqSchema {
   username: string;
   title: string;
@@ -71,4 +76,5 @@ export type {
   HelpReqSchema,
   UserSettingsStore,
   MyStore,
+  UserRole
 };

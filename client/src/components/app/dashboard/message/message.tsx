@@ -10,19 +10,25 @@ function Message({ message }: messageProps) {
   return (
     <div className="chat-message">
       <div className="chat-message-avatar">
-        <img className="avatar-img" src={profile} alt="avatar" />
+        <img className="avatar-img" src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj" alt="avatar" />
 
-        <div className="chat-message-avatar-name">
+        {/* <div className="chat-message-avatar-name">
+          <span>{message.author}</span>
+        </div> */}
+      </div>
+      <div className="chat-message-data">
+        <div className= "chat-message-info">
+      <div className="chat-message-name">
           <span>{message.author}</span>
         </div>
-      </div>
-
+          <div className="chat-message-time">{format(message.time)}</div>
+        </div>
       {message.type === 'text' ? (
         <div className="chat-message-text">
           {message.language === '' ? (
             <div className="chat-message-text">{message.text}</div>
           ) : (
-            <div className="chat-message-text">
+            <div className="chat-message-code">
               <pre>
                 <code className={`language-${message.language}`}>
                   {message.text}
@@ -35,7 +41,7 @@ function Message({ message }: messageProps) {
         <img src={message.imgSource} alt={message.text} />
       )}
 
-      <div className="chat-message-time">{format(message.time)}</div>
+      </div>
     </div>
   );
 }
