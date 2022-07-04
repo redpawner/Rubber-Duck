@@ -131,7 +131,7 @@ function Register() {
             Create Account
           </button>
         </form>
-        <span className="err">{error}</span>
+        <div className="err">{error}</div>
       </div>
     </div>
   );
