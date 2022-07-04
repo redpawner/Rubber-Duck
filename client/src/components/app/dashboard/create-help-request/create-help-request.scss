@@ -70,7 +70,7 @@
 }
 
 .help-title1 {
-  width: 30vw;
+  width: 35vw;
   height: 4vh;
   border: $divider-line;
   font-family: $main-font-family;
@@ -228,20 +228,28 @@
 .guide-box{
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
-  background-color: white;
-  color: #3022ab;
+  margin-top: 12vh;
   padding: 0em 2em 2em .8em;
 
+  max-height: 70vh;
+
   font-family: $main-font-family;
-  max-height: auto;
+
+  color: #3022ab;
+  background-color: white;
   border: solid thin black;
-  border-radius: 0.5em;
+  border-radius: 1em;
+
+  overflow: scroll;
 
 }
+.guide-box::-webkit-scrollbar{
+  display:none;
+}
 #guide-box-headline{
-  // background-color: #3022ab;
+  padding-top: 5vh;
+  padding-left:1.5vw;
   display: flex;
   justify-content: center;
   width: 28vw;
@@ -249,8 +257,16 @@
   font-weight: bolder;
 
 }
+.guide-outerbox{
+  margin-bottom: 5vh;
+}
 .guide-box-title{
   font-size: medium;
   font-weight: bold;
+  margin-bottom: 2vh;
 
 }
+.guide-box-point{
+  margin:1vh;
+}
+

@@ -131,25 +131,30 @@ function CreateHelp() {
             <div>
               <div>
                 <ol>
-                  <li className="guide-box-title">
-                    Write a title that summarizes the specific problem{' '}
-                  </li>
+                  <div className="guide-outerbox">
+                    <li className="guide-box-title">
+                     Write a title that summarizes the specific problem{' '}
+                    </li>
 
-                  <div>
-                    <ul>
-                      <li className="guide-box-point">
-                        <b>Spelling, grammar and punctuation are important!</b>{' '}
-                        Please proof-read before publishing.
-                      </li>
-                      <li className="guide-box-point">
-                        If you're having trouble summarizing the problem, write
-                        the title last - sometimes writing the rest of the
-                        question first can make it easier to describe the
-                        problem.{' '}
-                      </li>
-                    </ul>
+                    <div>
+                      <ul>
+                        <li className="guide-box-point">
+                          <b>
+                            Spelling, grammar and punctuation are important!
+                          </b>{' '}
+                          Please proof-read before publishing.
+                        </li>
+                        <li className="guide-box-point">
+                          If you're having trouble summarizing the problem,
+                          write the title last - sometimes writing the rest of
+                          the question first can make it easier to describe the
+                          problem.{' '}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
 
+                <div className="guide-outerbox">
                   <li className="guide-box-title">
                     Introduce the problem before you post any code{' '}
                   </li>
@@ -167,7 +172,9 @@ function CreateHelp() {
                       </li>
                     </ul>
                   </div>
+                </div>
 
+                <div className="guide-outerbox">
                   <li className="guide-box-title">
                     Include all relevant tags{' '}
                   </li>
@@ -181,7 +188,9 @@ function CreateHelp() {
                       </li>
                     </ul>
                   </div>
+                </div>
 
+                <div className="guide-outerbox">
                   <li className="guide-box-title">
                     Proof-read before posting!{' '}
                   </li>
@@ -200,6 +209,7 @@ function CreateHelp() {
                         problem!{' '}
                       </li>
                     </ul>
+                  </div>
                   </div>
                 </ol>
               </div>
