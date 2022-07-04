@@ -67,64 +67,82 @@
     }
   }
 }
-.HR-popup{
-  display:flex;
+.HR-popup {
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+  align-items: flex-start;
   background-color: white;
-  color:#3022ab;
-  padding:0em 2em 2em;
+  color: #3022ab;
+  padding: 0em 2em 2em 1.2em;
 
-  font-family:$main-font-family;
+  font-family: $main-font-family;
   max-height: auto;
-  border:solid thin black;
-  border-radius: .5em;
-
+  border: solid thin black;
+  border-radius: 0.5em;
 }
-.desc-box{
-  padding:.3em;
-  font-weight: 550;
-  margin-bottom: .5em;
-  font-size: $button-font-size;
 
+.X-outerbox {
+  width: 28vw;
+  padding-top: 0.3em;
+
+  display: flex;
+  justify-content: space-between;
 }
-.close{
+.userbox {
+  display: flex;
+  justify-content: space-between;
+}
+.usernamebox {
+  font-weight: bolder;
+  margin-left: 0;
+  padding-left: 0;
+}
+.askbox {
+  padding-left: 0.5vw;
+}
+.close {
+  border-radius: 0.6em;
 
-  border-radius: .6em;
-  float:right;
   cursor: pointer;
-  padding-right: .5em;
-  color:black;
+  margin-top: 0;
+  color: black;
 }
-.close:hover{
+.close:hover {
   font-weight: bolder;
 }
-.X-outerbox{
-  width:30vw;
-  padding-top: 0;
+
+.HR-title {
+  font-size: x-large;
+  margin-top: 3vh;
+  margin-bottom: 1.7vh;
+  color: $grey-shade;
+  font-weight: bolder;
+  width: 25vw;
+  padding-bottom: 1vh;
+  padding-left: 1vw;
+  border-bottom: $divider-line;
 }
-.help-buttonx{
-  align-self: flex-end;
+.desc-box {
+  padding: 0.3em;
+  padding-left: 1vw;
+  font-weight: 550;
+  margin-bottom: 1.5em;
+  font-size: $button-font-size;
+  text-align: left;
+}
+.help-buttonx {
+  align-self: center;
   cursor: pointer;
   border-radius: $border-radius;
-  width: 5vw;
+  width: 10vw;
   height: 5vh;
   font-family: $main-font-family;
   font-weight: bold;
   color: white;
   background-color: #3022ab;
-  font-size:$button-weight;
+  font-size: $button-weight;
   border: none;
-}
-
-.HR-title{
-  font-size: x-large;
-  margin-bottom: 1.7vh;
-  color:$grey-shade;
-  font-weight: bold;
-
-  border-bottom:$divider-line;
 }
 .popup-content {
   margin: 0;
@@ -146,4 +164,3 @@
 [data-popup='tooltip'].popup-overlay {
   background: transparent;
 }
-
