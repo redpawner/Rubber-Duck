@@ -20,13 +20,13 @@ function Reset() {
         <img className="auth-logo-img" src={logo} alt="duck"></img>
       </div>
       <div className="login-form">
-        <div className="sign-buttons-cont" id="reset">
+        <div className="reset-buttons-cont" id="reset">
           <h4 id="sign-button" className="sign-in-button">
             Reset password
           </h4>
         </div>
         <div className="login-container">
-          <form onSubmit={resetPass}>
+          <form onSubmit={resetPass} className="reset-form">
             <label htmlFor="email" className="reg-input">
               Email:{' '}
             </label>
@@ -34,15 +34,17 @@ function Reset() {
               type="text"
               name="email"
               id="email"
-              className="login-textBox"
+              className="reset-textBox"
               required
             />
-            {message}
-            <button className="reset-btn">Reset Your Password</button>
+            <p className="message-after">{message}</p>
+            <button className="reset-btn" id="margin-bottom">
+              Reset Your Password
+            </button>
+            <button id="sign-button" className="reset-btn" onClick={loginShow}>
+              Return to Sign In
+            </button>
           </form>
-          <button id="sign-button" className="reset-btn" onClick={loginShow}>
-            Return to Sign In
-          </button>
         </div>
       </div>
     </div>
