@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ProgressBar = (props: any) => {
   const { bgcolor, completed } = props;
 
