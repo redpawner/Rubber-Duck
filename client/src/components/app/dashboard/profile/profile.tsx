@@ -84,7 +84,7 @@ function Profile() {
               <div className="btn-save-container">{avatarsDisplay}</div>
 
               <button className="save-buttonx" onClick={closeModal}>
-                Save
+                Select
               </button>
             </div>
           </Popup>
