@@ -11,7 +11,7 @@ function Navbar() {
   const [profilePic, setProfilePic] = useState(defaultAvatar);
 
   useEffect(() => {
-    if (avatar.length > 0) {
+    if (avatar && avatar.length > 0) {
       setProfilePic(`/static/media/${avatar}`);
     }
   }, [avatar]);
