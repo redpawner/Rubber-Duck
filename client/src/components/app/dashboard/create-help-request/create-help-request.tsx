@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 import langTags from '../../../../utils/tags';
 import Tag from '../tag/tag';
+import Popup from 'reactjs-popup';
 
 function string_to_slug(str: any) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
@@ -29,6 +30,8 @@ function string_to_slug(str: any) {
 }
 
 function CreateHelp() {
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
   const userState = userStore((state) => state);
   const [showDrop, setShowDrop] = useState(false);
@@ -116,6 +119,20 @@ function CreateHelp() {
         <div className="create-help-button-div">
           <h1 className="dashboard-title">Create Help Request</h1>
         </div>
+        <div className="qn" onClick={() => setOpen((o) => !o)}>
+          i
+        </div>
+        <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+          <div className="guide-box">
+            {/* <a className="close" onClick={closeModal}>
+            &times;
+          </a> */}
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+            magni omnis delectus nemo, maxime molestiae dolorem numquam
+            mollitia, voluptate ea, accusamus excepturi deleniti ratione
+            sapiente! Laudantium, aperiam doloribus. Odit, aut.
+          </div>
+        </Popup>
       </div>
       <div className="middle-section-cont">
         <form className="help-form" onSubmit={publish}>
@@ -125,7 +142,7 @@ function CreateHelp() {
             </label>
             <input
               type="text"
-              className="help-title2"
+              className="help-title1"
               name="title"
               id="title"
               maxLength={40}
@@ -169,7 +186,7 @@ function CreateHelp() {
             </label>
             <input
               type="text"
-              className="help-title2"
+              className="help-title3"
               name="sandbox"
               id="sandbox"
               placeholder="https://codesandbox.io/..."
@@ -181,42 +198,16 @@ function CreateHelp() {
         </form>
         <div className="rules-container">
           <div className="container-height2">
-            <h2 className="readme-title">Rules and guidance:</h2>
-            <ul className="rules-list">
-              <li className="rules-element">
-                1st RULE: You do not talk about FIGHT CLUB.
-              </li>
-              <li className="rules-element">
-                2nd RULE: You DO NOT talk about FIGHT CLUB.
-              </li>
-              <li className="rules-element">
-                3rd RULE: If someone says "stop" or goes limp, taps out the
-                fight is over.
-              </li>
-              <li className="rules-element">
-                4th RULE: Only two guys to a fight.
-              </li>
-              <li className="rules-element">5th RULE: One fight at a time.</li>
-              <li className="rules-element">
-                7th RULE: Fights will go on as long as they have to.
-              </li>
-              <li className="rules-element">
-                8th RULE: If this is your first night at FIGHT CLUB, you HAVE to
-                fight.
-              </li>
-            </ul>
             <ul className="search-tags">
-              {tags.map((tag) => {
-                return (
-                  <div>
-                    <Tag name={tag} onClick={deselect} />
-                  </div>
-                );
-              })}
+              <div className="tags-display-box">
+                {tags.sort().map((tag) => {
+                  return <Tag name={tag} onClick={deselect} />;
+                })}
+              </div>
             </ul>
           </div>
-          <button className="create-cancel-btn" id="cancel" onClick={helpDash}>
-            Cancel
+          <button className="back-btn" id="cancel" onClick={helpDash}>
+            Back
           </button>
         </div>
       </div>
