@@ -1,4 +1,4 @@
-@import "../../../../stylesheet.scss";
+@import '../../../../stylesheet.scss';
 
 .save-profile-button {
   border-radius: $border-radius;
@@ -11,6 +11,8 @@
   color: white;
   font-size: 0.8999999999999999vw;
   font-weight: bold;
+  margin-top: 3vh;
+  align-self: center;
 }
 
 .profile-div {
@@ -69,4 +71,97 @@
 
 .set-avatar-btn:hover .dropdown-avatar {
   display: block;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-around;
+  align-items: flex-start;
+  height: 80%;
+  width: 50%;
+  // background-color: #3022ab;
+  border-right: solid thin;
+}
+
+.profile-label {
+  text-align: left;
+  width: 90%;
+  font-family: $main-font-family;
+  color: $blue-shade;
+  margin-top: -1vh;
+  font-weight: bold;
+}
+
+.profile-textBox {
+  margin-top: -1vh;
+  font-size: large;
+  width: 90%;
+  border: none;
+  border-bottom: $divider-line;
+  outline: none;
+}
+
+.fixed {
+  font-family: $main-font-family;
+  border: solid thin grey;
+  width: 20vh;
+  margin-top: -2vh;
+}
+
+.password-reset-a {
+  font-family: $main-font-family;
+  border: solid thin grey;
+  width: 20vh;
+  margin-top: -2vh;
+}
+
+.profile-textBox {
+  margin-top: -2vh;
+  font-family: $main-font-family;
+  width: 20vh;
+}
+
+.mid-section {
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-around;
+  align-items: flex-start;
+  height: 80%;
+  width: 75%;
+  // background-color: #3022ab;
+}
+
+.rating-div {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // background-color: #3022ab;
+}
+
+.progress-title {
+  font-family: $main-font-family;
+  color: $grey-shade;
+  margin-bottom: -4vh;
+  text-align: center;
+}
+
+.coffeediv {
+  width: 80%;
+  height: 10vh;
+}
+
+.coffee {
+  width: 100%;
+  height: 100%;
+  border-radius: $border-radius;
+}
+
+.helps-count {
+  margin-top: -2vh;
+  font-family: $main-font-family;
+  color: $grey-shade;
+  text-align: center;
 }
