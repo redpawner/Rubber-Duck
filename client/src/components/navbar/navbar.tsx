@@ -1,6 +1,6 @@
 import './navbar.scss';
 import logo from '../../Images/logo.png';
-import defaultAvatar from '../../Images/user.png';
+import defaultAvatar from '../../Images/avatars/user.png';
 import { logoutUser } from '../../api-services/api-auth';
 import { buttonsLogicStore, userStore } from '../../state-stores/state-stores';
 import { useEffect, useState } from 'react';
@@ -13,7 +13,7 @@ function Navbar() {
 
   useEffect(() => {
     if (avatar && avatar.length > 0) {
-      setProfilePic(`/static/media/${avatar}`);
+      setProfilePic(avatar);
     }
   }, [avatar]);
 

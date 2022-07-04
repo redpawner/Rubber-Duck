@@ -46,9 +46,6 @@ const userStore = create<User>()(
       time_created: '',
       url: '',
     },
-    regUser: (uid: string, username: string, avatar: string) => {
-      set({ uid: uid, username: username, avatar: avatar });
-    },
     setUser: (
       username: string,
       rating_total: Number,
@@ -68,6 +65,9 @@ const userStore = create<User>()(
     },
     setUserUid: (uid: string) => {
       set({ uid: uid });
+    },
+    setAvatar: (avatar: string) => {
+      set({ avatar: avatar });
     },
     setUserToken: (userAT: string) => {
       set({ userAT: userAT });
