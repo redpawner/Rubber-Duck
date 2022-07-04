@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './profile.scss';
-import { buttonsLogicStore } from '../../../../state-stores/state-stores';
+import {
+  buttonsLogicStore,
+  userStore,
+} from '../../../../state-stores/state-stores';
 import ProgressBar from './progress bar/progress';
 import coffee from '../../../../Images/coffee.png';
+import Popup from 'reactjs-popup';
+import avatars from '../../../../utils/avatarurls';
+import defaultAvatar from '../../../../Images/user.png';
+
 function Profile() {
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
   const help = buttonsLogicStore((state) => state.setDashboard);
+  const [profilePic, setProfilePic] = useState(defaultAvatar);
+  const avatar = userStore((state) => state.avatar) as string;
 
   const onHandleClick = () => {
     window.history.replaceState(null, '', '/');
@@ -18,20 +29,41 @@ function Profile() {
     { bgcolor: '#ef6c00', completed: 53 },
   ];
 
+  const avatarsDisplay = avatars.avatars.map((el: any) => {
+    return (
+      <div className="avatars-div">
+        <img
+          className="avatar-img"
+          src={el}
+          alt="avatar"
+          onClick={() => setProfilePic(() => el)}
+        ></img>
+      </div>
+    );
+  });
+
   return (
     <div className="dashboard-container">
       <div className="profile-div">
         <h1 className="dashboard-title">Profile</h1>
         <div className="avatar-wrap">
           <div className="avatar-div">
-            <img
-              className="your-avatar"
-              src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj"
-              alt="avatar"
-            ></img>
+            <img className="your-avatar" src={profilePic} alt="avatar"></img>
           </div>
 
-          <button className="set-avatar-btn">Change</button>
+          <button className="set-avatar-btn" onClick={() => setOpen((o) => !o)}>
+            Change
+          </button>
+          <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+            <div className="avatars-popup">
+              <div className="btn-save-container">{avatarsDisplay}</div>
+
+              <button className="save-buttonx" onClick={closeModal}>
+                Save
+              </button>
+            </div>
+          </Popup>
+
           <div className="dropdown-avatar"></div>
         </div>
       </div>
