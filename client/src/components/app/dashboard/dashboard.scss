@@ -14,7 +14,7 @@
   box-shadow: $div-shadow;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   .dashboard-container {
     width: 85%;
     .dashboard-title {
@@ -27,11 +27,31 @@
     .help-list {
       width: 300px;
     }
+    .search-field input {
+      width: 5rem;
+      margin-right: 0.1rem;
+    }
   }
 }
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 620px) and (max-width: 1420px) {
   .dashboard-container {
-    width: 85%;
+    width: 65%;
+
+    .dashboard-title {
+      font-size: 1.7rem;
+    }
+    .create-help-butt {
+      width: 9rem;
+      font-size: 0.8rem;
+    }
+    .help-list {
+      width: 500px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-field input {
+      margin-right: 0.1rem;
+    }
   }
 }
 

@@ -13,15 +13,18 @@
   background-color: $dashboard-color;
   cursor: pointer;
   padding: 0.1em 0.5em;
+  padding-top: 0.6em;
   background-color: #a53993;
   font-size: 0.9rem;
   min-width: 2rem;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   .tag-button {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
+}
+@media screen and (min-width: 620px) and (max-width: 1420px) {
 }
 
 .tag-button:hover {

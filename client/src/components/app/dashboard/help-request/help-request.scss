@@ -38,7 +38,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   .help-container {
     width: 270px;
     min-width: 200px;
@@ -63,7 +63,29 @@
     }
   }
 }
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 620px) and (max-width: 1420px) {
+  .help-container {
+    width: 350px;
+    margin-left: 10px;
+    .help-title {
+      font-size: 1.7rem;
+    }
+    .help-details {
+      font-size: 1.1rem;
+    }
+    #tags {
+      font-size: 1.1rem;
+    }
+  }
+  .bottom-details {
+    font-size: 1.1rem;
+    .butts-cont {
+      .help-button {
+        font-size: 0.7rem !important;
+        width: 3rem !important;
+      }
+    }
+  }
 }
 
 .bottom-details {
