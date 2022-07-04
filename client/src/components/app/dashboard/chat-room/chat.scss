@@ -51,10 +51,11 @@ position: absolute;
     width: 95%;
     height: 15%;
     // margin-top: auto;
-    // display: flex;
-    // flex-direction: row;
+    display: flex;
+    flex-direction:column;
     // justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
+    justify-items: baseline;
     padding: 1%;
     // margin: 1vw;
     // margin-right: 1vh;
@@ -78,6 +79,8 @@ position: absolute;
       resize: none;
       // border: $divider-line;
       border-radius: $border-radius;
+      margin-bottom: 10px;
+      justify-self: baseline;
 
       textarea {
         // position: relative;
@@ -98,6 +101,7 @@ position: absolute;
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        margin-bottom: 10px;
 
         .img-code-buttons {
           display: flex;
