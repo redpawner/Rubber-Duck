@@ -70,14 +70,6 @@ function Help({ helpRequest }: Props) {
       </p>
       <div className="bottom-details">
         <a id="tags">{helpRequest.hr_languages.map((e) => e + ' ')}</a>
-        {/* <div>
-          <Popup
-            trigger={<button className="help-button">Info</button>}
-            position="right center"
-          >
-            <div>{helpRequest.description}</div>
-          </Popup>
-        </div> */}
         <div className="butts-cont">
           <div>
             <button
@@ -97,7 +89,7 @@ function Help({ helpRequest }: Props) {
                 </div>
                 <div className="HR-title">{helpRequest.title}</div>
                 <div className="desc-box">{helpRequest.description}</div>
-                <button className='help-button' onClick={answerHelpRequests}>Help</button>
+                <button className='help-buttonx' onClick={answerHelpRequests}>Help</button>
               </div>
             </Popup>
           </div>

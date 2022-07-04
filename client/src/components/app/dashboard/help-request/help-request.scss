@@ -72,15 +72,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #a53993;
-  color:white;
+  background-color: white;
+  color:#3022ab;
 
   padding:4em 2em;
 
   font-family:$main-font-family;
   max-height: 5vw;
-  border:2px solid black;
-  border-radius: .3em;
+  border:3px solid black;
+  border-radius: .5em;
 
 }
 .desc-box{
@@ -98,19 +98,28 @@
 .X-outerbox{
   background-color: green;
 }
-.help-button{
+.help-buttonx{
   align-self: flex-end;
+  cursor: pointer;
+  border-radius: $border-radius;
+  width: 4vw;
+  // height: 20vh;
+  font-family: $main-font-family;
+  color: white;
+  background-color: #a53993;
+  font-size: 0.65vw;
+  border: none;
 }
 
 .HR-title{
   font-size: x-large;
   margin-bottom: 1.7vh;
   color:orange;
-  font-weight: 550;
+  font-weight: 1000;
 }
 .popup-content {
   margin: 0;
-  background: rgb(255, 255, 255);
+  background: transparent;
   width: 30vw;
   padding: 0;
 }
