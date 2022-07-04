@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './profile.scss';
 import {
   buttonsLogicStore,
@@ -8,19 +8,44 @@ import ProgressBar from './progress bar/progress';
 import coffee from '../../../../Images/coffee.png';
 import Popup from 'reactjs-popup';
 import avatars from '../../../../utils/avatarurls';
-import defaultAvatar from '../../../../Images/user.png';
+import { useMutation } from '@apollo/client';
+import { UPDATE_AVATAR } from '../../../../graphql/queries-mutations';
 
 function Profile() {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
-  const help = buttonsLogicStore((state) => state.setDashboard);
-  const [profilePic, setProfilePic] = useState(defaultAvatar);
+  const setDashboard = buttonsLogicStore((state) => state.setDashboard);
   const avatar = userStore((state) => state.avatar) as string;
+  const setAvatar = userStore((state) => state.setAvatar);
+  const [profilePic, setProfilePic] = useState(avatar);
+  const [updateAvatar] = useMutation(UPDATE_AVATAR);
+  const user = userStore((state) => state);
 
-  const onHandleClick = () => {
-    window.history.replaceState(null, '', '/');
+  const updateUserAvatar = async () => {
+    try {
+      setAvatar(profilePic);
+      await updateAvatar({
+        variables: {
+          record: {
+            avatar: profilePic,
+          },
+          filter: {
+            uid: user.uid,
+          },
+        },
+      });
+      return 'Success';
+    } catch (error) {
+      return 'Failed to update';
+    }
+  };
 
-    help();
+  const handleSubmit = async (event: any) => {
+    const result = await updateUserAvatar();
+    console.log(result);
+    event.preventDefault();
+
+    setDashboard();
   };
 
   const testData = [
@@ -29,7 +54,7 @@ function Profile() {
     { bgcolor: '#ef6c00', completed: 53 },
   ];
 
-  const avatarsDisplay = avatars.avatars.map((el: any) => {
+  const avatarsDisplay = avatars.map((el: any) => {
     return (
       <div className="avatars-div">
         <img
@@ -69,7 +94,7 @@ function Profile() {
       </div>
       {/* onSubmit={useHandleSubmit} */}
       <div className="mid-section">
-        <form className="profile-form">
+        <form className="profile-form" onSubmit={handleSubmit}>
           <br></br>
           <label className="profile-label">Username:</label>
           <br></br>
@@ -101,9 +126,7 @@ function Profile() {
           <br></br>
           <input type="text" className="profile-textBox" name="site" />
 
-          <button className="save-profile-button" onClick={onHandleClick}>
-            Save
-          </button>
+          <button className="save-profile-button">Return</button>
         </form>
         <div className="rating-div">
           <h1 className="progress-title">Score:</h1>

@@ -107,6 +107,19 @@ const UPDATE_HR = gql`
   }
 `;
 
+const UPDATE_AVATAR = gql`
+  mutation Mutation(
+    $record: UpdateOneUserInput!
+    $filter: FilterUpdateOneUserInput
+  ) {
+    userUpdateOne(record: $record, filter: $filter) {
+      record {
+        avatar
+      }
+    }
+  }
+`;
+
 //NOT IN USE YET
 // {
 //   "filter": {
@@ -124,17 +137,19 @@ const DELETE_HR = gql`
   ) {
     userUpdateOne(record: $record, filter: $filter) {
       record {
-        username
-        avatar
-        help_request {
-          title
-          description
-          hr_languages
-        }
-        createdAt
+        needHelp
+        help_request
       }
     }
   }
 `;
 
-export { CREATE_USER, GET_USER, GET_HR_BY_LANGUAGE, UPDATE_HR, GET_HR_BY_URL };
+export {
+  CREATE_USER,
+  GET_USER,
+  GET_HR_BY_LANGUAGE,
+  UPDATE_HR,
+  GET_HR_BY_URL,
+  DELETE_HR,
+  UPDATE_AVATAR,
+};

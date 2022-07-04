@@ -4,6 +4,7 @@ import {
 } from '../../../../state-stores/state-stores';
 import '../login/login.scss';
 import './register.scss';
+import defaultPic from '../../../../Images/avatars/user.png';
 import logo from '../../../../Images/logo.png';
 import { fbCreateUser } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
@@ -11,7 +12,6 @@ import { CREATE_USER } from '../../../../graphql/queries-mutations';
 
 function Register() {
   const loginShow = buttonsLogicStore((state) => state.setLogin);
-  const regUser = userStore((state) => state.regUser);
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
 
@@ -32,7 +32,7 @@ function Register() {
     await createUser({
       variables: {
         record: {
-          avatar: 'user.59168e41eade7de7457f.png',
+          avatar: defaultPic,
           username: username,
           email: email,
           uid: result.uid,
@@ -41,8 +41,6 @@ function Register() {
     });
 
     setUserToken(result.accessToken);
-
-    // regUser(result.uid, username, 'user.59168e41eade7de7457f.png');
   };
 
   return (
