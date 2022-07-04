@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './help-request.scss';
 import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../../interfaces';
@@ -8,29 +8,12 @@ interface Props {
   helpRequest: HelpReqSchema;
 }
 
-function string_to_slug(str: any) {
-  str = str.replace(/^\s+|\s+$/g, ''); // trim
-  str = str.toLowerCase();
-
-  // remove accents, swap ñ for n, etc
-  var from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
-  var to = 'aaaaeeeeiiiioooouuuunc------';
-  for (var i = 0, l = from.length; i < l; i++) {
-    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-  }
-
-  str = str
-    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
-
-  return str;
-}
-
 function Help({ helpRequest }: Props) {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
   const showChat = buttonsLogicStore((state) => state.setChat);
+
+  console.log(helpRequest);
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
     'en-gb',
@@ -50,8 +33,7 @@ function Help({ helpRequest }: Props) {
   );
 
   const answerHelpRequests = () => {
-    const slugDescription = string_to_slug(helpRequest.description);
-    const roomID = slugDescription;
+    const roomID = helpRequest.url;
     window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
     showChat();
@@ -90,14 +72,8 @@ function Help({ helpRequest }: Props) {
 
             <Popup open={open} closeOnDocumentClick onClose={closeModal}>
               <div className="HR-popup">
-                <div className='HR-title'>
-
-                {helpRequest.title}
-                </div>
-                <div>
-
-                {helpRequest.description}
-                </div>
+                <div className="HR-title">{helpRequest.title}</div>
+                <div>{helpRequest.description}</div>
               </div>
             </Popup>
           </div>

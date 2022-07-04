@@ -10,6 +10,7 @@ const helpRequestSchema = new Schema<HelpReqSchema>({
   description: String,
   hr_languages: [String],
   time_created: Date,
+  sandbox: String,
   url: String,
 });
 
@@ -45,6 +46,12 @@ schemaComposer.Query.addFields({
       rawQuery['help_request.hr_languages'] = { $elemMatch: { $in: value } };
     },
   }),
+  // .wrapResolve((next) => (rp) => {
+  //   if (rp.args.filter.uid) {
+  //     rp.args.filter.uid = rp.context.ctx.state.uid;
+  //     return next(rp);
+  //   }
+  // }),
 
   userDataLoader: UserTC.mongooseResolvers.dataLoader(),
   // userDataLoaderMany: UserTC.mongooseResolvers.dataLoaderMany(),
