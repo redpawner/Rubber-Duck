@@ -283,7 +283,6 @@ isUserHelper && sendDefaultMessage(defaultMessage)
     <div className="chat-main">
       <div className="play">
         <div className="chat-container">
-<div></div>
           <div className="chat-messages">
             {messages.map((message) => (
               <div ref={scrollRef} key={message.time.toString()}>
@@ -306,7 +305,9 @@ isUserHelper && sendDefaultMessage(defaultMessage)
                 placeholder="Type a message..."
                 onKeyDown={onEnterPress}
                 required
+                // onHeightChange={(height)=>{}}
               />
+
               <div className="buttons">
                 {arrivalMessage.type !== 'file' &&
                 arrivalMessage.text === '' ? ( //button for sending message

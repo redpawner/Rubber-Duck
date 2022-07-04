@@ -49,13 +49,14 @@
 position: absolute;
     bottom: 0%;
     width: 95%;
-    height: 15%;
+    height: 50%;
+    max-height: 50%;
     // margin-top: auto;
-    display: flex;
-    flex-direction:column;
+    // display: flex;
+    // flex-direction:column;
     // justify-content: space-between;
-    align-items: baseline;
-    justify-items: baseline;
+    // align-items: baseline;
+    // justify-items: baseline;
     padding: 1%;
     // margin: 1vw;
     // margin-right: 1vh;
@@ -70,22 +71,30 @@ position: absolute;
       display: none;
     }
     .text-area-form {
+      position: absolute;
+      bottom:0%;
       width: 98%;
-      height: 90%;
+      // height: 25%;
+      min-height: 25%;
+      max-height: 100%;
       border: none;
       padding: 0.5vw;
       font-size: 0.8vw;
       color: #333;
       resize: none;
       // border: $divider-line;
-      border-radius: $border-radius;
-      margin-bottom: 10px;
+      // border-radius: $border-radius;
       justify-self: baseline;
+      z-index: 2;
+      background-color: white;
 
       textarea {
-        // position: relative;
-        width: 97%;
-        height: auto;
+        position: absolute;
+        bottom:45%;
+        width: 92%;
+        height: 1em;
+        // min-height: 1em;
+        max-height: 30vh;
          border: none;
         border-radius: $border-radius;
         padding: 1%;
@@ -96,11 +105,13 @@ position: absolute;
         color: $blue-shade;
       }
       .buttons {
+        position: absolute;
+        bottom: 0%;
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        width: 95%;
         margin-bottom: 10px;
 
         .img-code-buttons {
@@ -182,7 +193,8 @@ position: absolute;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    margin-bottom: 20vh;
+    margin-bottom:10vh;
+    z-index: 1;
     .chat-message-avatar {
       display: flex;
      flex-direction: column;
