@@ -75,12 +75,31 @@
   background-color: #a53993;
   color:white;
 
-  padding:2em;
-  font-family:monospace;
+  padding:4em 2em;
+
+  font-family:$main-font-family;
   max-height: 5vw;
   border:2px solid black;
   border-radius: .3em;
 
+}
+.desc-box{
+  padding:.3em;
+}
+.close{
+  background-color: darkgrey;
+  border-radius: .6em;
+  float:right;
+  cursor: pointer;
+}
+.close:hover{
+  background-color: grey;
+}
+.X-outerbox{
+  background-color: green;
+}
+.help-button{
+  align-self: flex-end;
 }
 
 .HR-title{
@@ -109,3 +128,4 @@
 [data-popup='tooltip'].popup-overlay {
   background: transparent;
 }
+
