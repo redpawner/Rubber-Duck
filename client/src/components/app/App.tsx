@@ -15,9 +15,10 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
   const counter = buttonsLogicStore((state) => state.counter);
-
+  const setUserUid = userStore((state) => state.setUserUid);
   const userAT = userStore((state) => state.userAT);
   const setUserAT = userStore((state) => state.setUserToken);
+  const setDashboard = buttonsLogicStore((state) => state.setDashboard);
 
   const board = buttonsLogicStore((state) => state.show);
 
@@ -25,7 +26,9 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       console.log('running');
       if (user) {
+        setUserUid(user.uid);
         user.getIdToken().then((token) => setUserAT(token));
+        setDashboard();
       }
     });
   }, []);

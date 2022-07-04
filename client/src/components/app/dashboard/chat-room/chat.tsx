@@ -14,7 +14,10 @@ import {
 } from 'react';
 import Message from '../message/message';
 import { ArrivalMessage } from '../../../../interfaces';
-import { buttonsLogicStore, userStore } from '../../../../state-stores/state-stores';
+import {
+  buttonsLogicStore,
+  userStore,
+} from '../../../../state-stores/state-stores';
 
 import Prism from 'prismjs';
 import '../themes/prism-one-dark.css';
@@ -23,8 +26,11 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
 import Picker from 'emoji-picker-react';
-import { useLazyQuery,useMutation } from '@apollo/client';
-import { GET_HR_BY_URL,UPDATE_HR } from '../../../../graphql/queries-mutations';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import {
+  GET_HR_BY_URL,
+  UPDATE_HR,
+} from '../../../../graphql/queries-mutations';
 
 const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
@@ -33,13 +39,14 @@ const socket = io(`http://localhost:3001/`, {
 });
 
 function Chat() {
-  const setDashboard = buttonsLogicStore((state)=>state.setDashboard)
+  const setDashboard = buttonsLogicStore((state) => state.setDashboard);
   const [messages, setMessages] = useState([] as ArrivalMessage[]);
   const [showLangDropDown, setShowLangDropDown] = useState(false);
   const [helpRequestInfo, setHelpRequestInfo] = useState('');
   const [updateHR] = useMutation(UPDATE_HR);
 
   const uid = userStore((state) => state.uid);
+
   const username = userStore((state) => state.username);
 
   const roomID = window.location.hash;
@@ -100,39 +107,44 @@ function Chat() {
     }
   }, [roomID, uid]);
 
+  // const cancelHandler = async (event: any) => {
+  //   await updateHR({
+  //     variables: {
+  //       filter: {
+  //         uid: uid,
+  //       },
+  //       record: {
+  //         needHelp: true,
+  //       },
+  //     },
+  //   });
+  // };
 
-  const cancelHandler = async (event:any) =>{
-    console.log(uid,'uid')
-    await updateHR({
-      variables: {
-        filter: {
-          uid: uid
-        },
-        record: {
-          needHelp: true,
+  // const helpRequestReset = {
+  //   username: '',
+  //   title: '',
+  //   description: '',
+  //   hr_languages: '',
+  //   time_created: null,
+  //   url: '',
+  //   sandbox: '',
+  // };
 
-        },
-      },
-    });
-  }
+  // const resolveHandler = async (event: any) => {
+  //   await updateHR({
+  //     variables: {
+  //       filter: {
+  //         uid: uid,
+  //       },
+  //       record: {
+  //         needHelp: false,
+  //         help_request: null,
+  //       },
+  //     },
+  //   });
 
-  const resolveHandler = async (event:any) =>{
-
-    await updateHR({
-      variables: {
-        filter: {
-          uid: uid
-        },
-        record: {
-          needHelp: false,
-          help_request:null
-
-        },
-      },
-    });
-
-    setDashboard();
-  }
+  //   setDashboard();
+  // };
 
   const onEmojiClick = (event: any, emojiObject: SetStateAction<null>) => {
     setChosenEmoji(emojiObject);
@@ -397,10 +409,14 @@ function Chat() {
             <img src={video} alt="video" className="avatar-img3" />
           </div>
         </div>
-          <div className="buttons-box">
-            <button className="res-button" onClick={cancelHandler}>Seek another mentor</button>
-            <button className="res-button"onClick={resolveHandler} >Resolved</button>
-          </div>
+        <div className="buttons-box">
+          <button className="res-button" onClick={cancelHandler}>
+            Seek another mentor
+          </button>
+          <button className="res-button" onClick={resolveHandler}>
+            Resolved
+          </button>
+        </div>
       </div>
     </div>
   );
