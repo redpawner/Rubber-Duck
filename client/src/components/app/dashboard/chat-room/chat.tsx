@@ -38,6 +38,17 @@ const socket = io(`http://localhost:3001/`, {
   transports: ['websocket'],
 });
 
+const createDefaultMessage = (room, user)=>{
+  return {text:'Hello there, how can I help you?',
+  time: new Date(),
+  language: '',
+  type: 'text',
+  room: room,
+  author: user}
+};
+
+
+
 function Chat() {
   const setDashboard = buttonsLogicStore((state) => state.setDashboard);
   const [messages, setMessages] = useState([] as ArrivalMessage[]);
@@ -215,6 +226,11 @@ function Chat() {
       setShowEmojiPicker(!showEmojiPicker);
     }
   };
+  const sendDefaultMessage = (message: ArrivalMessage) => {
+    socket.emit('sendMessage', message);
+    setMessages([...messages, message]);
+
+  };
 
   const selectFile = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.files &&
@@ -233,6 +249,13 @@ function Chat() {
   };
 
   // const selectEmoji = (e) => {};
+
+
+  useEffect(()=> {
+console.log(isUserHelper)
+const defaultMessage = createDefaultMessage(roomID, username)
+isUserHelper && sendDefaultMessage(defaultMessage)
+  }, [])
 
   useEffect(() => {
     Prism.highlightAll();
