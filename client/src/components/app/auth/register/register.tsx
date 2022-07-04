@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   buttonsLogicStore,
   userStore,
@@ -15,11 +16,18 @@ function Register() {
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
 
+  const [error, setError] = useState('');
+
   const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
 
   const useHandleSubmit = async (event: any) => {
     event.preventDefault();
+    if (event.target.password.value !== event.target.confirmPassword.value) {
+      setError('Passwords do not match!');
+      return;
+    }
+
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
     const username: string = event.target.username.value;
@@ -88,6 +96,7 @@ function Register() {
             autoComplete="new-password"
             required
           />
+
           <br></br>
           <label className="reg-input" htmlFor="password1">
             Confirm Password:
@@ -97,10 +106,11 @@ function Register() {
             type="password"
             id="password1"
             className="reg-textBox"
-            name="password1"
+            name="confirmPassword"
             autoComplete="off"
             required
           />
+
           <br></br>
           <label className="reg-input" htmlFor="username">
             Username:
@@ -121,6 +131,7 @@ function Register() {
             Create Account
           </button>
         </form>
+        <span className="err">{error}</span>
       </div>
     </div>
   );
