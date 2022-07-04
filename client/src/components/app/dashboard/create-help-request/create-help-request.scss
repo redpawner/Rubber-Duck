@@ -1,8 +1,18 @@
 @import '../../../../stylesheet.scss';
 
-.dashbooard-container{
-  height:50vh;
-  width:50vw;
+.dashboard-container1{
+  border-radius: $border-radius;
+  margin-top: 2%;
+  padding:0;
+  height: 80vh;
+  width: 60vw;
+  // min-width: 800px;
+  background: $dashboard-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: $border;
+  box-shadow: $div-shadow;
 }
 // .create-req-button-div {
 //   width: 75%;
@@ -15,6 +25,7 @@
   display: flex;
   width: 75%;
   border-bottom: $divider-line;
+
 }
 .qn{
   margin-left: .5vw;
@@ -28,6 +39,7 @@
 }
 
 .create-cancel-btn {
+
   border-radius: $border-radius;
   height: 5vh;
   width: 13.55vw;
@@ -117,7 +129,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  // align-items: center;
+  align-items: center;
   overflow: hidden;
   // background-color: yellow;
 }
@@ -214,8 +226,26 @@
   background: transparent;
 }
 .guide-box{
-  background-color: white;
-  width: 25vw;
-  height: auto;
-}
+  display: flex;
+  flex-direction: column;
 
+  align-items: flex-start;
+  background-color: white;
+  color: #3022ab;
+  padding: 0em 2em 2em .8em;
+
+  font-family: $main-font-family;
+  max-height: auto;
+  border: solid thin black;
+  border-radius: 0.5em;
+
+}
+#guide-box-title{
+  // background-color: #3022ab;
+  display: flex;
+  justify-content: center;
+  width: 28vw;
+  font-size: xx-large;
+  font-weight: bolder;
+  font-family:$main-font-family ;
+}

@@ -114,7 +114,7 @@ function CreateHelp() {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container1">
       <div className="helper">
         <div className="create-help-button-div">
           <h1 className="dashboard-title">Create Help Request</h1>
@@ -124,13 +124,18 @@ function CreateHelp() {
         </div>
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
           <div className="guide-box">
-            {/* <a className="close" onClick={closeModal}>
-            &times;
-          </a> */}
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-            magni omnis delectus nemo, maxime molestiae dolorem numquam
-            mollitia, voluptate ea, accusamus excepturi deleniti ratione
-            sapiente! Laudantium, aperiam doloribus. Odit, aut.
+            <div id="guide-box-title">Guideline</div>
+            <div>
+
+              <div>
+                <div>Write a title that summarizes the specific problem</div>
+                <div>
+                  <div>1</div>
+                  <div>1.1</div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </Popup>
       </div>
