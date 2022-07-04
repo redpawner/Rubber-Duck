@@ -74,48 +74,57 @@
   align-items: center;
   background-color: white;
   color:#3022ab;
-
-  padding:4em 2em;
+  padding:0em 2em 2em;
 
   font-family:$main-font-family;
-  max-height: 5vw;
-  border:3px solid black;
+  max-height: auto;
+  border:solid thin black;
   border-radius: .5em;
 
 }
 .desc-box{
   padding:.3em;
+  font-weight: 550;
+  margin-bottom: .5em;
+  font-size: $button-font-size;
+
 }
 .close{
-  background-color: darkgrey;
+
   border-radius: .6em;
   float:right;
   cursor: pointer;
+  padding-right: .5em;
+  color:black;
 }
 .close:hover{
-  background-color: grey;
+  font-weight: bolder;
 }
 .X-outerbox{
-  background-color: green;
+  width:30vw;
+  padding-top: 0;
 }
 .help-buttonx{
   align-self: flex-end;
   cursor: pointer;
   border-radius: $border-radius;
-  width: 4vw;
-  // height: 20vh;
+  width: 5vw;
+  height: 5vh;
   font-family: $main-font-family;
+  font-weight: bold;
   color: white;
-  background-color: #a53993;
-  font-size: 0.65vw;
+  background-color: #3022ab;
+  font-size:$button-weight;
   border: none;
 }
 
 .HR-title{
   font-size: x-large;
   margin-bottom: 1.7vh;
-  color:orange;
-  font-weight: 1000;
+  color:$grey-shade;
+  font-weight: bold;
+
+  border-bottom:$divider-line;
 }
 .popup-content {
   margin: 0;
