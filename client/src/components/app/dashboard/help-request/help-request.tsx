@@ -69,7 +69,11 @@ function Help({ helpRequest }: Props) {
         {prettyDate} @{helpRequest.username}
       </p>
       <div className="bottom-details">
-        <a id="tags">{helpRequest.hr_languages.map((e) => e + ' ')}</a>
+        <div id="tags">
+          {helpRequest.hr_languages.map((e) => {
+            return <span>{e}</span>;
+          })}
+        </div>
         {/* <div>
           <Popup
             trigger={<button className="help-button">Info</button>}
