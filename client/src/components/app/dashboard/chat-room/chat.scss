@@ -360,7 +360,7 @@ position: relative;
   justify-content: space-between;
   color: $grey-shade;;
   border-radius: $border-radius;
-  // background-color: #f8eef6;
+  border: solid lightgray;
 
 }
 
@@ -380,13 +380,12 @@ position: relative;
   column-count: 3;
   text-align: center;
   column-gap: 0.1%;
-  // background-color: #333;
 }
 
 .people-online {
   width: 80%;
   height: 10vh;
-  // background-color: #f8eef6;
+  border: solid lightgray;
   border-radius: $border-radius;
   margin-top: 5%;
   display: flex;
