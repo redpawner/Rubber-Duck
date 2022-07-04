@@ -410,12 +410,10 @@ function Chat() {
           </div>
         </div>
         <div className="buttons-box">
-          <button className="res-button" onClick={cancelHandler}>
-            Seek another mentor
-          </button>
-          <button className="res-button" onClick={resolveHandler}>
-            Resolved
-          </button>
+          {/* <button className="res-button" onClick={cancelHandler}> */}
+          <button className="res-button">Seek another mentor</button>
+          {/* <button className="res-button" onClick={resolveHandler}> */}
+          <button className="res-button">Resolved</button>
         </div>
       </div>
     </div>
