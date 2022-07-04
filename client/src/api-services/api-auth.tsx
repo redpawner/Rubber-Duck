@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 
 const fbCreateUser = async (email: string, password: string) => {
@@ -47,4 +48,11 @@ const logoutUser = async () => {
   });
 };
 
-export { fbCreateUser, loginUser, googleLogin, logoutUser };
+const resetPassword = async (email: string) => {
+  const message = await sendPasswordResetEmail(auth, email)
+    .then(() => 'Password reset email sent!')
+    .catch(() => 'Account does not exist');
+  return message;
+};
+
+export { fbCreateUser, loginUser, googleLogin, logoutUser, resetPassword };
