@@ -174,19 +174,31 @@
   align-items: center;
   background-color: white;
   color: #3022ab;
-  padding: 0em 2em 2em 1.2em;
+  padding: 2em 2em 2em 2em;
 
   font-family: $main-font-family;
   max-height: auto;
   border: solid thin black;
   border-radius: 0.5em;
+  overflow: scroll;
+}
+
+.avatars-popup::-webkit-scrollbar {
+  overflow: hidden;
+}
+
+.icons-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .avatars-div {
   margin-top: 1vh;
-  // margin-right: 1vh;
-  height: 6vh;
-  width: 6vw;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
 }
 
@@ -195,6 +207,7 @@
   height: 100%;
   border-radius: 50%;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .save-buttonx {

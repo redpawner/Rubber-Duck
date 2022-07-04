@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   buttonsLogicStore,
   userStore,
@@ -18,12 +17,6 @@ function Register() {
 
   const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
-
-  const [input, setInput] = useState({
-    username: '',
-    password: '',
-    confirmPassword: '',
-  });
 
   const useHandleSubmit = async (event: any) => {
     event.preventDefault();

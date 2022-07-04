@@ -56,7 +56,7 @@ function Profile() {
           </button>
           <Popup open={open} closeOnDocumentClick onClose={closeModal}>
             <div className="avatars-popup">
-              <div className="btn-save-container">{avatarsDisplay}</div>
+              <div className="icons-wrap">{avatarsDisplay}</div>
 
               <button className="save-buttonx" onClick={closeModal}>
                 Save
