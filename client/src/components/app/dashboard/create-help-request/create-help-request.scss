@@ -240,12 +240,17 @@
   border-radius: 0.5em;
 
 }
-#guide-box-title{
+#guide-box-headline{
   // background-color: #3022ab;
   display: flex;
   justify-content: center;
   width: 28vw;
-  font-size: xx-large;
+  font-size: large;
   font-weight: bolder;
-  font-family:$main-font-family ;
+
+}
+.guide-box-title{
+  font-size: medium;
+  font-weight: bold;
+
 }

@@ -124,17 +124,85 @@ function CreateHelp() {
         </div>
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
           <div className="guide-box">
-            <div id="guide-box-title">Guideline</div>
+            <div id="guide-box-headline">
+              We’d love to help you. To improve your chances of getting an
+              answer, follow the tips below:
+            </div>
             <div>
-
               <div>
-                <div>Write a title that summarizes the specific problem</div>
-                <div>
-                  <div>1</div>
-                  <div>1.1</div>
-                </div>
-              </div>
+                <ol>
+                  <li className="guide-box-title">
+                    Write a title that summarizes the specific problem{' '}
+                  </li>
 
+                  <div>
+                    <ul>
+                      <li className="guide-box-point">
+                        <b>Spelling, grammar and punctuation are important!</b>{' '}
+                        Please proof-read before publishing.
+                      </li>
+                      <li className="guide-box-point">
+                        If you're having trouble summarizing the problem, write
+                        the title last - sometimes writing the rest of the
+                        question first can make it easier to describe the
+                        problem.{' '}
+                      </li>
+                    </ul>
+                  </div>
+
+                  <li className="guide-box-title">
+                    Introduce the problem before you post any code{' '}
+                  </li>
+
+                  <div>
+                    <ul>
+                      <li className="guide-box-point">
+                        In the body of your question, start by expanding on the
+                        summary you put in the title. Explain how you
+                        encountered the problem you're trying to solve, and any
+                        difficulties that have prevented you from solving it
+                        yourself. The first paragraph in your question is the
+                        second thing most readers will see, so make it as
+                        engaging and informative as possible.{' '}
+                      </li>
+                    </ul>
+                  </div>
+
+                  <li className="guide-box-title">
+                    Include all relevant tags{' '}
+                  </li>
+
+                  <div>
+                    <ul>
+                      <li className="guide-box-point">
+                        Try to include a tag for the language your question
+                        relates to. If you start typing in the tags field, the
+                        system will suggest tags that match what you've typed{' '}
+                      </li>
+                    </ul>
+                  </div>
+
+                  <li className="guide-box-title">
+                    Proof-read before posting!{' '}
+                  </li>
+
+                  <div>
+                    <ul>
+                      <li className="guide-box-point">
+                        Now that you're ready to ask your question, take a deep
+                        breath and read through it from start to finish. Pretend
+                        you're seeing it for the first time: does it make sense?
+                        Try reproducing the problem yourself, in a fresh
+                        environment and make sure you can do so using only the
+                        information included in your question. Add any details
+                        you missed and read through it again. Now is a good time
+                        to make sure that your title still describes the
+                        problem!{' '}
+                      </li>
+                    </ul>
+                  </div>
+                </ol>
+              </div>
             </div>
           </div>
         </Popup>
