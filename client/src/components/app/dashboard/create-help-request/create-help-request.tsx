@@ -6,6 +6,8 @@ import {
 } from '../../../../state-stores/state-stores';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
+import langTags from '../../../../utils/tags';
+import Tag from '../tag/tag';
 
 function string_to_slug(str: any) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
@@ -29,6 +31,7 @@ function string_to_slug(str: any) {
 function CreateHelp() {
   const helpDash = buttonsLogicStore((state) => state.setDashboard);
   const userState = userStore((state) => state);
+  const [showDrop, setShowDrop] = useState(false);
 
   // SHOWCHAT CAN BE REMOVED ONCE ROUTER LOGIC IN PLACE:
   const showChat = buttonsLogicStore((state) => state.setChat);
@@ -41,13 +44,9 @@ function CreateHelp() {
     setFormValue(e.target.value);
   };
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    setTags((tags) => [...tags, formValue]);
-  };
-
   const publish = async (event: any) => {
     event.preventDefault();
+    setShowDrop(false);
     const description = event.target.description.value;
     // GENERATE UNIQUE CHAT ROOM LOGIC HERE
     const slugDescription = string_to_slug(description);
@@ -55,7 +54,11 @@ function CreateHelp() {
     window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
 
-    // GATHER DATA AND SEND HELP REQUEST TO DATABASE LOGIC HERE:
+    let sandbox = 'https://codesandbox.io/';
+
+    if (event.target.sandbox.value > 0) {
+      sandbox = event.target.sandbox.value;
+    }
 
     const helpRequest = {
       username: userState.username,
@@ -64,6 +67,7 @@ function CreateHelp() {
       hr_languages: tags,
       time_created: Date.now(),
       url: roomID,
+      sandbox: sandbox,
     };
 
     await updateHR({
@@ -77,10 +81,33 @@ function CreateHelp() {
         },
       },
     });
-    // REPLACE showChat() WITH ROUTER/URL LOGIC TO GO TO CHATROOM HERE:
 
-    // location.hash = roomID;
     showChat();
+  };
+
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+    if (tags.includes(value)) {
+      return;
+    }
+    setTags((tags) => [...tags, value]);
+  };
+
+  const mapLang = langTags
+    .filter((tag) => tag.includes(formValue))
+    .map((tag) => {
+      return (
+        <div className="searchTile" onClick={handleClick}>
+          {tag}
+        </div>
+      );
+    });
+
+  const deselect = (e: any) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+    setTags((tags) => tags.filter((tag) => tag !== value));
   };
 
   return (
@@ -90,15 +117,12 @@ function CreateHelp() {
           <h1 className="dashboard-title">Create Help Request</h1>
         </div>
       </div>
-
       <div className="middle-section-cont">
-        {/* <div className="create-help-container"> */}
         <form className="help-form" onSubmit={publish}>
           <div className="container-height">
             <label className="help-request-input" htmlFor="title">
               Title:
             </label>
-            <br></br>
             <input
               type="text"
               className="help-title2"
@@ -108,11 +132,9 @@ function CreateHelp() {
               placeholder="Max 40 characters..."
               required
             />{' '}
-            <br></br>
             <label className="help-request-input" htmlFor="description">
               Description:
             </label>
-            <br></br>
             <textarea
               className="help-description"
               name="description"
@@ -121,26 +143,45 @@ function CreateHelp() {
               maxLength={500}
               required
             ></textarea>
-            <br></br>
-            <label className="help-request-input">Tags:</label>
-            <br></br>
+            <label className="help-request-input" htmlFor="tags">
+              Tags:
+            </label>
+            <div className="dropdown-box">
+              <input
+                type="text"
+                onChange={handleChange}
+                name="tags"
+                id="tags"
+                className="help-title2"
+                autoComplete="off"
+                placeholder="Filter..."
+              />
+              <div
+                className={
+                  showDrop ? 'dropdown-context' : 'dropdown-context-none'
+                }
+              >
+                {mapLang}
+              </div>
+            </div>
+            <label className="help-request-input" htmlFor="sandbox">
+              Sandbox link:
+            </label>
             <input
               type="text"
-              onChange={handleChange}
               className="help-title2"
-              name="tags"
-              placeholder="Javascript"
+              name="sandbox"
+              id="sandbox"
+              placeholder="https://codesandbox.io/..."
             />
           </div>
           <button className="create-cancel-btn" id="submit">
             Publish
           </button>
-          {tags}
         </form>
-        {/* </div> */}
         <div className="rules-container">
-          <div className="container-height">
-            <h1 className="readme-title">Before you publish:</h1>
+          <div className="container-height2">
+            <h2 className="readme-title">Rules and guidance:</h2>
             <ul className="rules-list">
               <li className="rules-element">
                 1st RULE: You do not talk about FIGHT CLUB.
@@ -163,6 +204,15 @@ function CreateHelp() {
                 8th RULE: If this is your first night at FIGHT CLUB, you HAVE to
                 fight.
               </li>
+            </ul>
+            <ul className="search-tags">
+              {tags.map((tag) => {
+                return (
+                  <div>
+                    <Tag name={tag} onClick={deselect} />
+                  </div>
+                );
+              })}
             </ul>
           </div>
           <button className="create-cancel-btn" id="cancel" onClick={helpDash}>
