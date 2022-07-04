@@ -8,16 +8,27 @@ import Reset from './auth/reset/reset';
 import CreateHelp from './dashboard/create-help-request/create-help-request';
 import Dashboard from './dashboard/dashboard';
 import Chat from './dashboard/chat-room/chat';
-import { userStore } from '../../state-stores/state-stores';
-
 import Profile from './dashboard/profile/profile';
+import { userStore } from '../../state-stores/state-stores';
+import { auth } from '../../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
   const counter = buttonsLogicStore((state) => state.counter);
 
   const userAT = userStore((state) => state.userAT);
+  const setUserAT = userStore((state) => state.setUserToken);
 
   const help = buttonsLogicStore((state) => state.show);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log('running');
+      if (user) {
+        user.getIdToken().then((token) => setUserAT(token));
+      }
+    });
+  }, []);
 
   function renderSwitch() {
     switch (counter) {
