@@ -3,7 +3,7 @@ const seeds = [
     uid: 'oFtYP4ntJdXaLOg6yJy9al8W69Z2',
     username: 'test1',
     email: 'test1@gmail.com',
-    avatar: 'user.59168e41eade7de7457f.png',
+    avatar: '/static/media/user.59168e41eade7de7457f.png',
     rating_total: 0,
     rating_count: 0,
     needHelp: true,
@@ -12,7 +12,9 @@ const seeds = [
       title: 'Why do bees sting?',
       description: 'Stinging bees. Please help.',
       hr_languages: ['Javascript', 'PHP'],
+      url: 'stinging-bees-please-help',
       time_created: '2022-06-29T15:49:09.638Z',
+      sandbox: 'https://www.youtube.com/watch?v=NHozn0YXAeE',
     },
   },
   {
@@ -29,6 +31,8 @@ const seeds = [
       description: 'Quack Quack',
       hr_languages: ['Python', 'Javascript'],
       time_created: '2022-06-29T12:48:09.638Z',
+      sandbox: 'https://www.youtube.com/watch?v=4fndeDfaWCg',
+      url: 'quack-quack',
     },
   },
   {
@@ -43,6 +47,7 @@ const seeds = [
       username: 'test3',
       title: 'Is cereal soup?',
       description: 'It must be soup. no?',
+      url: 'test1',
       hr_languages: ['C', 'Java'],
       time_created: '2022-06-21T12:48:09.638Z',
     },
@@ -59,6 +64,7 @@ const seeds = [
       username: 'test4',
       title: 'How many chickens needed to kill elephant?',
       description: 'Depends on the size of the elephant and chickens, I guess.',
+      url: 'blahblah',
       hr_languages: ['Ruby', 'C++', 'Javascript'],
       time_created: '2022-06-23T01:48:09.638Z',
     },
@@ -73,7 +79,7 @@ const seeds = [
     needHelp: true,
     help_request: {
       username: 'test5',
-
+      url: 'blahbla1h',
       title: 'Who would win a fight between Superman and Batman?',
       description: 'Man..',
       hr_languages: ['Typescript', 'Perl'],
@@ -93,6 +99,7 @@ const seeds = [
       title: 'Sliced bread',
       description:
         'Sliced bread was first manufactured by machine and sold in the 1920s by the Chillicothe Baking Company in Missouri. It was the greatest thing since…unsliced bread?',
+      url: 'blahbla2h',
       hr_languages: ['Rust', 'Go'],
       time_created: '2022-06-29T12:28:09.638Z',
     },
@@ -110,6 +117,7 @@ const seeds = [
       title: 'Google?',
       description:
         'The original name for the search engine Google was Backrub. It was renamed Google after the googol, which is the number one followed by 100 zeros.',
+      url: 'blahbl5ah',
       hr_languages: ['React', 'MongoDB'],
       time_created: '2022-06-29T10:48:09.638Z',
     },
@@ -128,6 +136,7 @@ const seeds = [
       description:
         'Cows don’t actually have four stomachs; they have one stomach with four compartments.',
       hr_languages: ['AngularJS', 'SQL'],
+      url: 'cows-dont-actually-have-four-stomachs-they-have-one-stomach-with-four-compartments',
       time_created: '2022-05-29T12:48:09.638Z',
     },
   },
@@ -144,6 +153,7 @@ const seeds = [
       title: 'Is this true?',
       description: 'Octopuses have three hearts.',
       hr_languages: ['Javascript', 'React', 'MongoDB'],
+      url: 'octopuses-have-three-hearts',
       time_created: '2022-05-30T12:48:09.638Z',
     },
   },
@@ -161,6 +171,7 @@ const seeds = [
       description:
         'Mosquitoes are the deadliest animal in the world: They kill more people than any other creature, due to the diseases they carry.',
       hr_languages: ['Java', 'Prisma'],
+      url: 'mosquitoes-are-the-deadliest-animal-in-the-world-they-kill-more-people-than-any-other-creature-due-to-the-diseases-they-carry',
       time_created: '2022-06-15T12:48:09.638Z',
     },
   },
@@ -178,6 +189,7 @@ const seeds = [
       description:
         'The green code in The Matrix was actually created from symbols in the code designers wifes sushi cookbook.',
       hr_languages: ['C++', 'React'],
+      url: 'the-green-code-in-the-matrix-was-actually-created-from-symbols-in-the-code-designers-wifes-sushi-cookbook',
       time_created: '2022-06-17T12:48:09.638Z',
     },
   },
@@ -194,6 +206,7 @@ const seeds = [
       title: 'Why do bees sting?',
       description:
         'Its impossible to hum while holding your nose (just try it!).',
+      url: 'its-impossible-to-hum-while-holding-your-nose-just-try-it',
       hr_languages: ['Javascript', 'Matlab'],
       time_created: '2022-06-16T12:48:09.638Z',
     },
@@ -209,6 +222,7 @@ const seeds = [
     help_request: {
       username: 'test13',
       title: 'Transfixed',
+      url: 'blahbla45h',
       description: 'People blink less when they use computers.',
       hr_languages: ['Perl', 'Python', 'Java'],
       time_created: '2022-06-22T11:48:09.638Z',
@@ -225,6 +239,7 @@ const seeds = [
     help_request: {
       username: 'test14',
       title: 'Whoops',
+      url: 'bla123hblah',
       description: 'The first Gigabyte Drive cost $40,000.',
       hr_languages: ['Javascript', 'Ruby'],
       time_created: '2022-06-22T11:48:09.638Z',
@@ -243,6 +258,7 @@ const seeds = [
       title: 'Better smile',
       description: 'MIT has computers that can detect fake smiles.',
       hr_languages: ['SQL', 'Go', 'React'],
+      url: 'mit-has-computers-that-can-detect-fake-smiles',
       time_created: '2022-04-22T11:48:09.638Z',
     },
   },
@@ -261,6 +277,8 @@ const seeds = [
         'I have been in this chat room for 4 months. I do not know what day it is. Please for the love of god help me.',
       hr_languages: ['React Native', 'Capacitor', 'React'],
       time_created: '2022-02-02T11:48:09.638Z',
+      url: 'i-have-been-in-this-chat-room-for-4-months-i-do-not-know-what-day-it-is-please-for-the-love-of-god-help-me',
+      sandbox: 'https://www.youtube.com/watch?v=6EEW-9NDM5k',
     },
   },
   {

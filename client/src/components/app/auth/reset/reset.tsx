@@ -1,65 +1,52 @@
 import '../login/login.scss';
-import github from '../../../../Images/git.png';
-import google from '../../../../Images/google.png';
-import apple from '../../../../Images/apple.png';
 import logo from '../../../../Images/logo.png';
 import { buttonsLogicStore } from '../../../../state-stores/state-stores';
+import { resetPassword } from '../../../../api-services/api-auth';
+import { useState } from 'react';
 
 function Reset() {
-  const registerShow = buttonsLogicStore((state) => state.setReg);
+  const loginShow = buttonsLogicStore((state) => state.setLogin);
+  const [message, setMessage] = useState('');
 
+  const resetPass = async (event: any) => {
+    event.preventDefault();
+    const email: string = event.target.email.value;
+    const result = await resetPassword(email);
+    setMessage(result);
+  };
   return (
     <div className="form-container">
       <div className="auth-logo">
         <img className="auth-logo-img" src={logo} alt="duck"></img>
       </div>
       <div className="login-form">
-        <div className="sign-buttons-cont">
-          <button id="sign-button" className="sign-in-button">
-            Sign in
-          </button>
-          <button
-            id="sign-button"
-            className="sign-up-button"
-            onClick={registerShow}
-          >
-            Sign up
-          </button>
+        <div className="reset-buttons-cont" id="reset">
+          <h4 id="sign-button" className="sign-in-button">
+            Reset password
+          </h4>
         </div>
         <div className="login-container">
-          <input
-            type="text"
-            className="login-textBox"
-            // value={}
-            // onChange={}
-            placeholder="Email"
-            required
-          />
-          <button
-            className="reset-btn"
-            // onClick={}
-          >
-            Reset Your Password
-          </button>
+          <form onSubmit={resetPass} className="reset-form">
+            <label htmlFor="email" className="reg-input">
+              Email:{' '}
+            </label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              className="reset-textBox"
+              required
+            />
+            <p className="message-after">{message}</p>
+            <button className="reset-btn" id="margin-bottom">
+              Reset Your Password
+            </button>
+            <button id="sign-button" className="reset-btn" onClick={loginShow}>
+              Return to Sign In
+            </button>
+          </form>
         </div>
       </div>
-      <p className="divider-login">
-        {/* ---------------------------------------- Or
-        ----------------------------------------{' '} */}
-        <hr />
-      </p>
-      <div className="login-other-platforms">
-        <button id="platform-button">
-          <img id="socialmedia-img" src={google} alt="google"></img>
-        </button>
-        <button id="platform-button">
-          {' '}
-          <img id="socialmedia-img" src={apple} alt="apple"></img>
-        </button>
-        <button id="platform-button">
-          <img id="socialmedia-img" src={github} alt="github"></img>
-        </button>
-      </div>{' '}
     </div>
   );
 }

@@ -16,6 +16,7 @@ interface HelpReqSchema {
   description: string;
   hr_languages: string[];
   time_created: Date;
+  sandbox: string;
   url: string;
 }
 

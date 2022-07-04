@@ -12,8 +12,8 @@ import { HelpReqSchema } from '../../../interfaces';
 import Tag from './tag/tag';
 import langTags from '../../../utils/tags';
 
-
 function Dashboard() {
+  window.history.replaceState(null, '', '/');
   const helpDash = buttonsLogicStore((state) => state.setHelp);
   const setUser = userStore((state) => state.setUser);
   const uid = userStore((state) => state.uid);
@@ -104,7 +104,9 @@ function Dashboard() {
   const handleClick = (e: any) => {
     e.preventDefault();
     const value = e.target.innerHTML;
-    if(tags.includes(value)) {return;}
+    if (tags.includes(value)) {
+      return;
+    }
     setTags((tags) => [...tags, value]);
   };
 

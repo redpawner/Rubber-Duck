@@ -8,16 +8,30 @@ import Reset from './auth/reset/reset';
 import CreateHelp from './dashboard/create-help-request/create-help-request';
 import Dashboard from './dashboard/dashboard';
 import Chat from './dashboard/chat-room/chat';
-import { userStore } from '../../state-stores/state-stores';
-
 import Profile from './dashboard/profile/profile';
+import { userStore } from '../../state-stores/state-stores';
+import { auth } from '../../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
   const counter = buttonsLogicStore((state) => state.counter);
-
+  const setUserUid = userStore((state) => state.setUserUid);
   const userAT = userStore((state) => state.userAT);
+  const setUserAT = userStore((state) => state.setUserToken);
+  const setDashboard = buttonsLogicStore((state) => state.setDashboard);
 
-  const help = buttonsLogicStore((state) => state.show);
+  const board = buttonsLogicStore((state) => state.show);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log('running');
+      if (user) {
+        setUserUid(user.uid);
+        user.getIdToken().then((token) => setUserAT(token));
+        setDashboard();
+      }
+    });
+  }, []);
 
   function renderSwitch() {
     switch (counter) {
@@ -31,7 +45,7 @@ function App() {
   }
 
   function renderBoards() {
-    switch (help) {
+    switch (board) {
       case 'chat':
         return <Chat />;
       case 'dashboard':

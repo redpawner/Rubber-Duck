@@ -62,7 +62,7 @@
 }
 
 .middle-section-cont {
-  margin-top: 4vh;
+  margin-top: 1vh;
   display: flex;
   width: 75%;
   height: 100%;
@@ -79,16 +79,15 @@
 }
 
 .readme-title {
-  margin-top: -1vh;
   font-family: $main-font-family;
   text-align: center;
   width: 100%;
   color: $grey-shade;
+  margin: 0;
 }
 
 .rules-container {
   width: 65%;
-  // background-color: #a53993;
   height: 90%;
   display: flex;
   flex-direction: column;
@@ -126,7 +125,17 @@
 }
 
 .container-height {
-  height: 90%;
+  height: 100%;
+  margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.container-height2 {
+  height: 100%;
+  margin-top: 1.5vh;
+  margin-bottom: 2vh;
   display: flex;
   flex-direction: column;
 }

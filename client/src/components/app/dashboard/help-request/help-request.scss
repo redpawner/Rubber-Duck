@@ -149,27 +149,87 @@
 .HR-popup {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #a53993;
-  color: white;
 
-  padding: 2em;
-  font-family: monospace;
-  max-height: 5vw;
-  border: 2px solid black;
-  border-radius: 0.3em;
+  align-items: flex-start;
+  background-color: white;
+  color: #3022ab;
+  padding: 0em 2em 2em 1.2em;
+
+  font-family: $main-font-family;
+  max-height: auto;
+  border: solid thin black;
+  border-radius: 0.5em;
 }
+
+.X-outerbox {
+  width: 28vw;
+  padding-top: 0.3em;
+
+  display: flex;
+  justify-content: space-between;
+}
+.userbox {
+  display: flex;
+  justify-content: space-between;
+}
+.usernamebox {
+  font-weight: bolder;
+  margin-left: 0;
+  padding-left: 0;
+}
+.askbox {
+  padding-left: 0.5vw;
+}
+.close {
+  border-radius: 0.6em;
+
+  cursor: pointer;
+  margin-top: 0;
+  color: black;
+}
+.close:hover {
+  font-weight: bolder;
+}
+
 
 .HR-title {
   font-size: x-large;
+  margin-top: 3vh;
   margin-bottom: 1.7vh;
-  color: orange;
-  font-weight: 550;
+
+  color: $grey-shade;
+  font-weight: bolder;
+  width: 25vw;
+  padding-bottom: 1vh;
+  padding-left: 1vw;
+  border-bottom: $divider-line;
 }
+.desc-box {
+  padding: 0.3em;
+  padding-left: 1vw;
+
+  font-weight: 550;
+  margin-bottom: 1.5em;
+  font-size: $button-font-size;
+  text-align: left;
+}
+.help-buttonx {
+  align-self: center;
+  cursor: pointer;
+  border-radius: $border-radius;
+  width: 10vw;
+  height: 5vh;
+  font-family: $main-font-family;
+  font-weight: bold;
+  color: white;
+  background-color: #3022ab;
+  font-size: $button-weight;
+  border: none;
+}
+
 .popup-content {
   margin: 0;
-  background: rgb(255, 255, 255);
+  background: transparent;
   width: 30vw;
   padding: 0;
 }

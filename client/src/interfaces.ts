@@ -50,7 +50,7 @@ type User = {
   rating_count: Number;
   needHelp: Boolean;
   help_request: HelpReqSchema;
-  regUser: (uid: string, username: string, avatar: string) => void;
+
   setUser: (
     username: string,
     rating_total: Number,
@@ -61,6 +61,7 @@ type User = {
   ) => void;
   setUserToken: (userAT: string) => void;
   setUserUid: (uid: string) => void;
+  setAvatar: (avatar: string) => void;
 };
 
 export type {
