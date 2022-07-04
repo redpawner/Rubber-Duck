@@ -1,4 +1,4 @@
-@import "../../../stylesheet.scss";
+@import '../../../stylesheet.scss';
 
 .dashboard-container {
   border-radius: $border-radius;
@@ -11,6 +11,24 @@
   align-items: center;
   border: $border;
   box-shadow: $div-shadow;
+}
+
+@media screen and (max-width: 480px) {
+  .dashboard-container {
+    width: 85%;
+    .dashboard-title {
+      font-size: 1.7rem;
+    }
+    .create-help-butt {
+      width: 9rem;
+      font-size: 0.8rem;
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .dashboard-container {
+    width: 85%;
+  }
 }
 
 .flexcolumn {
@@ -33,8 +51,8 @@
 }
 
 .search-field input {
-  width: 7vw;
-  height: 2.5vh;
+  width: 7rem;
+  padding: 0.3rem;
   border-radius: $border-radius;
   border: none;
   font-family: $main-font-family;
@@ -49,22 +67,20 @@
 }
 
 .search-tags {
-  display:flex;
+  display: flex;
   align-items: flex-end;
-  max-width:18vw;
+  max-width: 18vw;
   max-height: 100vh;
-  flex-grow:0;
-  flex-shrink:0;
-  columns:3;
+  flex-grow: 0;
+  flex-shrink: 0;
+  columns: 3;
   list-style: none;
   font-family: $main-font-family;
   font-size: $button-font-size;
   color: $blue-shade;
   font-weight: bold;
   margin-bottom: 0.5vh;
-
 }
-
 
 .dashboard-title {
   font-family: $main-font-family;
@@ -87,8 +103,8 @@
 
 .create-help-butt:hover {
   color: $grey-shade;
-  background-color:transparent;
-  border:3px solid black;
+  background-color: transparent;
+  border: 3px solid black;
 }
 
 .help-list {
@@ -117,30 +133,29 @@
 .fa fa-plus {
   font-size: 0.8999999999999999vw;
 }
-.dropdown-context{
+.dropdown-context {
   display: block;
   position: absolute;
   background-color: rgb(111, 10, 219);
-  width: 8vh;
+
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
+  padding: 0.8rem 1rem;
   z-index: 1;
   border-radius: $border-radius;
-  color:white;
-  height:auto;
-  width:8vw;
-  overflow:scroll;
+  color: white;
+  height: auto;
+
+  overflow: scroll;
 }
 .dropdown-context::-webkit-scrollbar {
-  display: none
+  display: none;
 }
 .dropdown-context-none::-webkit-scrollbar {
-  display: none
+  display: none;
 }
 
 .dropdown-box:hover .dropdown-context-none {
   display: block;
-
 }
 
 .dropdown-context-none {
@@ -152,20 +167,20 @@
   padding: 12px 16px;
   z-index: 1;
   border-radius: $border-radius;
-  color:white;
+  color: white;
   // border: solid white;
-  height:40vh;
-  width:8vw;
-  overflow:scroll;
+  height: 20rem;
+  width: 7rem;
+  overflow: scroll;
 }
 
-.searchTile{
+.searchTile {
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
-  padding:3px 0px;
+  padding: 3px 0px;
 }
-.searchTile:hover{
-  color:rgb(246, 163, 11);
+.searchTile:hover {
+  color: rgb(246, 163, 11);
   font-size: 1.4rem;
   font-weight: 700;
 }

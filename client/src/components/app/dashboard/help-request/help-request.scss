@@ -1,14 +1,13 @@
 @import '../../../../stylesheet.scss';
 
 .help-container {
-  height: 10vh;
   width: 40vh;
   background-color: #f8eef6;
-  // opacity: 0.4;
   border-radius: $border-radius;
   display: flex;
   flex-direction: column;
-  margin-bottom: 4vh;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
 
   .help-title {
     margin-left: 2vh;
@@ -24,12 +23,35 @@
     font-family: $main-font-family;
     font-size: 0.65vw;
     color: $blue-shade;
-    margin-top: -1vh;
+    // margin-top: -1vh;
   }
 }
 
+@media screen and (max-width: 480px) {
+  .help-container {
+    width: 270px;
+    .help-title {
+      font-size: 1.3rem;
+    }
+    .help-details {
+      font-size: 0.9rem;
+    }
+  }
+  .bottom-details {
+    font-size: 0.9rem;
+    .butts-cont {
+      .help-button {
+        font-size: 0.7rem !important;
+        width: 3rem !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+}
+
 .bottom-details {
-  margin-top: -1vh;
+  // margin-top: -1vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -45,10 +67,9 @@
     height: 3.5vh;
     width: 15vh;
     display: flex;
-    justify-content: space-between;
-    margin-right: 2vh;
-    margin-top: -1vh;
-    display: flex;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+    justify-content: flex-end;
 
     .help-button {
       border-radius: $border-radius;
@@ -60,6 +81,7 @@
       background-color: #a53993;
       font-size: 0.65vw;
       border: none;
+      margin-left: 0.1rem;
     }
 
     .help-button:hover {
@@ -67,26 +89,25 @@
     }
   }
 }
-.HR-popup{
-  display:flex;
+.HR-popup {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #a53993;
-  color:white;
+  color: white;
 
-  padding:2em;
-  font-family:monospace;
+  padding: 2em;
+  font-family: monospace;
   max-height: 5vw;
-  border:2px solid black;
-  border-radius: .3em;
-
+  border: 2px solid black;
+  border-radius: 0.3em;
 }
 
-.HR-title{
+.HR-title {
   font-size: x-large;
   margin-bottom: 1.7vh;
-  color:orange;
+  color: orange;
   font-weight: 550;
 }
 .popup-content {
