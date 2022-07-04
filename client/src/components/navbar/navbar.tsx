@@ -9,6 +9,7 @@ function Navbar() {
   const avatar = userStore((state) => state.avatar) as string;
   const setUserToken = userStore((state) => state.setUserToken);
   const [profilePic, setProfilePic] = useState(defaultAvatar);
+  const returnDashboard = buttonsLogicStore((state) => state.setDashboard);
 
   useEffect(() => {
     if (avatar && avatar.length > 0) {
@@ -33,7 +34,12 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="small-logo">
-        <img className="logo-img" src={logo} alt="logo"></img>
+        <img
+          className="logo-img"
+          src={logo}
+          alt="logo"
+          onClick={returnDashboard}
+        ></img>
       </div>
       <div className="profile-button">
         <img className="profile-icon" src={profilePic} alt="profile"></img>

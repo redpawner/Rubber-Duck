@@ -19,7 +19,7 @@ function App() {
   const userAT = userStore((state) => state.userAT);
   const setUserAT = userStore((state) => state.setUserToken);
 
-  const help = buttonsLogicStore((state) => state.show);
+  const board = buttonsLogicStore((state) => state.show);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -42,7 +42,7 @@ function App() {
   }
 
   function renderBoards() {
-    switch (help) {
+    switch (board) {
       case 'chat':
         return <Chat />;
       case 'dashboard':
