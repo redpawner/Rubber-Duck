@@ -13,8 +13,6 @@ function Help({ helpRequest }: Props) {
   const closeModal = () => setOpen(false);
   const showChat = buttonsLogicStore((state) => state.setChat);
 
-  console.log(helpRequest);
-
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
     'en-gb',
     {
