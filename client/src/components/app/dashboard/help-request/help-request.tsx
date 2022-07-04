@@ -33,29 +33,21 @@ function Help({ helpRequest }: Props) {
     }
   );
 
-  const answerHelpRequests = async (event:any) => {
-    //update needHelp to false
+  const answerHelpRequests = async (event: any) => {
     await updateHR({
       variables: {
         filter: {
-          username: helpRequest.username
+          username: helpRequest.username,
         },
         record: {
           needHelp: false,
-
         },
       },
     });
-    console.log(helpRequest.username);
-    //update  const [helpRequests, setHelpRequests]
     const roomID = helpRequest.url;
     window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
     showChat();
-  };
-
-  const infoHandler = (e: any) => {
-    console.log(helpRequest.description);
   };
 
   return (
@@ -79,7 +71,6 @@ function Help({ helpRequest }: Props) {
 
             <Popup open={open} closeOnDocumentClick onClose={closeModal}>
               <div className="HR-popup">
-
                 <div className="X-outerbox">
                   <div className="userbox">
                     <div className="usernamebox">{helpRequest.username}</div>
