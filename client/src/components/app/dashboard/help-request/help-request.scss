@@ -1,65 +1,144 @@
 @import '../../../../stylesheet.scss';
 
 .help-container {
-  height: 10vh;
-  width: 40vh;
+  width: 19.5vw;
+  min-width: 300px;
+  // width: 23.5rem;
+
+  min-height: 9rem;
+
+  // min-height: 10rem;
+  position: relative;
   background-color: #f8eef6;
-  // opacity: 0.4;
   border-radius: $border-radius;
   display: flex;
   flex-direction: column;
-  margin-bottom: 4vh;
+
+  margin-bottom: 1rem;
+  padding: 0.5rem;
 
   .help-title {
-    margin-left: 2vh;
+    // margin-left: 2vh;
     font-family: $main-font-family;
-    font-size: 0.95vw;
-    color: $blue-shade;
+    font-size: 1.7rem;
+    // color: $blue-shade;
+    color: $grey-shade;
     font-weight: bold;
     cursor: pointer;
+    margin-bottom: 0;
+    margin-top: 10px;
   }
 
   .help-details {
-    margin-left: 2vh;
     font-family: $main-font-family;
-    font-size: 0.65vw;
-    color: $blue-shade;
-    margin-top: -1vh;
+    font-size: 0.8rem;
+    // color: $blue-shade;
+    color: black;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .help-container {
+    width: 270px;
+    min-width: 200px;
+    margin-left: 10px;
+    .help-title {
+      font-size: 1.3rem;
+    }
+    .help-details {
+      font-size: 0.9rem;
+    }
+    #tags {
+      font-size: 0.8rem;
+    }
+  }
+  .bottom-details {
+    font-size: 0.9rem;
+    .butts-cont {
+      .help-button {
+        font-size: 0.7rem !important;
+        width: 3rem !important;
+      }
+    }
+  }
+}
+@media screen and (min-width: 620px) and (max-width: 1420px) {
+  .help-container {
+    width: 350px;
+    margin-left: 10px;
+    .help-title {
+      font-size: 1.7rem;
+    }
+    .help-details {
+      font-size: 1.1rem;
+    }
+    #tags {
+      font-size: 1.1rem;
+    }
+  }
+  .bottom-details {
+    font-size: 1.1rem;
+    .butts-cont {
+      .help-button {
+        font-size: 0.7rem !important;
+        width: 3rem !important;
+      }
+    }
   }
 }
 
 .bottom-details {
-  margin-top: -1vh;
+  // margin-top: -1vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: absolute;
+  bottom: 1%;
+  width: 95%;
+  margin-bottom: 10px;
 
   #tags {
-    margin-left: 2vh;
+    // margin-left: 2vh;
     font-family: $main-font-family;
     color: $blue-shade;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      margin-right: 0.2rem;
+      // background-color: white;
+      border-radius: $border-radius;
+    }
   }
 
   .butts-cont {
     height: 3.5vh;
-    width: 15vh;
+
+    width: 7vw;
+
     display: flex;
-    justify-content: space-between;
-    margin-right: 2vh;
-    margin-top: -1vh;
-    display: flex;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+    justify-content: flex-end;
 
     .help-button {
       border-radius: $border-radius;
-      width: 7vh;
-      height: 3.5vh;
+      width: 3vw;
+      // width: 3.5rem;
+      height: 2.2rem;
+      min-height: 35px;
+      min-width: 45px;
+      // height: 3.5vh;
       cursor: pointer;
       font-family: $main-font-family;
       color: white;
       background-color: #a53993;
-      font-size: 0.65vw;
+      font-size: 0.8rem;
       border: none;
+      margin-left: 0.1rem;
+      padding: 0.9em;
     }
 
     .help-button:hover {
@@ -112,10 +191,12 @@
   font-weight: bolder;
 }
 
+
 .HR-title {
   font-size: x-large;
   margin-top: 3vh;
   margin-bottom: 1.7vh;
+
   color: $grey-shade;
   font-weight: bolder;
   width: 25vw;
@@ -126,6 +207,7 @@
 .desc-box {
   padding: 0.3em;
   padding-left: 1vw;
+
   font-weight: 550;
   margin-bottom: 1.5em;
   font-size: $button-font-size;

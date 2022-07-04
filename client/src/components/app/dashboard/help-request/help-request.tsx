@@ -58,7 +58,21 @@ function Help({ helpRequest }: Props) {
         {prettyDate} @{helpRequest.username}
       </p>
       <div className="bottom-details">
-        <a id="tags">{helpRequest.hr_languages.map((e) => e + ' ')}</a>
+
+        <div id="tags">
+          {helpRequest.hr_languages.map((e) => {
+            return <span>{e}</span>;
+          })}
+        </div>
+        {/* <div>
+          <Popup
+            trigger={<button className="help-button">Info</button>}
+            position="right center"
+          >
+            <div>{helpRequest.description}</div>
+          </Popup>
+        </div> */}
+
         <div className="butts-cont">
           <div>
             <button
@@ -71,6 +85,7 @@ function Help({ helpRequest }: Props) {
 
             <Popup open={open} closeOnDocumentClick onClose={closeModal}>
               <div className="HR-popup">
+
                 <div className="X-outerbox">
                   <div className="userbox">
                     <div className="usernamebox">{helpRequest.username}</div>
@@ -85,6 +100,7 @@ function Help({ helpRequest }: Props) {
                 <button className="help-buttonx" onClick={answerHelpRequests}>
                   Help
                 </button>
+
               </div>
             </Popup>
           </div>
