@@ -31,6 +31,7 @@ import {
   GET_HR_BY_URL,
   UPDATE_HR,
 } from '../../../../graphql/queries-mutations';
+import TextareaAutosize from 'react-textarea-autosize';
 
 const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
@@ -299,7 +300,7 @@ isUserHelper && sendDefaultMessage(defaultMessage)
             <form className="text-area-form" onSubmit={sendMessage}>
               {' '}
               {/* chat area */}
-              <textarea
+              <TextareaAutosize
                 value={arrivalMessage.text}
                 onChange={createMessage}
                 placeholder="Type a message..."
