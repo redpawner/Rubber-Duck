@@ -17,7 +17,7 @@ function App() {
 
   const userAT = userStore((state) => state.userAT);
 
-  const help = buttonsLogicStore((state) => state.show);
+  const board = buttonsLogicStore((state) => state.show);
 
   function renderSwitch() {
     switch (counter) {
@@ -31,7 +31,7 @@ function App() {
   }
 
   function renderBoards() {
-    switch (help) {
+    switch (board) {
       case 'chat':
         return <Chat />;
       case 'dashboard':
