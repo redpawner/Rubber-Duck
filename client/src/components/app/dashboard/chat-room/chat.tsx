@@ -413,7 +413,7 @@ setShowHelpInfo(()=>!showHelpInfo)
         <button onClick={toggleHelpInfo}><img src={require('../../../../Images/icon-arrow.png')}
                         alt="code-icon" className = {showHelpInfo? 'right': 'left'}></img></button>
 
-          {showHelpInfo?<div className='features-container-info'>
+          { <div className='features-container-info' style = {showHelpInfo? {opacity : 1 , transition: "opacity 50ms linear", transitionDelay: "250ms"}:{opacity : 0  }}>
            <h1 className="help-chat-title" >{helpRequestInfo.title}</h1>
            <div className="problem-div">
            <p className="problem-content">
@@ -454,10 +454,10 @@ setShowHelpInfo(()=>!showHelpInfo)
           {/* <button className="res-button" onClick={resolveHandler}> */}
           <button className="res-button">Resolved</button>
         </div>
-        </div>: null}
+        </div>}
           </div>
       </div>
-    
+
   );
 }
 

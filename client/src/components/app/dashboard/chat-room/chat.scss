@@ -321,10 +321,7 @@ transform: rotate(180deg);
   display: flex;
   flex-direction: column;
   align-items: center;
-  // background-color: red;
-  // min-width: 300px;
   min-height: 400px;
-  transition: width 300ms linear;
 }
 }
 
@@ -442,5 +439,5 @@ position: relative;
   width:20vw;
   display:flex;
   justify-content: space-between;
-  
+
 }
