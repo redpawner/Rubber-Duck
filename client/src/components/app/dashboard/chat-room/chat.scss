@@ -206,8 +206,8 @@ position: absolute;
       // margin-right: 10px;
 
       .avatar-img {
-        max-width: 70%;
-        max-height: 70%;
+        max-width: 50%;
+        max-height: 50%;
         border-radius: 50%;
       }
     }
@@ -287,21 +287,45 @@ position: absolute;
   display: none;
 }
 
-
-
-
-
-
 .features-container {
   height: 100%;
-  width: 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
   // background-color: red;
-  min-width: 300px;
+  // min-width: 300px;
   min-height: 400px;
+  flex-shrink: 0;
+  transition: width 300ms linear;
+  button {
+    margin-top: 10px;
+    align-self: flex-end;
+    margin-right: 5px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
 
+  }
+  .right {
+width: 12px;
+height:12px ;
+transform: rotate(180deg);
+
+  }
+  .left {
+    width: 12px;
+    height:12px ;
+  }
+.features-container-info{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // background-color: red;
+  // min-width: 300px;
+  min-height: 400px;
+  transition: width 300ms linear;
+}
 }
 
 .play {
@@ -320,6 +344,7 @@ position: relative;
   border-radius: $border-radius 0 0 $border-radius;
   min-width: 300px;
   min-height: 400px;
+  flex-grow: 1;
 
 }
 
@@ -336,20 +361,23 @@ position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: $blue-shade;
+  color: $grey-shade;;
   border-radius: $border-radius;
-  background-color: #f8eef6;
+  // background-color: #f8eef6;
+
 }
 
 .problem-content {
   margin-left: 1vw;
   margin-right: 1vw;
   font-family: $main-font-family;
+  text-align: center;
+
 }
 
 .help-tags-list {
   font-family: $main-font-family;
-  color: $blue-shade;
+  color: $grey-shade;;
   font-weight: bold;
   list-style: none;
   column-count: 3;
@@ -361,13 +389,15 @@ position: relative;
 .people-online {
   width: 80%;
   height: 10vh;
-  background-color: #f8eef6;
+  // background-color: #f8eef6;
   border-radius: $border-radius;
   margin-top: 5%;
   display: flex;
   justify-content: space-between;
   color: $grey-shade;
   font-weight: bold;
+  transition: width 300ms linear;
+
 }
 
 .avatar-img2 {
@@ -377,6 +407,7 @@ position: relative;
   margin-right: 2vh;
   margin-top: 2vh;
   cursor: pointer;
+
 }
 
 .currently-online {
@@ -386,6 +417,14 @@ position: relative;
 }
 
 .avatar-img3 {
+  max-width: 60%;
+  max-height: 60%;
+  // border-radius: 50%;
+  margin-right: 2vh;
+  margin-top: 2vh;
+  cursor: pointer;
+}
+.sandbox {
   max-width: 60%;
   max-height: 60%;
   // border-radius: 50%;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './help-request.scss';
-import { buttonsLogicStore, userRoleStore } from '../../../../state-stores/state-stores';
+import { buttonsLogicStore} from '../../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../../interfaces';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
@@ -15,8 +15,6 @@ function Help({ helpRequest }: Props) {
   const closeModal = () => setOpen(false);
   const [updateHR] = useMutation(UPDATE_HR);
   const showChat = buttonsLogicStore((state) => state.setChat);
-//We can take this out if we can get the specific hr frome the db
-  const setUserRole = userRoleStore((state) => state.setUserRole);
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
     'en-gb',
@@ -50,7 +48,6 @@ function Help({ helpRequest }: Props) {
     window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
 //We can take this out if we can get the specific hr frome the db
-setUserRole(true)
 showChat();
   };
 

@@ -1,7 +1,7 @@
 import create from 'zustand';
 //Enable redux devtools in browser
 import { devtools, persist } from 'zustand/middleware';
-import { User, UserSettingsStore, MyStore, HelpReqSchema, UserRoleStore } from '../interfaces';
+import { User, UserSettingsStore, MyStore, HelpReqSchema } from '../interfaces';
 
 const buttonsLogicStore = create<MyStore>()(
   devtools((set) => ({
@@ -30,19 +30,7 @@ const useUserSettingsStore = create<UserSettingsStore>()(
 );
 
 
-//to store the role of the user in a particular helprequest (if we end up saving the hr in backend with author this is not necessary)
-const userRoleStore = create<UserRoleStore>()(
-  devtools(
-   (set) => ({
-    helper: false,
-    setUserRole: (helper: boolean) => {
-      set({ helper: helper });
-    },
-    })
 
-  )
-);
-//----------------
 
 const userStore = create<User>()(
   devtools((set) => ({
@@ -90,4 +78,4 @@ const userStore = create<User>()(
   }))
 );
 
-export { buttonsLogicStore, useUserSettingsStore, userStore,userRoleStore  };
+export { buttonsLogicStore, useUserSettingsStore, userStore };

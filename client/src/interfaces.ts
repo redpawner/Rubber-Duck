@@ -32,10 +32,9 @@ type UserSettingsStore = {
   darkMode: boolean;
   toggleDarkMode: () => void;
 };
-//We can take this out when we get specific help requests from db
-interface UserRoleStore {
-helper: boolean;
-setUserRole: (helper: boolean)=> void
+interface UserRole {
+helper: string;
+author: string;
 }
 
 interface HelpReqSchema {
@@ -77,5 +76,5 @@ export type {
   HelpReqSchema,
   UserSettingsStore,
   MyStore,
-  UserRoleStore
+  UserRole
 };
