@@ -91,7 +91,8 @@ function Dashboard() {
 
   const handleChange = (e: any) => {
     e.preventDefault();
-    const value = e.target.value;
+    //make it case insensitive
+    const value = e.target.value.toLowerCase();
 
     if (value) {
       setShowDrop(true);
@@ -117,7 +118,7 @@ function Dashboard() {
   };
 
   const mapLang = langTags
-    .filter((tag) => tag.includes(formValue))
+    .filter((tag) => tag.toLowerCase().includes(formValue))
     .map((tag) => {
       return (
         <div className="searchTile" onClick={handleClick}>
