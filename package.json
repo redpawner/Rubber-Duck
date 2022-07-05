@@ -4,7 +4,7 @@
   "description": "node app ",
   "main": "app.ts",
   "scripts": {
-    "start": "node app.ts"
+    "start": "node index.ts"
   },
   "repository": {
     "type": "git",
