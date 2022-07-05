@@ -9,7 +9,7 @@ function Message({ message }: messageProps) {
       <div className="chat-message-avatar">
         <img
           className="avatar-img"
-          src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj"
+          src={message.avatar}
           alt="avatar"
         />
 
