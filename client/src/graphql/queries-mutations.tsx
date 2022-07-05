@@ -29,6 +29,7 @@ const GET_HR_BY_LANGUAGE = gql`
       avatar
       needHelp
       help_request {
+        _id
         time_created
         title
         description

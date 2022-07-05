@@ -10,9 +10,13 @@ function Reset() {
 
   const resetPass = async (event: any) => {
     event.preventDefault();
-    const email: string = event.target.email.value;
-    const result = await resetPassword(email);
-    setMessage(result);
+    try {
+      const email: string = event.target.email.value;
+      const result = await resetPassword(email);
+      setMessage(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="form-container">

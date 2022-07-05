@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { userStore } from '../../../../state-stores/state-stores';
 import '../login/login.scss';
 import './register.scss';
@@ -18,34 +18,45 @@ function Register() {
   const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
 
-  const useHandleSubmit = async (event: any) => {
+  const useHandleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    if (event.target.password.value !== event.target.confirmPassword.value) {
+    const form = event.target as HTMLElement;
+    const email: string = (form.querySelector('#email') as HTMLInputElement)
+      ?.value;
+    const password: string = (
+      form.querySelector('#password') as HTMLInputElement
+    )?.value;
+    const password1: string = (
+      form.querySelector('#password1') as HTMLInputElement
+    )?.value;
+    const username: string = (
+      form.querySelector('#username') as HTMLInputElement
+    )?.value;
+
+    if (password !== password1) {
       setError('Passwords do not match!');
       return;
     }
-
-    const email: string = event.target.email.value;
-    const password: string = event.target.password.value;
-    const username: string = event.target.username.value;
     // const languages: [string] = [event.target.languages.value];
 
     const result = await fbCreateUser(email, password);
 
     setUserUid(result.uid);
-
-    await createUser({
-      variables: {
-        record: {
-          avatar: defaultPic,
-          username: username,
-          email: email,
-          uid: result.uid,
+    try {
+      await createUser({
+        variables: {
+          record: {
+            avatar: defaultPic,
+            username: username,
+            email: email,
+            uid: result.uid,
+          },
         },
-      },
-    });
-
-    setUserToken(result.accessToken);
+      });
+      setUserToken(result.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -119,10 +130,7 @@ function Register() {
             autoComplete="username"
             required
           />
-          <button
-            className="login-btn2"
-            // onClick={}
-          >
+          <button type="submit" className="login-btn2">
             Create Account
           </button>
         </form>

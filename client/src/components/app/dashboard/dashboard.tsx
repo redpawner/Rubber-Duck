@@ -16,6 +16,7 @@ import langTags from '../../../utils/tags';
 function Dashboard() {
   const setUser = userStore((state) => state.setUser);
   const uid = userStore((state) => state.uid);
+  const username = userStore((state) => state.username);
 
   const [showDrop, setShowDrop] = useState(false);
   const [formValue, setFormValue] = useState('');
@@ -49,7 +50,7 @@ function Dashboard() {
     if (uid) {
       collectUser();
     }
-  }, [uid]);
+  }, [uid]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [getHRByLanguage] = useLazyQuery(GET_HR_BY_LANGUAGE);
 
@@ -92,11 +93,10 @@ function Dashboard() {
     if (uid) {
       getHelpRequests();
     }
-  }, [tags, uid]);
+  }, [tags, uid]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e: any) => {
     e.preventDefault();
-    //make it case insensitive
     const value = e.target.value.toLowerCase();
 
     if (value) {
@@ -136,16 +136,17 @@ function Dashboard() {
       new Date(a.time_created).getTime() - new Date(b.time_created).getTime()
     );
   });
-
-  const mapHelpRequests = helpRequests.map(
-    (helpRequest: HelpReqSchema, index) => {
+  const mapHelpRequests = helpRequests
+    .filter((hr: any) => {
+      return hr.username !== username;
+    })
+    .map((helpRequest: HelpReqSchema, index) => {
       return (
-        <li>
+        <li key={index}>
           <Help helpRequest={helpRequest} key={index} />
         </li>
       );
-    }
-  );
+    });
 
   return (
     <div className="dashboard-container">

@@ -1,8 +1,5 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import './help-request.scss';
-
-import { userStore } from '../../../../state-stores/state-stores';
-
 import { HelpReqSchema } from '../../../../interfaces';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
@@ -37,7 +34,7 @@ function Help({ helpRequest }: Props) {
     }
   );
 
-  const answerHelpRequests = async (event: any) => {
+  const answerHelpRequests = async (event: FormEvent) => {
     await updateHR({
       variables: {
         filter: {
@@ -88,11 +85,13 @@ function Help({ helpRequest }: Props) {
               <div className="HR-popup">
                 <div className="X-outerbox">
                   <div className="userbox">
-                    <div className="usernamebox">{helpRequest.username}</div>
-                    <div className="askbox"> asked:</div>
-                  </div>
-                  <div className="close" onClick={closeModal}>
-                    X
+                    <div className="usernamebox">
+                      {helpRequest.username} asked:
+                    </div>
+                    {/* <div className="askbox"> asked:</div> */}
+                    <div className="close" onClick={closeModal}>
+                      X
+                    </div>
                   </div>
                 </div>
                 <div className="HR-title">{helpRequest.title}</div>

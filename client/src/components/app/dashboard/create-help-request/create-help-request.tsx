@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './create-help-request.scss';
 import { userStore } from '../../../../state-stores/state-stores';
 import { useMutation } from '@apollo/client';
 import { useNavigate, Link } from 'react-router-dom';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 import langTags from '../../../../utils/tags';
-
 import Tag from '../tag/tag';
 import Popup from 'reactjs-popup';
+
+
 
 function string_to_slug(str: any) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
@@ -49,16 +50,17 @@ function CreateHelp() {
 
   const publish = async (event: any) => {
     event.preventDefault();
+
     if (tags.length === 0) {
       setMessage('Please add tags');
       return;
     }
     setShowDrop(false);
     const description = event.target.description.value;
-    // GENERATE UNIQUE CHAT ROOM LOGIC HERE
+
     const slugDescription = string_to_slug(description);
     const roomID = slugDescription;
-    window.history.replaceState(null, '', '/chatroom');
+
     window.location.hash = roomID;
 
     let sandbox = 'https://codesandbox.io/';
@@ -77,17 +79,23 @@ function CreateHelp() {
       sandbox: sandbox,
     };
 
-    await updateHR({
-      variables: {
-        filter: {
-          uid: userState.uid,
+    try {
+      await updateHR({
+        variables: {
+          filter: {
+            uid: userState.uid,
+          },
+          record: {
+            needHelp: true,
+            help_request: helpRequest,
+          },
         },
-        record: {
-          needHelp: true,
-          help_request: helpRequest,
-        },
-      },
-    });
+
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
 
     navigate('/chatroom#' + roomID);
   };
