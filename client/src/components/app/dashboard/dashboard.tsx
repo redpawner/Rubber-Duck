@@ -120,9 +120,9 @@ function Dashboard() {
 
   const mapLang = langTags
     .filter((tag) => tag.toLowerCase().includes(formValue))
-    .map((tag) => {
+    .map((tag, index) => {
       return (
-        <div className="searchTile" onClick={handleClick}>
+        <div className="searchTile" onClick={handleClick} key={index}>
           {tag}
         </div>
       );
@@ -133,13 +133,15 @@ function Dashboard() {
     );
   });
 
-  const mapHelpRequests = helpRequests.map((helpRequest: HelpReqSchema) => {
-    return (
-      <li>
-        <Help helpRequest={helpRequest} key={helpRequest.username} />
-      </li>
-    );
-  });
+  const mapHelpRequests = helpRequests.map(
+    (helpRequest: HelpReqSchema, index) => {
+      return (
+        <li>
+          <Help helpRequest={helpRequest} key={index} />
+        </li>
+      );
+    }
+  );
 
   return (
     <div className="dashboard-container">
@@ -178,10 +180,10 @@ function Dashboard() {
             </div>
           </form>
           <ul className="search-tags">
-            {tags.map((tag) => {
+            {tags.map((tag, index) => {
               return (
                 <div>
-                  <Tag name={tag} onClick={deselect} />
+                  <Tag name={tag} onClick={deselect} key={index} />
                 </div>
               );
             })}

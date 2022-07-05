@@ -122,9 +122,17 @@ function Chat() {
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
 
+<<<<<<< HEAD
       if (helpRequestInfo.username && username !== helpRequestInfo.username) {
         const defaultMessage = createDefaultMessage(roomID, username);
         sendDefaultMessage(defaultMessage);
+=======
+      if (helpRequestInfo.username && (username !== helpRequestInfo.username)) {
+        const defaultMessage = createDefaultMessage(roomID, username)
+  sendDefaultMessage(defaultMessage)
+
+
+>>>>>>> f75a09174a2a3e974d5750b7013c305a05f79cc4
       }
     }
   }, [roomID, uid, helpRequestInfo.username, username]);
@@ -452,7 +460,9 @@ function Chat() {
                 {/* <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
               <img src={britney} alt="sand" className="avatar-img3" />
             </a> */}
+
                 <a href={helpRequestInfo.sandbox}>
+
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />
