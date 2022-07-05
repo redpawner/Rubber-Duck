@@ -14,20 +14,6 @@ type messageProps = {
   message: ArrivalMessage;
 };
 
-type MyStore = {
-  show: string;
-  counter: number;
-  profile: boolean;
-  // toggleShow: () => void;
-  setReset: () => void;
-  setReg: () => void;
-  setLogin: () => void;
-  setProfile: () => void;
-  setDashboard: () => void;
-  setChat: () => void;
-  setHelp: () => void;
-};
-
 type UserSettingsStore = {
   darkMode: boolean;
   toggleDarkMode: () => void;
@@ -76,6 +62,5 @@ export type {
   User,
   HelpReqSchema,
   UserSettingsStore,
-  MyStore,
   UserRole,
 };

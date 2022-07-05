@@ -27,9 +27,9 @@ import {
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
 
-const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
+const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
-const socket = io(`http://localhost:3001/`, {
+const socket = io(`http://localhost:${BACKEND_PORT}/`, {
   transports: ['websocket'],
 });
 
@@ -55,8 +55,6 @@ function Chat() {
 
   const username = userStore((state) => state.username);
 
-  const author = helpRequestInfo.username;
-
   const roomID = window.location.hash;
 
   //currently grabbing url through lazy slice method (this will have to change when URL changes)
@@ -79,11 +77,13 @@ function Chat() {
   const getHelpRequestInfo = async () => {
     const data = await getHR();
 
-    console.log(data);
+
+
 
     if (data.data) {
       setHelpRequestInfo(data.data.userMany[0].help_request);
     } else alert('Error fetching Help Request data.');
+
   };
 
   useEffect(() => {
