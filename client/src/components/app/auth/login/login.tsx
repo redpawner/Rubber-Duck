@@ -29,22 +29,26 @@ function Login() {
 
   const googleSignIn = async () => {
     const user = await googleLogin();
-    if (user.metadata.creationTime === user.metadata.lastSignInTime) {
-      setUserUid(user.uid);
-      await createUser({
-        variables: {
-          record: {
-            avatar: 'user.59168e41eade7de7457f.png',
-            username: user.displayName,
-            email: user.email,
-            uid: user.uid,
+    try {
+      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+        setUserUid(user.uid);
+        await createUser({
+          variables: {
+            record: {
+              avatar: 'user.59168e41eade7de7457f.png',
+              username: user.displayName,
+              email: user.email,
+              uid: user.uid,
+            },
           },
-        },
-      });
-      setUserToken(user.accessToken);
-    } else {
-      setUserUid(user.uid);
-      setUserToken(user.accessToken);
+        });
+        setUserToken(user.accessToken);
+      } else {
+        setUserUid(user.uid);
+        setUserToken(user.accessToken);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

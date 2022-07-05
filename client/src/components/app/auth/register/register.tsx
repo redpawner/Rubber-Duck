@@ -33,19 +33,21 @@ function Register() {
     const result = await fbCreateUser(email, password);
 
     setUserUid(result.uid);
-
-    await createUser({
-      variables: {
-        record: {
-          avatar: defaultPic,
-          username: username,
-          email: email,
-          uid: result.uid,
+    try {
+      await createUser({
+        variables: {
+          record: {
+            avatar: defaultPic,
+            username: username,
+            email: email,
+            uid: result.uid,
+          },
         },
-      },
-    });
-
-    setUserToken(result.accessToken);
+      });
+      setUserToken(result.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
