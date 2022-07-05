@@ -79,8 +79,11 @@ function Chat() {
   const getHelpRequestInfo = async () => {
     const data = await getHR();
 
-    data && setHelpRequestInfo(data.data.userMany[0].help_request);
+    console.log(data);
 
+    if (data.data) {
+      setHelpRequestInfo(data.data.userMany[0].help_request);
+    } else alert('Error fetching Help Request data.');
   };
 
   useEffect(() => {
@@ -119,11 +122,9 @@ function Chat() {
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
 
-      if (helpRequestInfo.username && (username !== helpRequestInfo.username)) {
-        const defaultMessage = createDefaultMessage(roomID, username)
-  sendDefaultMessage(defaultMessage)
-
-
+      if (helpRequestInfo.username && username !== helpRequestInfo.username) {
+        const defaultMessage = createDefaultMessage(roomID, username);
+        sendDefaultMessage(defaultMessage);
       }
     }
   }, [roomID, uid, helpRequestInfo.username, username]);
@@ -453,7 +454,6 @@ function Chat() {
             </a> */}
 
                 <a href={helpRequestInfo.sandbox}>
-
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />
