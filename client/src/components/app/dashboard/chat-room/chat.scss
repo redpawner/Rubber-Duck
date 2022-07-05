@@ -97,12 +97,13 @@ position: absolute;
         max-height: 30vh;
          border: none;
         border-radius: $border-radius;
-        padding: 1%;
+        padding: 0.75em;
         margin-bottom: 1%;
         font-size: $button-font-size;
         resize: none;
         border: $divider-line;
         color: $blue-shade;
+        overflow: hidden;
       }
       .buttons {
         position: absolute;
