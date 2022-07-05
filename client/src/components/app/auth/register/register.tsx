@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState,FormEvent } from 'react';
 import { userStore } from '../../../../state-stores/state-stores';
 import '../login/login.scss';
 import './register.scss';
@@ -18,16 +18,18 @@ function Register() {
   const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
 
-  const useHandleSubmit = async (event: any) => {
+  const useHandleSubmit = async (event:FormEvent) => {
     event.preventDefault();
-    if (event.target.password.value !== event.target.confirmPassword.value) {
-      setError('Passwords do not match!');
-      return;
-    }
+    const form = event.target as HTMLElement;
+    const email: string = (form.querySelector('#email') as HTMLInputElement)?.value;
+    const password: string = (form.querySelector('#password') as HTMLInputElement)?.value;
+    const password1: string = (form.querySelector('#password1') as HTMLInputElement)?.value;
+    const username: string = (form.querySelector('#username') as HTMLInputElement)?.value;
 
-    const email: string = event.target.email.value;
-    const password: string = event.target.password.value;
-    const username: string = event.target.username.value;
+        if (password !== password1) {
+          setError('Passwords do not match!');
+          return;
+        }
     // const languages: [string] = [event.target.languages.value];
 
     const result = await fbCreateUser(email, password);
@@ -121,9 +123,8 @@ function Register() {
             autoComplete="username"
             required
           />
-          <button
+          <button type="submit"
             className="login-btn2"
-            // onClick={}
           >
             Create Account
           </button>
