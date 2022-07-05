@@ -1,19 +1,17 @@
 {
-  "name": "Rubber-Duck",
+  "name": "rubber-duck",
   "version": "1.0.0",
   "description": "node app ",
-  "main": "index.ts",
+  "main": "app.ts",
   "scripts": {
-  "start": "node index.ts"
-},
+    "start": "node app.ts"
+  },
   "repository": {
-  "type": "git",
-  "url": ""
-},
+    "type": "git",
+    "url": ""
+  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-  "url": ""
-},
+  "bugs": {},
   "homepage": ""
 }
