@@ -55,6 +55,7 @@ function Chat() {
   //create state for the helper avatar
 
   const [otherAvatar, setOtherAvatar] = useState('')
+  // const [onlineUsers, setOnlineUsers] = useState([helpRequestInfo.avatar])
 
 
   const navigate = useNavigate();
@@ -166,6 +167,7 @@ function Chat() {
       ...arrivalMessage,
       type: 'text',
       text: arrivalMessage.text + emojiObject.emoji,
+      avatar: userAvatar
     });
   };
 
@@ -246,6 +248,7 @@ function Chat() {
         imgSource: URL.createObjectURL(e.target.files[0]),
         room: roomID,
         author: username,
+        avatar: userAvatar
       });
   };
 
@@ -269,9 +272,10 @@ function Chat() {
   useEffect(()=>{
 if (messages.length) {
   const lastMessage = messages[messages.length-1]
-  console.log(messages, 'lmsg')
   if (lastMessage.author !== username) {
     setOtherAvatar(lastMessage.avatar)
+    // if (!onlineUsers.includes(lastMessage.avatar))
+    // setOnlineUsers([...onlineUsers, lastMessage.avatar])
 }
 }
   }, [messages])
@@ -441,14 +445,20 @@ if (messages.length) {
             </div>
             <div className="people-online">
               <h2 className="currently-online">Currently online:</h2>
-              {/* {include helper avatar} */}
 
-              <img
+              {/* {onlineUsers.length && onlineUsers.map((user)=> {
+                return (<img
+                className="avatar-img2"
+                src={user}
+                alt="avatar"
+              />)
+              })} */}
+              {<img
                 className="avatar-img2"
                 src={userAvatar}
                 alt="avatar"
-              />
-              {(username === helpRequestInfo.author)?(
+              />}
+              {(username === helpRequestInfo.username)?(
               <img
                 className="avatar-img2"
                 src={otherAvatar}
@@ -477,14 +487,19 @@ if (messages.length) {
             <img src={video} alt="video" className="avatar-img3" /> */}
               </div>
             </div>
-            <div className="buttons-box">
-              <button className="res-button" onClick={cancelHandler}>
-                Seek another mentor
+            {(username === helpRequestInfo.username)?(<div className="buttons-box">
+               <button className="seek-button" onClick={cancelHandler}>
+               Ask again
               </button>
               <button className="res-button" onClick={resolveHandler}>
                 Resolved
               </button>
-            </div>
+            </div>):
+            (<div className="buttons-box">
+              <button className="quit-button" onClick={resolveHandler}>
+                Quit
+              </button>
+              </div>)}
           </div>
         }
       </div>
