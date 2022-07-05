@@ -18,7 +18,7 @@
   .dashboard-container {
     width: 85%;
     .dashboard-title {
-      font-size: 1.7rem;
+      font-size: 2rem;
     }
     .create-help-butt {
       width: 9rem;
@@ -39,7 +39,7 @@
     width: 65%;
 
     .dashboard-title {
-      font-size: 1.7rem;
+      font-size: 3rem;
     }
     .create-help-butt {
       width: 9rem;
@@ -111,11 +111,15 @@
 
 .dashboard-title {
   font-family: $main-font-family;
-  font-size: $title-font-size;
+  font-size: 3rem;
   color: $grey-shade;
+  margin-top: 5vh;
 }
 
 .create-help-butt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: $border-radius;
   height: 5vh;
   width: 13rem;
@@ -126,6 +130,9 @@
   color: white;
   font-size: 1.2rem;
   font-weight: bold;
+  .create {
+    margin-top: 0.2vh;
+  }
 }
 
 .create-help-butt:hover {
