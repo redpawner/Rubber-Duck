@@ -13,13 +13,20 @@
   border: $border;
   box-shadow: $div-shadow;
   font-family: $main-font-family;
+  .dashboard-title {
+    font-size: 3rem;
+
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
 .create-help-button-div {
   display: flex;
+  width: 20vw;
 }
 .main-helper-box {
-  width: 60vw;
+  width: 50vw;
   display: flex;
   justify-content: space-between;
 }
@@ -30,13 +37,21 @@
   border-bottom: $divider-line;
 }
 .qn {
-  margin-left: 0.5vw;
-  margin-bottom: 3vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   font-size: large;
   font-family: monospace;
-  cursor: pointer;
+
+  margin-top: 1.3rem;
+  img {
+    // width: 3vw;
+    // height: 3vw;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+  }
 }
 
 .create-cancel-btn {
@@ -52,14 +67,37 @@
 }
 .back-btn {
   border-radius: $border-radius;
-  height: 5vh;
   width: 5vw;
+  // width: 3.5rem;
+  height: 2.2rem;
+  min-height: 35px;
+  min-width: 45px;
+  // height: 3.5vh;
   cursor: pointer;
   font-family: $main-font-family;
-  border: none;
   color: white;
-  font-size: 0.8999999999999999vw;
-  font-weight: bold;
+  background-color: #a53993;
+  font-size: 0.8rem;
+  border: none;
+  margin-left: 0.1rem;
+  padding: 0.9em;
+}
+.tips-btn {
+  border-radius: $border-radius;
+  width: 5vw;
+  // width: 3.5rem;
+  height: 2.2rem;
+  min-height: 35px;
+  min-width: 45px;
+  // height: 3.5vh;
+  cursor: pointer;
+  font-family: $main-font-family;
+  color: white;
+  background-color: #a53993;
+  font-size: 0.8rem;
+  border: none;
+  margin-left: 0.1rem;
+  padding: 0.9em;
 }
 
 .help-request-input {
@@ -141,12 +179,12 @@
 }
 
 .rules-container {
-  padding-top: 5vh;
-  margin-left: 5vw;
-  margin-bottom: 6vh;
+  // padding-top: 5vh;
+  // margin-left: 5vw;
+  // margin-bottom: 6vh;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  // align-items: flex-end;
 }
 .tags-display-box {
   width: auto;
@@ -206,8 +244,9 @@
 .popup-content {
   margin: 0;
   background: transparent;
-  width: 30vw;
+  width: 60vw !important;
   padding: 0;
+  top: -4vh;
 }
 .popup-arrow {
   color: rgb(255, 255, 255);

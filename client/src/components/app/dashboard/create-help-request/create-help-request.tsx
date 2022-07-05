@@ -8,8 +8,6 @@ import langTags from '../../../../utils/tags';
 import Tag from '../tag/tag';
 import Popup from 'reactjs-popup';
 
-
-
 function string_to_slug(str: any) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
   str = str.toLowerCase();
@@ -90,12 +88,10 @@ function CreateHelp() {
             help_request: helpRequest,
           },
         },
-
       });
     } catch (error) {
       console.log(error);
     }
-
 
     navigate('/chatroom#' + roomID);
   };
@@ -135,17 +131,23 @@ function CreateHelp() {
             <div className="create-help-button-div">
               <h1 className="dashboard-title">Create Help Request</h1>
             </div>
-            <div className="qn" onClick={() => setOpen((o) => !o)}>
-              i
-            </div>
           </div>
 
           <div className="rules-container">
-            <Link to="/dashboard">
-              <button className="back-btn" id="cancel">
-                Back
-              </button>
-            </Link>
+            <div className="qn">
+              <Link to="/dashboard">
+                <button className="back-btn" id="cancel">
+                  Back
+                </button>
+              </Link>
+              <div className="qn" onClick={() => setOpen((o) => !o)}>
+                <img
+                  className="info"
+                  src={require('../../../../Images/icon-info.png')}
+                  alt="info"
+                ></img>
+              </div>
+            </div>
           </div>
         </div>
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
