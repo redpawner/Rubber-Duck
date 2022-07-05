@@ -7,7 +7,7 @@ import {
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 import langTags from '../../../../utils/tags';
-import logo from '../../../../Images/logo.png';
+
 import Tag from '../tag/tag';
 import Popup from 'reactjs-popup';
 
@@ -120,20 +120,20 @@ function CreateHelp() {
     <div className="dashboard-container1">
       <div className="helper">
         <div className="main-helper-box">
-        <div className="create-help-button-div">
           <div className="create-help-button-div">
-            <h1 className="dashboard-title">Create Help Request</h1>
+            <div className="create-help-button-div">
+              <h1 className="dashboard-title">Create Help Request</h1>
+            </div>
+            <div className="qn" onClick={() => setOpen((o) => !o)}>
+              i
+            </div>
           </div>
-          <div className="qn" onClick={() => setOpen((o) => !o)}>
-            i
-          </div>
-        </div>
 
-        <div className="rules-container">
-          <button className="back-btn" id="cancel" onClick={helpDash}>
-            Back
-          </button>
-        </div>
+          <div className="rules-container">
+            <button className="back-btn" id="cancel" onClick={helpDash}>
+              Back
+            </button>
+          </div>
         </div>
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
           <div className="guide-box">
@@ -258,28 +258,30 @@ function CreateHelp() {
             <label className="help-request-input" htmlFor="tags">
               Tags:
             </label>
-            <div className="dropdown-box">
-              <input
-                type="text"
-                onChange={handleChange}
-                name="tags"
-                id="tags"
-                className="help-title2"
-                autoComplete="off"
-                placeholder="Filter..."
-              />
-              <div
-                className={
-                  showDrop ? 'dropdown-context' : 'dropdown-context-none'
-                }
-              >
-                {mapLang}
+            <div className="dropdown-tags">
+              <div className="dropdown-box">
+                <input
+                  type="text"
+                  onChange={handleChange}
+                  name="tags"
+                  id="tags"
+                  className="help-title2"
+                  autoComplete="off"
+                  placeholder="Filter..."
+                />
+                <div
+                  className={
+                    showDrop ? 'dropdown-context' : 'dropdown-context-none'
+                  }
+                >
+                  {mapLang}
+                </div>
               </div>
-            </div>
-            <div className="tags-display-box">
-              {tags.sort().map((tag) => {
-                return <Tag name={tag} onClick={deselect} />;
-              })}
+              <div className="tags-display-box">
+                {tags.sort().map((tag) => {
+                  return <Tag name={tag} onClick={deselect} />;
+                })}
+              </div>
             </div>
             <label className="help-request-input" htmlFor="sandbox">
               Sandbox link:
@@ -292,6 +294,7 @@ function CreateHelp() {
               placeholder="https://codesandbox.io/..."
             />
           </div>
+
           <button className="create-cancel-btn" id="submit">
             Publish
           </button>
