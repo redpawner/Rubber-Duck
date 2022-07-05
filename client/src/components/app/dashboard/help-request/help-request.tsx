@@ -18,8 +18,6 @@ function Help({ helpRequest }: Props) {
   const closeModal = () => setOpen(false);
   const [updateHR] = useMutation(UPDATE_HR);
 
-  const userAvatar = userStore((state) => state.avatar);
-
   const navigate = useNavigate();
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
@@ -63,7 +61,7 @@ function Help({ helpRequest }: Props) {
     <div className="help-container">
       <h1 className="help-title">{helpRequest.title}</h1>
       <p className="help-details">
-        <img src={userAvatar} alt="" className="user-avatar" />
+        <img src={helpRequest.avatar} alt="" className="user-avatar" />
         <span className="username">
           {prettyTime}&nbsp;
           {prettyDate} @{helpRequest.username}
