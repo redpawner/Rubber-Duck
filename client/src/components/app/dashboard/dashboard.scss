@@ -26,7 +26,7 @@
     }
     .help-list {
       width: 300px;
-      height: 520px;
+      height: 450px;
     }
     .search-field input {
       width: 5rem;
@@ -47,7 +47,7 @@
     }
     .help-list {
       width: 500px;
-      height: 540px;
+      height: 390px;
       display: flex;
       justify-content: center;
     }
@@ -78,7 +78,7 @@
 
 .search-field input {
   width: 7rem;
-  padding: 0.3rem;
+  padding: 0.4rem 0.6rem;
   border-radius: $border-radius;
   border: none;
   font-family: $main-font-family;
