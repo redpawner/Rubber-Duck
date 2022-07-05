@@ -60,8 +60,8 @@ function Help({ helpRequest }: Props) {
       </p>
       <div className="bottom-details">
         <div id="tags">
-          {helpRequest.hr_languages.map((e) => {
-            return <span>{e}</span>;
+          {helpRequest.hr_languages.map((e, index) => {
+            return <span key={index}>{e}</span>;
           })}
         </div>
 
