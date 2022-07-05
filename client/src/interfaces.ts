@@ -38,16 +38,16 @@ type User = {
   userAT: string;
   username: string;
   avatar?: string;
-  rating_total: Number;
-  rating_count: Number;
-  needHelp: Boolean;
+  rating_total: number;
+  rating_count: number;
+  needHelp: boolean;
   help_request: HelpReqSchema;
 
   setUser: (
     username: string,
-    rating_total: Number,
-    rating_count: Number,
-    needHelp: Boolean,
+    rating_total: number,
+    rating_count: number,
+    needHelp: boolean,
     avatar?: string,
     help_request?: HelpReqSchema
   ) => void;

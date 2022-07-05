@@ -12,7 +12,7 @@ import {
 import Message from '../message/message';
 import { ArrivalMessage } from '../../../../interfaces';
 import { userStore } from '../../../../state-stores/state-stores';
-
+import { useNavigate } from 'react-router-dom';
 import Prism from 'prismjs';
 import '../themes/prism-one-dark.css';
 import 'prismjs/components/prism-typescript';
@@ -23,7 +23,7 @@ import Picker from 'emoji-picker-react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import {
   GET_HR_BY_URL,
-  UPDATE_HR,
+  DELETE_HR,
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -41,6 +41,7 @@ const createDefaultMessage = (room, user) => {
     type: 'text',
     room: room,
     author: user,
+    // include avatar: userAvatar
   };
 };
 
@@ -48,12 +49,17 @@ function Chat() {
   const [messages, setMessages] = useState([] as ArrivalMessage[]);
   const [showLangDropDown, setShowLangDropDown] = useState(false);
   const [helpRequestInfo, setHelpRequestInfo] = useState('');
-  const [updateHR] = useMutation(UPDATE_HR);
+  const [deleteHR] = useMutation(DELETE_HR);
   const [showHelpInfo, setShowHelpInfo] = useState(true);
+  //create state for the helper avatar
+  const [helperAvatar, setHelperAvatar] = useState('');
 
+  const navigate = useNavigate();
   const uid = userStore((state) => state.uid);
 
   const username = userStore((state) => state.username);
+
+  const userAvatar = userStore((state) => state.avatar);
 
   const roomID = window.location.hash;
 
@@ -72,23 +78,28 @@ function Chat() {
         },
       },
     },
+    fetchPolicy: 'network-only',
   });
 
   const getHelpRequestInfo = async () => {
     const data = await getHR();
 
-
-
-
     if (data.data) {
-      setHelpRequestInfo(data.data.userMany[0].help_request);
+      let result = {
+        ...data.data.userMany[0].help_request,
+        avatar: data.data.userMany[0].avatar,
+      };
+
+      setHelpRequestInfo(result);
     } else alert('Error fetching Help Request data.');
 
   };
 
   useEffect(() => {
-    getHelpRequestInfo();
-  }, []);
+    if (url) {
+      getHelpRequestInfo();
+    }
+  }, [url]);
 
   const [arrivalMessage, setArrivalMessage] = useState({
     text: '',
@@ -152,21 +163,29 @@ function Chat() {
   //   sandbox: '',
   // };
 
-  // const resolveHandler = async (event: any) => {
-  //   await updateHR({
-  //     variables: {
-  //       filter: {
-  //         uid: uid,
-  //       },
-  //       record: {
-  //         needHelp: false,
-  //         help_request: null,
-  //       },
-  //     },
-  //   });
-
-  //   setDashboard();
-  // };
+  const resolveHandler = async (event: any) => {
+    // const helpRequestReset = {
+    //   username: '',
+    //   title: '',
+    //   description: '',
+    //   hr_languages: [],
+    //   time_created: null,
+    //   url: '',
+    //   sandbox: '',
+    // };
+    // await deleteHR({
+    //   variables: {
+    //     filter: {
+    //       uid: uid,
+    //     },
+    //     record: {
+    //       needHelp: false,
+    //       help_request: helpRequestReset,
+    //     },
+    //   },
+    // });
+    navigate('/dashboard');
+  };
 
   const onEmojiClick = (event: any, emojiObject: SetStateAction<null>) => {
     setChosenEmoji(emojiObject);
@@ -440,11 +459,8 @@ function Chat() {
             </div>
             <div className="people-online">
               <h2 className="currently-online">Currently online:</h2>
-              <img
-                className="avatar-img2"
-                src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj"
-                alt="avatar"
-              />
+              {/* {include helper avatar} */}
+              <img className="avatar-img2" src={userAvatar} alt="avatar" />
             </div>
             <div className="people-online">
               <h2 className="currently-online">Try:</h2>
@@ -464,7 +480,9 @@ function Chat() {
               {/* <button className="res-button" onClick={cancelHandler}> */}
               <button className="res-button">Seek another mentor</button>
               {/* <button className="res-button" onClick={resolveHandler}> */}
-              <button className="res-button">Resolved</button>
+              <button className="res-button" onClick={resolveHandler}>
+                Resolved
+              </button>
             </div>
           </div>
         }

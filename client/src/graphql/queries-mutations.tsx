@@ -43,6 +43,7 @@ const GET_HR_BY_LANGUAGE = gql`
 const GET_HR_BY_URL = gql`
   query Query($filter: FilterFindManyUserInput) {
     userMany(filter: $filter) {
+      avatar
       help_request {
         username
         title

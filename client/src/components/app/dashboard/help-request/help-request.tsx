@@ -38,6 +38,7 @@ function Help({ helpRequest }: Props) {
   );
 
   const answerHelpRequests = async (event: any) => {
+    console.log(helpRequest, 'hr aaaaaaaa');
     await updateHR({
       variables: {
         filter: {
@@ -88,11 +89,13 @@ function Help({ helpRequest }: Props) {
               <div className="HR-popup">
                 <div className="X-outerbox">
                   <div className="userbox">
-                    <div className="usernamebox">{helpRequest.username}</div>
-                    <div className="askbox"> asked:</div>
-                  </div>
-                  <div className="close" onClick={closeModal}>
-                    X
+                    <div className="usernamebox">
+                      {helpRequest.username} asked:
+                    </div>
+                    {/* <div className="askbox"> asked:</div> */}
+                    <div className="close" onClick={closeModal}>
+                      X
+                    </div>
                   </div>
                 </div>
                 <div className="HR-title">{helpRequest.title}</div>

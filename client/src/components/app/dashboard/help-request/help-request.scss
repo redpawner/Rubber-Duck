@@ -176,11 +176,11 @@
 .HR-popup {
   display: flex;
   flex-direction: column;
+  min-width: 40vw !important;
 
-  align-items: flex-start;
-  background-color: white;
+  background-color: #f8eef6;
   color: #3022ab;
-  padding: 0em 2em 2em 1.2em;
+  padding: 2em;
 
   font-family: $main-font-family;
   max-height: auto;
@@ -189,15 +189,17 @@
 }
 
 .X-outerbox {
-  width: 28vw;
+  width: 100%;
   padding-top: 0.3em;
 
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
 }
 .userbox {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 .usernamebox {
   font-weight: bolder;
@@ -213,6 +215,10 @@
   cursor: pointer;
   margin-top: 0;
   color: black;
+
+  // position: absolute;
+  // top: 0;
+  // right: 0;
 }
 .close:hover {
   font-weight: bolder;
@@ -225,10 +231,9 @@
 
   color: $grey-shade;
   font-weight: bolder;
-  width: 25vw;
+  // width: 25vw;
   padding-bottom: 1vh;
   padding-left: 1vw;
-  border-bottom: $divider-line;
 }
 .desc-box {
   padding: 0.3em;
@@ -248,16 +253,27 @@
   font-family: $main-font-family;
   font-weight: bold;
   color: white;
-  background-color: #3022ab;
+  background-color: #a53993;
   font-size: $button-weight;
   border: none;
 }
+.help-buttonx:hover {
+  background-color: #852875;
+}
 
 .popup-content {
-  margin: 0;
+  margin: 0 !important;
   background: transparent;
-  width: 30vw;
+  // width: 30vw;
   padding: 0;
+  // left: 28.3vw;
+  // top: 35vh;
+  // left: 75vh;
+  // top: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 .popup-arrow {
   color: rgb(255, 255, 255);
@@ -268,6 +284,12 @@
 }
 
 .popup-overlay {
+  position: fixed;
+  inset: 0px;
+  display: flex;
+  z-index: 999;
+  pointer-events: auto;
+  justify-content: center;
   background: rgba(0, 0, 0, 0.5);
 }
 [data-popup='tooltip'].popup-overlay {
