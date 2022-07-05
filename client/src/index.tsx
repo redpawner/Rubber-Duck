@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './index.scss';
 import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
@@ -11,11 +12,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.Fragment>
+  <Router>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
-  </React.Fragment>
+  </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function

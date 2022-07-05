@@ -1,11 +1,11 @@
 import '../login/login.scss';
 import logo from '../../../../Images/logo.png';
-import { buttonsLogicStore } from '../../../../state-stores/state-stores';
+
 import { resetPassword } from '../../../../api-services/api-auth';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Reset() {
-  const loginShow = buttonsLogicStore((state) => state.setLogin);
   const [message, setMessage] = useState('');
 
   const resetPass = async (event: any) => {
@@ -41,10 +41,10 @@ function Reset() {
             <button className="reset-btn" id="margin-bottom">
               Reset Your Password
             </button>
-            <button id="sign-button" className="reset-btn" onClick={loginShow}>
-              Return to Sign In
-            </button>
           </form>
+          <button id="sign-button" className="reset-btn">
+            <Link to="/">Return to Sign In</Link>
+          </button>
         </div>
       </div>
     </div>

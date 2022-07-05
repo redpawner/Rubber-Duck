@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { buttonsLogicStore } from '../../state-stores/state-stores';
+import { useEffect, useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.scss';
 import Navbar from '../navbar/navbar';
 import Login from './auth/login/login';
@@ -14,64 +14,42 @@ import { auth } from '../../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
-  const counter = buttonsLogicStore((state) => state.counter);
   const setUserUid = userStore((state) => state.setUserUid);
-  const userAT = userStore((state) => state.userAT);
   const setUserAT = userStore((state) => state.setUserToken);
-  const setDashboard = buttonsLogicStore((state) => state.setDashboard);
+  const [showNav, setShowNav] = useState(false);
 
-  const board = buttonsLogicStore((state) => state.show);
+  const navigate = useNavigate();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log('running');
       if (user) {
         setUserUid(user.uid);
         user.getIdToken().then((token) => setUserAT(token));
-        setDashboard();
+        setShowNav(true);
+        navigate('/dashboard');
+      }
+      if (!user) {
+        setShowNav(false);
+        navigate('/');
       }
     });
   }, []);
 
-  function renderSwitch() {
-    switch (counter) {
-      case 0:
-        return <Register />;
-      case 1:
-        return <Login />;
-      case 2:
-        return <Reset />;
-    }
-  }
-
-  function renderBoards() {
-    switch (board) {
-      case 'chat':
-        return <Chat />;
-      case 'dashboard':
-        return <Dashboard />;
-      case 'help':
-        return <CreateHelp />;
-      case 'profile':
-        return <Profile />;
-    }
-  }
-
-  function authorize() {
-    switch (userAT.length > 0) {
-      case true:
-        return (
-          <>
-            <Navbar />
-            <div className="container"> {renderBoards()}</div>
-          </>
-        );
-
-      case false:
-        return <div className="container">{renderSwitch()}</div>;
-    }
-  }
-
-  return authorize();
+  return (
+    <>
+      {showNav ? <Navbar /> : null}
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/reset" element={<Reset />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/chatroom" element={<Chat />} />
+          <Route path="/createhelprequest" element={<CreateHelp />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </div>
+    </>
+  );
 }
 export default App;

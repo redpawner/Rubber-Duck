@@ -1,7 +1,5 @@
-import {
-  buttonsLogicStore,
-  userStore,
-} from '../../../../state-stores/state-stores';
+import { useState } from 'react';
+import { userStore } from '../../../../state-stores/state-stores';
 import '../login/login.scss';
 import './register.scss';
 import defaultPic from '../../../../Images/avatars/user.png';
@@ -9,17 +7,24 @@ import logo from '../../../../Images/logo.png';
 import { fbCreateUser } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
+import { Link } from 'react-router-dom';
 
 function Register() {
-  const loginShow = buttonsLogicStore((state) => state.setLogin);
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
+
+  const [error, setError] = useState('');
 
   const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
 
   const useHandleSubmit = async (event: any) => {
     event.preventDefault();
+    if (event.target.password.value !== event.target.confirmPassword.value) {
+      setError('Passwords do not match!');
+      return;
+    }
+
     const email: string = event.target.email.value;
     const password: string = event.target.password.value;
     const username: string = event.target.username.value;
@@ -50,13 +55,11 @@ function Register() {
       </div>
       <div className="register-form">
         <div className="sign-buttons-cont">
-          <button
-            id="sign-button"
-            className="sign-in-button2"
-            onClick={loginShow}
-          >
-            Sign in
-          </button>
+          <Link to="/">
+            <button id="sign-button" className="sign-in-button2">
+              Sign in
+            </button>
+          </Link>
           <button id="sign-button" className="sign-up-button2">
             Sign up
           </button>
@@ -88,6 +91,7 @@ function Register() {
             autoComplete="new-password"
             required
           />
+
           <br></br>
           <label className="reg-input" htmlFor="password1">
             Confirm Password:
@@ -97,10 +101,11 @@ function Register() {
             type="password"
             id="password1"
             className="reg-textBox"
-            name="password1"
+            name="confirmPassword"
             autoComplete="off"
             required
           />
+
           <br></br>
           <label className="reg-input" htmlFor="username">
             Username:
@@ -121,6 +126,7 @@ function Register() {
             Create Account
           </button>
         </form>
+        <div className="err">{error}</div>
       </div>
     </div>
   );
