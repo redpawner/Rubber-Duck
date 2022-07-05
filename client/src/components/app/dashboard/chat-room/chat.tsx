@@ -77,9 +77,7 @@ function Chat() {
   });
 
   const getHelpRequestInfo = async () => {
-    console.log('helprequest requested');
     const data = await getHR();
-    console.log(data);
     setHelpRequestInfo(data.data.userMany[0].help_request);
   };
 
