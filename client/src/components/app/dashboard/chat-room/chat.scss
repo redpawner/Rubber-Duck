@@ -389,6 +389,7 @@ position: relative;
   border-radius: $border-radius;
   margin-top: 5%;
   display: flex;
+  justify-content: space-around;
   color: $grey-shade;
   font-weight: bold;
   transition: width 300ms linear;
@@ -415,7 +416,6 @@ position: relative;
 
 
 .currently-online {
-  margin-left: 2vh;
   font-family: $main-font-family;
   font-size: $button-font-size;
 }
@@ -458,7 +458,7 @@ position: relative;
       // max-height: 60%;
       // border-radius: 50%;
       margin-top: 2vh;
-      margin-left: 10vw;
+      margin-left: 13vw;
       cursor: pointer;
   }
 

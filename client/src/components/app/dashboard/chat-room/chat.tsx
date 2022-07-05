@@ -467,19 +467,19 @@ if (messages.length) {
                 src={userAvatar}
                 alt="avatar"
               />
-              {(username === helpRequestInfo.author)?(<div>
+              {(username === helpRequestInfo.author)?(
               <img
                 className="avatar-img2"
                 src={otherAvatar}
                 alt="avatar"
               />
-            </div>):(<div>
+            ):(
               <img
                 className="avatar-img2"
                 src={helpRequestInfo.avatar}
                 alt="avatar"
               />
-            </div>)}
+           )}
             </div>
             <div className="creator-links">
               <h2 className="current-links">Try:</h2>
