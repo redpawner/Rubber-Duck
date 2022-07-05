@@ -2,9 +2,9 @@
   "name": "Rubber-Duck",
   "version": "1.0.0",
   "description": "node app ",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-  "start": "node server/build/index.js"
+  "start": "node index.ts"
 },
   "repository": {
   "type": "git",
