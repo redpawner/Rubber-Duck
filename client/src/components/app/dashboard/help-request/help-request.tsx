@@ -64,14 +64,6 @@ function Help({ helpRequest }: Props) {
             return <span>{e}</span>;
           })}
         </div>
-        {/* <div>
-          <Popup
-            trigger={<button className="help-button">Info</button>}
-            position="right center"
-          >
-            <div>{helpRequest.description}</div>
-          </Popup>
-        </div> */}
 
         <div className="butts-cont">
           <div>

@@ -5,7 +5,9 @@ import { useMutation } from '@apollo/client';
 import { useNavigate, Link } from 'react-router-dom';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 import langTags from '../../../../utils/tags';
+
 import Tag from '../tag/tag';
+import Popup from 'reactjs-popup';
 
 function string_to_slug(str: any) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
@@ -27,6 +29,10 @@ function string_to_slug(str: any) {
 }
 
 function CreateHelp() {
+
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
+
   const userState = userStore((state) => state);
   const [showDrop, setShowDrop] = useState(false);
   const navigate = useNavigate();
@@ -88,7 +94,9 @@ function CreateHelp() {
     if (tags.includes(value)) {
       return;
     }
-    setTags((tags) => [...tags, value]);
+    if (tags.length < 3) {
+      setTags((tags) => [...tags, value]);
+    }
   };
 
   const mapLang = langTags
@@ -108,11 +116,117 @@ function CreateHelp() {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container1">
       <div className="helper">
-        <div className="create-help-button-div">
-          <h1 className="dashboard-title">Create Help Request</h1>
+        <div className="main-helper-box">
+          <div className="create-help-button-div">
+            <div className="create-help-button-div">
+              <h1 className="dashboard-title">Create Help Request</h1>
+            </div>
+            <div className="qn" onClick={() => setOpen((o) => !o)}>
+              i
+            </div>
+          </div>
+
+          <div className="rules-container">
+            <button className="back-btn" id="cancel" onClick={helpDash}>
+              Back
+            </button>
+          </div>
         </div>
+        <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+          <div className="guide-box">
+            <div id="guide-box-headline">
+              <h2>
+                We’d love to help you. To improve your chances of getting an
+                answer, follow the tips below:
+              </h2>
+            </div>
+            <div>
+              <div>
+                <ol>
+                  <div className="guide-outerbox">
+                    <li className="guide-box-title">
+                      Write a title that summarizes the specific problem{' '}
+                    </li>
+
+                    <div>
+                      <div className="guide-box-point">
+                        <b>
+                          • Spelling, grammar and punctuation are important!
+                        </b>{' '}
+                        Please proof-read before publishing.
+                      </div>
+                      <div className="guide-box-point">
+                        • If you're having trouble summarizing the problem,
+                        write the title last - sometimes writing the rest of the
+                        question first can make it easier to describe the
+                        problem.{' '}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="guide-outerbox">
+                    <li className="guide-box-title">
+                      Introduce the problem before you post any code{' '}
+                    </li>
+
+                    <div>
+                      <div className="guide-box-point">
+                        In the body of your question, start by expanding on the
+                        summary you put in the title. <i>Explain</i> how you
+                        encountered the problem you're trying to solve, and any
+                        difficulties that have prevented you from solving it
+                        yourself. The first paragraph in your question is the
+                        second thing most readers will see, so make it as
+                        engaging and informative as possible.{' '}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="guide-outerbox">
+                    <li className="guide-box-title">
+                      Include all relevant tags{' '}
+                    </li>
+
+                    <div>
+                      <div className="guide-box-point">
+                        Try to include a tag for the language your question
+                        relates to. If you start typing in the tags field, the
+                        system will suggest tags that match what you've typed{' '}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="guide-outerbox">
+                    <li className="guide-box-title">
+                      Proof-read before posting!{' '}
+                    </li>
+
+                    <div>
+                      <div className="guide-box-point">
+                        Now that you're ready to ask your question, take a deep
+                        breath and read through it from start to finish.{' '}
+                        <i>Pretend </i>
+                        you're seeing it for the first time: does it make sense?
+                        Try reproducing the problem yourself, in a fresh
+                        environment and make sure you can do so using only the
+                        information included in your question. Add any details
+                        you missed and read through it again. Now is a good time
+                        to make sure that your title still describes the
+                        problem!{' '}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="thankyou">
+                    <h2>Thank you</h2>{' '}
+                  </div>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </Popup>
       </div>
       <div className="middle-section-cont">
         <form className="help-form" onSubmit={publish}>
@@ -122,7 +236,7 @@ function CreateHelp() {
             </label>
             <input
               type="text"
-              className="help-title2"
+              className="help-title1"
               name="title"
               id="title"
               maxLength={40}
@@ -143,22 +257,29 @@ function CreateHelp() {
             <label className="help-request-input" htmlFor="tags">
               Tags:
             </label>
-            <div className="dropdown-box">
-              <input
-                type="text"
-                onChange={handleChange}
-                name="tags"
-                id="tags"
-                className="help-title2"
-                autoComplete="off"
-                placeholder="Filter..."
-              />
-              <div
-                className={
-                  showDrop ? 'dropdown-context' : 'dropdown-context-none'
-                }
-              >
-                {mapLang}
+            <div className="dropdown-tags">
+              <div className="dropdown-box">
+                <input
+                  type="text"
+                  onChange={handleChange}
+                  name="tags"
+                  id="tags"
+                  className="help-title2"
+                  autoComplete="off"
+                  placeholder="Filter..."
+                />
+                <div
+                  className={
+                    showDrop ? 'dropdown-context' : 'dropdown-context-none'
+                  }
+                >
+                  {mapLang}
+                </div>
+              </div>
+              <div className="tags-display-box">
+                {tags.sort().map((tag) => {
+                  return <Tag name={tag} onClick={deselect} />;
+                })}
               </div>
             </div>
             <label className="help-request-input" htmlFor="sandbox">
@@ -166,58 +287,19 @@ function CreateHelp() {
             </label>
             <input
               type="text"
-              className="help-title2"
+              className="help-title3"
               name="sandbox"
               id="sandbox"
               placeholder="https://codesandbox.io/..."
             />
           </div>
+
           <button className="create-cancel-btn" id="submit">
             Publish
           </button>
         </form>
-        <div className="rules-container">
-          <div className="container-height2">
-            <h2 className="readme-title">Rules and guidance:</h2>
-            <ul className="rules-list">
-              <li className="rules-element">
-                1st RULE: You do not talk about FIGHT CLUB.
-              </li>
-              <li className="rules-element">
-                2nd RULE: You DO NOT talk about FIGHT CLUB.
-              </li>
-              <li className="rules-element">
-                3rd RULE: If someone says "stop" or goes limp, taps out the
-                fight is over.
-              </li>
-              <li className="rules-element">
-                4th RULE: Only two guys to a fight.
-              </li>
-              <li className="rules-element">5th RULE: One fight at a time.</li>
-              <li className="rules-element">
-                7th RULE: Fights will go on as long as they have to.
-              </li>
-              <li className="rules-element">
-                8th RULE: If this is your first night at FIGHT CLUB, you HAVE to
-                fight.
-              </li>
-            </ul>
-            <ul className="search-tags">
-              {tags.map((tag) => {
-                return (
-                  <div>
-                    <Tag name={tag} onClick={deselect} />
-                  </div>
-                );
-              })}
-            </ul>
-          </div>
-          <Link to="/dashboard">
-            <button className="create-cancel-btn" id="cancel">
-              Cancel
-            </button>
-          </Link>
-        </div>
+
+
       </div>
     </div>
   );
