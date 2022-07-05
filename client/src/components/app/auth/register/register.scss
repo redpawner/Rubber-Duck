@@ -1,0 +1,65 @@
+@import '../../../../stylesheet.scss';
+.sign-in-button2 {
+  background-color: #d3d3d3;
+  border-radius: 15px 0px 0px 0px;
+  cursor: pointer;
+}
+
+.sign-up-button2 {
+  background-color: white;
+  border-radius: 0px 15px 0px 0px;
+}
+
+.sign-in-button2:hover {
+  color: grey;
+}
+
+.register-form {
+  width: 40%;
+  height: 65%;
+  border-radius: $border-radius;
+  background-color: white;
+  border: $border;
+  box-shadow: $div-shadow;
+}
+
+.login-btn2 {
+  width: 90%;
+  height: 5vh;
+  background-color: $blue-shade;
+  border-radius: $border-radius;
+  color: white;
+  border: none;
+  font-family: $main-font-family;
+  font-size: $button-font-size;
+  cursor: pointer;
+  margin-top: 2vh;
+}
+
+.reg-textBox {
+  margin-top: -1vh;
+  font-size: large;
+  width: 90%;
+  border: none;
+  border-bottom: $divider-line;
+  outline: none;
+}
+
+.reg-input {
+  text-align: left;
+  width: 90%;
+  font-family: $main-font-family;
+  color: $blue-shade;
+}
+
+.reset-textBox {
+  font-size: large;
+}
+
+.err {
+  margin-top: 0.5vh;
+  text-align: center;
+  font-family: $main-font-family;
+  color: red;
+  font-weight: bold;
+}

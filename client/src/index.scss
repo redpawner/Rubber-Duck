@@ -1,0 +1,20 @@
+html,
+body {
+overflow: hidden;
+box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(48, 34, 171, 0.8),
+    rgba(193, 100, 177, 0.8)
+  );
+  // opacity: 80%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,42 @@
+@import '../../../../stylesheet.scss';
+
+.tag-button {
+  margin-right: 0.5vw;
+  margin-bottom: 0.5vh;
+  border-radius: $border-radius;
+  border: none;
+  font-family: $main-font-family;
+  font-size: $button-font-size;
+  // color: $blue-shade;
+  color: white;
+  font-weight: bold;
+  background-color: $dashboard-color;
+  cursor: pointer;
+  padding: 0.1em 0.8em;
+  padding-top: 0.6em;
+  background-color: #a53993;
+  font-size: 0.9rem;
+  min-width: 3rem;
+}
+
+@media screen and (max-width: 620px) {
+  .tag-button {
+    font-size: 0.7rem;
+  }
+}
+@media screen and (min-width: 620px) and (max-width: 1420px) {
+}
+
+.tag-button:hover {
+  background-color: #a53993;
+  color: $dashboard-color;
+}
+.tag-inner-box {
+  display: flex;
+  justify-content: space-around;
+}
+.tag-inner-div {
+  margin-left: 4px;
+  color: red;
+  font-weight: 1000;
+}
