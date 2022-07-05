@@ -1,7 +1,7 @@
 @import '../../../../stylesheet.scss';
 
 .help-container {
-  width: 19.5vw;
+  width: 21vw;
   min-width: 300px;
   // width: 23.5rem;
   height: 18vh;
@@ -168,7 +168,8 @@
     }
 
     .help-button:hover {
-      color: $grey-shade;
+      // color: $grey-shade;
+      background-color: #852875;
     }
   }
 }

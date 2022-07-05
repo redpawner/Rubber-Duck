@@ -41,7 +41,7 @@ function Profile() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const result = await updateUserAvatar();
+    await updateUserAvatar();
     navigate('/dashboard');
   };
 
@@ -103,7 +103,7 @@ function Profile() {
           <br></br>
           <label className="profile-label">Password:</label>
           <br></br>
-          <a className="password-reset-a">Reset your password</a>
+          <p className="password-reset-a">Reset your password</p>
           <br></br>
           <label className="profile-label" htmlFor="username">
             Location:

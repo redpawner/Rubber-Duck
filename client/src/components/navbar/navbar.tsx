@@ -7,15 +7,19 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
+  console.log('navbar render');
   const avatar = userStore((state) => state.avatar) as string;
   const setUserToken = userStore((state) => state.setUserToken);
-  const [profilePic, setProfilePic] = useState(defaultAvatar);
+  // const [profilePic, setProfilePic] = useState(defaultAvatar);
 
-  useEffect(() => {
-    if (avatar && avatar.length > 0) {
-      setProfilePic(avatar);
-    }
-  }, [avatar]);
+  // useEffect(() => {
+  //   console.log('navbar useeffect');
+  //   console.log(avatar);
+  //   if (avatar && avatar.length > 0) {
+  //     console.log('am I working?');
+  //     // setProfilePic(avatar);
+  //   }
+  // }, [avatar]);
 
   const logout = () => {
     window.history.replaceState(null, '', '/');
@@ -31,7 +35,7 @@ function Navbar() {
         </Link>
       </div>
       <div className="profile-button">
-        <img className="profile-icon" src={profilePic} alt="profile"></img>
+        <img className="profile-icon" src={avatar} alt="profile"></img>
         <div className="dropdown-content">
           <button className="dropdown-button">
             <Link to="/profile">Profile</Link>
