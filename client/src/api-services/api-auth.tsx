@@ -10,10 +10,7 @@ import {
 
 const fbCreateUser = async (email: string, password: string) => {
   return await createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      return user;
-    })
+    .then(({ user }) => user)
     .catch((error) => {
       return error;
     });
@@ -21,10 +18,7 @@ const fbCreateUser = async (email: string, password: string) => {
 
 const loginUser = async (email: string, password: string) => {
   return await signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      return user;
-    })
+    .then(({ user }) => user)
     .catch((error) => {
       return error;
     });
@@ -33,10 +27,7 @@ const loginUser = async (email: string, password: string) => {
 const googleLogin = async () => {
   const provider = new GoogleAuthProvider().setCustomParameters({});
   return await signInWithPopup(auth, provider)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      return user;
-    })
+    .then(({ user }) => user)
     .catch((error) => {
       return error.message;
     });

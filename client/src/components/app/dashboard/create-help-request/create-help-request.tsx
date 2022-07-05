@@ -8,8 +8,6 @@ import langTags from '../../../../utils/tags';
 import Tag from '../tag/tag';
 import Popup from 'reactjs-popup';
 
-
-
 function string_to_slug(str: any) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
   str = str.toLowerCase();
@@ -90,12 +88,10 @@ function CreateHelp() {
             help_request: helpRequest,
           },
         },
-
       });
     } catch (error) {
       console.log(error);
     }
-
 
     navigate('/chatroom#' + roomID);
   };
