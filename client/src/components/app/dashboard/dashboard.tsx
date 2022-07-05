@@ -152,7 +152,8 @@ function Dashboard() {
           <h1 className="dashboard-title">Help Requests</h1>
           <Link to="/createhelprequest">
             <button className="create-help-butt">
-              <i className="fa fa-plus"></i> &nbsp; Create
+              <i className="fa fa-plus plus-sign"></i>
+              <span className="create">&nbsp; Create</span>
             </button>
           </Link>
         </div>

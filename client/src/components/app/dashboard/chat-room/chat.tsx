@@ -77,7 +77,13 @@ function Chat() {
   const getHelpRequestInfo = async () => {
     const data = await getHR();
 
-    data && setHelpRequestInfo(data.data.userMany[0].help_request);
+
+
+
+    if (data.data) {
+      setHelpRequestInfo(data.data.userMany[0].help_request);
+    } else alert('Error fetching Help Request data.');
+
   };
 
   useEffect(() => {

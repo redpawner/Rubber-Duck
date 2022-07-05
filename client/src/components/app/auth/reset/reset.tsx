@@ -38,11 +38,9 @@ function Reset() {
               required
             />
             <p className="message-after">{message}</p>
-            <button className="reset-btn" id="margin-bottom">
-              Reset Your Password
-            </button>
+            <button className="reset-btn">Reset Your Password</button>
           </form>
-          <button id="sign-button" className="reset-btn">
+          <button id="sign-button" className="reset2-btn">
             <Link to="/">Return to Sign In</Link>
           </button>
         </div>
