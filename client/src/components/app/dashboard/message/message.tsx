@@ -14,9 +14,11 @@ function Message({ message }: messageProps) {
         />
 
 
+
         {/* <div className="chat-message-avatar-name">
           <span>{message.author}</span>
         </div> */}
+
       </div>
       <div className="chat-message-data">
         <div className="chat-message-info">
