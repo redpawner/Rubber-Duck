@@ -28,11 +28,13 @@ function Dashboard() {
         uid: uid,
       },
     },
+    fetchPolicy: 'network-only',
   });
 
   const collectUser = async () => {
     const result = await getUser();
     const user = result.data.userOne;
+
     setUser(
       user.username,
       user.rating_total,

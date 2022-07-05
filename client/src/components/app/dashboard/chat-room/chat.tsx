@@ -72,23 +72,28 @@ function Chat() {
         },
       },
     },
+    fetchPolicy: 'network-only',
   });
 
   const getHelpRequestInfo = async () => {
     const data = await getHR();
-
-
-
-
+    console.log(data);
     if (data.data) {
-      setHelpRequestInfo(data.data.userMany[0].help_request);
+      let result = {
+        ...data.data.userMany[0].help_request,
+        avatar: data.data.userMany[0].avatar,
+      };
+      console.log(result);
+      setHelpRequestInfo(result);
     } else alert('Error fetching Help Request data.');
-
   };
 
   useEffect(() => {
-    getHelpRequestInfo();
-  }, []);
+    console.log('url: ', url);
+    if (url) {
+      getHelpRequestInfo();
+    }
+  }, [url]);
 
   const [arrivalMessage, setArrivalMessage] = useState({
     text: '',

@@ -51,10 +51,11 @@ function Profile() {
     { bgcolor: '#ef6c00', completed: 53 },
   ];
 
-  const avatarsDisplay = avatars.map((el: any) => {
+  const avatarsDisplay = avatars.map((el: any, index: number) => {
     return (
       <div className="avatars-div">
         <img
+          key={index}
           className="avatar-img"
           src={el}
           alt="avatar"
@@ -127,9 +128,9 @@ function Profile() {
         </form>
         <div className="rating-div">
           <h1 className="progress-title">Score:</h1>
-          {testData.map((item, idx) => (
+          {testData.map((item, index) => (
             <ProgressBar
-              key={idx}
+              key={index}
               bgcolor={item.bgcolor}
               completed={item.completed}
             />
