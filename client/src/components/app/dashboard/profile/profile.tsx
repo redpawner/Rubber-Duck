@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import './profile.scss';
 import { userStore } from '../../../../state-stores/state-stores';
 import ProgressBar from './progress bar/progress';
@@ -43,7 +43,7 @@ function Profile() {
     }
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     await updateUserAvatar();
     navigate('/dashboard');
@@ -57,12 +57,12 @@ function Profile() {
   const testData = [
     // { bgcolor: '#6a1b9a', completed: 60 },
     // { bgcolor: '#00695c', completed: 30 },
-    { bgcolor: '#ef6c00', completed: 53 },
+    { bgcolor: '#ef6c00', completed: user.rating_count },
   ];
 
-  const avatarsDisplay = avatars.map((el: any) => {
+  const avatarsDisplay = avatars.map((el: any, index: number) => {
     return (
-      <div className="avatars-div">
+      <div className="avatars-div" key={index}>
         <img
           className="avatar-img"
           src={el}
@@ -98,7 +98,6 @@ function Profile() {
           <div className="dropdown-avatar"></div>
         </div>
       </div>
-      {/* onSubmit={useHandleSubmit} */}
       <div className="rating-div">
         <div className="reviews-cont">
           <h1 className="progress-title">Rankings:</h1>
@@ -122,11 +121,11 @@ function Profile() {
           <form className="profile-form">
             <br></br>
             <label className="profile-label">Username:</label>
-            <br></br> <p className="profile-textBox">Weebxoxoxo</p>
+            <br></br> <p className="profile-textBox">{user.username}</p>
             <br></br>
             <label className="profile-label">Email:</label>
             <br></br>
-            <p className="profile-textBox">user1@gmail.com</p>
+            <p className="profile-textBox">{user.email}</p>
             <br></br>
             <label className="profile-label">Password:</label>
             <br></br>

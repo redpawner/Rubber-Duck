@@ -8,15 +8,12 @@ import logo from '../../../../Images/logo.png';
 import { loginUser, googleLogin } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
-import { useState } from 'react';
 
 function Login() {
   window.history.replaceState(null, '', '/');
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
   const [createUser] = useMutation(CREATE_USER);
-  //this event typescript type should be interfaced somewhere (any is bad)
-  //component id's need changing to classNames (and maybe named better) => check console logs to see what I mean
 
   const handleSubmit = async (event: any) => {
     try {

@@ -8,7 +8,7 @@ type ArrivalMessage = {
   imgSource?: string;
   blob?: Blob;
   author: string;
-  avatar: string
+  avatar: string;
 };
 
 type messageProps = {
@@ -38,6 +38,7 @@ type User = {
   uid: string;
   userAT: string;
   username: string;
+  email: string;
   avatar?: string;
   rating_total: number;
   rating_count: number;
@@ -49,6 +50,7 @@ type User = {
     rating_total: number,
     rating_count: number,
     needHelp: boolean,
+    email: string,
     avatar?: string,
     help_request?: HelpReqSchema
   ) => void;
