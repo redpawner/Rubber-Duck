@@ -55,6 +55,9 @@ function Chat() {
 
   const username = userStore((state) => state.username);
 
+  const userAvatar = userStore((state) => state.avatar);
+
+
   const author = helpRequestInfo.username;
 
   const roomID = window.location.hash;
@@ -441,7 +444,7 @@ function Chat() {
               <h2 className="currently-online">Currently online:</h2>
               <img
                 className="avatar-img2"
-                src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj"
+                src={userAvatar}
                 alt="avatar"
               />
             </div>

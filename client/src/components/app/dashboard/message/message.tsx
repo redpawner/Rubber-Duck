@@ -4,13 +4,13 @@ import { userStore } from '../../../../state-stores/state-stores';
 import '../chat-room/chat.scss';
 
 function Message({ message }: messageProps) {
-  const avatar = userStore((state) => state.avatar);
-  const profile = `static/media/${avatar}`;
+  const userAvatar = userStore((state) => state.avatar);
+  const profile = `static/media/${userAvatar}`;
 
   return (
     <div className="chat-message">
       <div className="chat-message-avatar">
-        <img className="avatar-img" src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj" alt="avatar" />
+        <img className="avatar-img" src={userAvatar} alt="avatar" />
 
         {/* <div className="chat-message-avatar-name">
           <span>{message.author}</span>
