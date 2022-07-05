@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './help-request.scss';
 
-import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 import { userStore } from '../../../../state-stores/state-stores';
 
 import { HelpReqSchema } from '../../../../interfaces';
@@ -19,12 +18,9 @@ function Help({ helpRequest }: Props) {
   const closeModal = () => setOpen(false);
   const [updateHR] = useMutation(UPDATE_HR);
 
-  const showChat = buttonsLogicStore((state) => state.setChat);
   const userAvatar = userStore((state) => state.avatar);
 
-
   const navigate = useNavigate();
-
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
     'en-gb',
@@ -59,10 +55,8 @@ function Help({ helpRequest }: Props) {
     window.location.hash = roomID;
 
     //We can take this out if we can get the specific hr frome the db
-    showChat();
 
     navigate('/chatroom#' + roomID);
-
   };
 
   return (
