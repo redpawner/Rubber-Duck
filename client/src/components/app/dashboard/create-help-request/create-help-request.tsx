@@ -29,7 +29,6 @@ function string_to_slug(str: any) {
 }
 
 function CreateHelp() {
-
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
 
@@ -129,7 +128,7 @@ function CreateHelp() {
           </div>
 
           <div className="rules-container">
-            <button className="back-btn" id="cancel" onClick={helpDash}>
+            <button className="back-btn" id="cancel">
               Back
             </button>
           </div>
@@ -298,8 +297,6 @@ function CreateHelp() {
             Publish
           </button>
         </form>
-
-
       </div>
     </div>
   );
