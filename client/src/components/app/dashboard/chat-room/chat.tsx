@@ -41,6 +41,7 @@ const createDefaultMessage = (room, user) => {
     type: 'text',
     room: room,
     author: user,
+    // include avatar: userAvatar
   };
 };
 
@@ -50,10 +51,15 @@ function Chat() {
   const [helpRequestInfo, setHelpRequestInfo] = useState('');
   const [updateHR] = useMutation(UPDATE_HR);
   const [showHelpInfo, setShowHelpInfo] = useState(true);
+  //create state for the helper avatar
+  const [helperAvatar, setHelperAvatar] = useState('')
 
   const uid = userStore((state) => state.uid);
 
   const username = userStore((state) => state.username);
+
+  const userAvatar = userStore((state) => state.avatar);
+
 
   const roomID = window.location.hash;
 
@@ -445,9 +451,10 @@ function Chat() {
             </div>
             <div className="people-online">
               <h2 className="currently-online">Currently online:</h2>
+              {/* {include helper avatar} */}
               <img
                 className="avatar-img2"
-                src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj"
+                src={userAvatar}
                 alt="avatar"
               />
             </div>
