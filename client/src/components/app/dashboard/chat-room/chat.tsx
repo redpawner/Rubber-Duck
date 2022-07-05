@@ -78,7 +78,9 @@ function Chat() {
 
   const getHelpRequestInfo = async () => {
     const data = await getHR();
-    setHelpRequestInfo(data.data.userMany[0].help_request);
+
+    data && setHelpRequestInfo(data.data.userMany[0].help_request);
+
   };
 
   useEffect(() => {
@@ -116,12 +118,14 @@ function Chat() {
   useEffect(() => {
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
-      if (username !== author) {
-        const defaultMessage = createDefaultMessage(roomID, username);
-        sendDefaultMessage(defaultMessage);
+
+      if (helpRequestInfo.username && (username !== helpRequestInfo.username)) {
+        const defaultMessage = createDefaultMessage(roomID, username)
+  sendDefaultMessage(defaultMessage)
+
       }
     }
-  }, [roomID, uid]);
+  }, [roomID, uid, helpRequestInfo.username, username]);
 
   // const cancelHandler = async (event: any) => {
   //   await updateHR({
