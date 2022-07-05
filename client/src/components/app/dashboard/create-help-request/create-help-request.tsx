@@ -55,10 +55,10 @@ function CreateHelp() {
     }
     setShowDrop(false);
     const description = event.target.description.value;
-    // GENERATE UNIQUE CHAT ROOM LOGIC HERE
+
     const slugDescription = string_to_slug(description);
     const roomID = slugDescription;
-    window.history.replaceState(null, '', '/chatroom');
+
     window.location.hash = roomID;
 
     let sandbox = 'https://codesandbox.io/';
@@ -88,7 +88,6 @@ function CreateHelp() {
         },
       },
     });
-
     navigate('/chatroom#' + roomID);
   };
 
