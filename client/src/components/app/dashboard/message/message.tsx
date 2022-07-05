@@ -10,6 +10,7 @@ function Message({ message }: messageProps) {
   return (
     <div className="chat-message">
       <div className="chat-message-avatar">
+        {/* {logic to show your avatar or helper avatar} */}
         <img className="avatar-img" src={userAvatar} alt="avatar" />
 
         {/* <div className="chat-message-avatar-name">
