@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import './create-help-request.scss';
-import {
-  buttonsLogicStore,
-  userStore,
-} from '../../../../state-stores/state-stores';
+import { userStore } from '../../../../state-stores/state-stores';
 import { useMutation } from '@apollo/client';
+import { useNavigate, Link } from 'react-router-dom';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 import langTags from '../../../../utils/tags';
 import Tag from '../tag/tag';
@@ -29,12 +27,11 @@ function string_to_slug(str: any) {
 }
 
 function CreateHelp() {
-  const helpDash = buttonsLogicStore((state) => state.setDashboard);
   const userState = userStore((state) => state);
   const [showDrop, setShowDrop] = useState(false);
+  const navigate = useNavigate();
 
   // SHOWCHAT CAN BE REMOVED ONCE ROUTER LOGIC IN PLACE:
-  const showChat = buttonsLogicStore((state) => state.setChat);
 
   const [updateHR] = useMutation(UPDATE_HR);
   const [formValue, setFormValue] = useState('');
@@ -82,7 +79,7 @@ function CreateHelp() {
       },
     });
 
-    showChat();
+    navigate('/chatroom#' + roomID);
   };
 
   const handleClick = (e: any) => {
@@ -215,9 +212,11 @@ function CreateHelp() {
               })}
             </ul>
           </div>
-          <button className="create-cancel-btn" id="cancel" onClick={helpDash}>
-            Cancel
-          </button>
+          <Link to="/dashboard">
+            <button className="create-cancel-btn" id="cancel">
+              Cancel
+            </button>
+          </Link>
         </div>
       </div>
     </div>

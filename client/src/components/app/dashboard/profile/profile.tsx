@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import './profile.scss';
-import {
-  buttonsLogicStore,
-  userStore,
-} from '../../../../state-stores/state-stores';
+import { userStore } from '../../../../state-stores/state-stores';
 import ProgressBar from './progress bar/progress';
+import { useNavigate } from 'react-router-dom';
 import coffee from '../../../../Images/coffee.png';
 import Popup from 'reactjs-popup';
 import avatars from '../../../../utils/avatarurls';
@@ -14,12 +12,13 @@ import { UPDATE_AVATAR } from '../../../../graphql/queries-mutations';
 function Profile() {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
-  const setDashboard = buttonsLogicStore((state) => state.setDashboard);
   const avatar = userStore((state) => state.avatar) as string;
   const setAvatar = userStore((state) => state.setAvatar);
   const [profilePic, setProfilePic] = useState(avatar);
   const [updateAvatar] = useMutation(UPDATE_AVATAR);
   const user = userStore((state) => state);
+
+  const navigate = useNavigate();
 
   const updateUserAvatar = async () => {
     try {
@@ -41,11 +40,9 @@ function Profile() {
   };
 
   const handleSubmit = async (event: any) => {
-    const result = await updateUserAvatar();
-    console.log(result);
     event.preventDefault();
-
-    setDashboard();
+    const result = await updateUserAvatar();
+    navigate('/dashboard');
   };
 
   const testData = [
