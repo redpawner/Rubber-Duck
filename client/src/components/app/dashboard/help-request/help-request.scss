@@ -4,25 +4,26 @@
   width: 19.5vw;
   min-width: 300px;
   // width: 23.5rem;
-
+  height: 18vh;
   min-height: 9rem;
 
   // min-height: 10rem;
   position: relative;
   background-color: #f8eef6;
   border-radius: $border-radius;
-  display: flex;
+  // display: flex;
+
   flex-direction: column;
 
   margin-bottom: 1rem;
   padding: 0.5rem;
 
   .help-title {
-    // margin-left: 2vh;
     font-family: $main-font-family;
-    font-size: 1.7rem;
-    // color: $blue-shade;
-    color: $grey-shade;
+    font-size: 1.5rem;
+    color: $blue-shade;
+    // color: $grey-shade;
+    // color: black;
     font-weight: bold;
     cursor: pointer;
     margin-bottom: 0;
@@ -30,11 +31,27 @@
   }
 
   .help-details {
+    // align-items: center;
     font-family: $main-font-family;
     font-size: 0.8rem;
     // color: $blue-shade;
-    color: black;
+    // color: black;
+    color: $grey-shade;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    bottom: 32%;
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .username {
+      padding-top: 0.4rem;
+    }
   }
 }
 
@@ -58,7 +75,7 @@
     .butts-cont {
       .help-button {
         font-size: 0.7rem !important;
-        width: 3rem !important;
+        // width: 3rem !important;
       }
     }
   }
@@ -66,6 +83,7 @@
 @media screen and (min-width: 620px) and (max-width: 1420px) {
   .help-container {
     width: 350px;
+    height: 150px;
     margin-left: 10px;
     .help-title {
       font-size: 1.7rem;
@@ -82,7 +100,7 @@
     .butts-cont {
       .help-button {
         font-size: 0.7rem !important;
-        width: 3rem !important;
+        // width: 3rem !important;
       }
     }
   }
@@ -101,15 +119,23 @@
   #tags {
     // margin-left: 2vh;
     font-family: $main-font-family;
-    color: $blue-shade;
+    // color: $blue-shade;
+    color: $grey-shade;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+
     span {
-      margin-right: 0.2rem;
-      // background-color: white;
+      // margin-top: 0.5rem;
+      margin-right: 0.3rem;
+      border: 1px solid $grey-shade;
       border-radius: $border-radius;
+      padding: 0.2rem 0.5rem;
+      padding-top: 0.4rem;
+      font-size: 0.9rem;
+      min-width: 2rem;
+      text-align: center;
     }
   }
 
@@ -125,7 +151,7 @@
 
     .help-button {
       border-radius: $border-radius;
-      width: 3vw;
+      width: 5vw;
       // width: 3.5rem;
       height: 2.2rem;
       min-height: 35px;
@@ -190,7 +216,6 @@
 .close:hover {
   font-weight: bolder;
 }
-
 
 .HR-title {
   font-size: x-large;

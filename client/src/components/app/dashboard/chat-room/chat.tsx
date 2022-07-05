@@ -39,17 +39,16 @@ const socket = io(`http://localhost:3001/`, {
   transports: ['websocket'],
 });
 
-const createDefaultMessage = (room, user)=>{
-  return {text:'Hey there!',
-  time: new Date(),
-  language: '',
-  type: 'text',
-  room: room,
-  author: user
-}
+const createDefaultMessage = (room, user) => {
+  return {
+    text: 'Hey there!',
+    time: new Date(),
+    language: '',
+    type: 'text',
+    room: room,
+    author: user,
+  };
 };
-
-
 
 function Chat() {
   const setDashboard = buttonsLogicStore((state) => state.setDashboard);
@@ -63,7 +62,7 @@ function Chat() {
 
   const username = userStore((state) => state.username);
 
-  const author = helpRequestInfo.username
+  const author = helpRequestInfo.username;
 
   const roomID = window.location.hash;
 
@@ -71,8 +70,8 @@ function Chat() {
   const url = window.location.href.slice(31);
 
   const toggleHelpInfo = () => {
-setShowHelpInfo(()=>!showHelpInfo)
-  }
+    setShowHelpInfo(() => !showHelpInfo);
+  };
 
   const [getHR] = useLazyQuery(GET_HR_BY_URL, {
     variables: {
@@ -87,7 +86,7 @@ setShowHelpInfo(()=>!showHelpInfo)
   const getHelpRequestInfo = async () => {
     const data = await getHR();
     setHelpRequestInfo(data.data.userMany[0].help_request);
-    console.log('hr',helpRequestInfo)
+    console.log('hr', helpRequestInfo);
   };
 
   useEffect(() => {
@@ -126,8 +125,8 @@ setShowHelpInfo(()=>!showHelpInfo)
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
       if (username !== author) {
-        const defaultMessage = createDefaultMessage(roomID, username)
-  sendDefaultMessage(defaultMessage)
+        const defaultMessage = createDefaultMessage(roomID, username);
+        sendDefaultMessage(defaultMessage);
       }
     }
   }, [roomID, uid]);
@@ -242,7 +241,6 @@ setShowHelpInfo(()=>!showHelpInfo)
   const sendDefaultMessage = (message: ArrivalMessage) => {
     socket.emit('sendMessage', message);
     setMessages([...messages, message]);
-
   };
 
   const selectFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -262,8 +260,6 @@ setShowHelpInfo(()=>!showHelpInfo)
   };
 
   // const selectEmoji = (e) => {};
-
-
 
   useEffect(() => {
     Prism.highlightAll();
@@ -286,7 +282,6 @@ setShowHelpInfo(()=>!showHelpInfo)
       scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
-
 
   return (
     <div className="chat-main">
@@ -316,7 +311,6 @@ setShowHelpInfo(()=>!showHelpInfo)
                 required
                 // onHeightChange={(height)=>{}}
               />
-
               <div className="buttons">
                 {arrivalMessage.type !== 'file' &&
                 arrivalMessage.text === '' ? ( //button for sending message
@@ -409,55 +403,74 @@ setShowHelpInfo(()=>!showHelpInfo)
           ) : null}
         </div>
       </div>
-      <div className="features-container" style = {showHelpInfo? {width : 35 + '%' }:{width : 32 + 'px' }}>
-        <button onClick={toggleHelpInfo}><img src={require('../../../../Images/icon-arrow.png')}
-                        alt="code-icon" className = {showHelpInfo? 'right': 'left'}></img></button>
+      <div
+        className="features-container"
+        style={showHelpInfo ? { width: 35 + '%' } : { width: 32 + 'px' }}
+      >
+        <button onClick={toggleHelpInfo}>
+          <img
+            src={require('../../../../Images/icon-arrow.png')}
+            alt="code-icon"
+            className={showHelpInfo ? 'right' : 'left'}
+          ></img>
+        </button>
 
-          { <div className='features-container-info' style = {showHelpInfo? {opacity : 1 , transition: "opacity 50ms linear", transitionDelay: "250ms"}:{opacity : 0  }}>
-           <h1 className="help-chat-title" >{helpRequestInfo.title}</h1>
-           <div className="problem-div">
-           <p className="problem-content">
-           {helpRequestInfo.description}
-           </p>
-           <ul className="help-tags-list">
-            {helpRequestInfo && helpRequestInfo.hr_languages.map((lang) => (
-                        <li key={lang} value={lang}>
-                          {lang}
-                        </li> ))}
-
-           </ul>
-           </div>
-           <div className="people-online">
-           <h2 className="currently-online">Currently online:</h2>
-           <img
-            className="avatar-img2"
-            src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj"
-            alt="avatar"
-           />
-           </div>
-           <div className="people-online">
-            <h2 className="currently-online">Try:</h2>
-            <div className="options">
-            {/* <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
+        {
+          <div
+            className="features-container-info"
+            style={
+              showHelpInfo
+                ? {
+                    opacity: 1,
+                    transition: 'opacity 50ms linear',
+                    transitionDelay: '250ms',
+                  }
+                : { opacity: 0 }
+            }
+          >
+            <h1 className="help-chat-title">{helpRequestInfo.title}</h1>
+            <div className="problem-div">
+              <p className="problem-content">{helpRequestInfo.description}</p>
+              <ul className="help-tags-list">
+                {helpRequestInfo &&
+                  helpRequestInfo.hr_languages.map((lang) => (
+                    <li key={lang} value={lang}>
+                      {lang}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div className="people-online">
+              <h2 className="currently-online">Currently online:</h2>
+              <img
+                className="avatar-img2"
+                src="https://yt3.ggpht.com/ytc/AKedOLSqwulPkzzEYz2Y2FveRXgtfNB0-KN4NXN29vbb=s88-c-k-c0x00ffffff-no-rj"
+                alt="avatar"
+              />
+            </div>
+            <div className="people-online">
+              <h2 className="currently-online">Try:</h2>
+              <div className="options">
+                {/* <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
               <img src={britney} alt="sand" className="avatar-img3" />
             </a> */}
-            <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
-              <img src={sand} alt="sand" className="sandbox" />
-            </a>
-            {/* <img src={board} alt="whiteboard" className="avatar-img3" />
+                <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
+                  <img src={sand} alt="sand" className="sandbox" />
+                </a>
+                {/* <img src={board} alt="whiteboard" className="avatar-img3" />
             <img src={video} alt="video" className="avatar-img3" /> */}
-           </div>
+              </div>
+            </div>
+            <div className="buttons-box">
+              {/* <button className="res-button" onClick={cancelHandler}> */}
+              <button className="res-button">Seek another mentor</button>
+              {/* <button className="res-button" onClick={resolveHandler}> */}
+              <button className="res-button">Resolved</button>
+            </div>
           </div>
-        <div className="buttons-box">
-          {/* <button className="res-button" onClick={cancelHandler}> */}
-          <button className="res-button">Seek another mentor</button>
-          {/* <button className="res-button" onClick={resolveHandler}> */}
-          <button className="res-button">Resolved</button>
-        </div>
-        </div>}
-          </div>
+        }
       </div>
-
+    </div>
   );
 }
 

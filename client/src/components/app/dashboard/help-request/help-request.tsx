@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './help-request.scss';
-import { buttonsLogicStore} from '../../../../state-stores/state-stores';
+import { buttonsLogicStore } from '../../../../state-stores/state-stores';
+import { userStore } from '../../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../../interfaces';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
@@ -15,6 +16,7 @@ function Help({ helpRequest }: Props) {
   const closeModal = () => setOpen(false);
   const [updateHR] = useMutation(UPDATE_HR);
   const showChat = buttonsLogicStore((state) => state.setChat);
+  const userAvatar = userStore((state) => state.avatar);
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
     'en-gb',
@@ -47,19 +49,21 @@ function Help({ helpRequest }: Props) {
     const roomID = helpRequest.url;
     window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
-//We can take this out if we can get the specific hr frome the db
-showChat();
+    //We can take this out if we can get the specific hr frome the db
+    showChat();
   };
 
   return (
     <div className="help-container">
       <h1 className="help-title">{helpRequest.title}</h1>
       <p className="help-details">
-        {prettyTime}&nbsp;
-        {prettyDate} @{helpRequest.username}
+        <img src={userAvatar} alt="" className="user-avatar" />
+        <span className="username">
+          {prettyTime}&nbsp;
+          {prettyDate} @{helpRequest.username}
+        </span>
       </p>
       <div className="bottom-details">
-
         <div id="tags">
           {helpRequest.hr_languages.map((e) => {
             return <span>{e}</span>;
@@ -86,7 +90,6 @@ showChat();
 
             <Popup open={open} closeOnDocumentClick onClose={closeModal}>
               <div className="HR-popup">
-
                 <div className="X-outerbox">
                   <div className="userbox">
                     <div className="usernamebox">{helpRequest.username}</div>
@@ -101,13 +104,12 @@ showChat();
                 <button className="help-buttonx" onClick={answerHelpRequests}>
                   Help
                 </button>
-
               </div>
             </Popup>
           </div>
-          <button className="help-button" onClick={answerHelpRequests}>
+          {/* <button className="help-button" onClick={answerHelpRequests}>
             Help
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
