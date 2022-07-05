@@ -27,9 +27,9 @@ import {
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
 
-const backendPORT = process.env.REACT_APP_BACKEND_PORT || '3001';
+const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
-const socket = io(`http://localhost:3001/`, {
+const socket = io(`http://localhost:${BACKEND_PORT}/`, {
   transports: ['websocket'],
 });
 
@@ -55,8 +55,6 @@ function Chat() {
 
   const username = userStore((state) => state.username);
 
-  const author = helpRequestInfo.username;
-
   const roomID = window.location.hash;
 
   //currently grabbing url through lazy slice method (this will have to change when URL changes)
@@ -80,7 +78,6 @@ function Chat() {
     const data = await getHR();
 
     data && setHelpRequestInfo(data.data.userMany[0].help_request);
-
   };
 
   useEffect(() => {
@@ -119,11 +116,9 @@ function Chat() {
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
 
-      if (helpRequestInfo.username && (username !== helpRequestInfo.username)) {
-        const defaultMessage = createDefaultMessage(roomID, username)
-  sendDefaultMessage(defaultMessage)
-
-
+      if (helpRequestInfo.username && username !== helpRequestInfo.username) {
+        const defaultMessage = createDefaultMessage(roomID, username);
+        sendDefaultMessage(defaultMessage);
       }
     }
   }, [roomID, uid, helpRequestInfo.username, username]);
@@ -453,7 +448,6 @@ function Chat() {
             </a> */}
 
                 <a href={helpRequestInfo.sandbox}>
-
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />

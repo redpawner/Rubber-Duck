@@ -89,9 +89,9 @@ function Login() {
           />
           <button className="login-btn">Log In</button>
           <div>
-            <a className="forgot-password">
-              <Link to="/reset">Forgot password?</Link>
-            </a>
+            <Link className="forgot-password" to="/reset">
+              Forgot password?
+            </Link>
           </div>
         </form>
       </div>
