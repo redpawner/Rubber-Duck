@@ -92,6 +92,7 @@ function Chat() {
 
       setHelpRequestInfo(result);
     } else alert('Error fetching Help Request data.');
+
   };
 
   useEffect(() => {
