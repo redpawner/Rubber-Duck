@@ -33,8 +33,8 @@ const User: any = conn.model('User', userSchema);
 const UserTC = composeMongoose(User, {});
 
 schemaComposer.Query.addFields({
-  userById: UserTC.mongooseResolvers.findById(),
-  userByIds: UserTC.mongooseResolvers.findByIds(),
+  // userById: UserTC.mongooseResolvers.findById(),
+  // userByIds: UserTC.mongooseResolvers.findByIds(),
   userOne: UserTC.mongooseResolvers.findOne().wrapResolve((next) => (rp) => {
     rp.args.filter.uid = rp.context.ctx.state.uid;
     return next(rp);
@@ -53,7 +53,7 @@ schemaComposer.Query.addFields({
   //   }
   // }),
 
-  userDataLoader: UserTC.mongooseResolvers.dataLoader(),
+  // userDataLoader: UserTC.mongooseResolvers.dataLoader(),
   // userDataLoaderMany: UserTC.mongooseResolvers.dataLoaderMany(),
   // userByIdLean: UserTC.mongooseResolvers.findById({ lean: true }),
   // userByIdsLean: UserTC.mongooseResolvers.findByIds({ lean: true }),
@@ -63,9 +63,9 @@ schemaComposer.Query.addFields({
   // userDataLoaderManyLean: UserTC.mongooseResolvers.dataLoaderMany({
   //   lean: true,
   // }),
-  userCount: UserTC.mongooseResolvers.count(),
+  // userCount: UserTC.mongooseResolvers.count(),
   // userConnection: UserTC.mongooseResolvers.connection(),
-  userPagination: UserTC.mongooseResolvers.pagination(),
+  // userPagination: UserTC.mongooseResolvers.pagination(),
 });
 
 schemaComposer.Mutation.addFields({
@@ -75,18 +75,18 @@ schemaComposer.Mutation.addFields({
       rp.args.record.uid = rp.context.ctx.state.uid;
       return next(rp);
     }),
-  userCreateMany: UserTC.mongooseResolvers.createMany(),
-  userUpdateById: UserTC.mongooseResolvers.updateById(),
+  // userCreateMany: UserTC.mongooseResolvers.createMany(),
+  // userUpdateById: UserTC.mongooseResolvers.updateById(),
   userUpdateOne: UserTC.mongooseResolvers
     .updateOne()
     .wrapResolve((next) => (rp) => {
       rp.args.record.uid = rp.context.ctx.state.uid;
       return next(rp);
     }),
-  userUpdateMany: UserTC.mongooseResolvers.updateMany(),
-  userRemoveById: UserTC.mongooseResolvers.removeById(),
-  userRemoveOne: UserTC.mongooseResolvers.removeOne(),
-  userRemoveMany: UserTC.mongooseResolvers.removeMany(),
+  // userUpdateMany: UserTC.mongooseResolvers.updateMany(),
+  // userRemoveById: UserTC.mongooseResolvers.removeById(),
+  // userRemoveOne: UserTC.mongooseResolvers.removeOne(),
+  // userRemoveMany: UserTC.mongooseResolvers.removeMany(),
 });
 
 const graphqlSchema = schemaComposer.buildSchema();

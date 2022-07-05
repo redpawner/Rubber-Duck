@@ -42,7 +42,7 @@ const createDefaultMessage = (room, user, avatar) => {
     type: 'text',
     room: room,
     author: user,
-    avatar: avatar
+    avatar: avatar,
   };
 };
 
@@ -54,8 +54,7 @@ function Chat() {
   const [showHelpInfo, setShowHelpInfo] = useState(true);
   //create state for the helper avatar
 
-  const [otherAvatar, setOtherAvatar] = useState('')
-
+  const [otherAvatar, setOtherAvatar] = useState('');
 
   const navigate = useNavigate();
   const uid = userStore((state) => state.uid);
@@ -101,7 +100,7 @@ function Chat() {
     if (url) {
       getHelpRequestInfo();
     }
-  }, [url]);
+  }, [url]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [arrivalMessage, setArrivalMessage] = useState({
     text: '',
@@ -136,11 +135,15 @@ function Chat() {
       socket.emit('join_room', roomID);
 
       if (helpRequestInfo.username && username !== helpRequestInfo.username) {
-        const defaultMessage = createDefaultMessage(roomID, username, userAvatar);
+        const defaultMessage = createDefaultMessage(
+          roomID,
+          username,
+          userAvatar
+        );
         sendDefaultMessage(defaultMessage);
       }
     }
-  }, [roomID, uid, helpRequestInfo.username, username]);
+  }, [roomID, uid, helpRequestInfo.username, username]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const cancelHandler = async () => {
     await updateHR({
@@ -159,7 +162,10 @@ function Chat() {
     navigate('/dashboard');
   };
 
-  const onEmojiClick = (event: any, emojiObject: SetStateAction<null>) => {
+  const onEmojiClick = (
+    event: FormEvent,
+    emojiObject: SetStateAction<null>
+  ) => {
     setChosenEmoji(emojiObject);
 
     setArrivalMessage({
@@ -169,7 +175,7 @@ function Chat() {
     });
   };
 
-  const handleShowEmojiPicker = (event: any) => {
+  const handleShowEmojiPicker = (event: FormEvent) => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
@@ -179,8 +185,8 @@ function Chat() {
     arrivalMessage.language = event.target.value;
   };
 
-  const handleInputTypeClick = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const handleInputTypeClick = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     setShowLangDropDown(!showLangDropDown);
   };
 
@@ -204,13 +210,13 @@ function Chat() {
       type: 'text',
       room: roomID,
       author: username,
-      avatar: userAvatar
+      avatar: userAvatar,
     };
     setArrivalMessage(messageObject);
   };
 
-  const sendMessage = (e: any) => {
-    e.preventDefault();
+  const sendMessage = (event: FormEvent) => {
+    event.preventDefault();
     socket.emit('sendMessage', arrivalMessage);
     setMessages([...messages, arrivalMessage]);
     setArrivalMessage({
@@ -266,15 +272,15 @@ function Chat() {
       setMessages([...messages, data]);
     });
   }, [messages]);
-  useEffect(()=>{
-if (messages.length) {
-  const lastMessage = messages[messages.length-1]
-  console.log(messages, 'lmsg')
-  if (lastMessage.author !== username) {
-    setOtherAvatar(lastMessage.avatar)
-}
-}
-  }, [messages])
+  useEffect(() => {
+    if (messages.length) {
+      const lastMessage = messages[messages.length - 1];
+      console.log(messages, 'lmsg');
+      if (lastMessage.author !== username) {
+        setOtherAvatar(lastMessage.avatar);
+      }
+    }
+  }, [messages]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -443,25 +449,16 @@ if (messages.length) {
               <h2 className="currently-online">Currently online:</h2>
               {/* {include helper avatar} */}
 
-              <img
-                className="avatar-img2"
-                src={userAvatar}
-                alt="avatar"
-              />
-              {(username === helpRequestInfo.author)?(
-              <img
-                className="avatar-img2"
-                src={otherAvatar}
-                alt="avatar"
-              />
-            ):(
-              <img
-                className="avatar-img2"
-                src={helpRequestInfo.avatar}
-                alt="avatar"
-              />
-           )}
-
+              <img className="avatar-img2" src={userAvatar} alt="avatar" />
+              {username === helpRequestInfo.author ? (
+                <img className="avatar-img2" src={otherAvatar} alt="avatar" />
+              ) : (
+                <img
+                  className="avatar-img2"
+                  src={helpRequestInfo.avatar}
+                  alt="avatar"
+                />
+              )}
             </div>
             <div className="creator-links">
               <h2 className="current-links">Try:</h2>

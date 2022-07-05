@@ -5,10 +5,10 @@ import git from '../../../../Images/git.png';
 import google from '../../../../Images/google.png';
 import apple from '../../../../Images/apple.png';
 import logo from '../../../../Images/logo.png';
-import { loginUser } from '../../../../api-services/api-auth';
-import { googleLogin } from '../../../../api-services/api-auth';
+import { loginUser, googleLogin } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
+import { useState } from 'react';
 
 function Login() {
   window.history.replaceState(null, '', '/');
@@ -19,19 +19,23 @@ function Login() {
   //component id's need changing to classNames (and maybe named better) => check console logs to see what I mean
 
   const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    const email: string = event.target.email.value;
-    const password: string = event.target.password.value;
-    const user = await loginUser(email, password);
-    setUserUid(user.uid);
-    setUserToken(user.accessToken);
+    try {
+      event.preventDefault();
+      const email: string = event.target.email.value;
+      const password: string = event.target.password.value;
+      const user = await loginUser(email, password);
+      setUserUid(user.uid);
+      setUserToken(user.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const googleSignIn = async () => {
     const user = await googleLogin();
     try {
+      setUserUid(user.uid);
       if (user.metadata.creationTime === user.metadata.lastSignInTime) {
-        setUserUid(user.uid);
         await createUser({
           variables: {
             record: {
@@ -42,11 +46,8 @@ function Login() {
             },
           },
         });
-        setUserToken(user.accessToken);
-      } else {
-        setUserUid(user.uid);
-        setUserToken(user.accessToken);
       }
+      setUserToken(user.accessToken);
     } catch (error) {
       console.log(error);
     }
