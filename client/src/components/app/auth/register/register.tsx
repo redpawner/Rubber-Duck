@@ -55,9 +55,11 @@ function Register() {
       </div>
       <div className="register-form">
         <div className="sign-buttons-cont">
-          <button id="sign-button" className="sign-in-button2">
-            <Link to="/">Sign in</Link>
-          </button>
+          <Link to="/">
+            <button id="sign-button" className="sign-in-button2">
+              Sign in
+            </button>
+          </Link>
           <button id="sign-button" className="sign-up-button2">
             Sign up
           </button>

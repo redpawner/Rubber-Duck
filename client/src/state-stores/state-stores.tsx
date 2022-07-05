@@ -29,6 +29,7 @@ const userStore = create<User>()(
       hr_languages: [],
       time_created: '',
       url: '',
+      avatar: '',
     },
     setUser: (
       username: string,

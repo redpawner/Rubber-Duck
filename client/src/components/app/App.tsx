@@ -22,7 +22,6 @@ function App() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log('running');
       if (user) {
         setUserUid(user.uid);
         user.getIdToken().then((token) => setUserAT(token));

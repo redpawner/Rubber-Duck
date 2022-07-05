@@ -58,9 +58,11 @@ function Login() {
           <button id="sign-button" className="sign-in-button">
             Sign in
           </button>
-          <button id="sign-button" className="sign-up-button">
-            <Link to="/register">Sign up</Link>
-          </button>
+          <Link to="/register">
+            <button id="sign-button" className="sign-up-button">
+              Sign up
+            </button>
+          </Link>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
           <label className="reg-input" htmlFor="email">
