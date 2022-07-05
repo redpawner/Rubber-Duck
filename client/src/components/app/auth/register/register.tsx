@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  buttonsLogicStore,
-  userStore,
-} from '../../../../state-stores/state-stores';
+import { userStore } from '../../../../state-stores/state-stores';
 import '../login/login.scss';
 import './register.scss';
 import defaultPic from '../../../../Images/avatars/user.png';
@@ -10,9 +7,9 @@ import logo from '../../../../Images/logo.png';
 import { fbCreateUser } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
+import { Link } from 'react-router-dom';
 
 function Register() {
-  const loginShow = buttonsLogicStore((state) => state.setLogin);
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
 
@@ -58,12 +55,8 @@ function Register() {
       </div>
       <div className="register-form">
         <div className="sign-buttons-cont">
-          <button
-            id="sign-button"
-            className="sign-in-button2"
-            onClick={loginShow}
-          >
-            Sign in
+          <button id="sign-button" className="sign-in-button2">
+            <Link to="/">Sign in</Link>
           </button>
           <button id="sign-button" className="sign-up-button2">
             Sign up
