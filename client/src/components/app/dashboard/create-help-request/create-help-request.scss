@@ -250,13 +250,13 @@
 }
 #guide-box-headline{
   padding-top: 5vh;
-  padding-left:1.5vw;
+  padding-left:5vw;
   padding-bottom: 2vh;
   display: flex;
   justify-content: center;
   width: 28vw;
-  font-size: large;
-  font-weight: bolder;
+  // font-size: large;
+  // font-weight: bolder;
 
 }
 .guide-outerbox{
@@ -270,5 +270,10 @@
 }
 .guide-box-point{
   margin:.5vh;
+  padding-left:1vw;
+}
+.thankyou{
+  display:flex;
+  justify-content: center;
 }
 
