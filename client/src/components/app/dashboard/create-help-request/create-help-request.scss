@@ -20,6 +20,16 @@
 //   display: flex;
 //   justify-content: space-around;
 // }
+.create-help-button-div{
+  display:flex;
+
+}
+.main-helper-box{
+
+  width:60vw;
+  display: flex;
+  justify-content: space-between;
+}
 
 .helper {
   display: flex;
@@ -145,17 +155,20 @@
 .rules-container {
   // width: 65%;
   // height: 90%;
+  padding-top: 5vh;
+  margin-left: 5vw;
   margin-bottom: 6vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  // background-color: yellow;
+  
 }
 .tags-display-box{
-  width: 7vw;
+  width: auto;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height:5vh;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 
 .rules-list {

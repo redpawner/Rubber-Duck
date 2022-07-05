@@ -7,6 +7,7 @@ import {
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
 import langTags from '../../../../utils/tags';
+import logo from '../../../../Images/logo.png';
 import Tag from '../tag/tag';
 import Popup from 'reactjs-popup';
 
@@ -94,7 +95,9 @@ function CreateHelp() {
     if (tags.includes(value)) {
       return;
     }
-    setTags((tags) => [...tags, value]);
+    if (tags.length < 3) {
+      setTags((tags) => [...tags, value]);
+    }
   };
 
   const mapLang = langTags
@@ -116,11 +119,21 @@ function CreateHelp() {
   return (
     <div className="dashboard-container1">
       <div className="helper">
+        <div className="main-helper-box">
         <div className="create-help-button-div">
-          <h1 className="dashboard-title">Create Help Request</h1>
+          <div className="create-help-button-div">
+            <h1 className="dashboard-title">Create Help Request</h1>
+          </div>
+          <div className="qn" onClick={() => setOpen((o) => !o)}>
+            i
+          </div>
         </div>
-        <div className="qn" onClick={() => setOpen((o) => !o)}>
-          i
+
+        <div className="rules-container">
+          <button className="back-btn" id="cancel" onClick={helpDash}>
+            Back
+          </button>
+        </div>
         </div>
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
           <div className="guide-box">
@@ -208,7 +221,7 @@ function CreateHelp() {
                   </div>
 
                   <div className="thankyou">
-                    <h2>Thank you</h2>
+                    <h2>Thank you</h2>{' '}
                   </div>
                 </ol>
               </div>
@@ -263,6 +276,11 @@ function CreateHelp() {
                 {mapLang}
               </div>
             </div>
+            <div className="tags-display-box">
+              {tags.sort().map((tag) => {
+                return <Tag name={tag} onClick={deselect} />;
+              })}
+            </div>
             <label className="help-request-input" htmlFor="sandbox">
               Sandbox link:
             </label>
@@ -278,20 +296,6 @@ function CreateHelp() {
             Publish
           </button>
         </form>
-        <div className="rules-container">
-          <div className="container-height2">
-            <ul className="search-tags">
-              <div className="tags-display-box">
-                {tags.sort().map((tag) => {
-                  return <Tag name={tag} onClick={deselect} />;
-                })}
-              </div>
-            </ul>
-          </div>
-          <button className="back-btn" id="cancel" onClick={helpDash}>
-            Back
-          </button>
-        </div>
       </div>
     </div>
   );
