@@ -34,7 +34,7 @@ const socket = io(`http://localhost:${BACKEND_PORT}/`, {
   transports: ['websocket'],
 });
 
-const createDefaultMessage = (room, user) => {
+const createDefaultMessage = (room, user, avatar) => {
   return {
     text: 'Hey there!',
     time: new Date(),
@@ -42,7 +42,7 @@ const createDefaultMessage = (room, user) => {
     type: 'text',
     room: room,
     author: user,
-    // include avatar: userAvatar
+    avatar: avatar
   };
 };
 
@@ -53,7 +53,9 @@ function Chat() {
   const [updateHR] = useMutation(UPDATE_HR);
   const [showHelpInfo, setShowHelpInfo] = useState(true);
   //create state for the helper avatar
-  const [helperAvatar, setHelperAvatar] = useState('');
+
+  const [otherAvatar, setOtherAvatar] = useState('')
+
 
   const navigate = useNavigate();
   const uid = userStore((state) => state.uid);
@@ -134,7 +136,7 @@ function Chat() {
       socket.emit('join_room', roomID);
 
       if (helpRequestInfo.username && username !== helpRequestInfo.username) {
-        const defaultMessage = createDefaultMessage(roomID, username);
+        const defaultMessage = createDefaultMessage(roomID, username, userAvatar);
         sendDefaultMessage(defaultMessage);
       }
     }
@@ -202,6 +204,7 @@ function Chat() {
       type: 'text',
       room: roomID,
       author: username,
+      avatar: userAvatar
     };
     setArrivalMessage(messageObject);
   };
@@ -263,6 +266,15 @@ function Chat() {
       setMessages([...messages, data]);
     });
   }, [messages]);
+  useEffect(()=>{
+if (messages.length) {
+  const lastMessage = messages[messages.length-1]
+  console.log(messages, 'lmsg')
+  if (lastMessage.author !== username) {
+    setOtherAvatar(lastMessage.avatar)
+}
+}
+  }, [messages])
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -430,10 +442,29 @@ function Chat() {
             <div className="people-online">
               <h2 className="currently-online">Currently online:</h2>
               {/* {include helper avatar} */}
-              <img className="avatar-img2" src={userAvatar} alt="avatar" />
+
+              <img
+                className="avatar-img2"
+                src={userAvatar}
+                alt="avatar"
+              />
+              {(username === helpRequestInfo.author)?(
+              <img
+                className="avatar-img2"
+                src={otherAvatar}
+                alt="avatar"
+              />
+            ):(
+              <img
+                className="avatar-img2"
+                src={helpRequestInfo.avatar}
+                alt="avatar"
+              />
+           )}
+
             </div>
-            <div className="people-online">
-              <h2 className="currently-online">Try:</h2>
+            <div className="creator-links">
+              <h2 className="current-links">Try:</h2>
               <div className="options">
                 {/* <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
               <img src={britney} alt="sand" className="avatar-img3" />

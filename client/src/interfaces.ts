@@ -8,6 +8,7 @@ type ArrivalMessage = {
   imgSource?: string;
   blob?: Blob;
   author: string;
+  avatar: string
 };
 
 type messageProps = {
