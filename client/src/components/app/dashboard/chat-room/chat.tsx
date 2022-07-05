@@ -30,7 +30,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
-const socket = io(`http://localhost:${BACKEND_PORT}/`, {
+const socket = io(BACKEND_PORT, {
   transports: ['websocket'],
 });
 
