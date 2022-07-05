@@ -41,7 +41,7 @@ function Profile() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const result = await updateUserAvatar();
+    await updateUserAvatar();
     navigate('/dashboard');
   };
 
@@ -51,10 +51,11 @@ function Profile() {
     { bgcolor: '#ef6c00', completed: 53 },
   ];
 
-  const avatarsDisplay = avatars.map((el: any) => {
+  const avatarsDisplay = avatars.map((el: any, index: number) => {
     return (
       <div className="avatars-div">
         <img
+          key={index}
           className="avatar-img"
           src={el}
           alt="avatar"
@@ -103,7 +104,7 @@ function Profile() {
           <br></br>
           <label className="profile-label">Password:</label>
           <br></br>
-          <a className="password-reset-a">Reset your password</a>
+          <p className="password-reset-a">Reset your password</p>
           <br></br>
           <label className="profile-label" htmlFor="username">
             Location:
@@ -127,9 +128,9 @@ function Profile() {
         </form>
         <div className="rating-div">
           <h1 className="progress-title">Score:</h1>
-          {testData.map((item, idx) => (
+          {testData.map((item, index) => (
             <ProgressBar
-              key={idx}
+              key={index}
               bgcolor={item.bgcolor}
               completed={item.completed}
             />

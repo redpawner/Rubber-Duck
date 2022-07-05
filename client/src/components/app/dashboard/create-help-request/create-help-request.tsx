@@ -14,9 +14,9 @@ function string_to_slug(str: any) {
   str = str.toLowerCase();
 
   // remove accents, swap ñ for n, etc
-  var from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
-  var to = 'aaaaeeeeiiiioooouuuunc------';
-  for (var i = 0, l = from.length; i < l; i++) {
+  let from = 'àáäâèéëêìíïîòóöôùúüûñç·/_,:;';
+  let to = 'aaaaeeeeiiiioooouuuunc------';
+  for (let i = 0, l = from.length; i < l; i++) {
     str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
   }
 
@@ -41,6 +41,7 @@ function CreateHelp() {
   const [updateHR] = useMutation(UPDATE_HR);
   const [formValue, setFormValue] = useState('');
   const [tags, setTags] = useState<string[]>([]);
+  const [message, setMessage] = useState('');
 
   const handleChange = (e: any) => {
     setFormValue(e.target.value);
@@ -48,12 +49,16 @@ function CreateHelp() {
 
   const publish = async (event: any) => {
     event.preventDefault();
+    if (tags.length === 0) {
+      setMessage('Please add tags');
+      return;
+    }
     setShowDrop(false);
     const description = event.target.description.value;
-    // GENERATE UNIQUE CHAT ROOM LOGIC HERE
+
     const slugDescription = string_to_slug(description);
     const roomID = slugDescription;
-    window.history.replaceState(null, '', '/chatroom');
+
     window.location.hash = roomID;
 
     let sandbox = 'https://codesandbox.io/';
@@ -83,7 +88,6 @@ function CreateHelp() {
         },
       },
     });
-
     navigate('/chatroom#' + roomID);
   };
 
@@ -128,9 +132,11 @@ function CreateHelp() {
           </div>
 
           <div className="rules-container">
-            <button className="back-btn" id="cancel">
-              Back
-            </button>
+            <Link to="/dashboard">
+              <button className="back-btn" id="cancel">
+                Back
+              </button>
+            </Link>
           </div>
         </div>
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
@@ -274,6 +280,7 @@ function CreateHelp() {
                 >
                   {mapLang}
                 </div>
+                {message}
               </div>
               <div className="tags-display-box">
                 {tags.sort().map((tag) => {

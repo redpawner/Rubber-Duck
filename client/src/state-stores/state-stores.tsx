@@ -1,7 +1,7 @@
 import create from 'zustand';
 //Enable redux devtools in browser
 import { devtools, persist } from 'zustand/middleware';
-import { User, UserSettingsStore, MyStore, HelpReqSchema } from '../interfaces';
+import { User, UserSettingsStore, HelpReqSchema } from '../interfaces';
 
 //In case we want to add the dark mode functionality or other user settings
 const useUserSettingsStore = create<UserSettingsStore>()(
@@ -33,9 +33,9 @@ const userStore = create<User>()(
     },
     setUser: (
       username: string,
-      rating_total: Number,
-      rating_count: Number,
-      needHelp: Boolean,
+      rating_total: number,
+      rating_count: number,
+      needHelp: boolean,
       avatar?: string,
       help_request?: HelpReqSchema
     ) => {

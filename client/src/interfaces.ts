@@ -14,20 +14,6 @@ type messageProps = {
   message: ArrivalMessage;
 };
 
-type MyStore = {
-  show: string;
-  counter: number;
-  profile: boolean;
-  // toggleShow: () => void;
-  setReset: () => void;
-  setReg: () => void;
-  setLogin: () => void;
-  setProfile: () => void;
-  setDashboard: () => void;
-  setChat: () => void;
-  setHelp: () => void;
-};
-
 type UserSettingsStore = {
   darkMode: boolean;
   toggleDarkMode: () => void;
@@ -52,16 +38,16 @@ type User = {
   userAT: string;
   username: string;
   avatar?: string;
-  rating_total: Number;
-  rating_count: Number;
-  needHelp: Boolean;
+  rating_total: number;
+  rating_count: number;
+  needHelp: boolean;
   help_request: HelpReqSchema;
 
   setUser: (
     username: string,
-    rating_total: Number,
-    rating_count: Number,
-    needHelp: Boolean,
+    rating_total: number,
+    rating_count: number,
+    needHelp: boolean,
     avatar?: string,
     help_request?: HelpReqSchema
   ) => void;
@@ -76,6 +62,5 @@ export type {
   User,
   HelpReqSchema,
   UserSettingsStore,
-  MyStore,
   UserRole,
 };

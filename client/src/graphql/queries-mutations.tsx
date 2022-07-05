@@ -43,6 +43,7 @@ const GET_HR_BY_LANGUAGE = gql`
 const GET_HR_BY_URL = gql`
   query Query($filter: FilterFindManyUserInput) {
     userMany(filter: $filter) {
+      avatar
       help_request {
         username
         title
@@ -72,17 +73,17 @@ const CREATE_USER = gql`
 `;
 
 //NOT IN USE YET:
-const DELETE_USER = gql`
-  mutation Mutation($filter: FilterRemoveOneUserInput) {
-    userRemoveOne(filter: $filter, uid: $uid) {
-      record {
-        uid
-        username
-        email
-      }
-    }
-  }
-`;
+// const DELETE_USER = gql`
+//   mutation Mutation($filter: FilterRemoveOneUserInput) {
+//     userRemoveOne(filter: $filter, uid: $uid) {
+//       record {
+//         uid
+//         username
+//         email
+//       }
+//     }
+//   }
+// `;
 
 // NOT IN USE YET:
 
@@ -101,6 +102,7 @@ const UPDATE_HR = gql`
           username
           time_created
           url
+          sandbox
         }
       }
     }

@@ -14,8 +14,6 @@ import Tag from './tag/tag';
 import langTags from '../../../utils/tags';
 
 function Dashboard() {
-  window.history.replaceState(null, '', '/');
-
   const setUser = userStore((state) => state.setUser);
   const uid = userStore((state) => state.uid);
 
@@ -30,11 +28,13 @@ function Dashboard() {
         uid: uid,
       },
     },
+    fetchPolicy: 'network-only',
   });
 
   const collectUser = async () => {
     const result = await getUser();
     const user = result.data.userOne;
+
     setUser(
       user.username,
       user.rating_total,
@@ -46,8 +46,10 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    collectUser();
-  }, []);
+    if (uid) {
+      collectUser();
+    }
+  }, [uid]);
 
   const [getHRByLanguage] = useLazyQuery(GET_HR_BY_LANGUAGE);
 
@@ -87,8 +89,10 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    getHelpRequests();
-  }, [tags]);
+    if (uid) {
+      getHelpRequests();
+    }
+  }, [tags, uid]);
 
   const handleChange = (e: any) => {
     e.preventDefault();
