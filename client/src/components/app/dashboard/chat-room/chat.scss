@@ -437,6 +437,7 @@ position: relative;
   border-radius: $border-radius;
   margin-top: 5%;
   display: flex;
+  justify-content: space-around;
   color: $grey-shade;
   font-weight: bold;
   transition: width 300ms linear;
@@ -454,11 +455,7 @@ position: relative;
     display: flex;
 
     .sandbox {
-      // max-width: 60%;
-      // max-height: 60%;
-      // border-radius: 50%;
       margin-top: 2vh;
-      margin-left: 13vw;
       cursor: pointer;
   }
 
