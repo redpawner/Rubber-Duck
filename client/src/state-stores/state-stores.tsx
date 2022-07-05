@@ -3,22 +3,6 @@ import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { User, UserSettingsStore, MyStore, HelpReqSchema } from '../interfaces';
 
-const buttonsLogicStore = create<MyStore>()(
-  devtools((set) => ({
-    show: 'dashboard',
-    profile: true,
-    counter: 1,
-    // toggleShow: () => set((state) => ({ show: !state.show })),
-    setDashboard: () => set({ show: 'dashboard' }),
-    setChat: () => set({ show: 'chat' }),
-    setHelp: () => set({ show: 'help' }),
-    setReset: () => set({ counter: 2 }),
-    setProfile: () => set({ show: 'profile' }),
-    setReg: () => set({ counter: 0 }),
-    setLogin: () => set({ counter: 1 }),
-  }))
-);
-
 //In case we want to add the dark mode functionality or other user settings
 const useUserSettingsStore = create<UserSettingsStore>()(
   devtools(
@@ -28,9 +12,6 @@ const useUserSettingsStore = create<UserSettingsStore>()(
     }))
   )
 );
-
-
-
 
 const userStore = create<User>()(
   devtools((set) => ({
@@ -48,6 +29,7 @@ const userStore = create<User>()(
       hr_languages: [],
       time_created: '',
       url: '',
+      avatar: '',
     },
     setUser: (
       username: string,
@@ -78,4 +60,4 @@ const userStore = create<User>()(
   }))
 );
 
-export { buttonsLogicStore, useUserSettingsStore, userStore };
+export { useUserSettingsStore, userStore };

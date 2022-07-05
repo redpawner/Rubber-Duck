@@ -1,9 +1,6 @@
 //@ts-nocheck
 import './chat.scss';
 import sand from '../../../../Images/icon-sandbox.png';
-import board from '../../../../Images/board.png';
-import video from '../../../../Images/video.png';
-import britney from '../../../../Images/britney.png';
 import io from 'socket.io-client';
 import {
   useEffect,
@@ -14,10 +11,7 @@ import {
 } from 'react';
 import Message from '../message/message';
 import { ArrivalMessage } from '../../../../interfaces';
-import {
-  buttonsLogicStore,
-  userStore,
-} from '../../../../state-stores/state-stores';
+import { userStore } from '../../../../state-stores/state-stores';
 
 import Prism from 'prismjs';
 import '../themes/prism-one-dark.css';
@@ -51,7 +45,6 @@ const createDefaultMessage = (room, user) => {
 };
 
 function Chat() {
-  const setDashboard = buttonsLogicStore((state) => state.setDashboard);
   const [messages, setMessages] = useState([] as ArrivalMessage[]);
   const [showLangDropDown, setShowLangDropDown] = useState(false);
   const [helpRequestInfo, setHelpRequestInfo] = useState('');
@@ -85,8 +78,9 @@ function Chat() {
 
   const getHelpRequestInfo = async () => {
     const data = await getHR();
-    setHelpRequestInfo(data.data.userMany[0].help_request);
-    console.log('hr', helpRequestInfo);
+
+    data && setHelpRequestInfo(data.data.userMany[0].help_request);
+
   };
 
   useEffect(() => {
@@ -124,12 +118,15 @@ function Chat() {
   useEffect(() => {
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
-      if (username !== author) {
-        const defaultMessage = createDefaultMessage(roomID, username);
-        sendDefaultMessage(defaultMessage);
+
+      if (helpRequestInfo.username && (username !== helpRequestInfo.username)) {
+        const defaultMessage = createDefaultMessage(roomID, username)
+  sendDefaultMessage(defaultMessage)
+
+
       }
     }
-  }, [roomID, uid]);
+  }, [roomID, uid, helpRequestInfo.username, username]);
 
   // const cancelHandler = async (event: any) => {
   //   await updateHR({
@@ -454,7 +451,9 @@ function Chat() {
                 {/* <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
               <img src={britney} alt="sand" className="avatar-img3" />
             </a> */}
-                <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
+
+                <a href={helpRequestInfo.sandbox}>
+
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />

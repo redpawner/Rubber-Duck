@@ -1,7 +1,5 @@
-import {
-  buttonsLogicStore,
-  userStore,
-} from '../../../../state-stores/state-stores';
+import { userStore } from '../../../../state-stores/state-stores';
+import { Link } from 'react-router-dom';
 import './login.scss';
 import git from '../../../../Images/git.png';
 import google from '../../../../Images/google.png';
@@ -14,8 +12,6 @@ import { CREATE_USER } from '../../../../graphql/queries-mutations';
 
 function Login() {
   window.history.replaceState(null, '', '/');
-  const registerShow = buttonsLogicStore((state) => state.setReg);
-  const forgotPassword = buttonsLogicStore((state) => state.setReset);
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
   const [createUser] = useMutation(CREATE_USER);
@@ -62,13 +58,11 @@ function Login() {
           <button id="sign-button" className="sign-in-button">
             Sign in
           </button>
-          <button
-            id="sign-button"
-            className="sign-up-button"
-            onClick={registerShow}
-          >
-            Sign up
-          </button>
+          <Link to="/register">
+            <button id="sign-button" className="sign-up-button">
+              Sign up
+            </button>
+          </Link>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
           <label className="reg-input" htmlFor="email">
@@ -95,8 +89,8 @@ function Login() {
           />
           <button className="login-btn">Log In</button>
           <div>
-            <a className="forgot-password" onClick={forgotPassword}>
-              Forgot Password ?
+            <a className="forgot-password">
+              <Link to="/reset">Forgot password?</Link>
             </a>
           </div>
         </form>

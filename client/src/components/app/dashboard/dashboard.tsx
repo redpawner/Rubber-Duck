@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './dashboard.scss';
-import { buttonsLogicStore } from '../../../state-stores/state-stores';
+
 import Help from './help-request/help-request';
+import { Link } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
 import {
   GET_USER,
@@ -14,7 +15,7 @@ import langTags from '../../../utils/tags';
 
 function Dashboard() {
   window.history.replaceState(null, '', '/');
-  const helpDash = buttonsLogicStore((state) => state.setHelp);
+
   const setUser = userStore((state) => state.setUser);
   const uid = userStore((state) => state.uid);
 
@@ -140,27 +141,22 @@ function Dashboard() {
     );
   });
 
-  const onHandleClick = () => {
-    helpDash();
-
-    window.history.replaceState(null, '', '/create-help-request');
-  };
-
   return (
     <div className="dashboard-container">
       <div className="flexcolumn">
         <div className="create-help-butt-div">
           <h1 className="dashboard-title">Help Requests</h1>
-          <button className="create-help-butt" onClick={onHandleClick}>
-            <i className="fa fa-plus"></i> &nbsp; Create
-          </button>
+          <Link to="/createhelprequest">
+            <button className="create-help-butt">
+              <i className="fa fa-plus"></i> &nbsp; Create
+            </button>
+          </Link>
         </div>
         <div className="search-me-officer">
           <form
             className="search-field"
             onSubmit={(e) => {
               e.preventDefault(); //this stops it loading URL with the name value
-              console.log(e, 'submit');
               setShowDrop(false);
             }}
           >

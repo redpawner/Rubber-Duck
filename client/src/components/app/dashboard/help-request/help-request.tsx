@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import './help-request.scss';
+
 import { buttonsLogicStore } from '../../../../state-stores/state-stores';
 import { userStore } from '../../../../state-stores/state-stores';
+
 import { HelpReqSchema } from '../../../../interfaces';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
+import { useNavigate } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 
 interface Props {
@@ -15,8 +18,13 @@ function Help({ helpRequest }: Props) {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
   const [updateHR] = useMutation(UPDATE_HR);
+
   const showChat = buttonsLogicStore((state) => state.setChat);
   const userAvatar = userStore((state) => state.avatar);
+
+
+  const navigate = useNavigate();
+
 
   const prettyDate = new Date(helpRequest.time_created).toLocaleDateString(
     'en-gb',
@@ -49,8 +57,12 @@ function Help({ helpRequest }: Props) {
     const roomID = helpRequest.url;
     window.history.replaceState(null, '', '/chatroom');
     window.location.hash = roomID;
+
     //We can take this out if we can get the specific hr frome the db
     showChat();
+
+    navigate('/chatroom#' + roomID);
+
   };
 
   return (
@@ -69,14 +81,6 @@ function Help({ helpRequest }: Props) {
             return <span>{e}</span>;
           })}
         </div>
-        {/* <div>
-          <Popup
-            trigger={<button className="help-button">Info</button>}
-            position="right center"
-          >
-            <div>{helpRequest.description}</div>
-          </Popup>
-        </div> */}
 
         <div className="butts-cont">
           <div>
