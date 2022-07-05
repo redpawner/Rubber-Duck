@@ -8,6 +8,7 @@ import {
   useRef,
   ChangeEvent,
   SetStateAction,
+  FormEvent,
 } from 'react';
 import Message from '../message/message';
 import { ArrivalMessage } from '../../../../interfaces';
@@ -23,7 +24,7 @@ import Picker from 'emoji-picker-react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import {
   GET_HR_BY_URL,
-  DELETE_HR,
+  UPDATE_HR,
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -49,7 +50,7 @@ function Chat() {
   const [messages, setMessages] = useState([] as ArrivalMessage[]);
   const [showLangDropDown, setShowLangDropDown] = useState(false);
   const [helpRequestInfo, setHelpRequestInfo] = useState('');
-  const [deleteHR] = useMutation(DELETE_HR);
+  const [updateHR] = useMutation(UPDATE_HR);
   const [showHelpInfo, setShowHelpInfo] = useState(true);
   //create state for the helper avatar
   const [helperAvatar, setHelperAvatar] = useState('');
@@ -92,7 +93,6 @@ function Chat() {
 
       setHelpRequestInfo(result);
     } else alert('Error fetching Help Request data.');
-
   };
 
   useEffect(() => {
@@ -140,50 +140,20 @@ function Chat() {
     }
   }, [roomID, uid, helpRequestInfo.username, username]);
 
-  // const cancelHandler = async (event: any) => {
-  //   await updateHR({
-  //     variables: {
-  //       filter: {
-  //         uid: uid,
-  //       },
-  //       record: {
-  //         needHelp: true,
-  //       },
-  //     },
-  //   });
-  // };
+  const cancelHandler = async () => {
+    await updateHR({
+      variables: {
+        filter: {
+          uid: uid,
+        },
+        record: {
+          needHelp: true,
+        },
+      },
+    });
+  };
 
-  // const helpRequestReset = {
-  //   username: '',
-  //   title: '',
-  //   description: '',
-  //   hr_languages: '',
-  //   time_created: null,
-  //   url: '',
-  //   sandbox: '',
-  // };
-
-  const resolveHandler = async (event: any) => {
-    // const helpRequestReset = {
-    //   username: '',
-    //   title: '',
-    //   description: '',
-    //   hr_languages: [],
-    //   time_created: null,
-    //   url: '',
-    //   sandbox: '',
-    // };
-    // await deleteHR({
-    //   variables: {
-    //     filter: {
-    //       uid: uid,
-    //     },
-    //     record: {
-    //       needHelp: false,
-    //       help_request: helpRequestReset,
-    //     },
-    //   },
-    // });
+  const resolveHandler = async () => {
     navigate('/dashboard');
   };
 
@@ -477,9 +447,9 @@ function Chat() {
               </div>
             </div>
             <div className="buttons-box">
-              {/* <button className="res-button" onClick={cancelHandler}> */}
-              <button className="res-button">Seek another mentor</button>
-              {/* <button className="res-button" onClick={resolveHandler}> */}
+              <button className="res-button" onClick={cancelHandler}>
+                Seek another mentor
+              </button>
               <button className="res-button" onClick={resolveHandler}>
                 Resolved
               </button>

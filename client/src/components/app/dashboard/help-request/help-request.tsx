@@ -1,8 +1,5 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import './help-request.scss';
-
-import { userStore } from '../../../../state-stores/state-stores';
-
 import { HelpReqSchema } from '../../../../interfaces';
 import { useMutation } from '@apollo/client';
 import { UPDATE_HR } from '../../../../graphql/queries-mutations';
@@ -37,8 +34,7 @@ function Help({ helpRequest }: Props) {
     }
   );
 
-  const answerHelpRequests = async (event: any) => {
-    console.log(helpRequest, 'hr aaaaaaaa');
+  const answerHelpRequests = async (event: FormEvent) => {
     await updateHR({
       variables: {
         filter: {
