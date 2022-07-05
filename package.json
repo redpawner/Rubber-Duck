@@ -4,7 +4,8 @@
   "description": "node app ",
   "main": "app.ts",
   "scripts": {
-    "start": "node app.ts"
+    "start": "node build/app.js"
+    "postinstall": "tsc",
   },
   "repository": {
     "type": "git",
