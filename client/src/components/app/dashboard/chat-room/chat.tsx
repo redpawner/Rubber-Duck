@@ -123,6 +123,7 @@ function Chat() {
         const defaultMessage = createDefaultMessage(roomID, username)
   sendDefaultMessage(defaultMessage)
 
+
       }
     }
   }, [roomID, uid, helpRequestInfo.username, username]);
@@ -450,7 +451,9 @@ function Chat() {
                 {/* <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
               <img src={britney} alt="sand" className="avatar-img3" />
             </a> */}
+
                 <a href={helpRequestInfo.sandbox}>
+
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />
