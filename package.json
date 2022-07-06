@@ -2,9 +2,9 @@
   "name": "rubber-duck",
   "version": "1.0.0",
   "description": "node app ",
-  "main": "app.ts",
+  "main": "index.ts",
   "scripts": {
-    "start": "node build/app.js"
+    "start": "node index.ts"
     "postinstall": "tsc",
   },
   "repository": {
