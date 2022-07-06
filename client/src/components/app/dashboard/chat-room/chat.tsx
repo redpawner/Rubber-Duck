@@ -13,7 +13,7 @@ import {
 import Message from '../message/message';
 import { ArrivalMessage } from '../../../../interfaces';
 import { userStore } from '../../../../state-stores/state-stores';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Prism from 'prismjs';
 import '../themes/prism-one-dark.css';
 import 'prismjs/components/prism-typescript';
@@ -34,13 +34,13 @@ const socket = io(BACKEND_PORT, {
   transports: ['websocket'],
 });
 
-const createDefaultMessage = (room, user, avatar) => {
+const createDefaultMessage = (roomID, user, avatar) => {
   return {
     text: 'Hey there!',
     time: new Date(),
     language: '',
     type: 'text',
-    room: room,
+    roomID: roomID,
     author: user,
     avatar: avatar,
   };
@@ -62,10 +62,12 @@ function Chat() {
 
   const userAvatar = userStore((state) => state.avatar);
 
-  const roomID = window.location.hash;
+  // const roomID = window.location.hash;
+  const { roomID } = useParams();
+
 
   //currently grabbing url through lazy slice method (this will have to change when URL changes)
-  const url = window.location.href.slice(42);
+  // const url = window.location.href.slice(42);
 
   const toggleHelpInfo = () => {
     setShowHelpInfo(() => !showHelpInfo);
@@ -75,7 +77,7 @@ function Chat() {
     variables: {
       filter: {
         help_request: {
-          url: url,
+          url: roomID,
         },
       },
     },
@@ -96,10 +98,10 @@ function Chat() {
   };
 
   useEffect(() => {
-    if (url) {
+    if (roomID) {
       getHelpRequestInfo();
     }
-  }, [url]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [roomID]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [arrivalMessage, setArrivalMessage] = useState <ArrivalMessage>({
     text: '',
@@ -126,11 +128,6 @@ function Chat() {
     'typescript',
   ];
 
-  // const { roomID } = useParams();
-
-  // useEffect(() => {
-  //   setRoom(roomID);
-  // }, [roomID]);
 
   useEffect(() => {
     if (uid !== '' && roomID !== '') {
@@ -170,7 +167,6 @@ function Chat() {
     event: FormEvent,
     emojiObject: SetStateAction<null>
   ) => {
-    console.log('emoji type',typeof emojiObject.emoji)
     setChosenEmoji(emojiObject);
 
     setArrivalMessage({
@@ -178,8 +174,7 @@ function Chat() {
       type: 'text',
       text: arrivalMessage.text + emojiObject.emoji,
       avatar: userAvatar,
-
-      roomID,
+      roomID: roomID,
 
     });
   };
@@ -222,7 +217,7 @@ function Chat() {
       time: new Date(),
       language: arrivalMessage.language,
       type: 'text',
-      room: roomID,
+      roomID: roomID,
       author: username,
       avatar: userAvatar,
     };
@@ -265,7 +260,7 @@ function Chat() {
         }),
         type: 'file',
         imgSource: URL.createObjectURL(e.target.files[0]),
-        room: roomID,
+        roomID: roomID,
         author: username,
         avatar: userAvatar,
       });
@@ -315,7 +310,7 @@ function Chat() {
         <div className="chat-container">
           <div className="chat-messages">
             {messages.map((message) => (
-              <div ref={scrollRef} key={message.time.toString()}>
+              <div ref={scrollRef} key={message.time.toString()+ Math.random()}>
                 <Message
                   // key={
                   //   message.time.toString() + message.text + message.language
@@ -423,7 +418,7 @@ function Chat() {
               ) : (
                 <span>No emoji Chosen</span>
               )}
-              <Picker onEmojiClick={onEmojiClick} />
+              <Picker key = {Math.random()} onEmojiClick={onEmojiClick} />
             </div>
           ) : null}
         </div>

@@ -50,7 +50,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/reset" element={<Reset />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/chatroom" element={<Chat />} />
+          <Route path="/chatroom/:roomID" element={<Chat />} />
           <Route path="/createhelprequest" element={<CreateHelp />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
