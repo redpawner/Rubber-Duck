@@ -28,7 +28,7 @@ import {
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
 
-const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT || '3001';
+const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT;
 
 const socket = io(BACKEND_PORT, {
   transports: ['websocket'],
