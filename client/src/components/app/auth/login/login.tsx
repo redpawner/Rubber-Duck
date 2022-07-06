@@ -30,7 +30,6 @@ function Login() {
       const email: string = event.target.email.value;
       const password: string = event.target.password.value;
       const user = await loginUser(email, password);
-      console.log('user', user);
       if (!user.email)
         alert('The username or password you entered is incorrect');
       setUserUid(user.uid);
