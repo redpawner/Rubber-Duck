@@ -5,11 +5,9 @@
     "node": "16.x"
   },
   "description": "node app ",
-  "main": "index.ts",
   "scripts": {
-    "tsc": "tsc",
-    "start": "node index.js",
-    "postinstall": "npm run tsc"
+    "start": "node ./server/build/index.js",
+    "postinstall": "tsc"
   },
   "repository": {
     "type": "git",
@@ -18,5 +16,8 @@
   "author": "",
   "license": "ISC",
   "bugs": {},
-  "homepage": ""
+  "homepage": "",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
 }
