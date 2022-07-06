@@ -20,6 +20,15 @@
       height: 100%;
     }
   }
+  .eye {
+    cursor: pointer;
+    border:none;
+    padding-left: 1vw;
+  }
+  .password-box{
+    display: flex;
+    justify-content: space-between;
+  }
 
   .login-form {
     width: 40%;
