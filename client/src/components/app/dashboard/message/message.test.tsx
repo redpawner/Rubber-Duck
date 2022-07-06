@@ -1,16 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import Message from './message';
+import { messageProps } from '../../../../interfaces';
 import { render, screen } from '@testing-library/react';
-import App from './components/app/App';
 import { createRoot } from 'react-dom/client';
 
 // test('renders learn react link', () => {
-//   render(<App />);
+//   render(<Message message />);
 //   const linkElement = screen.getByText(/learn react/i);
 //   expect(linkElement).toBeInTheDocument();
 // });
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  const root = createRoot(div);
-  root.render(<App />);
-});
