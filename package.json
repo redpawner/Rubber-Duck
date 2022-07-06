@@ -4,7 +4,7 @@
   "description": "node app ",
   "main": "build/index.js",
   "scripts": {
-    "build": "cd server && tsc",
+    "build": "cd server && npm install && npx tsc",
     "start": "node build/index.js"
   },
   "repository": {
