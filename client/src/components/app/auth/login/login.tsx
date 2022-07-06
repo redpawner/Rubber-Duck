@@ -8,15 +8,15 @@ import logo from '../../../../Images/logo.png';
 import { loginUser, googleLogin } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
-import {useState} from 'react';
-import {ViewIcon,ViewOffIcon} from '@chakra-ui/icons';
+import { useState } from 'react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 function Login() {
   window.history.replaceState(null, '', '/');
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
   const [createUser] = useMutation(CREATE_USER);
-  const [showPassword,setShowPassword]=useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (event: any) => {
     try {
@@ -24,8 +24,9 @@ function Login() {
       const email: string = event.target.email.value;
       const password: string = event.target.password.value;
       const user = await loginUser(email, password);
-      console.log('user',user);
-      if(!user.email)(alert('The username or password you entered is incorrect'))
+      console.log('user', user);
+      if (!user.email)
+        alert('The username or password you entered is incorrect');
       setUserUid(user.uid);
       setUserToken(user.accessToken);
     } catch (error) {
@@ -55,9 +56,9 @@ function Login() {
     }
   };
 
-  const togglePassword = () =>{
-    setShowPassword(!showPassword)
-  }
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="form-container">
@@ -91,20 +92,31 @@ function Login() {
             Password:
           </label>
           <div className="password-box">
-          <input
-            type={showPassword?"text":"password"}
-            className="reg-textBox"
-            name="password"
-            id="password"
-            autoComplete="new-password"
-            required
-          >
+            <input
+              type={showPassword ? 'text' : 'password'}
+              className="reg-textBox"
+              name="password"
+              id="password"
+              autoComplete="new-password"
+              required
+            ></input>
 
-          </input>
-
-          {!showPassword &&<ViewIcon className="eye" onClick={togglePassword} w={29} h={29}/>}
-          {showPassword &&<ViewOffIcon className="eye" onClick={togglePassword} w={29} h={29}/>}
-
+            {!showPassword && (
+              <ViewIcon
+                className="eye"
+                onClick={togglePassword}
+                w={29}
+                h={29}
+              />
+            )}
+            {showPassword && (
+              <ViewOffIcon
+                className="eye"
+                onClick={togglePassword}
+                w={29}
+                h={29}
+              />
+            )}
           </div>
           <button className="login-btn">Log In</button>
           <div>
