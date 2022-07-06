@@ -22,11 +22,12 @@
   }
   .eye {
     cursor: pointer;
-    border:none;
+    border: none;
     padding-left: 1vw;
   }
-  .password-box{
+  .password-box {
     display: flex;
+    width: 90%;
     justify-content: space-between;
   }
 

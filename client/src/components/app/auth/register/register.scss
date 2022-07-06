@@ -13,9 +13,10 @@
 .sign-in-button2:hover {
   color: grey;
 }
-.password-box1{
+.password-box1 {
   display: flex;
-  justify-content: space-between;
+  width: 90%;
+  justify-content: space-evenly;
 }
 
 .register-form {

@@ -1,22 +1,28 @@
 import { userStore } from '../../../../state-stores/state-stores';
 import { Link } from 'react-router-dom';
+import defaultPic from '../../../../Images/avatars/user.png';
 import './login.scss';
 import git from '../../../../Images/git.png';
 import google from '../../../../Images/google.png';
 import apple from '../../../../Images/apple.png';
 import logo from '../../../../Images/logo.png';
-import { loginUser, googleLogin } from '../../../../api-services/api-auth';
+import {
+  loginUser,
+  googleLogin,
+  githubLogin,
+  facebookLogin,
+} from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
-import {useState} from 'react';
-import {ViewIcon,ViewOffIcon} from '@chakra-ui/icons';
+import { useState } from 'react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 function Login() {
   window.history.replaceState(null, '', '/');
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
   const [createUser] = useMutation(CREATE_USER);
-  const [showPassword,setShowPassword]=useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (event: any) => {
     try {
@@ -24,8 +30,9 @@ function Login() {
       const email: string = event.target.email.value;
       const password: string = event.target.password.value;
       const user = await loginUser(email, password);
-      console.log('user',user);
-      if(!user.email)(alert('The username or password you entered is incorrect'))
+      console.log('user', user);
+      if (!user.email)
+        alert('The username or password you entered is incorrect');
       setUserUid(user.uid);
       setUserToken(user.accessToken);
     } catch (error) {
@@ -41,7 +48,7 @@ function Login() {
         await createUser({
           variables: {
             record: {
-              avatar: 'user.59168e41eade7de7457f.png',
+              avatar: defaultPic,
               username: user.displayName,
               email: user.email,
               uid: user.uid,
@@ -55,9 +62,53 @@ function Login() {
     }
   };
 
-  const togglePassword = () =>{
-    setShowPassword(!showPassword)
-  }
+  const facebookSignIn = async () => {
+    const user = await facebookLogin();
+    try {
+      setUserUid(user.uid);
+      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+        await createUser({
+          variables: {
+            record: {
+              avatar: defaultPic,
+              username: user.displayName,
+              email: user.email,
+              uid: user.uid,
+            },
+          },
+        });
+      }
+      setUserToken(user.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const githubSignIn = async () => {
+    const user = await githubLogin();
+    try {
+      setUserUid(user.uid);
+      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+        await createUser({
+          variables: {
+            record: {
+              avatar: defaultPic,
+              username: user.displayName,
+              email: user.email,
+              uid: user.uid,
+            },
+          },
+        });
+      }
+      setUserToken(user.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="form-container">
@@ -91,20 +142,33 @@ function Login() {
             Password:
           </label>
           <div className="password-box">
-          <input
-            type={showPassword?"text":"password"}
-            className="reg-textBox"
-            name="password"
-            id="password"
-            autoComplete="new-password"
-            required
-          >
+            <input
+              type={showPassword ? 'text' : 'password'}
+              className="reg-textBox"
+              name="password"
+              id="password"
+              autoComplete="new-password"
+              required
+            ></input>
 
-          </input>
-
-          {!showPassword &&<ViewIcon className="eye" onClick={togglePassword} w={29} h={29}/>}
-          {showPassword &&<ViewOffIcon className="eye" onClick={togglePassword} w={29} h={29}/>}
-
+            {!showPassword && (
+              <ViewIcon
+                className="eye"
+                onClick={togglePassword}
+                w={29}
+                h={29}
+                mt={-10}
+              />
+            )}
+            {showPassword && (
+              <ViewOffIcon
+                className="eye"
+                onClick={togglePassword}
+                w={29}
+                h={29}
+                mt={-10}
+              />
+            )}
           </div>
           <button className="login-btn">Log In</button>
           <div>
@@ -122,16 +186,26 @@ function Login() {
           <img
             id="socialmedia-img"
             src={google}
-            alt="facebook"
+            alt="google logo"
             onClick={googleSignIn}
           ></img>
         </button>
         <button id="platform-button">
           {' '}
-          <img id="socialmedia-img" src={apple} alt="apple"></img>
+          <img
+            id="socialmedia-img"
+            src={apple}
+            alt="facebook icon"
+            onClick={facebookSignIn}
+          ></img>
         </button>
         <button id="platform-button">
-          <img id="socialmedia-img" src={git} alt="github"></img>
+          <img
+            id="socialmedia-img"
+            src={git}
+            alt="github logo"
+            onClick={githubSignIn}
+          ></img>
         </button>
       </div>
     </div>

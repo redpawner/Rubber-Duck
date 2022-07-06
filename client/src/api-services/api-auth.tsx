@@ -5,6 +5,8 @@ import {
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
+  GithubAuthProvider,
+  FacebookAuthProvider,
   sendPasswordResetEmail,
 } from 'firebase/auth';
 
@@ -33,6 +35,24 @@ const googleLogin = async () => {
     });
 };
 
+const facebookLogin = async () => {
+  const provider = new FacebookAuthProvider().setCustomParameters({});
+  return await signInWithPopup(auth, provider)
+    .then(({ user }) => user)
+    .catch((error) => {
+      return error.message;
+    });
+};
+
+const githubLogin = async () => {
+  const provider = new GithubAuthProvider();
+  return await signInWithPopup(auth, provider)
+    .then(({ user }) => user)
+    .catch((error) => {
+      return error.message;
+    });
+};
+
 const logoutUser = async () => {
   await signOut(auth).catch((error) => {
     return error;
@@ -46,4 +66,12 @@ const resetPassword = async (email: string) => {
   return message;
 };
 
-export { fbCreateUser, loginUser, googleLogin, logoutUser, resetPassword };
+export {
+  fbCreateUser,
+  loginUser,
+  googleLogin,
+  logoutUser,
+  resetPassword,
+  githubLogin,
+  facebookLogin,
+};
