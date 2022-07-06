@@ -66,7 +66,7 @@ function Chat() {
   const roomID = window.location.hash;
 
   //currently grabbing url through lazy slice method (this will have to change when URL changes)
-  const url = window.location.href.slice(31);
+  const url = window.location.href.slice(20);
 
   const toggleHelpInfo = () => {
     setShowHelpInfo(() => !showHelpInfo);
