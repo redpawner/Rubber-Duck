@@ -9,6 +9,7 @@ type ArrivalMessage = {
   blob?: Blob;
   author: string;
   avatar: string;
+  roomID: string
 };
 
 type messageProps = {
