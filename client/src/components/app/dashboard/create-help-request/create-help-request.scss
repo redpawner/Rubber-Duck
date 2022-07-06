@@ -2,7 +2,7 @@
 
 .dashboard-container1 {
   border-radius: $border-radius;
-  margin-top: 2% 0 0 0;
+  margin-top: 2%;
   padding: 0;
   height: 80vh;
   width: 50vw;
@@ -62,9 +62,16 @@
   font-family: $main-font-family;
   border: none;
   color: white;
-  font-size: 0.8999999999999999vw;
+  font-size: large;
   font-weight: bold;
+  background-color: $blue-shade;
+  align-self: center;
 }
+
+.create-cancel-btn:hover {
+  background-color: #1c136f;
+}
+
 .back-btn {
   border-radius: $border-radius;
   width: 5vw;
@@ -76,11 +83,16 @@
   cursor: pointer;
   font-family: $main-font-family;
   color: white;
-  background-color: #a53993;
   font-size: 0.8rem;
   border: none;
   margin-left: 0.1rem;
   padding: 0.9em;
+  position: relative;
+  background-color: #a53993;
+}
+
+.back-btn:hover {
+  background-color: #852875;
 }
 .tips-btn {
   border-radius: $border-radius;
@@ -112,7 +124,7 @@
   height: 4vh;
   border: $divider-line;
   font-family: $main-font-family;
-  font-size: x-large;
+  font-size: large;
   color: $grey-shade;
   font-weight: bold;
 }
@@ -137,7 +149,7 @@
 .help-description {
   width: 35vw;
   height: 15vh;
-  font-size: larger;
+  font-size: large;
   font-family: $main-font-family;
   border: $divider-line;
   color: $grey-shade;
@@ -215,17 +227,6 @@
 
 .rules-element {
   margin-bottom: 1vh;
-}
-
-#submit {
-  background-color: $blue-shade;
-  align-self: center;
-}
-
-#cancel {
-  position: relative;
-
-  background-color: #a53993;
 }
 
 .container-height {
@@ -314,4 +315,8 @@
 
 .dropdown-tags {
   display: flex;
+}
+
+.help-title3 {
+  font-size: large;
 }

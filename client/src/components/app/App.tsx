@@ -25,9 +25,7 @@ function App() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log('first');
       if (user) {
-        console.log('second');
         setUserUid(user.uid);
         user
           .getIdToken()
@@ -42,11 +40,9 @@ function App() {
             window.location.pathname
           )
         ) {
-          console.log('here');
           navigate('/dashboard');
         }
-      }
-      if (!user) {
+      } else {
         setShowNav(false);
         navigate('/');
       }
