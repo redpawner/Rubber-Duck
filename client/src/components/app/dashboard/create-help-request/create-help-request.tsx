@@ -106,10 +106,10 @@ function CreateHelp() {
   };
 
   const mapLang = langTags
-    .filter((tag) => tag.toLowerCase().includes(formValue))
-    .map((tag) => {
+    .filter((tag) => tag.toLowerCase().includes(formValue.toLowerCase()))
+    .map((tag, index) => {
       return (
-        <div className="searchTile" onClick={handleClick}>
+        <div className="searchTile" onClick={handleClick} key={index}>
           {tag}
         </div>
       );

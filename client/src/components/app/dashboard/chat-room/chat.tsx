@@ -27,6 +27,7 @@ import {
   UPDATE_HR,
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
+import { auth } from '../../../../firebase';
 
 const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT;
 
@@ -97,10 +98,10 @@ function Chat() {
   };
 
   useEffect(() => {
-    if (roomID) {
+    if (roomID && auth.currentUser) {
       getHelpRequestInfo();
     }
-  }, [roomID]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [roomID, auth.currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [arrivalMessage, setArrivalMessage] = useState<ArrivalMessage>({
     text: '',
@@ -154,20 +155,12 @@ function Chat() {
       },
     });
   };
-  console.log('on entry', username);
-  console.log('on exit', uid);
 
   const resolveHandler = async () => {
-    console.log('on exit', username);
-
-    console.log('on exit', uid);
     navigate('/dashboard');
   };
 
-  const onEmojiClick = (
-    event: FormEvent,
-    emojiObject: SetStateAction<null>
-  ) => {
+  const onEmojiClick = (emojiObject: SetStateAction<null>) => {
     setChosenEmoji(emojiObject);
 
     setArrivalMessage({
@@ -444,47 +437,50 @@ function Chat() {
           >
             <h1 className="help-chat-title">{helpRequestInfo.title}</h1>
             <div className="problem-div">
+              <h2 className="description-div-title">Description:</h2>
               <p className="problem-content">{helpRequestInfo.description}</p>
+              <div className="divider1">
               <ul className="help-tags-list">
                 {helpRequestInfo &&
+
                   helpRequestInfo.hr_languages.map((lang) => (
-                    <li key={lang} value={lang}>
+
+                    <li key={lang} value={lang} className="tag1">
                       {lang}
                     </li>
-                  ))}
+                  ))
+                  }
               </ul>
+              </div>
             </div>
             <div className="people-online">
-              <h2 className="currently-online">Currently online:</h2>
-
-              {/* {onlineUsers.length && onlineUsers.map((user)=> {
-                return (<img
-                className="avatar-img2"
-                src={user}
-                alt="avatar"
-              />)
-              })} */}
+              <h2 className="currently-online">Online:</h2>
 
               {<img className="avatar-img2" src={userAvatar} alt="avatar" />}
-              {username === helpRequestInfo.username ? (
-                otherAvatar && (
-                  <img className="avatar-img2" src={otherAvatar} alt="avatar" />
-                )
-              ) : (
-                <img
-                  className="avatar-img2"
-                  src={helpRequestInfo.avatar}
-                  alt="avatar"
-                />
-              )}
+              {username === helpRequestInfo.username
+                ? otherAvatar &&
+                  ((
+                    <img
+                      className="avatar-img2"
+                      src={otherAvatar}
+                      alt="avatar"
+                    />
+                  ),
+                  (<p>{username}</p>))
+                : ((
+                    <img
+                      className="avatar-img2"
+                      src={helpRequestInfo.avatar}
+                      alt="avatar"
+                    />
+                  ),
+                  (<p>{helpRequestInfo.username}</p>))}
             </div>
             <div className="creator-links">
-              <h2 className="current-links">Try:</h2>
-              <div className="options">
-                {/* <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
-              <img src={britney} alt="sand" className="avatar-img3" />
-            </a> */}
+              <h2 className="current-links">Sandbox link:</h2>
 
+              <div className="options">
+                <a href={helpRequestInfo.sandbox}>{helpRequestInfo.sandbox}</a>
                 <a
                   href={helpRequestInfo.sandbox}
                   target="_blank"
@@ -508,7 +504,7 @@ function Chat() {
             ) : (
               <div className="buttons-box">
                 <button className="quit-button" onClick={resolveHandler}>
-                  Quit
+                  Leave Help Request
                 </button>
               </div>
             )}

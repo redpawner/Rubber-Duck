@@ -44,7 +44,6 @@ function Register() {
     const result = await fbCreateUser(email, password);
 
     setUserUid(result.uid);
-    console.log(defaultPic);
     try {
       await createUser({
         variables: {

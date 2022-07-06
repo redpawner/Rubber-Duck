@@ -4,17 +4,13 @@ import './dashboard.scss';
 import Help from './help-request/help-request';
 import { Link } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
-import {
-  GET_USER,
-  GET_HR_BY_LANGUAGE,
-} from '../../../graphql/queries-mutations';
+import { GET_HR_BY_LANGUAGE } from '../../../graphql/queries-mutations';
 import { userStore } from '../../../state-stores/state-stores';
 import { HelpReqSchema } from '../../../interfaces';
 import Tag from './tag/tag';
 import langTags from '../../../utils/tags';
 
 function Dashboard() {
-  const setUser = userStore((state) => state.setUser);
   const uid = userStore((state) => state.uid);
   const username = userStore((state) => state.username);
 
@@ -22,37 +18,6 @@ function Dashboard() {
   const [formValue, setFormValue] = useState('');
   const [tags, setTags] = useState<string[]>([]);
   const [helpRequests, setHelpRequests] = useState([]);
-
-  console.log(uid);
-
-  const [getUser] = useLazyQuery(GET_USER, {
-    variables: {
-      filter: {
-        uid: uid,
-      },
-    },
-    fetchPolicy: 'network-only',
-  });
-
-  const collectUser = async () => {
-    const result = await getUser();
-    const user = result.data.userOne;
-    setUser(
-      user.username,
-      user.rating_total,
-      user.rating_count,
-      user.needHelp,
-      user.email,
-      user.avatar,
-      user.help_request
-    );
-  };
-
-  useEffect(() => {
-    if (uid) {
-      collectUser();
-    }
-  }, [uid]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [getHRByLanguage] = useLazyQuery(GET_HR_BY_LANGUAGE);
 

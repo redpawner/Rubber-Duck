@@ -10,11 +10,10 @@ function Navbar() {
   const avatar = userStore((state) => state.avatar) as string;
   const setUserToken = userStore((state) => state.setUserToken);
   // const [profilePic, setProfilePic] = useState(defaultAvatar);
-
+  console.log(avatar);
   const logout = () => {
-    window.history.replaceState(null, '', '/');
-    logoutUser();
     setUserToken('');
+    logoutUser();
   };
 
   return (

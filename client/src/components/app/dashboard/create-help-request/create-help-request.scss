@@ -112,6 +112,7 @@
   height: 4vh;
   border: $divider-line;
   font-family: $main-font-family;
+  font-size: x-large;
   color: $grey-shade;
   font-weight: bold;
 }
@@ -120,6 +121,7 @@
   height: 4vh;
   border: $divider-line;
   font-family: $main-font-family;
+  font-size: large;
   color: $grey-shade;
   font-weight: bold;
 }
@@ -135,6 +137,7 @@
 .help-description {
   width: 35vw;
   height: 15vh;
+  font-size: larger;
   font-family: $main-font-family;
   border: $divider-line;
   color: $grey-shade;
