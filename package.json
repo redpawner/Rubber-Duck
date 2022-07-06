@@ -4,8 +4,8 @@
   "description": "node app ",
   "main": "index.ts",
   "scripts": {
-    "start": "node index.ts"
-    "postinstall": "tsc",
+    "start": "node index.ts",
+    "postinstall": "tsc"
   },
   "repository": {
     "type": "git",

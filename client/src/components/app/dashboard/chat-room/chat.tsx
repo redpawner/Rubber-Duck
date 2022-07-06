@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 import './chat.scss';
 import sand from '../../../../Images/icon-sandbox.png';
 import io from 'socket.io-client';
@@ -52,7 +52,6 @@ function Chat() {
   const [helpRequestInfo, setHelpRequestInfo] = useState('');
   const [updateHR] = useMutation(UPDATE_HR);
   const [showHelpInfo, setShowHelpInfo] = useState(true);
-  //create state for the helper avatar
 
 
   const [otherAvatar, setOtherAvatar] = useState('');
@@ -104,7 +103,7 @@ function Chat() {
     }
   }, [url]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [arrivalMessage, setArrivalMessage] = useState({
+  const [arrivalMessage, setArrivalMessage] = useState <ArrivalMessage>({
     text: '',
     time: new Date(),
     language: '',
@@ -112,7 +111,10 @@ function Chat() {
     mimeType: '',
     body: undefined,
     imgSource: '',
-  } as ArrivalMessage);
+    author: '',
+    avatar:'',
+    roomID:''
+  } );
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const scrollRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -135,6 +137,8 @@ function Chat() {
   useEffect(() => {
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
+      console.log(helpRequestInfo, 'hr info 1')
+      console.log(roomID, 'room')
 
       if (helpRequestInfo.username && username !== helpRequestInfo.username) {
         const defaultMessage = createDefaultMessage(
@@ -168,15 +172,22 @@ function Chat() {
     event: FormEvent,
     emojiObject: SetStateAction<null>
   ) => {
+    console.log('emoji type',typeof emojiObject.emoji)
     setChosenEmoji(emojiObject);
 
     setArrivalMessage({
       ...arrivalMessage,
       type: 'text',
       text: arrivalMessage.text + emojiObject.emoji,
-      avatar: userAvatar
+      avatar: userAvatar,
+      roomID,
     });
   };
+  useEffect(()=>{
+    console.log({arrivalMessage})
+  }
+
+    ,[arrivalMessage])
 
   const handleShowEmojiPicker = (event: FormEvent) => {
     setShowEmojiPicker(!showEmojiPicker);
@@ -219,6 +230,7 @@ function Chat() {
   };
 
   const sendMessage = (event: FormEvent) => {
+    console.log(arrivalMessage, 'arr mes')
     event.preventDefault();
     socket.emit('sendMessage', arrivalMessage);
     setMessages([...messages, arrivalMessage]);
@@ -267,13 +279,18 @@ function Chat() {
 
   useEffect(() => {
     socket.on('receiveMessage', (data) => {
+      console.log('emoji',data)
       if (data.type === 'file') {
         const blob = new Blob([data.blob], { type: data.mimeType });
 
-        const fileReader = new FileReader();
-        fileReader.readAsArrayBuffer(blob);
+        // const fileReader = new FileReader();
+        // fileReader.readAsArrayBuffer(blob);
+        const url= URL.createObjectURL(blob)
+        console.log('url', url)
+        data = {...data, imgSource:url}
+
       }
-      setMessages([...messages, data]);
+     setMessages([...messages, data]);
     });
   }, [messages]);
 
@@ -302,9 +319,9 @@ function Chat() {
             {messages.map((message) => (
               <div ref={scrollRef} key={message.time.toString()}>
                 <Message
-                  key={
-                    message.time.toString() + message.text + message.language
-                  }
+                  // key={
+                  //   message.time.toString() + message.text + message.language
+                  // }
                   message={message}
                 />
               </div>
@@ -320,8 +337,7 @@ function Chat() {
                 placeholder="Type a message..."
                 onKeyDown={onEnterPress}
                 required
-                // onHeightChange={(height)=>{}}
-              />
+                />
               <div className="buttons">
                 {arrivalMessage.type !== 'file' &&
                 arrivalMessage.text === '' ? ( //button for sending message
@@ -436,7 +452,7 @@ function Chat() {
                     transition: 'opacity 50ms linear',
                     transitionDelay: '250ms',
                   }
-                : { opacity: 0 }
+                : { opacity: 0, pointerEvents: 'none' }
             }
           >
             <h1 className="help-chat-title">{helpRequestInfo.title}</h1>
@@ -468,11 +484,11 @@ function Chat() {
                 alt="avatar"
               />}
               {(username === helpRequestInfo.username)?(
-              <img
+              otherAvatar && (<img
                 className="avatar-img2"
                 src={otherAvatar}
                 alt="avatar"
-              />
+              />)
             ):(
               <img
                 className="avatar-img2"
