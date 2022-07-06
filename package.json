@@ -4,8 +4,9 @@
   "description": "node app ",
   "main": "index.ts",
   "scripts": {
-    "start": "node index.ts",
-    "postinstall": "tsc"
+    "heroku-prebuild": "cd client && npm i && npm build",
+    "build": "cd server && tsc",
+    "start": "node build/index.js"
   },
   "repository": {
     "type": "git",
