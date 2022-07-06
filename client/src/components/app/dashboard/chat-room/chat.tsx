@@ -27,6 +27,7 @@ import {
   UPDATE_HR,
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
+import { auth } from '../../../../firebase';
 
 const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT;
 
@@ -97,10 +98,10 @@ function Chat() {
   };
 
   useEffect(() => {
-    if (roomID) {
+    if (roomID && auth.currentUser) {
       getHelpRequestInfo();
     }
-  }, [roomID]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [roomID, auth.currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [arrivalMessage, setArrivalMessage] = useState<ArrivalMessage>({
     text: '',

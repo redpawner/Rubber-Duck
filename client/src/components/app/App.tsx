@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.scss';
 import Navbar from '../navbar/navbar';
 import Login from './auth/login/login';
@@ -12,27 +12,40 @@ import Profile from './dashboard/profile/profile';
 import { userStore } from '../../state-stores/state-stores';
 import { auth } from '../../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useLazyQuery } from '@apollo/client';
+import { GET_USER } from '../../graphql/queries-mutations';
 
 function App() {
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserAT = userStore((state) => state.setUserToken);
+  const setUser = userStore((state) => state.setUser);
+  const uid = userStore((state) => state.uid);
   const [showNav, setShowNav] = useState(false);
-
+  let location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      console.log('first');
       if (user) {
+        console.log('second');
         setUserUid(user.uid);
         user
           .getIdToken()
           .then((token) => setUserAT(token))
           .catch(() => {
-            console.log('Please sign in');
+            console.log('error');
             navigate('/');
           });
         setShowNav(true);
-        navigate('/dashboard');
+        if (
+          Array.from(['/', '/register', '/reset']).includes(
+            window.location.pathname
+          )
+        ) {
+          console.log('here');
+          navigate('/dashboard');
+        }
       }
       if (!user) {
         setShowNav(false);
@@ -40,6 +53,35 @@ function App() {
       }
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const [getUser] = useLazyQuery(GET_USER, {
+    variables: {
+      filter: {
+        uid: uid,
+      },
+    },
+    fetchPolicy: 'network-only',
+  });
+
+  const collectUser = async () => {
+    const result = await getUser();
+    const user = result.data.userOne;
+    setUser(
+      user.username,
+      user.rating_total,
+      user.rating_count,
+      user.needHelp,
+      user.email,
+      user.avatar,
+      user.help_request
+    );
+  };
+
+  useEffect(() => {
+    if (uid) {
+      collectUser();
+    }
+  }, [uid]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
