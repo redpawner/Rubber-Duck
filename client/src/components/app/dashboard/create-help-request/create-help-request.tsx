@@ -59,7 +59,6 @@ function CreateHelp() {
     const slugDescription = string_to_slug(description);
     const roomID = slugDescription;
 
-
     let sandbox = 'https://codesandbox.io/';
 
     if (event.target.sandbox.value > 0) {
@@ -107,7 +106,7 @@ function CreateHelp() {
   };
 
   const mapLang = langTags
-    .filter((tag) => tag.includes(formValue))
+    .filter((tag) => tag.toLowerCase().includes(formValue))
     .map((tag) => {
       return (
         <div className="searchTile" onClick={handleClick}>
