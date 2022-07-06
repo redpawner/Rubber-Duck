@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "node app",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node build/index.js",
     "postinstall": "tsc"
   },
   "keywords": [],
