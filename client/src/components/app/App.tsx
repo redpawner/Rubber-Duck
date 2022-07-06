@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.scss';
 import Navbar from '../navbar/navbar';
 import Login from './auth/login/login';
@@ -21,7 +21,6 @@ function App() {
   const setUser = userStore((state) => state.setUser);
   const uid = userStore((state) => state.uid);
   const [showNav, setShowNav] = useState(false);
-  let location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
