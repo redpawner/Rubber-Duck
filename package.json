@@ -2,7 +2,7 @@
   "name": "rubber-duck",
   "version": "1.0.0",
   "description": "node app ",
-  "main": "app.ts",
+  "main": "index.ts",
   "scripts": {
     "start": "node index.ts"
   },
