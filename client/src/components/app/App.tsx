@@ -24,7 +24,13 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserUid(user.uid);
-        user.getIdToken().then((token) => setUserAT(token));
+        user
+          .getIdToken()
+          .then((token) => setUserAT(token))
+          .catch(() => {
+            console.log('Please sign in');
+            navigate('/');
+          });
         setShowNav(true);
         navigate('/dashboard');
       }
@@ -33,7 +39,7 @@ function App() {
         navigate('/');
       }
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

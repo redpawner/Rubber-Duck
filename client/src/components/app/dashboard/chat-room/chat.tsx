@@ -30,7 +30,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT || '3001';
 
-const socket = io(`http://localhost:${BACKEND_PORT}/`, {
+const socket = io(BACKEND_PORT, {
   transports: ['websocket'],
 });
 
@@ -42,7 +42,7 @@ const createDefaultMessage = (room, user, avatar) => {
     type: 'text',
     room: room,
     author: user,
-    avatar: avatar
+    avatar: avatar,
   };
 };
 
@@ -54,8 +54,8 @@ function Chat() {
   const [showHelpInfo, setShowHelpInfo] = useState(true);
   //create state for the helper avatar
 
-  const [otherAvatar, setOtherAvatar] = useState('')
-  // const [onlineUsers, setOnlineUsers] = useState([helpRequestInfo.avatar])
+
+  const [otherAvatar, setOtherAvatar] = useState('');
 
 
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ function Chat() {
     if (url) {
       getHelpRequestInfo();
     }
-  }, [url]);
+  }, [url]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [arrivalMessage, setArrivalMessage] = useState({
     text: '',
@@ -137,11 +137,15 @@ function Chat() {
       socket.emit('join_room', roomID);
 
       if (helpRequestInfo.username && username !== helpRequestInfo.username) {
-        const defaultMessage = createDefaultMessage(roomID, username, userAvatar);
+        const defaultMessage = createDefaultMessage(
+          roomID,
+          username,
+          userAvatar
+        );
         sendDefaultMessage(defaultMessage);
       }
     }
-  }, [roomID, uid, helpRequestInfo.username, username]);
+  }, [roomID, uid, helpRequestInfo.username, username]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const cancelHandler = async () => {
     await updateHR({
@@ -160,7 +164,10 @@ function Chat() {
     navigate('/dashboard');
   };
 
-  const onEmojiClick = (event: any, emojiObject: SetStateAction<null>) => {
+  const onEmojiClick = (
+    event: FormEvent,
+    emojiObject: SetStateAction<null>
+  ) => {
     setChosenEmoji(emojiObject);
 
     setArrivalMessage({
@@ -171,7 +178,7 @@ function Chat() {
     });
   };
 
-  const handleShowEmojiPicker = (event: any) => {
+  const handleShowEmojiPicker = (event: FormEvent) => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
@@ -181,8 +188,8 @@ function Chat() {
     arrivalMessage.language = event.target.value;
   };
 
-  const handleInputTypeClick = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const handleInputTypeClick = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     setShowLangDropDown(!showLangDropDown);
   };
 
@@ -206,13 +213,13 @@ function Chat() {
       type: 'text',
       room: roomID,
       author: username,
-      avatar: userAvatar
+      avatar: userAvatar,
     };
     setArrivalMessage(messageObject);
   };
 
-  const sendMessage = (e: any) => {
-    e.preventDefault();
+  const sendMessage = (event: FormEvent) => {
+    event.preventDefault();
     socket.emit('sendMessage', arrivalMessage);
     setMessages([...messages, arrivalMessage]);
     setArrivalMessage({
@@ -269,16 +276,17 @@ function Chat() {
       setMessages([...messages, data]);
     });
   }, [messages]);
-  useEffect(()=>{
-if (messages.length) {
-  const lastMessage = messages[messages.length-1]
-  if (lastMessage.author !== username) {
-    setOtherAvatar(lastMessage.avatar)
-    // if (!onlineUsers.includes(lastMessage.avatar))
-    // setOnlineUsers([...onlineUsers, lastMessage.avatar])
-}
-}
-  }, [messages])
+
+  useEffect(() => {
+    if (messages.length) {
+      const lastMessage = messages[messages.length - 1];
+      console.log(messages, 'lmsg');
+      if (lastMessage.author !== username) {
+        setOtherAvatar(lastMessage.avatar);
+      }
+    }
+  }, [messages]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -446,6 +454,7 @@ if (messages.length) {
             <div className="people-online">
               <h2 className="currently-online">Currently online:</h2>
 
+
               {/* {onlineUsers.length && onlineUsers.map((user)=> {
                 return (<img
                 className="avatar-img2"
@@ -471,6 +480,7 @@ if (messages.length) {
                 alt="avatar"
               />
            )}
+
 
             </div>
             <div className="creator-links">

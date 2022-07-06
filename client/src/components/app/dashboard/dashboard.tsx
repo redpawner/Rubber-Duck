@@ -35,12 +35,12 @@ function Dashboard() {
   const collectUser = async () => {
     const result = await getUser();
     const user = result.data.userOne;
-
     setUser(
       user.username,
       user.rating_total,
       user.rating_count,
       user.needHelp,
+      user.email,
       user.avatar,
       user.help_request
     );

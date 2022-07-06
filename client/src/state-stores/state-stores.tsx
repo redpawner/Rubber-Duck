@@ -18,6 +18,7 @@ const userStore = create<User>()(
     uid: '',
     userAT: '',
     username: '',
+    email: '',
     avatar: '',
     rating_total: 0,
     rating_count: 0,
@@ -36,6 +37,7 @@ const userStore = create<User>()(
       rating_total: number,
       rating_count: number,
       needHelp: boolean,
+      email: string,
       avatar?: string,
       help_request?: HelpReqSchema
     ) => {
@@ -45,6 +47,7 @@ const userStore = create<User>()(
         rating_count: rating_count,
         needHelp: needHelp,
         avatar: avatar,
+        email: email,
         help_request: help_request,
       });
     },

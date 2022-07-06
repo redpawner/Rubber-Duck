@@ -133,19 +133,6 @@ const UPDATE_AVATAR = gql`
 //     "help_request": null
 //   }
 // }
-const DELETE_HR = gql`
-  mutation Mutation(
-    $record: UpdateOneUserInput!
-    $filter: FilterUpdateOneUserInput
-  ) {
-    userUpdateOne(record: $record, filter: $filter) {
-      record {
-        needHelp
-        help_request
-      }
-    }
-  }
-`;
 
 export {
   CREATE_USER,
@@ -153,6 +140,5 @@ export {
   GET_HR_BY_LANGUAGE,
   UPDATE_HR,
   GET_HR_BY_URL,
-  DELETE_HR,
   UPDATE_AVATAR,
 };
