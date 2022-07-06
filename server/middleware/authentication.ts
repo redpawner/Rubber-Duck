@@ -1,12 +1,18 @@
 import Koa from 'koa';
 const GOOGLE_APPLICATION_CREDENTIALS = process.env
   .GOOGLE_APPLICATION_CREDENTIALS as string;
-const serviceAccount = require(GOOGLE_APPLICATION_CREDENTIALS);
+
+let parsedGoogleCreds = JSON.parse(GOOGLE_APPLICATION_CREDENTIALS);
+parsedGoogleCreds = {
+  ...parsedGoogleCreds,
+  private_key: parsedGoogleCreds.private_key.replace(/\\n/g, '\n'),
+};
+// ^ may not need to replace if using a fresh private key
 
 const admin = require('firebase-admin');
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(parsedGoogleCreds),
 });
 
 const validateAuthorization = async (ctx: Koa.Context, next: Function) => {

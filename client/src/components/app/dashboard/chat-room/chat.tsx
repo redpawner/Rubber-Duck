@@ -28,7 +28,7 @@ import {
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
 
-const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT || '3001';
+const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT;
 
 const socket = io(BACKEND_PORT, {
   transports: ['websocket'],
@@ -53,9 +53,7 @@ function Chat() {
   const [updateHR] = useMutation(UPDATE_HR);
   const [showHelpInfo, setShowHelpInfo] = useState(true);
 
-
   const [otherAvatar, setOtherAvatar] = useState('');
-
 
   const navigate = useNavigate();
   const uid = userStore((state) => state.uid);
@@ -67,7 +65,7 @@ function Chat() {
   const roomID = window.location.hash;
 
   //currently grabbing url through lazy slice method (this will have to change when URL changes)
-  const url = window.location.href.slice(31);
+  const url = window.location.href.slice(42);
 
   const toggleHelpInfo = () => {
     setShowHelpInfo(() => !showHelpInfo);
@@ -180,7 +178,9 @@ function Chat() {
       type: 'text',
       text: arrivalMessage.text + emojiObject.emoji,
       avatar: userAvatar,
+
       roomID,
+
     });
   };
   useEffect(()=>{
@@ -267,7 +267,7 @@ function Chat() {
         imgSource: URL.createObjectURL(e.target.files[0]),
         room: roomID,
         author: username,
-        avatar: userAvatar
+        avatar: userAvatar,
       });
   };
 
@@ -297,13 +297,11 @@ function Chat() {
   useEffect(() => {
     if (messages.length) {
       const lastMessage = messages[messages.length - 1];
-      console.log(messages, 'lmsg');
       if (lastMessage.author !== username) {
         setOtherAvatar(lastMessage.avatar);
       }
     }
   }, [messages]); // eslint-disable-line react-hooks/exhaustive-deps
-
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -470,7 +468,6 @@ function Chat() {
             <div className="people-online">
               <h2 className="currently-online">Currently online:</h2>
 
-
               {/* {onlineUsers.length && onlineUsers.map((user)=> {
                 return (<img
                 className="avatar-img2"
@@ -478,6 +475,7 @@ function Chat() {
                 alt="avatar"
               />)
               })} */}
+
               {<img
                 className="avatar-img2"
                 src={userAvatar}
@@ -506,26 +504,33 @@ function Chat() {
               <img src={britney} alt="sand" className="avatar-img3" />
             </a> */}
 
-                <a href={helpRequestInfo.sandbox}>
+                <a
+                  href={helpRequestInfo.sandbox}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />
             <img src={video} alt="video" className="avatar-img3" /> */}
               </div>
             </div>
-            {(username === helpRequestInfo.username)?(<div className="buttons-box">
-               <button className="seek-button" onClick={cancelHandler}>
-               Ask again
-              </button>
-              <button className="res-button" onClick={resolveHandler}>
-                Resolved
-              </button>
-            </div>):
-            (<div className="buttons-box">
-              <button className="quit-button" onClick={resolveHandler}>
-                Quit
-              </button>
-              </div>)}
+            {username === helpRequestInfo.username ? (
+              <div className="buttons-box">
+                <button className="seek-button" onClick={cancelHandler}>
+                  Ask again
+                </button>
+                <button className="res-button" onClick={resolveHandler}>
+                  Resolved
+                </button>
+              </div>
+            ) : (
+              <div className="buttons-box">
+                <button className="quit-button" onClick={resolveHandler}>
+                  Quit
+                </button>
+              </div>
+            )}
           </div>
         }
       </div>
