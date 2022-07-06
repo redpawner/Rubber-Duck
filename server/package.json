@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm i && tsc && tsc -w",
     "duck": "nodemon ./build/index.js",
-    "seed": "node ./build/seeds/populate.js"
+    "seed": "node ./build/seeds/populate.js",
+    "dropdb": "node ./build/seeds/drop.js"
   },
   "keywords": [],
   "author": "",
