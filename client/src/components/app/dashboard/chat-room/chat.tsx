@@ -437,25 +437,22 @@ function Chat() {
             <h1 className="help-chat-title">{helpRequestInfo.title}</h1>
             <div className="problem-div">
               <p className="problem-content">{helpRequestInfo.description}</p>
+              <div className="divider1">
               <ul className="help-tags-list">
                 {helpRequestInfo &&
+
                   helpRequestInfo.hr_languages.map((lang) => (
-                    <li key={lang} value={lang}>
+
+                    <li key={lang} value={lang} className="tag1">
                       {lang}
                     </li>
-                  ))}
+                  ))
+                  }
               </ul>
+              </div>
             </div>
             <div className="people-online">
               <h2 className="currently-online">Online:</h2>
-
-              {/* {onlineUsers.length && onlineUsers.map((user)=> {
-                return (<img
-                className="avatar-img2"
-                src={user}
-                alt="avatar"
-              />)
-              })} */}
 
               {<img className="avatar-img2" src={userAvatar} alt="avatar" />}
               {username === helpRequestInfo.username ? (
