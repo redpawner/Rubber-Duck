@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 import './chat.scss';
 import sand from '../../../../Images/icon-sandbox.png';
 import io from 'socket.io-client';
@@ -13,7 +13,7 @@ import {
 import Message from '../message/message';
 import { ArrivalMessage } from '../../../../interfaces';
 import { userStore } from '../../../../state-stores/state-stores';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Prism from 'prismjs';
 import '../themes/prism-one-dark.css';
 import 'prismjs/components/prism-typescript';
@@ -34,13 +34,13 @@ const socket = io(BACKEND_PORT, {
   transports: ['websocket'],
 });
 
-const createDefaultMessage = (room, user, avatar) => {
+const createDefaultMessage = (roomID, user, avatar) => {
   return {
     text: 'Hey there!',
     time: new Date(),
     language: '',
     type: 'text',
-    room: room,
+    roomID: roomID,
     author: user,
     avatar: avatar,
   };
@@ -52,7 +52,6 @@ function Chat() {
   const [helpRequestInfo, setHelpRequestInfo] = useState('');
   const [updateHR] = useMutation(UPDATE_HR);
   const [showHelpInfo, setShowHelpInfo] = useState(true);
-  //create state for the helper avatar
 
   const [otherAvatar, setOtherAvatar] = useState('');
 
@@ -63,10 +62,12 @@ function Chat() {
 
   const userAvatar = userStore((state) => state.avatar);
 
-  const roomID = window.location.hash;
+  // const roomID = window.location.hash;
+  const { roomID } = useParams();
+
 
   //currently grabbing url through lazy slice method (this will have to change when URL changes)
-  const url = window.location.href.slice(42);
+  // const url = window.location.href.slice(42);
 
   const toggleHelpInfo = () => {
     setShowHelpInfo(() => !showHelpInfo);
@@ -76,7 +77,7 @@ function Chat() {
     variables: {
       filter: {
         help_request: {
-          url: url,
+          url: roomID,
         },
       },
     },
@@ -97,12 +98,12 @@ function Chat() {
   };
 
   useEffect(() => {
-    if (url) {
+    if (roomID) {
       getHelpRequestInfo();
     }
-  }, [url]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [roomID]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [arrivalMessage, setArrivalMessage] = useState({
+  const [arrivalMessage, setArrivalMessage] = useState <ArrivalMessage>({
     text: '',
     time: new Date(),
     language: '',
@@ -110,7 +111,10 @@ function Chat() {
     mimeType: '',
     body: undefined,
     imgSource: '',
-  } as ArrivalMessage);
+    author: '',
+    avatar:'',
+    roomID:''
+  } );
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const scrollRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -124,15 +128,12 @@ function Chat() {
     'typescript',
   ];
 
-  // const { roomID } = useParams();
-
-  // useEffect(() => {
-  //   setRoom(roomID);
-  // }, [roomID]);
 
   useEffect(() => {
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
+      console.log(helpRequestInfo, 'hr info 1')
+      console.log(roomID, 'room')
 
       if (helpRequestInfo.username && username !== helpRequestInfo.username) {
         const defaultMessage = createDefaultMessage(
@@ -173,8 +174,15 @@ function Chat() {
       type: 'text',
       text: arrivalMessage.text + emojiObject.emoji,
       avatar: userAvatar,
+      roomID: roomID,
+
     });
   };
+  useEffect(()=>{
+    console.log({arrivalMessage})
+  }
+
+    ,[arrivalMessage])
 
   const handleShowEmojiPicker = (event: FormEvent) => {
     setShowEmojiPicker(!showEmojiPicker);
@@ -209,7 +217,7 @@ function Chat() {
       time: new Date(),
       language: arrivalMessage.language,
       type: 'text',
-      room: roomID,
+      roomID: roomID,
       author: username,
       avatar: userAvatar,
     };
@@ -217,6 +225,7 @@ function Chat() {
   };
 
   const sendMessage = (event: FormEvent) => {
+    console.log(arrivalMessage, 'arr mes')
     event.preventDefault();
     socket.emit('sendMessage', arrivalMessage);
     setMessages([...messages, arrivalMessage]);
@@ -251,7 +260,7 @@ function Chat() {
         }),
         type: 'file',
         imgSource: URL.createObjectURL(e.target.files[0]),
-        room: roomID,
+        roomID: roomID,
         author: username,
         avatar: userAvatar,
       });
@@ -265,13 +274,18 @@ function Chat() {
 
   useEffect(() => {
     socket.on('receiveMessage', (data) => {
+      console.log('emoji',data)
       if (data.type === 'file') {
         const blob = new Blob([data.blob], { type: data.mimeType });
 
-        const fileReader = new FileReader();
-        fileReader.readAsArrayBuffer(blob);
+        // const fileReader = new FileReader();
+        // fileReader.readAsArrayBuffer(blob);
+        const url= URL.createObjectURL(blob)
+        console.log('url', url)
+        data = {...data, imgSource:url}
+
       }
-      setMessages([...messages, data]);
+     setMessages([...messages, data]);
     });
   }, [messages]);
 
@@ -296,11 +310,11 @@ function Chat() {
         <div className="chat-container">
           <div className="chat-messages">
             {messages.map((message) => (
-              <div ref={scrollRef} key={message.time.toString()}>
+              <div ref={scrollRef} key={message.time.toString()+ Math.random()}>
                 <Message
-                  key={
-                    message.time.toString() + message.text + message.language
-                  }
+                  // key={
+                  //   message.time.toString() + message.text + message.language
+                  // }
                   message={message}
                 />
               </div>
@@ -316,8 +330,7 @@ function Chat() {
                 placeholder="Type a message..."
                 onKeyDown={onEnterPress}
                 required
-                // onHeightChange={(height)=>{}}
-              />
+                />
               <div className="buttons">
                 {arrivalMessage.type !== 'file' &&
                 arrivalMessage.text === '' ? ( //button for sending message
@@ -405,7 +418,7 @@ function Chat() {
               ) : (
                 <span>No emoji Chosen</span>
               )}
-              <Picker onEmojiClick={onEmojiClick} />
+              <Picker key = {Math.random()} onEmojiClick={onEmojiClick} />
             </div>
           ) : null}
         </div>
@@ -432,7 +445,7 @@ function Chat() {
                     transition: 'opacity 50ms linear',
                     transitionDelay: '250ms',
                   }
-                : { opacity: 0 }
+                : { opacity: 0, pointerEvents: 'none' }
             }
           >
             <h1 className="help-chat-title">{helpRequestInfo.title}</h1>
@@ -457,16 +470,27 @@ function Chat() {
                 alt="avatar"
               />)
               })} */}
-              {<img className="avatar-img2" src={userAvatar} alt="avatar" />}
-              {username === helpRequestInfo.username ? (
-                <img className="avatar-img2" src={otherAvatar} alt="avatar" />
-              ) : (
-                <img
-                  className="avatar-img2"
-                  src={helpRequestInfo.avatar}
-                  alt="avatar"
-                />
-              )}
+
+              {<img
+                className="avatar-img2"
+                src={userAvatar}
+                alt="avatar"
+              />}
+              {(username === helpRequestInfo.username)?(
+              otherAvatar && (<img
+                className="avatar-img2"
+                src={otherAvatar}
+                alt="avatar"
+              />)
+            ):(
+              <img
+                className="avatar-img2"
+                src={helpRequestInfo.avatar}
+                alt="avatar"
+              />
+           )}
+
+
             </div>
             <div className="creator-links">
               <h2 className="current-links">Try:</h2>
@@ -475,7 +499,11 @@ function Chat() {
               <img src={britney} alt="sand" className="avatar-img3" />
             </a> */}
 
-                <a href={helpRequestInfo.sandbox}>
+                <a
+                  href={helpRequestInfo.sandbox}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />

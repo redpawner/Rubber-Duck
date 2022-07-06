@@ -10,14 +10,13 @@ const dropDB = async () => {
   }
 };
 
-// const seedDB = async () => {
-//   try {
-//     await User.insertMany(seeds);
-//     console.log('Database seeded.');
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+const seedDB = async () => {
+  try {
+    await User.insertMany(seeds);
+    console.log('Database seeded.');
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// dropDB().then(() => seedDB());
-dropDB();
+dropDB().then(() => seedDB());

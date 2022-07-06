@@ -2,18 +2,20 @@ import { useState, FormEvent } from 'react';
 import { userStore } from '../../../../state-stores/state-stores';
 import '../login/login.scss';
 import './register.scss';
-import defaultPic from '../../../../Images/avatars/user.png';
+import defaultPic from '../../../../Images/avatars/profile.png';
 import logo from '../../../../Images/logo.png';
 import { fbCreateUser } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
 import { Link } from 'react-router-dom';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 function Register() {
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
 
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [createUser] = useMutation(CREATE_USER);
   //this event typescript type should be interfaced somewhere (any is bad)
@@ -42,6 +44,7 @@ function Register() {
     const result = await fbCreateUser(email, password);
 
     setUserUid(result.uid);
+    console.log(defaultPic);
     try {
       await createUser({
         variables: {
@@ -57,6 +60,9 @@ function Register() {
     } catch (error) {
       console.log(error);
     }
+  };
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -95,7 +101,7 @@ function Register() {
           </label>
           <br></br>
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             id="password"
             className="reg-textBox"
             name="password"
@@ -108,15 +114,34 @@ function Register() {
             Confirm Password:
           </label>
           <br></br>
-          <input
-            type="password"
-            id="password1"
-            className="reg-textBox"
-            name="confirmPassword"
-            autoComplete="off"
-            required
-          />
-
+          <div className="password-box1">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password1"
+              className="reg-textBox"
+              name="confirmPassword"
+              autoComplete="off"
+              required
+            />
+            {!showPassword && (
+              <ViewIcon
+                className="eye"
+                onClick={togglePassword}
+                w={29}
+                h={29}
+                mt={-10}
+              />
+            )}
+            {showPassword && (
+              <ViewOffIcon
+                className="eye"
+                onClick={togglePassword}
+                w={29}
+                h={29}
+                mt={-10}
+              />
+            )}
+          </div>
           <br></br>
           <label className="reg-input" htmlFor="username">
             Username:

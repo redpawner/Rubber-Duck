@@ -59,7 +59,6 @@ function CreateHelp() {
     const slugDescription = string_to_slug(description);
     const roomID = slugDescription;
 
-    window.location.hash = roomID;
 
     let sandbox = 'https://codesandbox.io/';
 
@@ -93,7 +92,7 @@ function CreateHelp() {
       console.log(error);
     }
 
-    navigate('/chatroom#' + roomID);
+    navigate(`/chatroom/${roomID}`);
   };
 
   const handleClick = (e: any) => {

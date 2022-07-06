@@ -1,4 +1,4 @@
-import defaultPic from '../Images/avatars/user.png';
+import defaultPic from '../Images/avatars/profile.png';
 import duck1 from '../Images/avatars/duck1.png';
 import duck2 from '../Images/avatars/duck2.png';
 import duck3 from '../Images/avatars/duck3.png';
@@ -21,8 +21,7 @@ import duck19 from '../Images/avatars/duck19.png';
 import duck20 from '../Images/avatars/duck20.png';
 
 const avatars: any = [
-
-defaultPic,
+  defaultPic,
   duck1,
   duck2,
   duck3,
@@ -31,7 +30,6 @@ defaultPic,
   duck6,
   duck7,
   duck8,
-
   duck9,
   duck10,
   duck11,
@@ -45,6 +43,5 @@ defaultPic,
   duck19,
   duck20,
 ];
-
 
 export default avatars;

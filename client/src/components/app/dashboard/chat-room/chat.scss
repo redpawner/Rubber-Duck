@@ -525,3 +525,9 @@ position: relative;
     border: 3px solid black;
   }
 }
+.emoji-picker {
+  position: fixed;
+  bottom: 18%;
+ left: 12%;
+ z-index: 2;
+}
