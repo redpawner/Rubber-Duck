@@ -6,7 +6,7 @@
   "scripts": {
     "heroku-prebuild": "npm i",
     "build": "cd server && npm install && npx tsc",
-    "start": "node build/index.js"
+    "start": "node server/build/index.js"
   },
   "devDependencies": {
     "typescript": "^4.7.4"

@@ -129,13 +129,13 @@ function Profile() {
             <br></br>
             <label className="profile-label">Password:</label>
             <br></br>
-            <a
+            <button
               className="profile-textBox"
               id="reset-a"
               onClick={() => setResets((o) => !o)}
             >
               Click to reset your password
-            </a>
+            </button>
             <br></br>
           </form>
           <Popup open={resets} closeOnDocumentClick>
