@@ -8,12 +8,14 @@ import logo from '../../../../Images/logo.png';
 import { loginUser, googleLogin } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
+import {useState} from 'react';
 
 function Login() {
   window.history.replaceState(null, '', '/');
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
   const [createUser] = useMutation(CREATE_USER);
+  const [showPassword,setShowPassword]=useState(false);
 
   const handleSubmit = async (event: any) => {
     try {
@@ -21,10 +23,11 @@ function Login() {
       const email: string = event.target.email.value;
       const password: string = event.target.password.value;
       const user = await loginUser(email, password);
+      console.log(user);
       setUserUid(user.uid);
       setUserToken(user.accessToken);
     } catch (error) {
-      console.log(error);
+      alert('Incorrect Username/Password.Please try again.')
     }
   };
 
@@ -49,6 +52,10 @@ function Login() {
       console.log(error);
     }
   };
+
+  const togglePassword = () =>{
+    setShowPassword(!showPassword)
+  }
 
   return (
     <div className="form-container">
@@ -81,14 +88,20 @@ function Login() {
           <label className="reg-input" htmlFor="password">
             Password:
           </label>
+          <div className="password-box">
           <input
-            type="password"
+            type={showPassword?"text":"password"}
             className="reg-textBox"
             name="password"
             id="password"
             autoComplete="new-password"
             required
-          />
+          >
+
+          </input>
+          {!showPassword &&<button className="eye" onClick={togglePassword}>Show</button>}
+          {showPassword &&<button className="eye" onClick={togglePassword}>Hide</button>}
+          </div>
           <button className="login-btn">Log In</button>
           <div>
             <Link className="forgot-password" to="/reset">
