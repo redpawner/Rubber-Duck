@@ -1,7 +1,6 @@
 import { userStore } from '../../../../state-stores/state-stores';
 import { Link } from 'react-router-dom';
 import defaultPic from '../../../../Images/avatars/user.png';
-import facebook from '../../../../Images/apple.png';
 import './login.scss';
 import git from '../../../../Images/git.png';
 import google from '../../../../Images/google.png';
