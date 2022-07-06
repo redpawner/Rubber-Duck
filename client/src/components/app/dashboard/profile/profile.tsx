@@ -129,7 +129,6 @@ function Profile() {
             <br></br>
             <label className="profile-label">Password:</label>
             <br></br>
-            <br></br>
             <button
               className="profile-textBox"
               id="reset-a"
