@@ -352,7 +352,7 @@
   margin-left: 1vw;
   margin-right: 1vw;
   font-family: $main-font-family;
-  text-align: center;
+  text-align: left;
 }
 
 .help-tags-list {
@@ -398,6 +398,12 @@
 .currently-online {
   font-family: $main-font-family;
   font-size: $button-font-size;
+}
+
+.description-div-title {
+  font-family: $main-font-family;
+  font-size: $button-font-size;
+  margin-left: 1vw;
 }
 
 .avatar-img3 {
@@ -457,9 +463,9 @@
     background-color: #a53993;
   }
   .seek-button:hover {
-    color: $grey-shade;
-    background-color: transparent;
-    border: 3px solid black;
+    color: $blue-shade;
+    // background-color: transparent;
+    // border: solid thin black;
   }
   .res-button {
     border-radius: $border-radius;
@@ -474,9 +480,7 @@
     background-color: $blue-shade;
   }
   .res-button:hover {
-    color: $grey-shade;
-    background-color: transparent;
-    border: 3px solid black;
+    color: #a53993;
   }
   .quit-button {
     border-radius: $border-radius;
@@ -494,8 +498,8 @@
   }
   .quit-button:hover {
     color: $grey-shade;
-    background-color: transparent;
-    border: 3px solid black;
+    // background-color: transparent;
+    // border: solid black;
   }
 }
 .emoji-picker {

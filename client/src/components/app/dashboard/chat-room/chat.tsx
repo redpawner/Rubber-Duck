@@ -444,6 +444,7 @@ function Chat() {
           >
             <h1 className="help-chat-title">{helpRequestInfo.title}</h1>
             <div className="problem-div">
+              <h2 className="description-div-title">Description:</h2>
               <p className="problem-content">{helpRequestInfo.description}</p>
               <ul className="help-tags-list">
                 {helpRequestInfo &&
@@ -466,17 +467,24 @@ function Chat() {
               })} */}
 
               {<img className="avatar-img2" src={userAvatar} alt="avatar" />}
-              {username === helpRequestInfo.username ? (
-                otherAvatar && (
-                  <img className="avatar-img2" src={otherAvatar} alt="avatar" />
-                )
-              ) : (
-                <img
-                  className="avatar-img2"
-                  src={helpRequestInfo.avatar}
-                  alt="avatar"
-                />
-              )}
+              {username === helpRequestInfo.username
+                ? otherAvatar &&
+                  ((
+                    <img
+                      className="avatar-img2"
+                      src={otherAvatar}
+                      alt="avatar"
+                    />
+                  ),
+                  (<p>{username}</p>))
+                : ((
+                    <img
+                      className="avatar-img2"
+                      src={helpRequestInfo.avatar}
+                      alt="avatar"
+                    />
+                  ),
+                  (<p>{helpRequestInfo.username}</p>))}
             </div>
             <div className="creator-links">
               <h2 className="current-links">Try:</h2>
