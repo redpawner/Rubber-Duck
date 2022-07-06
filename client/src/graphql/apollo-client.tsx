@@ -8,7 +8,7 @@ import { setContext } from '@apollo/client/link/context';
 import { auth } from '../firebase';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: `${process.env.REACT_APP_BACKEND_PORT}graphql`,
 });
 
 const authLink = setContext(async (_, { headers }) => {

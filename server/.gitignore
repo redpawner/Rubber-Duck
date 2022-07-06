@@ -39,6 +39,7 @@ build/Release
 
 # Compiled javascript code
 build/
+client/
 
 # Dependency directories
 node_modules/

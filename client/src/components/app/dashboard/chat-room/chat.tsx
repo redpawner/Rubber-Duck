@@ -66,7 +66,7 @@ function Chat() {
   const roomID = window.location.hash;
 
   //currently grabbing url through lazy slice method (this will have to change when URL changes)
-  const url = window.location.href.slice(31);
+  const url = window.location.href.slice(42);
 
   const toggleHelpInfo = () => {
     setShowHelpInfo(() => !showHelpInfo);
@@ -278,7 +278,6 @@ function Chat() {
   useEffect(() => {
     if (messages.length) {
       const lastMessage = messages[messages.length - 1];
-      console.log(messages, 'lmsg');
       if (lastMessage.author !== username) {
         setOtherAvatar(lastMessage.avatar);
       }

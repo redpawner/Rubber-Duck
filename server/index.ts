@@ -26,7 +26,6 @@ const PORT = process.env.PORT || 3002;
 
   app.use(cors());
   app.use(parser());
-
   app.use(validateAuthorization);
 
   app.use(async (ctx: Koa.Context, next: Function) => {
