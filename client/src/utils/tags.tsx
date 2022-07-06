@@ -1,5 +1,4 @@
 const langTags = [
-  'A-Frame',
   'AngularJS',
   'Apollo',
   'Assembly',
