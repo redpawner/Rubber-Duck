@@ -33,6 +33,7 @@
   max-height: 100%;
   margin-top: 4vh;
 
+
   // background-color: #333;
 
   button {
@@ -286,9 +287,9 @@
   flex-shrink: 0;
   transition: width 300ms linear;
   button {
-    margin-top: 10px;
+    margin-top: 1vh;
     align-self: flex-end;
-    margin-right: 5px;
+    margin-right: 0.5vw;
     background-color: white;
     border: none;
     cursor: pointer;
@@ -303,6 +304,7 @@
     height: 12px;
   }
   .features-container-info {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -367,19 +369,15 @@
 
 .people-online {
   width: 80%;
-  height: 10vh;
+  height: 12vh;
   border: solid lightgray;
   border-radius: $border-radius;
   margin-top: 5%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   color: $grey-shade;
   font-weight: bold;
   transition: width 300ms linear;
-  h2 {
-    margin-right: 20px;
-    margin-left: 20px;
-  }
 
   .avatar-img2 {
     max-width: 60%;
@@ -396,6 +394,7 @@
 }
 
 .currently-online {
+  margin-left: 2vh;
   font-family: $main-font-family;
   font-size: $button-font-size;
 }
@@ -411,12 +410,13 @@
 
 .creator-links {
   width: 80%;
-  height: 10vh;
+  height: 12vh;
   border: solid lightgray;
   border-radius: $border-radius;
   margin-top: 5%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+
   color: $grey-shade;
   font-weight: bold;
   transition: width 300ms linear;
@@ -425,24 +425,21 @@
     font-family: $main-font-family;
     font-size: $button-font-size;
   }
-  h2 {
-    margin-right: 20px;
-    margin-left: 20px;
-  }
-
-  .options {
-    display: flex;
-
-    .sandbox {
-      margin-top: 2vh;
-      cursor: pointer;
-    }
+}
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  .sandbox {
+    cursor: pointer;
   }
 }
 .buttons-box {
-  margin-top: 5vh;
+  margin-top: 3vh;
   width: 20vw;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   .seek-button {
     border-radius: $border-radius;

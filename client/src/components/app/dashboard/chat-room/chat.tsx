@@ -154,20 +154,12 @@ function Chat() {
       },
     });
   };
-  console.log('on entry', username);
-  console.log('on exit', uid);
 
   const resolveHandler = async () => {
-    console.log('on exit', username);
-
-    console.log('on exit', uid);
     navigate('/dashboard');
   };
 
-  const onEmojiClick = (
-    event: FormEvent,
-    emojiObject: SetStateAction<null>
-  ) => {
+  const onEmojiClick = (emojiObject: SetStateAction<null>) => {
     setChosenEmoji(emojiObject);
 
     setArrivalMessage({
@@ -455,7 +447,7 @@ function Chat() {
               </ul>
             </div>
             <div className="people-online">
-              <h2 className="currently-online">Currently online:</h2>
+              <h2 className="currently-online">Online:</h2>
 
               {/* {onlineUsers.length && onlineUsers.map((user)=> {
                 return (<img
@@ -479,12 +471,10 @@ function Chat() {
               )}
             </div>
             <div className="creator-links">
-              <h2 className="current-links">Try:</h2>
-              <div className="options">
-                {/* <a href="https://www.youtube.com/watch?v=4vvBAONkYwI&ab_channel=BritneySpearsVEVO">
-              <img src={britney} alt="sand" className="avatar-img3" />
-            </a> */}
+              <h2 className="current-links">Sandbox link:</h2>
 
+              <div className="options">
+                <a href={helpRequestInfo.sandbox}>{helpRequestInfo.sandbox}</a>
                 <a
                   href={helpRequestInfo.sandbox}
                   target="_blank"
@@ -508,7 +498,7 @@ function Chat() {
             ) : (
               <div className="buttons-box">
                 <button className="quit-button" onClick={resolveHandler}>
-                  Quit
+                  Leave Help Request
                 </button>
               </div>
             )}
