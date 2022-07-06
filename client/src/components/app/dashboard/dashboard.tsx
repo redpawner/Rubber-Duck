@@ -23,6 +23,8 @@ function Dashboard() {
   const [tags, setTags] = useState<string[]>([]);
   const [helpRequests, setHelpRequests] = useState([]);
 
+  console.log(uid);
+
   const [getUser] = useLazyQuery(GET_USER, {
     variables: {
       filter: {
