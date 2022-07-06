@@ -1,6 +1,7 @@
 import { userStore } from '../../../../state-stores/state-stores';
 import { Link } from 'react-router-dom';
 import defaultPic from '../../../../Images/avatars/user.png';
+import facebook from '../../../../Images/apple.png';
 import './login.scss';
 import git from '../../../../Images/git.png';
 import google from '../../../../Images/google.png';
@@ -18,6 +19,8 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 function Login() {
+  console.log(defaultPic);
+  console.log(facebook);
   window.history.replaceState(null, '', '/');
   const setUserUid = userStore((state) => state.setUserUid);
   const setUserToken = userStore((state) => state.setUserToken);
