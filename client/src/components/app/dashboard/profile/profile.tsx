@@ -108,7 +108,7 @@ function Profile() {
               completed={item.completed}
             />
           ))}
-          <label className="reviews">52 Reviews</label>
+          <label className="reviews">{user.rating_count} Reviews</label>
           <br></br>
         </div>
         <div className="coffeediv">
@@ -118,7 +118,7 @@ function Profile() {
       <div className="mid-section">
         <div className="user-details-div">
           <label className="profile-info-label">User Information</label>
-          <form className="profile-form">
+          <div className="profile-form">
             <br></br>
             <label className="profile-label">Username:</label>
             <br></br> <p className="profile-textBox">{user.username}</p>
@@ -129,6 +129,7 @@ function Profile() {
             <br></br>
             <label className="profile-label">Password:</label>
             <br></br>
+            <br></br>
             <button
               className="profile-textBox"
               id="reset-a"
@@ -136,8 +137,7 @@ function Profile() {
             >
               Click to reset your password
             </button>
-            <br></br>
-          </form>
+          </div>
           <Popup open={resets} closeOnDocumentClick>
             <div className="reset-popup">
               <div className="userbox"></div>
