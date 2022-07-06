@@ -527,6 +527,7 @@ position: relative;
 }
 .emoji-picker {
   position: fixed;
-  bottom: 20%;
- right: 10%
+  bottom: 18%;
+ left: 12%;
+ z-index: 2;
 }

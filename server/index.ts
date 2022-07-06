@@ -49,7 +49,7 @@ const PORT = process.env.PORT || 3002;
   io.on('connection', function (socket: any) {
     console.log('io server connected');
     socket.on('sendMessage', function (data: any) {
-      socket.to(data.room).emit('receiveMessage', data);
+      socket.to(data.roomID).emit('receiveMessage', data);
     });
     socket.on('join_room', (data: any) => {
       socket.join(data);
