@@ -80,7 +80,9 @@ schemaComposer.Mutation.addFields({
   userUpdateOne: UserTC.mongooseResolvers
     .updateOne()
     .wrapResolve((next) => (rp) => {
-      rp.args.record.uid = rp.context.ctx.state.uid;
+      if (rp.args.record.uid) {
+        rp.args.record.uid = rp.context.ctx.state.uid;
+      }
       return next(rp);
     }),
   // userUpdateMany: UserTC.mongooseResolvers.updateMany(),

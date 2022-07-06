@@ -65,7 +65,6 @@ function Chat() {
   // const roomID = window.location.hash;
   const { roomID } = useParams();
 
-
   //currently grabbing url through lazy slice method (this will have to change when URL changes)
   // const url = window.location.href.slice(42);
 
@@ -103,7 +102,7 @@ function Chat() {
     }
   }, [roomID]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [arrivalMessage, setArrivalMessage] = useState <ArrivalMessage>({
+  const [arrivalMessage, setArrivalMessage] = useState<ArrivalMessage>({
     text: '',
     time: new Date(),
     language: '',
@@ -112,9 +111,9 @@ function Chat() {
     body: undefined,
     imgSource: '',
     author: '',
-    avatar:'',
-    roomID:''
-  } );
+    avatar: '',
+    roomID: '',
+  });
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const scrollRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -128,12 +127,9 @@ function Chat() {
     'typescript',
   ];
 
-
   useEffect(() => {
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
-      console.log(helpRequestInfo, 'hr info 1')
-      console.log(roomID, 'room')
 
       if (helpRequestInfo.username && username !== helpRequestInfo.username) {
         const defaultMessage = createDefaultMessage(
@@ -158,8 +154,13 @@ function Chat() {
       },
     });
   };
+  console.log('on entry', username);
+  console.log('on exit', uid);
 
   const resolveHandler = async () => {
+    console.log('on exit', username);
+
+    console.log('on exit', uid);
     navigate('/dashboard');
   };
 
@@ -175,14 +176,8 @@ function Chat() {
       text: arrivalMessage.text + emojiObject.emoji,
       avatar: userAvatar,
       roomID: roomID,
-
     });
   };
-  useEffect(()=>{
-    console.log({arrivalMessage})
-  }
-
-    ,[arrivalMessage])
 
   const handleShowEmojiPicker = (event: FormEvent) => {
     setShowEmojiPicker(!showEmojiPicker);
@@ -225,7 +220,6 @@ function Chat() {
   };
 
   const sendMessage = (event: FormEvent) => {
-    console.log(arrivalMessage, 'arr mes')
     event.preventDefault();
     socket.emit('sendMessage', arrivalMessage);
     setMessages([...messages, arrivalMessage]);
@@ -274,18 +268,15 @@ function Chat() {
 
   useEffect(() => {
     socket.on('receiveMessage', (data) => {
-      console.log('emoji',data)
       if (data.type === 'file') {
         const blob = new Blob([data.blob], { type: data.mimeType });
 
         // const fileReader = new FileReader();
         // fileReader.readAsArrayBuffer(blob);
-        const url= URL.createObjectURL(blob)
-        console.log('url', url)
-        data = {...data, imgSource:url}
-
+        const url = URL.createObjectURL(blob);
+        data = { ...data, imgSource: url };
       }
-     setMessages([...messages, data]);
+      setMessages([...messages, data]);
     });
   }, [messages]);
 
@@ -310,7 +301,10 @@ function Chat() {
         <div className="chat-container">
           <div className="chat-messages">
             {messages.map((message) => (
-              <div ref={scrollRef} key={message.time.toString()+ Math.random()}>
+              <div
+                ref={scrollRef}
+                key={message.time.toString() + Math.random()}
+              >
                 <Message
                   // key={
                   //   message.time.toString() + message.text + message.language
@@ -330,7 +324,7 @@ function Chat() {
                 placeholder="Type a message..."
                 onKeyDown={onEnterPress}
                 required
-                />
+              />
               <div className="buttons">
                 {arrivalMessage.type !== 'file' &&
                 arrivalMessage.text === '' ? ( //button for sending message
@@ -418,7 +412,7 @@ function Chat() {
               ) : (
                 <span>No emoji Chosen</span>
               )}
-              <Picker key = {Math.random()} onEmojiClick={onEmojiClick} />
+              <Picker key={Math.random()} onEmojiClick={onEmojiClick} />
             </div>
           ) : null}
         </div>
@@ -471,26 +465,18 @@ function Chat() {
               />)
               })} */}
 
-              {<img
-                className="avatar-img2"
-                src={userAvatar}
-                alt="avatar"
-              />}
-              {(username === helpRequestInfo.username)?(
-              otherAvatar && (<img
-                className="avatar-img2"
-                src={otherAvatar}
-                alt="avatar"
-              />)
-            ):(
-              <img
-                className="avatar-img2"
-                src={helpRequestInfo.avatar}
-                alt="avatar"
-              />
-           )}
-
-
+              {<img className="avatar-img2" src={userAvatar} alt="avatar" />}
+              {username === helpRequestInfo.username ? (
+                otherAvatar && (
+                  <img className="avatar-img2" src={otherAvatar} alt="avatar" />
+                )
+              ) : (
+                <img
+                  className="avatar-img2"
+                  src={helpRequestInfo.avatar}
+                  alt="avatar"
+                />
+              )}
             </div>
             <div className="creator-links">
               <h2 className="current-links">Try:</h2>
