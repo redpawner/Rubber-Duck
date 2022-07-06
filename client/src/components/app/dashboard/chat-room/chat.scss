@@ -1,4 +1,4 @@
-@import "../../../../stylesheet.scss";
+@import '../../../../stylesheet.scss';
 // responsive design
 // * {
 //   box-sizing: border-box;
@@ -16,7 +16,6 @@
   box-shadow: $div-shadow;
   min-width: 600px;
   min-height: 400px;
-
 }
 .chat-container {
   display: flex;
@@ -33,20 +32,17 @@
   max-width: 100%;
   max-height: 100%;
 
-
-
   // background-color: #333;
 
   button {
     img {
       width: 18px;
-    height: 18px;
-
+      height: 18px;
     }
   }
 
   .chat-form {
-position: absolute;
+    position: absolute;
     bottom: 0%;
     width: 95%;
     height: 50%;
@@ -66,13 +62,12 @@ position: absolute;
     min-height: auto;
     border-radius: 0 0 0 $border-radius;
 
-
     .hidden {
       display: none;
     }
     .text-area-form {
       position: absolute;
-      bottom:0%;
+      bottom: 0%;
       width: 98%;
       // height: 25%;
       min-height: 25%;
@@ -90,12 +85,12 @@ position: absolute;
 
       textarea {
         position: absolute;
-        bottom:45%;
+        bottom: 45%;
         width: 92%;
         height: 1em;
         // min-height: 1em;
         max-height: 30vh;
-         border: none;
+        border: none;
         border-radius: $border-radius;
         padding: 0.75em;
         margin-bottom: 1%;
@@ -121,8 +116,8 @@ position: absolute;
 
           .file-btn {
             background-color: white;
-            width:35px;
-            height:30px;
+            width: 35px;
+            height: 30px;
             border: none;
             border-radius: 15%;
             margin: 1%;
@@ -132,13 +127,12 @@ position: absolute;
           }
           .file-btn:hover {
             background-color: rgb(248, 245, 245);
-           }
-
+          }
 
           .input-type-btn {
             background-color: white;
-            width:35px;
-            height:30px;
+            width: 35px;
+            height: 30px;
             margin: 1%;
             border: none;
             border-radius: 15%;
@@ -146,23 +140,23 @@ position: absolute;
           }
           .input-type-btn:hover {
             background-color: rgb(248, 245, 245);
-           }
+          }
           .emoji-btn {
             background-color: white;
-            width:35px;
-            height:30px;
+            width: 35px;
+            height: 30px;
             margin: 1%;
             border: none;
             border-radius: 15%;
             cursor: pointer;
           }
           .emoji-btn:hover {
-           background-color: rgb(248, 245, 245);
+            background-color: rgb(248, 245, 245);
           }
         }
         .send-btn {
-          min-width:35px;
-          min-height:30px;
+          min-width: 35px;
+          min-height: 30px;
           background-color: white;
           border: none;
           border-radius: 15%;
@@ -170,7 +164,7 @@ position: absolute;
         }
         .send-btn:hover {
           background-color: rgb(248, 245, 245);
-         }
+        }
         .send-btn:disabled {
           // background-color: rgba(238, 238, 238);
           background-color: white;
@@ -194,11 +188,11 @@ position: absolute;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    margin-bottom:10vh;
+    margin-bottom: 10vh;
     z-index: 1;
     .chat-message-avatar {
       display: flex;
-     flex-direction: column;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 8vh;
@@ -220,12 +214,11 @@ position: absolute;
       margin-bottom: 10px;
       padding: 10px;
       padding-left: 5px;
-      margin-right:5%;
+      margin-right: 5%;
       // max-width: 50%;
       background-color: #f8eef6;
       border-radius: $border-radius;
       width: 100%;
-
 
       // box-shadow: $div-shadow;
 
@@ -258,10 +251,7 @@ position: absolute;
             // font-weight: bold;
           }
         }
-
-
       }
-
 
       .chat-message-text {
         font-size: $button-font-size;
@@ -271,15 +261,11 @@ position: absolute;
         word-break: break-word;
         overflow-wrap: break-word;
         font-weight: bolder;
-
-
       }
-        img {
-          max-height: 300px;
-          max-width: 300px;
-
-        }
-
+      img {
+        max-height: 300px;
+        max-width: 300px;
+      }
     }
   }
 }
@@ -299,35 +285,34 @@ position: absolute;
   flex-shrink: 0;
   transition: width 300ms linear;
   button {
-    margin-top: 10px;
+    margin-top: 1vh;
     align-self: flex-end;
-    margin-right: 5px;
+    margin-right: 0.5vw;
     background-color: white;
     border: none;
     cursor: pointer;
-
   }
   .right {
-width: 12px;
-height:12px ;
-transform: rotate(180deg);
-
+    width: 12px;
+    height: 12px;
+    transform: rotate(180deg);
   }
   .left {
     width: 12px;
-    height:12px ;
+    height: 12px;
   }
-.features-container-info{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 400px;
-}
+  .features-container-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+  }
 }
 
 .play {
-position: relative;
+  position: relative;
   // border-radius: $border-radius;
   // margin-top: 1%;
   height: 100%;
@@ -343,7 +328,6 @@ position: relative;
   min-width: 300px;
   min-height: 400px;
   flex-grow: 1;
-
 }
 
 .help-chat-title {
@@ -359,10 +343,9 @@ position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: $grey-shade;;
+  color: $grey-shade;
   border-radius: $border-radius;
   border: solid lightgray;
-
 }
 
 .problem-content {
@@ -370,12 +353,11 @@ position: relative;
   margin-right: 1vw;
   font-family: $main-font-family;
   text-align: center;
-
 }
 
 .help-tags-list {
   font-family: $main-font-family;
-  color: $grey-shade;;
+  color: $grey-shade;
   font-weight: bold;
   list-style: none;
   column-count: 3;
@@ -385,19 +367,15 @@ position: relative;
 
 .people-online {
   width: 80%;
-  height: 10vh;
+  height: 12vh;
   border: solid lightgray;
   border-radius: $border-radius;
   margin-top: 5%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   color: $grey-shade;
   font-weight: bold;
   transition: width 300ms linear;
-  h2 {
-    margin-right: 20px;
-    margin-left: 20px;
-  }
 
   .avatar-img2 {
     max-width: 60%;
@@ -409,14 +387,12 @@ position: relative;
     img {
       margin-left: 10px;
       margin-right: 5px;
-
     }
-
   }
 }
 
-
 .currently-online {
+  margin-left: 2vh;
   font-family: $main-font-family;
   font-size: $button-font-size;
 }
@@ -430,15 +406,15 @@ position: relative;
   cursor: pointer;
 }
 
-
 .creator-links {
   width: 80%;
-  height: 10vh;
+  height: 12vh;
   border: solid lightgray;
   border-radius: $border-radius;
   margin-top: 5%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+
   color: $grey-shade;
   font-weight: bold;
   transition: width 300ms linear;
@@ -447,26 +423,21 @@ position: relative;
     font-family: $main-font-family;
     font-size: $button-font-size;
   }
-  h2 {
-    margin-right: 20px;
-    margin-left: 20px;
-  }
-
-  .options {
-    display: flex;
-
-    .sandbox {
-      margin-top: 2vh;
-      cursor: pointer;
-  }
-
 }
-
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  .sandbox {
+    cursor: pointer;
+  }
 }
-.buttons-box{
-  margin-top: 5vh;
-  width:20vw;
-  display:flex;
+.buttons-box {
+  margin-top: 3vh;
+  width: 20vw;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   .seek-button {
     border-radius: $border-radius;
@@ -474,7 +445,6 @@ position: relative;
     cursor: pointer;
     font-family: $main-font-family;
     font-weight: $button-weight;
-    ;
     border: none;
     color: white;
     font-size: $button-font-size;
@@ -492,7 +462,6 @@ position: relative;
     cursor: pointer;
     font-family: $main-font-family;
     font-weight: $button-weight;
-    ;
     border: none;
     color: white;
     font-size: $button-font-size;
@@ -512,7 +481,6 @@ position: relative;
     cursor: pointer;
     font-family: $main-font-family;
     font-weight: $button-weight;
-    ;
     border: none;
     color: white;
     font-size: $button-font-size;
@@ -527,6 +495,7 @@ position: relative;
 }
 .emoji-picker {
   position: fixed;
-  bottom: 20%;
- right: 10%
+  bottom: 18%;
+  left: 12%;
+  z-index: 2;
 }

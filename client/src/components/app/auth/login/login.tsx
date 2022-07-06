@@ -1,11 +1,17 @@
 import { userStore } from '../../../../state-stores/state-stores';
 import { Link } from 'react-router-dom';
+import defaultPic from '../../../../Images/avatars/user.png';
 import './login.scss';
 import git from '../../../../Images/git.png';
 import google from '../../../../Images/google.png';
 import apple from '../../../../Images/apple.png';
 import logo from '../../../../Images/logo.png';
-import { loginUser, googleLogin } from '../../../../api-services/api-auth';
+import {
+  loginUser,
+  googleLogin,
+  githubLogin,
+  facebookLogin,
+} from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../../../graphql/queries-mutations';
 import { useState } from 'react';
@@ -42,7 +48,52 @@ function Login() {
         await createUser({
           variables: {
             record: {
-              avatar: 'user.59168e41eade7de7457f.png',
+              avatar: defaultPic,
+              username: user.displayName,
+              email: user.email,
+              uid: user.uid,
+            },
+          },
+        });
+      }
+      setUserToken(user.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  const facebookSignIn = async () => {
+    const user = await facebookLogin();
+    try {
+      setUserUid(user.uid);
+      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+        await createUser({
+          variables: {
+            record: {
+              avatar: defaultPic,
+              username: user.displayName,
+              email: user.email,
+              uid: user.uid,
+            },
+          },
+        });
+      }
+      setUserToken(user.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const githubSignIn = async () => {
+    const user = await githubLogin();
+    try {
+      setUserUid(user.uid);
+      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+        await createUser({
+          variables: {
+            record: {
+              avatar: defaultPic,
               username: user.displayName,
               email: user.email,
               uid: user.uid,
@@ -107,6 +158,7 @@ function Login() {
                 onClick={togglePassword}
                 w={29}
                 h={29}
+                mt={-10}
               />
             )}
             {showPassword && (
@@ -115,6 +167,7 @@ function Login() {
                 onClick={togglePassword}
                 w={29}
                 h={29}
+                mt={-10}
               />
             )}
           </div>
@@ -134,16 +187,26 @@ function Login() {
           <img
             id="socialmedia-img"
             src={google}
-            alt="facebook"
+            alt="google logo"
             onClick={googleSignIn}
           ></img>
         </button>
         <button id="platform-button">
           {' '}
-          <img id="socialmedia-img" src={apple} alt="apple"></img>
+          <img
+            id="socialmedia-img"
+            src={apple}
+            alt="facebook icon"
+            onClick={facebookSignIn}
+          ></img>
         </button>
         <button id="platform-button">
-          <img id="socialmedia-img" src={git} alt="github"></img>
+          <img
+            id="socialmedia-img"
+            src={git}
+            alt="github logo"
+            onClick={githubSignIn}
+          ></img>
         </button>
       </div>
     </div>

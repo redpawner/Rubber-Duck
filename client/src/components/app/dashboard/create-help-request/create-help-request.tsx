@@ -59,8 +59,6 @@ function CreateHelp() {
     const slugDescription = string_to_slug(description);
     const roomID = slugDescription;
 
-    window.location.hash = roomID;
-
     let sandbox = 'https://codesandbox.io/';
 
     if (event.target.sandbox.value > 0) {
@@ -93,7 +91,7 @@ function CreateHelp() {
       console.log(error);
     }
 
-    navigate('/chatroom#' + roomID);
+    navigate(`/chatroom/${roomID}`);
   };
 
   const handleClick = (e: any) => {
@@ -108,7 +106,7 @@ function CreateHelp() {
   };
 
   const mapLang = langTags
-    .filter((tag) => tag.includes(formValue))
+    .filter((tag) => tag.toLowerCase().includes(formValue))
     .map((tag) => {
       return (
         <div className="searchTile" onClick={handleClick}>

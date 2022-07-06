@@ -46,12 +46,12 @@ function Help({ helpRequest }: Props) {
       },
     });
     const roomID = helpRequest.url;
-    window.history.replaceState(null, '', '/chatroom');
-    window.location.hash = roomID;
+    // window.history.replaceState(null, '', '/chatroom');
+    // window.location.hash = roomID;
 
     //We can take this out if we can get the specific hr frome the db
-
-    navigate('/chatroom#' + roomID);
+console.log({helpRequest})
+    navigate(`/chatroom/${roomID}`);
   };
 
   return (
