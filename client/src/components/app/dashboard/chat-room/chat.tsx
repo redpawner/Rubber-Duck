@@ -475,7 +475,11 @@ function Chat() {
               <img src={britney} alt="sand" className="avatar-img3" />
             </a> */}
 
-                <a href={helpRequestInfo.sandbox}>
+                <a
+                  href={helpRequestInfo.sandbox}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />
