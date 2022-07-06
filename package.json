@@ -7,7 +7,7 @@
   "description": "node app ",
   "scripts": {
     "start": "node ./server/build/index.js",
-    "postinstall": "tsc --config ./server/tsconfig.json"
+    "postinstall": "tsc --project ./server/tsconfig.json"
   },
   "repository": {
     "type": "git",
