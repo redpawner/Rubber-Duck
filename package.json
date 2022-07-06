@@ -4,8 +4,12 @@
   "description": "node app ",
   "main": "build/index.js",
   "scripts": {
+    "heroku-prebuild": "npm i",
     "build": "cd server && npm install && npx tsc",
     "start": "node build/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
   },
   "repository": {
     "type": "git",
