@@ -54,7 +54,9 @@ function Chat() {
   const [showHelpInfo, setShowHelpInfo] = useState(true);
   //create state for the helper avatar
 
+
   const [otherAvatar, setOtherAvatar] = useState('');
+
 
   const navigate = useNavigate();
   const uid = userStore((state) => state.uid);
@@ -172,6 +174,7 @@ function Chat() {
       ...arrivalMessage,
       type: 'text',
       text: arrivalMessage.text + emojiObject.emoji,
+      avatar: userAvatar
     });
   };
 
@@ -252,6 +255,7 @@ function Chat() {
         imgSource: URL.createObjectURL(e.target.files[0]),
         room: roomID,
         author: username,
+        avatar: userAvatar
       });
   };
 
@@ -272,6 +276,7 @@ function Chat() {
       setMessages([...messages, data]);
     });
   }, [messages]);
+
   useEffect(() => {
     if (messages.length) {
       const lastMessage = messages[messages.length - 1];
@@ -281,6 +286,7 @@ function Chat() {
       }
     }
   }, [messages]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -447,18 +453,35 @@ function Chat() {
             </div>
             <div className="people-online">
               <h2 className="currently-online">Currently online:</h2>
-              {/* {include helper avatar} */}
 
-              <img className="avatar-img2" src={userAvatar} alt="avatar" />
-              {username === helpRequestInfo.author ? (
-                <img className="avatar-img2" src={otherAvatar} alt="avatar" />
-              ) : (
-                <img
-                  className="avatar-img2"
-                  src={helpRequestInfo.avatar}
-                  alt="avatar"
-                />
-              )}
+
+              {/* {onlineUsers.length && onlineUsers.map((user)=> {
+                return (<img
+                className="avatar-img2"
+                src={user}
+                alt="avatar"
+              />)
+              })} */}
+              {<img
+                className="avatar-img2"
+                src={userAvatar}
+                alt="avatar"
+              />}
+              {(username === helpRequestInfo.username)?(
+              <img
+                className="avatar-img2"
+                src={otherAvatar}
+                alt="avatar"
+              />
+            ):(
+              <img
+                className="avatar-img2"
+                src={helpRequestInfo.avatar}
+                alt="avatar"
+              />
+           )}
+
+
             </div>
             <div className="creator-links">
               <h2 className="current-links">Try:</h2>
@@ -474,14 +497,19 @@ function Chat() {
             <img src={video} alt="video" className="avatar-img3" /> */}
               </div>
             </div>
-            <div className="buttons-box">
-              <button className="res-button" onClick={cancelHandler}>
-                Seek another mentor
+            {(username === helpRequestInfo.username)?(<div className="buttons-box">
+               <button className="seek-button" onClick={cancelHandler}>
+               Ask again
               </button>
               <button className="res-button" onClick={resolveHandler}>
                 Resolved
               </button>
-            </div>
+            </div>):
+            (<div className="buttons-box">
+              <button className="quit-button" onClick={resolveHandler}>
+                Quit
+              </button>
+              </div>)}
           </div>
         }
       </div>

@@ -465,9 +465,63 @@ position: relative;
 }
 .buttons-box{
   margin-top: 5vh;
-  margin-left: 4vw;
   width:20vw;
   display:flex;
-  justify-content: space-between;
-
+  justify-content: center;
+  .seek-button {
+    border-radius: $border-radius;
+    padding: 0.65em 2em 0.5em;
+    cursor: pointer;
+    font-family: $main-font-family;
+    font-weight: $button-weight;
+    ;
+    border: none;
+    color: white;
+    font-size: $button-font-size;
+    font-weight: bold;
+    background-color: #a53993;
+  }
+  .seek-button:hover {
+    color: $grey-shade;
+    background-color: transparent;
+    border: 3px solid black;
+  }
+  .res-button {
+    border-radius: $border-radius;
+    padding: 0.65em 2em 0.5em;
+    cursor: pointer;
+    font-family: $main-font-family;
+    font-weight: $button-weight;
+    ;
+    border: none;
+    color: white;
+    font-size: $button-font-size;
+    font-weight: bold;
+    background-color: $blue-shade;
+  }
+  .res-button:hover {
+    color: $grey-shade;
+    background-color: transparent;
+    border: 3px solid black;
+  }
+  .quit-button {
+    border-radius: $border-radius;
+    padding: 0.65em 2em 0.5em;
+    align-self: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: $main-font-family;
+    font-weight: $button-weight;
+    ;
+    border: none;
+    color: white;
+    font-size: $button-font-size;
+    font-weight: bold;
+    background-color: $blue-shade;
+  }
+  .quit-button:hover {
+    color: $grey-shade;
+    background-color: transparent;
+    border: 3px solid black;
+  }
 }
