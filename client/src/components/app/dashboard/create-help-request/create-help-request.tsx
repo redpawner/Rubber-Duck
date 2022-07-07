@@ -134,9 +134,7 @@ function CreateHelp() {
           <div className="rules-container">
             <div className="qn">
               <Link to="/dashboard">
-                <button className="back-btn" id="cancel">
-                  Back
-                </button>
+                <button className="back-btn">Back</button>
               </Link>
               <div className="qn" onClick={() => setOpen((o) => !o)}>
                 <img

@@ -14,6 +14,9 @@
   margin-top: 3vh;
   align-self: center;
 }
+.save-profile-button:hover {
+  background-color: #1c136f;
+}
 
 .profile-div {
   width: 75%;
@@ -141,7 +144,7 @@
   width: 75%;
   height: 20%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   // align-items: center;
   // background-color: #3022ab;
 }
@@ -161,13 +164,14 @@
 }
 
 .coffeediv {
-  margin-left: 4vw;
-  width: 50%;
+  display: flex;
+  justify-content: center;
   height: 10vh;
 }
 
 .coffee {
-  width: 60%;
+  display: flex;
+  width: 100%;
   height: 100%;
   cursor: pointer;
 }
@@ -237,6 +241,10 @@
   border: none;
   margin-bottom: -3vh;
   margin-top: 3vh;
+}
+
+.save-buttonx:hover {
+  background-color: #1c136f;
 }
 
 .btn-save-container {
