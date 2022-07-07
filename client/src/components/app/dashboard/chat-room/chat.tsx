@@ -453,18 +453,23 @@ function Chat() {
             </div>
             <div className="people-online">
               <h2 className="currently-online">Online:</h2>
-              <div>
+              <div className="centering">
                 <img className="avatar-img2" src={userAvatar} alt="avatar" />
                 <p>{username}</p>
               </div>
               {username === helpRequestInfo.username ? (
-                otherAvatar &&
-                ((
-                  <img className="avatar-img2" src={otherAvatar} alt="avatar" />
-                ),
-                (<p>{username}</p>))
+                otherAvatar && (
+                  <div className="centering">
+                    <img
+                      className="avatar-img2"
+                      src={otherAvatar}
+                      alt="avatar"
+                    />
+                    <p>{username}</p>
+                  </div>
+                )
               ) : (
-                <div>
+                <div className="centering">
                   <img
                     className="avatar-img2"
                     src={helpRequestInfo.avatar}
