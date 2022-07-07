@@ -28,12 +28,15 @@ import {
 } from '../../../../graphql/queries-mutations';
 import TextareaAutosize from 'react-textarea-autosize';
 import { auth } from '../../../../firebase';
+import Video from '../video-chat/video';
 
-const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT;
+import socket from './socket';
 
-const socket = io(BACKEND_PORT, {
-  transports: ['websocket'],
-});
+// const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT;
+
+// const socket = io(BACKEND_PORT, {
+//   transports: ['websocket'],
+// });
 
 const createDefaultMessage = (roomID, user, avatar) => {
   return {
@@ -44,6 +47,7 @@ const createDefaultMessage = (roomID, user, avatar) => {
     roomID: roomID,
     author: user,
     avatar: avatar,
+    socketID: socket.id,
   };
 };
 
@@ -55,6 +59,7 @@ function Chat() {
   const [showHelpInfo, setShowHelpInfo] = useState(true);
 
   const [otherAvatar, setOtherAvatar] = useState('');
+  const [idToCall, setIdToCall] = useState('');
 
   const navigate = useNavigate();
   const uid = userStore((state) => state.uid);
@@ -129,6 +134,13 @@ function Chat() {
   ];
 
   useEffect(() => {
+    socket.on('connect', () => {
+      console.log('socket chat connected', socket.id);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('socket chat disconnected', socket.id);
+    });
     if (uid !== '' && roomID !== '') {
       socket.emit('join_room', roomID);
 
@@ -269,9 +281,12 @@ function Chat() {
         const url = URL.createObjectURL(blob);
         data = { ...data, imgSource: url };
       }
+      if (data.socketID && data.author !== username) {
+        setIdToCall(data.socketID);
+      }
       setMessages([...messages, data]);
     });
-  }, [messages]);
+  }, [messages, username]);
 
   useEffect(() => {
     if (messages.length) {
@@ -290,6 +305,9 @@ function Chat() {
 
   return (
     <div className="chat-main">
+      <div className="video-component">
+        <Video idToCall={idToCall} />
+      </div>
       <div className="play">
         <div className="chat-container">
           <div className="chat-messages">
@@ -491,6 +509,10 @@ function Chat() {
                 >
                   <img src={sand} alt="sand" className="sandbox" />
                 </a>
+                {/* <div className="video-component">
+                  <Video idToCall={idToCall} />
+                </div> */}
+
                 {/* <img src={board} alt="whiteboard" className="avatar-img3" />
             <img src={video} alt="video" className="avatar-img3" /> */}
               </div>
