@@ -17,6 +17,7 @@ function Video({ idToCall }) {
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
+  const [render, setRender] = useState();
   console.log('helpful text message', userVideo.current);
   useEffect(() => {
     navigator.mediaDevices
@@ -52,7 +53,17 @@ function Video({ idToCall }) {
     });
 
     //make sure to return cleanup function
-  }, [myVideo.current]);
+  }, [
+    myVideo.current,
+    userVideo.current,
+    receivingCall,
+    caller,
+    callerSignal,
+    callAccepted,
+    callEnded,
+    name,
+    idToCall,
+  ]);
 
   const callUser = (id) => {
     const peer = new Peer({
@@ -62,15 +73,19 @@ function Video({ idToCall }) {
     });
     peer.on('signal', (data) => {
       socket.emit('callUser', {
-        userToCall: idToCall,
+        userToCall: id,
         signalData: data,
         from: me,
         // name: name,
       });
     });
+
     peer.on('stream', (stream) => {
       userVideo.current.srcObject = stream;
     });
+    console.log(
+      'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    );
     socket.on('callAccepted', (signal) => {
       setCallAccepted(true);
       peer.signal(signal);
@@ -80,18 +95,19 @@ function Video({ idToCall }) {
   };
 
   const answerCall = () => {
-    setCallAccepted(true);
+    // setCallAccepted(true);
     const peer = new Peer({
       initiator: false,
       trickle: false,
       stream: stream,
     });
     peer.on('signal', (data) => {
-      // console.log('signal data', data);
+      console.log('signal data', data);
+      setCallAccepted(true);
       socket.emit('answerCall', { signal: data, to: caller });
     });
     peer.on('stream', (stream) => {
-      console.log('stream stream', userVideo.current);
+      console.log('stream stream aa', userVideo.current);
       userVideo.current.srcObject = stream;
     });
 
@@ -106,6 +122,13 @@ function Video({ idToCall }) {
 
   return (
     <div className="container">
+      <button
+        onClick={() => {
+          setRender(Math.random());
+        }}
+      >
+        Render
+      </button>
       <div className="video-container">
         <div className="video">
           {stream && (
