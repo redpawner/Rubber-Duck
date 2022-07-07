@@ -82,7 +82,7 @@ function Profile() {
       <div className="profile-div">
         <h1 className="dashboard-title">Profile</h1>
         <div className="avatar-wrap">
-          <div className="avatar-div">
+          <div className="avatar-div" onClick={() => setOpen((o) => !o)}>
             <img className="your-avatar" src={profilePic} alt="avatar"></img>
           </div>
 
@@ -98,8 +98,6 @@ function Profile() {
               </button>
             </div>
           </Popup>
-
-          <div className="dropdown-avatar"></div>
         </div>
       </div>
       <div className="rating-div">
@@ -166,7 +164,7 @@ function Profile() {
             </div>
           </Popup>
           <button className="save-profile-button" onClick={handleSubmit}>
-            Return
+            Save Changes
           </button>
         </div>
         <div className="user-details-div">
