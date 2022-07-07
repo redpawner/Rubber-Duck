@@ -19,6 +19,7 @@ function Video({ idToCall }) {
   const connectionRef = useRef();
   const [render, setRender] = useState();
   console.log('helpful text message', userVideo.current);
+
   useEffect(() => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
@@ -39,18 +40,22 @@ function Video({ idToCall }) {
       console.log('socket disconnected', socket.id);
     });
 
-    socket.on('me', (id) => {
-      console.log('use effect event me id', id);
-      setMe(id);
-    });
+    setMe(socket.id);
+
+    // socket.on('me', (id) => {
+    //   console.log('use effect event me id', id);
+    //   setMe(id);
+    // });
 
     socket.on('callUser', (data) => {
-      console.log('data', data);
+      console.log('data shfgksjhfgskdjhfgd', data);
       setReceivingCall(true);
       setCaller(data.from);
-      setName(data.name);
+      // setName(data.name);
       setCallerSignal(data.signal);
     });
+
+    console.log('callAccepted aaaaa', callAccepted);
 
     //make sure to return cleanup function
   }, [
@@ -63,6 +68,7 @@ function Video({ idToCall }) {
     callEnded,
     name,
     idToCall,
+    me,
   ]);
 
   const callUser = (id) => {
@@ -72,12 +78,14 @@ function Video({ idToCall }) {
       stream: stream,
     });
     peer.on('signal', (data) => {
-      socket.emit('callUser', {
-        userToCall: id,
-        signalData: data,
-        from: me,
-        // name: name,
-      });
+      if (me) {
+        socket.emit('callUser', {
+          userToCall: id,
+          signalData: data,
+          from: me,
+          // name: name,
+        });
+      }
     });
 
     peer.on('stream', (stream) => {
@@ -95,7 +103,7 @@ function Video({ idToCall }) {
   };
 
   const answerCall = () => {
-    // setCallAccepted(true);
+    setCallAccepted(true);
     const peer = new Peer({
       initiator: false,
       trickle: false,
@@ -103,11 +111,12 @@ function Video({ idToCall }) {
     });
     peer.on('signal', (data) => {
       console.log('signal data', data);
-      setCallAccepted(true);
+      // setCallAccepted(true);
       socket.emit('answerCall', { signal: data, to: caller });
     });
     peer.on('stream', (stream) => {
       console.log('stream stream aa', userVideo.current);
+      // setCallAccepted(true);
       userVideo.current.srcObject = stream;
     });
 

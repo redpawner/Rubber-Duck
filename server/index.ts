@@ -76,6 +76,7 @@ const PORT = process.env.PORT || 3002;
     })
     //video
     socket.on("answerCall", (data: any) => {
+      console.log(data)
       io.to(data.to).emit("callAccepted", data.signal)
     })
   });
