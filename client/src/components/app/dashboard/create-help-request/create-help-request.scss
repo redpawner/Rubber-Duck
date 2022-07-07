@@ -162,10 +162,9 @@
   display: none;
 }
 
-.h2title{
+.h2title {
   text-align: center;
 }
-
 
 .create-req-butt-cont {
   width: 75%;
@@ -275,8 +274,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 12vh;
-  padding: 0em 2em 2em 0.8em;
+  margin-top: 20vh;
+  padding: 0em 2em 0em 0.8em;
 
   max-height: 75vh;
   width: 35vw;
@@ -294,28 +293,31 @@
   display: none;
 }
 #guide-box-headline {
-  padding-top: 5vh;
+  padding-top: 2vh;
   padding-left: 5vw;
   padding-bottom: 2vh;
-  display: flex;
-  justify-content: center;
+  text-align: center;
   width: 28vw;
 }
 .guide-outerbox {
-  margin-bottom: 5vh;
+  margin-top: -1vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
 }
 .guide-box-title {
   font-size: medium;
-  font-weight: bold;
+  font-weight: bolder;
   margin-bottom: 1vh;
 }
 .guide-box-point {
-  margin: 0.5vh;
+  margin: 1vh;
   padding-left: 1vw;
 }
 .thankyou {
   display: flex;
   justify-content: center;
+  margin-bottom: 0;
 }
 
 .dropdown-tags {

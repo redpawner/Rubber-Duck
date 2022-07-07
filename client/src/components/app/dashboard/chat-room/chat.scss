@@ -45,7 +45,6 @@
   max-height: 100%;
   margin-top: 4vh;
 
-
   // background-color: #333;
 
   button {
@@ -474,7 +473,7 @@
     background-color: #a53993;
   }
   .seek-button:hover {
-    color: $blue-shade;
+    background-color: #852875;
     // background-color: transparent;
     // border: solid thin black;
   }
@@ -491,7 +490,7 @@
     background-color: $blue-shade;
   }
   .res-button:hover {
-    color: #a53993;
+    background-color: #1c136f;
   }
   .quit-button {
     border-radius: $border-radius;
@@ -508,7 +507,8 @@
     background-color: $blue-shade;
   }
   .quit-button:hover {
-    color: $grey-shade;
+    background-color: #1c136f;
+
     // background-color: transparent;
     // border: solid black;
   }

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import './profile.scss';
 import { userStore } from '../../../../state-stores/state-stores';
 import ProgressBar from './progress bar/progress';
@@ -23,6 +23,10 @@ function Profile() {
   const [message, setMessage] = useState('');
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setProfilePic(avatar);
+  }, [avatar]);
 
   const updateUserAvatar = async () => {
     try {
@@ -134,7 +138,7 @@ function Profile() {
               id="reset-a"
               onClick={() => setResets((o) => !o)}
             >
-              Click to reset your password
+              Reset your password
             </button>
           </div>
           <Popup open={resets} closeOnDocumentClick>
@@ -156,7 +160,7 @@ function Profile() {
                     required
                   />
                   <p className="message-after">{message}</p>
-                  <button className="reset-btn">Reset Your Password</button>
+                  <button className="reset-btn2">Reset Your Password</button>
                 </form>
               </div>
             </div>
@@ -179,7 +183,7 @@ function Profile() {
             <br></br>
             <label className="profile-label">Webpage:</label>
             <br></br>
-            <p className="profile-textBox">www.imsocool.con</p>
+            <p className="profile-textBox">www.githubpage.com</p>
             <br></br>
           </form>
         </div>
