@@ -17,6 +17,21 @@
   min-width: 600px;
   min-height: 400px;
 }
+
+@media screen and (max-width: 620px) {
+  .chat-main {
+    width: 80vw;
+    min-width: 400px;
+
+    .play {
+      width: 90%;
+      // margin: 2vh;
+    }
+    .features-container {
+      display: none;
+    }
+  }
+}
 .chat-container {
   display: flex;
   flex-direction: column;
