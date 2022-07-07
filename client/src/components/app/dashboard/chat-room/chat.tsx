@@ -53,7 +53,6 @@ function Chat() {
   const [helpRequestInfo, setHelpRequestInfo] = useState('');
   const [updateHR] = useMutation(UPDATE_HR);
   const [showHelpInfo, setShowHelpInfo] = useState(true);
-
   const [otherAvatar, setOtherAvatar] = useState('');
 
   const navigate = useNavigate();
@@ -160,9 +159,11 @@ function Chat() {
     navigate('/dashboard');
   };
 
-  const onEmojiClick = (emojiObject: SetStateAction<null>) => {
+  const onEmojiClick = (
+    event: FormEvent,
+    emojiObject: SetStateAction<null>
+  ) => {
     setChosenEmoji(emojiObject);
-
     setArrivalMessage({
       ...arrivalMessage,
       type: 'text',
@@ -452,26 +453,26 @@ function Chat() {
             </div>
             <div className="people-online">
               <h2 className="currently-online">Online:</h2>
-
-              {<img className="avatar-img2" src={userAvatar} alt="avatar" />}
-              {username === helpRequestInfo.username
-                ? otherAvatar &&
-                  ((
-                    <img
-                      className="avatar-img2"
-                      src={otherAvatar}
-                      alt="avatar"
-                    />
-                  ),
-                  (<p>{username}</p>))
-                : ((
-                    <img
-                      className="avatar-img2"
-                      src={helpRequestInfo.avatar}
-                      alt="avatar"
-                    />
-                  ),
-                  (<p>{helpRequestInfo.username}</p>))}
+              <div>
+                <img className="avatar-img2" src={userAvatar} alt="avatar" />
+                <p>{username}</p>
+              </div>
+              {username === helpRequestInfo.username ? (
+                otherAvatar &&
+                ((
+                  <img className="avatar-img2" src={otherAvatar} alt="avatar" />
+                ),
+                (<p>{username}</p>))
+              ) : (
+                <div>
+                  <img
+                    className="avatar-img2"
+                    src={helpRequestInfo.avatar}
+                    alt="avatar"
+                  />
+                  <p>{helpRequestInfo.username}</p>
+                </div>
+              )}
             </div>
             <div className="creator-links">
               <h2 className="current-links">Sandbox link:</h2>
