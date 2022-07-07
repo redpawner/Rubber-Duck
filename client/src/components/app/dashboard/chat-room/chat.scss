@@ -37,15 +37,13 @@
 .divider1 {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid black;
+  border-top: 1px solid lightgray;
   margin-left: 2vw;
   margin-right: 2vw;
 }
 .tag1 {
   height: auto;
   width: auto;
-
-  margin-right: 0.7vw;
 }
 .chat-container {
   display: flex;
@@ -61,7 +59,7 @@
   padding-left: 2%;
   max-width: 100%;
   max-height: 100%;
-  margin-top: 4vh;
+  margin-top: 2vh;
 
   // background-color: #333;
 
@@ -374,6 +372,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: scroll;
   color: $grey-shade;
   border-radius: $border-radius;
   border: solid lightgray;
@@ -391,11 +390,11 @@
   color: $grey-shade;
   font-weight: bold;
   list-style: none;
+  width: 80%;
   // column-count: 3;
   // text-align: center;
-  column-gap: 0.1%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .people-online {
@@ -413,7 +412,6 @@
   .avatar-img2 {
     max-width: 60%;
     max-height: 60%;
-    border-radius: 50%;
     margin-right: 5%;
     margin-top: 2vh;
     cursor: pointer;

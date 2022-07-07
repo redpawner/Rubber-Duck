@@ -28,6 +28,8 @@ function Profile() {
     setProfilePic(avatar);
   }, [avatar]);
 
+  console.log(profilePic);
+
   const updateUserAvatar = async () => {
     try {
       setAvatar(profilePic);
