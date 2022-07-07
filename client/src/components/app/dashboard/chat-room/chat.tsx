@@ -440,17 +440,14 @@ function Chat() {
               <h2 className="description-div-title">Description:</h2>
               <p className="problem-content">{helpRequestInfo.description}</p>
               <div className="divider1">
-              <ul className="help-tags-list">
-                {helpRequestInfo &&
-
-                  helpRequestInfo.hr_languages.map((lang) => (
-
-                    <li key={lang} value={lang} className="tag1">
-                      {lang}
-                    </li>
-                  ))
-                  }
-              </ul>
+                <ul className="help-tags-list">
+                  {helpRequestInfo &&
+                    helpRequestInfo.hr_languages.map((lang) => (
+                      <li key={lang} value={lang} className="tag1">
+                        {lang}
+                      </li>
+                    ))}
+                </ul>
               </div>
             </div>
             <div className="people-online">
@@ -480,7 +477,13 @@ function Chat() {
               <h2 className="current-links">Sandbox link:</h2>
 
               <div className="options">
-                <a href={helpRequestInfo.sandbox}>{helpRequestInfo.sandbox}</a>
+                <a
+                  href={helpRequestInfo.sandbox}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {helpRequestInfo.sandbox}
+                </a>
                 <a
                   href={helpRequestInfo.sandbox}
                   target="_blank"
