@@ -17,11 +17,10 @@
   min-height: 400px;
 }
 
-
 @media screen and (max-width: 620px) {
   .chat-main {
     width: 80vw;
-    min-width: 400px;
+    min-width: 330px;
 
     .play {
       width: 90%;
@@ -30,7 +29,11 @@
     .features-container {
       display: none;
     }
+    .chat-container .chat-form .text-area-form .buttons {
+      margin-bottom: 0%;
+    }
   }
+}
 .divider1 {
   display: flex;
   justify-content: space-between;
@@ -43,7 +46,6 @@
   width: auto;
 
   margin-right: 0.7vw;
-
 }
 .chat-container {
   display: flex;
