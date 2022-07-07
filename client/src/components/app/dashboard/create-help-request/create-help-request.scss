@@ -20,6 +20,51 @@
     margin-bottom: 1.5rem;
   }
 }
+@media screen and (max-width: 620px) {
+  .dashboard-container1 {
+    width: 80vw;
+    min-width: 330px;
+
+    .create-help-button-div {
+      width: 100%;
+      margin-left: 2vh;
+
+      #create-id {
+        font-size: 2rem;
+      }
+    }
+    .qn {
+      width: 80%;
+      // margin: 2vh;
+    }
+
+    .help-form {
+      font-size: 1rem;
+      width: 60vw;
+
+      .help-title1 {
+        width: 50vw;
+        font-size: 0.9rem;
+      }
+      .help-description {
+        width: 50vw;
+        font-size: 0.9rem;
+      }
+      #tags {
+        width: 10vw;
+        font-size: 0.9rem;
+      }
+      #sandbox {
+        width: 50vw;
+        font-size: 0.9rem;
+      }
+    }
+
+    #submit {
+      width: 10vh;
+    }
+  }
+}
 
 .create-help-button-div {
   display: flex;

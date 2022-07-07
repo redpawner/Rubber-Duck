@@ -129,7 +129,9 @@ function CreateHelp() {
         <div className="main-helper-box">
           <div className="create-help-button-div">
             <div className="create-help-button-div">
-              <h1 className="dashboard-title">Create Help Request</h1>
+              <h1 className="dashboard-title" id="create-id">
+                Create Help Request
+              </h1>
             </div>
           </div>
 
