@@ -106,10 +106,10 @@ function CreateHelp() {
   };
 
   const mapLang = langTags
-    .filter((tag) => tag.toLowerCase().includes(formValue))
-    .map((tag) => {
+    .filter((tag) => tag.toLowerCase().includes(formValue.toLowerCase()))
+    .map((tag, index) => {
       return (
-        <div className="searchTile" onClick={handleClick}>
+        <div className="searchTile" onClick={handleClick} key={index}>
           {tag}
         </div>
       );
@@ -134,9 +134,7 @@ function CreateHelp() {
           <div className="rules-container">
             <div className="qn">
               <Link to="/dashboard">
-                <button className="back-btn" id="cancel">
-                  Back
-                </button>
+                <button className="back-btn">Back</button>
               </Link>
               <div className="qn" onClick={() => setOpen((o) => !o)}>
                 <img
@@ -151,9 +149,9 @@ function CreateHelp() {
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
           <div className="guide-box">
             <div id="guide-box-headline">
-              <h2>
-                We’d love to help you. To improve your chances of getting an
-                answer, follow the tips below:
+              <h2 className="h2title">
+                We’d love to help you. To improve your chances of getting
+                help, follow the tips below:
               </h2>
             </div>
             <div>
@@ -182,7 +180,7 @@ function CreateHelp() {
 
                   <div className="guide-outerbox">
                     <li className="guide-box-title">
-                      Introduce the problem before you post any code{' '}
+                      Describe the problem clearly{' '}
                     </li>
 
                     <div>
@@ -191,9 +189,7 @@ function CreateHelp() {
                         summary you put in the title. <i>Explain</i> how you
                         encountered the problem you're trying to solve, and any
                         difficulties that have prevented you from solving it
-                        yourself. The first paragraph in your question is the
-                        second thing most readers will see, so make it as
-                        engaging and informative as possible.{' '}
+                        yourself.{' '}
                       </div>
                     </div>
                   </div>
@@ -222,16 +218,27 @@ function CreateHelp() {
                         Now that you're ready to ask your question, take a deep
                         breath and read through it from start to finish.{' '}
                         <i>Pretend </i>
-                        you're seeing it for the first time: does it make sense?
-                        Try reproducing the problem yourself, in a fresh
-                        environment and make sure you can do so using only the
-                        information included in your question. Add any details
+                        you're seeing it for the first time: does it make sense?<br></br>
+                        Add any details
                         you missed and read through it again. Now is a good time
                         to make sure that your title still describes the
                         problem!{' '}
                       </div>
                     </div>
                   </div>
+
+                  <div className="guide-outerbox">
+                    <li className="guide-box-title">
+                      Pass it on!{' '}
+                    </li>
+
+                    <div>
+                      <div className="guide-box-point">
+                       Pass it on by helping someone with their help request!{' '}
+                      </div>
+                    </div>
+                  </div>
+
 
                   <div className="thankyou">
                     <h2>Thank you</h2>{' '}

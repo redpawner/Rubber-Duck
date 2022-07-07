@@ -1,6 +1,6 @@
 import { userStore } from '../../../../state-stores/state-stores';
 import { Link } from 'react-router-dom';
-import defaultPic from '../../../../Images/avatars/user.png';
+import defaultPic from '../../../../Images/avatars/duck20.png';
 import './login.scss';
 import git from '../../../../Images/git.png';
 import google from '../../../../Images/google.png';
@@ -30,7 +30,6 @@ function Login() {
       const email: string = event.target.email.value;
       const password: string = event.target.password.value;
       const user = await loginUser(email, password);
-      console.log('user', user);
       if (!user.email)
         alert('The username or password you entered is incorrect');
       setUserUid(user.uid);

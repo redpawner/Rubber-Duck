@@ -132,13 +132,12 @@
   font-weight: bold;
   .create {
     margin-top: 0.2vh;
+    font-size: large;
   }
 }
 
 .create-help-butt:hover {
-  color: $grey-shade;
-  background-color: transparent;
-  border: 3px solid black;
+  background-color: #1c136f;
 }
 
 .help-list {
@@ -176,7 +175,7 @@
   z-index: 1;
   border-radius: $border-radius;
   color: $grey-shade;
-  height: auto;
+  max-height: 20rem;
 
   overflow: scroll;
 }
@@ -202,7 +201,7 @@
   border-radius: $border-radius;
   color: $grey-shade;
   // border: solid white;
-  height: 20rem;
+  max-height: 20rem;
   width: 5rem;
   overflow: scroll;
 }

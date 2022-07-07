@@ -3,7 +3,7 @@ const seeds = [
     uid: 'oFtYP4ntJdXaLOg6yJy9al8W69Z2',
     username: 'test1',
     email: 'test1@gmail.com',
-    avatar: '/static/media/user.59168e41eade7de7457f.png',
+    avatar: '/static/media/duck14.3b9cf05b1e59ab28794a.png',
     rating_total: 0,
     rating_count: 0,
     needHelp: true,

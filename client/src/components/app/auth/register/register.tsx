@@ -2,7 +2,7 @@ import { useState, FormEvent } from 'react';
 import { userStore } from '../../../../state-stores/state-stores';
 import '../login/login.scss';
 import './register.scss';
-import defaultPic from '../../../../Images/avatars/profile.png';
+import defaultPic from '../../../../Images/avatars/duck20.png';
 import logo from '../../../../Images/logo.png';
 import { fbCreateUser } from '../../../../api-services/api-auth';
 import { useMutation } from '@apollo/client';
@@ -44,7 +44,6 @@ function Register() {
     const result = await fbCreateUser(email, password);
 
     setUserUid(result.uid);
-    console.log(defaultPic);
     try {
       await createUser({
         variables: {

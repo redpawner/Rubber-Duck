@@ -50,7 +50,6 @@ function Help({ helpRequest }: Props) {
     // window.location.hash = roomID;
 
     //We can take this out if we can get the specific hr frome the db
-console.log({helpRequest})
     navigate(`/chatroom/${roomID}`);
   };
 
