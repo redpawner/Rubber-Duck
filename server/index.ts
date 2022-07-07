@@ -47,7 +47,7 @@ const PORT = process.env.PORT || 3002;
   });
 
   io.on('connection', function (socket: any) {
-    console.log('io server connected');
+    console.log('io server connected', socket.id);
     socket.on('sendMessage', function (data: any) {
       socket.to(data.roomID).emit('receiveMessage', data);
     });
@@ -55,9 +55,29 @@ const PORT = process.env.PORT || 3002;
       socket.join(data);
       console.log(`User with ID: ${socket.id} joined room: ${data}`);
     });
+    //video
+    socket.emit("me", socket.id)
+
+    // socket.on('me', function (data: any) {
+    //   console.log(socket.id, 'socketid');
+    //   socket.broadcast.emit('me', data);
+    // })
+
     socket.on('disconnect', function () {
       console.log('disconnected');
+      //video
+      socket.broadcast.emit("callEnded")
     });
+
+
+    //video
+    socket.on("callUser", (data: any) => {
+      io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
+    })
+    //video
+    socket.on("answerCall", (data: any) => {
+      io.to(data.to).emit("callAccepted", data.signal)
+    })
   });
 
   await new Promise<void>((resolve) =>
