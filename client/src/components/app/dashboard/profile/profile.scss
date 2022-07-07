@@ -9,10 +9,12 @@
   background-color: #3022ab;
   border: none;
   color: white;
-  font-size: 0.8999999999999999vw;
   font-weight: bold;
   margin-top: 3vh;
   align-self: center;
+}
+.save-profile-button:hover {
+  background-color: #1c136f;
 }
 
 .profile-div {
@@ -78,7 +80,7 @@
   flex-direction: column;
   // justify-content: space-around;
   align-items: flex-start;
-  height: 75%;
+  height: 80%;
   width: 100%;
   // background-color: #3022ab;
   border: solid thin rgba(128, 128, 128, 0.251);
@@ -97,10 +99,18 @@
 }
 
 .profile-textBox {
-  margin-top: -1vh;
-  font-size: large;
-  width: 90%;
+  margin-top: -2vh;
+  font-family: $main-font-family;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   border: none;
+  text-align: center;
+  text-overflow: clip;
+  width: 100%;
+  font-size: large;
+  background-color: transparent;
   border-bottom: $divider-line;
   outline: none;
 }
@@ -119,12 +129,6 @@
   margin-top: -2vh;
 }
 
-.profile-textBox {
-  margin-top: -2vh;
-  font-family: $main-font-family;
-  width: 20vh;
-}
-
 .mid-section {
   display: flex;
   flex-direction: row;
@@ -141,7 +145,7 @@
   width: 75%;
   height: 20%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   // align-items: center;
   // background-color: #3022ab;
 }
@@ -161,15 +165,20 @@
 }
 
 .coffeediv {
-  margin-left: 4vw;
-  width: 50%;
+  display: flex;
+  justify-content: center;
   height: 10vh;
 }
 
 .coffee {
-  width: 60%;
+  display: flex;
+  width: 100%;
   height: 100%;
   cursor: pointer;
+}
+
+.reset-btn2 {
+  font-size: 600px;
 }
 
 .helps-count {
@@ -239,6 +248,10 @@
   margin-top: 3vh;
 }
 
+.save-buttonx:hover {
+  background-color: #1c136f;
+}
+
 .btn-save-container {
   height: 80%;
   width: 90%;
@@ -250,7 +263,6 @@
 .reviews {
   font-family: $main-font-family;
   color: $blue-shade;
-  font-size: 0.7000000000000001vw;
 }
 
 .user-details-div {
@@ -272,17 +284,6 @@
   text-align: left;
   font-size: $button-font-size;
   font-weight: bold;
-}
-
-.profile-textBox {
-  margin-top: -2vh;
-  font-size: large;
-  text-align: center;
-  width: 100%;
-  border: none;
-  background-color: transparent;
-  border-bottom: $divider-line;
-  outline: none;
 }
 
 .reset-popup {
@@ -321,4 +322,28 @@
 
 #reset-a {
   cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+  .profile-textBox {
+    font-size: small;
+  }
+  .mid-section {
+    flex-direction: column;
+    margin-top: 7vh;
+    justify-content: space-between;
+    overflow: scroll;
+  }
+  .user-details-div {
+    width: 90%;
+    margin-bottom: 2vh;
+  }
+  .save-profile-button {
+    font-size: small;
+    min-width: 20vw;
+    margin-bottom: 1vh;
+  }
+  .set-avatar-btn {
+    margin-bottom: 1vh;
+  }
 }

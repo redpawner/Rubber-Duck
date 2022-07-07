@@ -16,6 +16,24 @@
   min-width: 600px;
   min-height: 400px;
 }
+
+@media screen and (max-width: 620px) {
+  .chat-main {
+    width: 80vw;
+    min-width: 330px;
+
+    .play {
+      width: 90%;
+      // margin: 2vh;
+    }
+    .features-container {
+      display: none;
+    }
+    .chat-container .chat-form .text-area-form .buttons {
+      margin-bottom: 0%;
+    }
+  }
+}
 .divider1 {
   display: flex;
   justify-content: space-between;
@@ -44,7 +62,6 @@
   max-width: 100%;
   max-height: 100%;
   margin-top: 4vh;
-
 
   // background-color: #333;
 
@@ -474,7 +491,7 @@
     background-color: #a53993;
   }
   .seek-button:hover {
-    color: $blue-shade;
+    background-color: #852875;
     // background-color: transparent;
     // border: solid thin black;
   }
@@ -491,7 +508,7 @@
     background-color: $blue-shade;
   }
   .res-button:hover {
-    color: #a53993;
+    background-color: #1c136f;
   }
   .quit-button {
     border-radius: $border-radius;
@@ -508,7 +525,8 @@
     background-color: $blue-shade;
   }
   .quit-button:hover {
-    color: $grey-shade;
+    background-color: #1c136f;
+
     // background-color: transparent;
     // border: solid black;
   }

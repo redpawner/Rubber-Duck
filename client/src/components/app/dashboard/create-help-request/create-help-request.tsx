@@ -61,7 +61,7 @@ function CreateHelp() {
 
     let sandbox = 'https://codesandbox.io/';
 
-    if (event.target.sandbox.value > 0) {
+    if (event.target.sandbox.value) {
       sandbox = event.target.sandbox.value;
     }
 
@@ -74,6 +74,8 @@ function CreateHelp() {
       url: roomID,
       sandbox: sandbox,
     };
+
+    console.log(helpRequest);
 
     try {
       await updateHR({
@@ -134,9 +136,7 @@ function CreateHelp() {
           <div className="rules-container">
             <div className="qn">
               <Link to="/dashboard">
-                <button className="back-btn" id="cancel">
-                  Back
-                </button>
+                <button className="back-btn">Back</button>
               </Link>
               <div className="qn" onClick={() => setOpen((o) => !o)}>
                 <img
@@ -151,93 +151,98 @@ function CreateHelp() {
         <Popup open={open} closeOnDocumentClick onClose={closeModal}>
           <div className="guide-box">
             <div id="guide-box-headline">
-              <h2>
-                We’d love to help you. To improve your chances of getting an
-                answer, follow the tips below:
+              <h1>When you're stuck, Rubber Duck!</h1>
+              <h2 className="h2title">
+                To improve your chances of getting help, please follow the
+                advice below:
               </h2>
             </div>
             <div>
-              <div>
-                <ol>
-                  <div className="guide-outerbox">
-                    <li className="guide-box-title">
-                      Write a title that summarizes the specific problem{' '}
-                    </li>
-
-                    <div>
-                      <div className="guide-box-point">
-                        <b>
-                          • Spelling, grammar and punctuation are important!
-                        </b>{' '}
-                        Please proof-read before publishing.
-                      </div>
-                      <div className="guide-box-point">
-                        • If you're having trouble summarizing the problem,
-                        write the title last - sometimes writing the rest of the
-                        question first can make it easier to describe the
-                        problem.{' '}
-                      </div>
+              <ol>
+                <div className="guide-outerbox">
+                  <li className="guide-box-title">
+                    Write a title that summarises the specific problem -
+                  </li>
+                  <div>
+                    <div className="guide-box-point">
+                      Spelling, grammar and punctuation are important! An easy
+                      to read title is more likely to be selected.
+                    </div>
+                    <div className="guide-box-point">
+                      If you're having trouble summarising the problem, write
+                      the title last - sometimes writing the rest of the
+                      question first can make it easier to describe the problem.
                     </div>
                   </div>
+                </div>
 
-                  <div className="guide-outerbox">
-                    <li className="guide-box-title">
-                      Introduce the problem before you post any code{' '}
-                    </li>
+                <div className="guide-outerbox">
+                  <li className="guide-box-title">
+                    Describe the problem clearly -
+                  </li>
 
-                    <div>
-                      <div className="guide-box-point">
-                        In the body of your question, start by expanding on the
-                        summary you put in the title. <i>Explain</i> how you
-                        encountered the problem you're trying to solve, and any
-                        difficulties that have prevented you from solving it
-                        yourself. The first paragraph in your question is the
-                        second thing most readers will see, so make it as
-                        engaging and informative as possible.{' '}
-                      </div>
+                  <div>
+                    <div className="guide-box-point">
+                      In the body of your question, start by expanding on the
+                      summary you put in the title.
+                    </div>
+                    <div className="guide-box-point">
+                      <i>Explain</i> how you encountered the problem you are
+                      trying to solve, and any difficulties that have prevented
+                      you from solving it yourself.
                     </div>
                   </div>
+                </div>
 
-                  <div className="guide-outerbox">
-                    <li className="guide-box-title">
-                      Include all relevant tags{' '}
-                    </li>
+                <div className="guide-outerbox">
+                  <li className="guide-box-title">Select relevant tags -</li>
 
-                    <div>
-                      <div className="guide-box-point">
-                        Try to include a tag for the language your question
-                        relates to. If you start typing in the tags field, the
-                        system will suggest tags that match what you've typed{' '}
-                      </div>
+                  <div>
+                    <div className="guide-box-point">
+                      Try to include a tag for the language, library, software
+                      or technology your question relates to. You can select up
+                      to three tags.
+                    </div>
+                    <div className="guide-box-point">
+                      If the tag you want is not available, choose the closest
+                      option and then make a reference to the correct option in
+                      the title and description.
                     </div>
                   </div>
+                </div>
 
-                  <div className="guide-outerbox">
-                    <li className="guide-box-title">
-                      Proof-read before posting!{' '}
-                    </li>
-
-                    <div>
-                      <div className="guide-box-point">
-                        Now that you're ready to ask your question, take a deep
-                        breath and read through it from start to finish.{' '}
-                        <i>Pretend </i>
-                        you're seeing it for the first time: does it make sense?
-                        Try reproducing the problem yourself, in a fresh
-                        environment and make sure you can do so using only the
-                        information included in your question. Add any details
-                        you missed and read through it again. Now is a good time
-                        to make sure that your title still describes the
-                        problem!{' '}
-                      </div>
+                <div className="guide-outerbox">
+                  <li className="guide-box-title">
+                    Proof-read before posting -
+                  </li>
+                  <div>
+                    <div className="guide-box-point">
+                      Now that you're ready to ask your question, take a deep
+                      breath and read through it from start to finish.
+                      <i>Pretend </i>
+                      you're seeing it for the first time and ask yourself if it
+                      makes sense.
+                    </div>
+                    <div className="guide-box-point">
+                      Add any details you missed and read through it again. Now
+                      is a good time to make sure that your title still
+                      describes the problem!{' '}
                     </div>
                   </div>
-
-                  <div className="thankyou">
-                    <h2>Thank you</h2>{' '}
+                </div>
+                <div className="guide-outerbox">
+                  <li className="guide-box-title">Pass it on! </li>
+                  <div>
+                    <div className="guide-box-point">
+                      Pass it on by helping someone with their help request!{' '}
+                    </div>
                   </div>
-                </ol>
-              </div>
+                </div>
+
+                <div className="thankyou">
+                  <h2>Thank you and quack quack!</h2>
+                </div>
+              </ol>
             </div>
           </div>
         </Popup>
@@ -253,6 +258,7 @@ function CreateHelp() {
               className="help-title1"
               name="title"
               id="title"
+              minLength={10}
               maxLength={40}
               placeholder="Max 40 characters..."
               required
@@ -266,6 +272,7 @@ function CreateHelp() {
               id="description"
               placeholder="Max. 500 characters"
               maxLength={500}
+              minLength={10}
               required
             ></textarea>
             <label className="help-request-input" htmlFor="tags">

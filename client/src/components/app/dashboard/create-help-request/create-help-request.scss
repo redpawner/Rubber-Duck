@@ -2,7 +2,7 @@
 
 .dashboard-container1 {
   border-radius: $border-radius;
-  margin-top: 2% 0 0 0;
+  margin-top: 2%;
   padding: 0;
   height: 80vh;
   width: 50vw;
@@ -62,9 +62,16 @@
   font-family: $main-font-family;
   border: none;
   color: white;
-  font-size: 0.8999999999999999vw;
+  font-size: large;
   font-weight: bold;
+  background-color: $blue-shade;
+  align-self: center;
 }
+
+.create-cancel-btn:hover {
+  background-color: #1c136f;
+}
+
 .back-btn {
   border-radius: $border-radius;
   width: 5vw;
@@ -76,11 +83,16 @@
   cursor: pointer;
   font-family: $main-font-family;
   color: white;
-  background-color: #a53993;
   font-size: 0.8rem;
   border: none;
   margin-left: 0.1rem;
   padding: 0.9em;
+  position: relative;
+  background-color: #a53993;
+}
+
+.back-btn:hover {
+  background-color: #852875;
 }
 .tips-btn {
   border-radius: $border-radius;
@@ -112,7 +124,7 @@
   height: 4vh;
   border: $divider-line;
   font-family: $main-font-family;
-  font-size: x-large;
+  font-size: large;
   color: $grey-shade;
   font-weight: bold;
 }
@@ -137,7 +149,7 @@
 .help-description {
   width: 35vw;
   height: 15vh;
-  font-size: larger;
+  font-size: large;
   font-family: $main-font-family;
   border: $divider-line;
   color: $grey-shade;
@@ -148,6 +160,10 @@
 
 .help-description::-webkit-scrollbar {
   display: none;
+}
+
+.h2title {
+  text-align: center;
 }
 
 .create-req-butt-cont {
@@ -217,17 +233,6 @@
   margin-bottom: 1vh;
 }
 
-#submit {
-  background-color: $blue-shade;
-  align-self: center;
-}
-
-#cancel {
-  position: relative;
-
-  background-color: #a53993;
-}
-
 .container-height {
   height: 100%;
   margin-bottom: 2vh;
@@ -269,8 +274,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 12vh;
-  padding: 0em 2em 2em 0.8em;
+  margin-top: 20vh;
+  padding: 0em 2em 0em 0.8em;
 
   max-height: 75vh;
   width: 35vw;
@@ -288,30 +293,37 @@
   display: none;
 }
 #guide-box-headline {
-  padding-top: 5vh;
+  padding-top: 2vh;
   padding-left: 5vw;
   padding-bottom: 2vh;
-  display: flex;
-  justify-content: center;
+  text-align: center;
   width: 28vw;
 }
 .guide-outerbox {
-  margin-bottom: 5vh;
+  margin-top: -1vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
 }
 .guide-box-title {
   font-size: medium;
-  font-weight: bold;
+  font-weight: bolder;
   margin-bottom: 1vh;
 }
 .guide-box-point {
-  margin: 0.5vh;
+  margin: 1vh;
   padding-left: 1vw;
 }
 .thankyou {
   display: flex;
   justify-content: center;
+  margin-bottom: 0;
 }
 
 .dropdown-tags {
   display: flex;
+}
+
+.help-title3 {
+  font-size: large;
 }

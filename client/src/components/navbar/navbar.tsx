@@ -9,8 +9,6 @@ import { Link } from 'react-router-dom';
 function Navbar() {
   const avatar = userStore((state) => state.avatar) as string;
   const setUserToken = userStore((state) => state.setUserToken);
-  // const [profilePic, setProfilePic] = useState(defaultAvatar);
-  console.log(avatar);
   const logout = () => {
     setUserToken('');
     logoutUser();
