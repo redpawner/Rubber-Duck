@@ -9,9 +9,11 @@ import { Link } from 'react-router-dom';
 function Navbar() {
   const avatar = userStore((state) => state.avatar) as string;
   const setUserToken = userStore((state) => state.setUserToken);
+  const setUserUid = userStore((state) => state.setUserUid);
   const logout = () => {
     setUserToken('');
     logoutUser();
+    setUserUid('');
   };
 
   return (

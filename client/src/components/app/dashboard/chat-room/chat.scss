@@ -422,6 +422,14 @@
   }
 }
 
+.centering {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1vw;
+}
+
 .currently-online {
   margin-left: 2vh;
   font-family: $main-font-family;
