@@ -13,7 +13,7 @@ The app allows anyone with an interest in tech to post a help request for their 
 
 
 |**Frontend**|**Backend**|**Database**|**API**|**Deployment**|
-|---|---|---|---|
+|---|---|---|---|---|
 |React|Koa|MongoDB|Apollo GraphQL|Heroku|
 |Zustand|Firebase|Mongoose|Socket.IO|Netlify|
 |Typescript|Typescript|
