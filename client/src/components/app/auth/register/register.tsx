@@ -83,7 +83,7 @@ function Register() {
         <form className="login-container" onSubmit={useHandleSubmit}>
           <br></br>
           <label className="reg-input" htmlFor="email">
-            Email:
+            *Email:
           </label>
           <br></br>
           <input
@@ -96,7 +96,7 @@ function Register() {
           />
           <br></br>
           <label className="reg-input" htmlFor="password">
-            Password:
+            *Password:
           </label>
           <br></br>
           <input
@@ -110,7 +110,7 @@ function Register() {
 
           <br></br>
           <label className="reg-input" htmlFor="password1">
-            Confirm Password:
+            *Confirm Password:
           </label>
           <br></br>
           <div className="password-box1">
@@ -143,7 +143,7 @@ function Register() {
           </div>
           <br></br>
           <label className="reg-input" htmlFor="username">
-            Username:
+            *Username:
           </label>
           <br></br>
           <input

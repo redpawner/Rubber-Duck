@@ -253,7 +253,7 @@ function CreateHelp() {
         <form className="help-form" onSubmit={publish}>
           <div className="container-height">
             <label className="help-request-input" htmlFor="title">
-              Title:
+              *Title:
             </label>
             <input
               type="text"
@@ -266,7 +266,7 @@ function CreateHelp() {
               required
             />{' '}
             <label className="help-request-input" htmlFor="description">
-              Description:
+              *Description:
             </label>
             <textarea
               className="help-description"
@@ -278,7 +278,7 @@ function CreateHelp() {
               required
             ></textarea>
             <label className="help-request-input" htmlFor="tags">
-              Tags:
+              *Tags:
             </label>
             <div className="dropdown-tags">
               <div className="dropdown-box">
