@@ -40,6 +40,15 @@
   cursor: pointer;
   margin-top: 2vh;
 }
+@media screen and (max-height: 615px) {
+  .register-form {
+    height: 50%;
+  }
+  .login-btn2 {
+    padding: 1vh;
+    margin-bottom: -2vh;
+  }
+}
 
 .reg-textBox {
   margin-top: -1vh;
