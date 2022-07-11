@@ -535,3 +535,18 @@
   left: 12%;
   z-index: 2;
 }
+
+.avatar-img3 {
+  display: flex;
+  // text-align: center;
+  height: 20vh;
+  width: 15vh;
+  background-color: blue;
+  flex-direction: column;
+  // border: solid;
+  // align-items: center;
+  .avatar-img3 p {
+    text-align: center;
+    // margin-bottom: 10vh;
+  }
+}
