@@ -1,5 +1,6 @@
 # RubberDuckIt
 
+<h3>https://rubberduckit.netlify.app/<h3>
 
 ## Introduction
 
@@ -7,16 +8,14 @@ RubberDuckIt is a live chat application to help software developers connect and 
 
 The app allows anyone with an interest in tech to post a help request for their problem which can be answered by other developers. Once answered the participants are put into a chat room where they can take advantages of the inbuilt app features, solve the problem and learn from others in the community.
 
-You can try out the deployed app here >> https://rubberduckit.netlify.app/ <<
-
 
 ## Tech Stack
 
 
-|**Frontend**|**Backend**|**Database**|**API**|
+|**Frontend**|**Backend**|**Database**|**API**|**Deployment**|
 |---|---|---|---|
-|React|Koa|MongoDB|Apollo GraphQL|
-|Zustand|Firebase|Mongoose|Socket.IO|
+|React|Koa|MongoDB|Apollo GraphQL|Heroku|
+|Zustand|Firebase|Mongoose|Socket.IO|Netlify|
 |Typescript|Typescript|
 
 RubberDuckIt's frontend was built in Typescript with React, Sass and Zustand state-management solution. The backend server was built in Typescript with Koa, Firebase, custom auth middleware and Apollo. MongoDB (Atlas) with Mongoose ODM were used for the database. The WebSocket connection was set up with the Socket.IO library and GraphQL (with Apollo library) used as the API query language. The app was deployed on Heroku and Netlify and designed primarily in Figma.
