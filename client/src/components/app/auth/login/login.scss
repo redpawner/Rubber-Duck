@@ -143,6 +143,15 @@
   }
 }
 
+@media screen and (max-height: 530px) {
+  .form-container {
+    .auth-logo {
+      width: 7%;
+      height: 7%;
+    }
+  }
+}
+
 .login-other-platforms {
   display: flex;
   flex-direction: row;
